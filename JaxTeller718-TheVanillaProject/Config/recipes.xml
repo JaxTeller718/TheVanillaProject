@@ -1,0 +1,109 @@
+<JaxTeller718>
+	<set xpath="/recipes/recipe[@name='drugRecog']/ingredient[@name='resourceAcid']/@count">5</set>
+	<remove xpath="/recipes/recipe[@name='mineCandyTin']"/>
+	<remove xpath="/recipes/recipe[@name='mineHubcap']"/>
+	<remove xpath="/recipes/recipe[@name='mineAirFilter']"/>
+	<remove xpath="/recipes/recipe[@name='mineCookingPot']"/>
+	<append xpath="/recipes">
+		<recipe name="mineCandyTin" count="1" craft_area="workbench">
+			<!-- trap size 1 -->
+			<ingredient name="resourceScrapIron" count="4"/>
+			<ingredient name="resourceGunPowder" count="4"/>
+			<ingredient name="resourceCandyTin" count="1"/>
+			<ingredient name="resourceNail" count="1"/>
+		</recipe>
+		<recipe name="mineHubcap" count="1" craft_area="workbench" tags="learnable,workbenchCrafting">
+			<!-- trap size 2 -->
+			<ingredient name="resourceScrapIron" count="8"/>
+			<ingredient name="resourceGunPowder" count="8"/>
+			<ingredient name="resourceHubcap" count="1"/>
+			<ingredient name="resourceSpring" count="1"/>
+		</recipe>
+		<recipe name="mineAirFilter" count="1" craft_area="workbench" tags="learnable,workbenchCrafting">
+			<!-- trap size 3 -->
+			<ingredient name="resourceScrapIron" count="12"/>
+			<ingredient name="resourceGunPowder" count="12"/>
+			<ingredient name="resourceAirFilter" count="1"/>
+			<ingredient name="resourceSpring" count="1"/>
+		</recipe>
+		<recipe name="mineCookingPot" count="1" craft_area="workbench" tags="learnable,workbenchCrafting">
+			<!-- trap size 1.1 -->
+			<ingredient name="resourceScrapIron" count="5"/>
+			<ingredient name="resourceGunPowder" count="5"/>
+			<ingredient name="toolCookingPot" count="1"/>
+			<ingredient name="resourceNail" count="1"/>
+		</recipe>
+		<recipe name="resourceAirFilter" count="1" craft_area="workbench" tags="workbenchCrafting">
+			<ingredient name="resourceScrapIron" count="15"/>
+		</recipe>
+		<recipe name="resourceCandyTin" count="1" craft_area="workbench" tags="workbenchCrafting">
+			<ingredient name="resourceScrapIron" count="5"/>
+		</recipe>
+		<recipe name="resourceHubcap" count="1" craft_area="workbench" tags="workbenchCrafting">
+			<ingredient name="resourceScrapIron" count="10"/>
+		</recipe>
+		
+<recipe name="ammo9mmBulletPrimitive" count="1">
+	<ingredient name="resourceRockSmall" count="1"/>
+	<ingredient name="resourceGunPowder" count="2"/>
+	<ingredient name="resourcePaper" count="1"/>
+</recipe>
+
+<recipe name="ammoShotgunShellPrimitive" count="1">
+	<ingredient name="resourceRockSmall" count="1"/>
+	<ingredient name="resourceGunPowder" count="2"/>
+	<ingredient name="resourcePaper" count="1"/>
+</recipe>
+
+<recipe name="ammo762mmBulletPrimitive" count="1">
+	<ingredient name="resourceRockSmall" count="1"/>
+	<ingredient name="resourceGunPowder" count="2"/>
+	<ingredient name="resourcePaper" count="1"/>
+</recipe>
+
+<recipe name="ammoBundle9mmBulletPrimitive" count="1" craft_time="240">
+	<ingredient name="resourceRockSmall" count="80"/>
+	<ingredient name="resourceGunPowder" count="160"/>
+	<ingredient name="resourcePaper" count="80"/>
+</recipe>
+
+<recipe name="ammoBundleShotgunShellPrimitive" count="1" craft_time="240">
+	<ingredient name="resourceRockSmall" count="80"/>
+	<ingredient name="resourceGunPowder" count="160"/>
+	<ingredient name="resourcePaper" count="80"/>
+</recipe>
+
+<recipe name="ammoBundle762mmBulletPrimitive" count="1" craft_time="240">
+	<ingredient name="resourceRockSmall" count="80"/>
+	<ingredient name="resourceGunPowder" count="160"/>
+	<ingredient name="resourcePaper" count="80"/>
+</recipe>
+
+<recipe name="foodMoldyBread" count="1" craft_area="chemistryStation" tags="chemStationCrafting">
+	<ingredient name="foodShamSandwich" count="10"/>
+	<ingredient name="drinkJarRiverWater" count="1"/>
+</recipe>
+
+<recipe name="drinkJarGrainAlcohol" count="1" craft_area="campfire" craft_tool="toolBeaker">
+	<ingredient name="foodCornMeal" count="3"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+</recipe>
+
+<recipe name="drinkJarGrainAlcohol" count="1" craft_area="chemistryStation" tags="chemStationCrafting">
+	<ingredient name="foodCornMeal" count="1"/>
+	<ingredient name="drinkJarRiverWater" count="1"/>
+</recipe>
+
+		<recipe name="resourceLeather" count="5" craft_time="15">
+			<ingredient name="resourceAnimalHideJT" count="1"/>
+		</recipe>
+	</append>
+	
+		<set xpath="/recipes/recipe[@name='drugAntibiotics']/ingredient[@name='foodShamSandwich']/@name">foodMoldyBread</set>
+		<set xpath="/recipes/recipe[@name='drugFortBites']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
+		<set xpath="/recipes/recipe[@name='drugRecog']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
+		<set xpath="/recipes/recipe[@name='drugSteroids']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
+		<set xpath="/recipes/recipe[@name='foodPumpkinCheesecake']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
+		<set xpath="/recipes/recipe[@name='medicalFirstAidKit']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
+
+</JaxTeller718>

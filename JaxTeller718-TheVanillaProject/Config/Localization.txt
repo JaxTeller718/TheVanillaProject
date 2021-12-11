@@ -1,0 +1,12 @@
+﻿Key,Source,Context,English
+ammo9mmBulletPrimitive,items,Ammo,Primitive 9mm Ammo,,,,,
+ammo9mmBulletPrimitiveDesc,items,Ammo,"Primitive bullets that can be used in Pipe weapons. Not as powerful as legit ammo but easy to make.",,,,,
+ammoBundle9mmBulletPrimitive,items,Ammo,Box of Primitive 9mm Ammo (100),,,,,
+ammoShotgunShellPrimitive,items,Ammo,Primitive Shotgun Shell (Ammo),,,,,
+ammoShotgunShellPrimitiveDesc,items,Ammo,"Primitive bullets that can be used in Pipe weapons. Not as powerful as legit ammo but easy to make.",,,,,
+ammoBundleShotgunShellPrimitive,items,Ammo,Box of Primitive Shotgun Shells (100),,,,,
+ammo762mmBulletPrimitive,items,Ammo,Primitive 7.62mm Ammo,,,,,
+ammo762mmBulletPrimitiveeDesc,items,Ammo,"Primitive bullets that can be used in Pipe weapons. Not as powerful as legit ammo but easy to make.",,,,,
+ammoBundle762mmBulletPrimitive,items,Ammo,Box of Primitive 7.62mm Ammo (100),,,,,
+resourceAnimalHideJT,items,Item,Animal Hide,,,,,
+resourceAnimalHideJTDesc,items,Item,This hide can be cut down into leather.,,,,,

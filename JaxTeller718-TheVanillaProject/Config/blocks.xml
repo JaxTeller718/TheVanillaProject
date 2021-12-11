@@ -1,0 +1,19 @@
+<JaxTeller718>
+	<set xpath="/blocks/block[@name='hubcapNoMine']/drop[@event='Destroy' and @name='resourceScrapIron']/@count">1</set>
+	<set xpath="/blocks/block[@name='hubcapNoMine']/drop[@event='Destroy' and @name='resourceScrapIron']/@name">resourceHubcap</set>
+	
+	<set xpath="/blocks/block[@name='terrOreIron']/drop[@event='Harvest'][@name='resourceScrapIron']/@name">resourceIronFragment</set>
+	<set xpath="/blocks/block[@name='terrOreIron']/drop[@event='Harvest'][@name='resourceIronFragment']/@count">23</set>
+	<set xpath="/blocks/block[@name='terrOreIron']/drop[@event='Fall'][@name='resourceScrapIron']/@name">resourceIronFragment</set>
+	<set xpath="/blocks/block[@name='terrOreIron']/drop[@event='Fall'][@name='resourceIronFragment']/@count">33</set>
+	<set xpath="/blocks/block[@name='oreIronBoulder']/drop[@event='Harvest'][@name='resourceScrapIron']/@name">resourceIronFragment</set>
+	<set xpath="/blocks/block[@name='oreIronBoulder']/drop[@event='Harvest'][@name='resourceIronFragment']/@count">23</set>
+	
+	<insertAfter xpath="/blocks/block[@name='rockResource']/drop[@event='Harvest'][@name='resourceRockSmall']">
+	<drop event="Harvest" name="resourceIronFragment" count="8" tag="oreWoodHarvest"/>
+	<drop event="Harvest" name="resourceCoal" count="5" tag="oreWoodHarvest"/>
+	<drop event="Harvest" name="resourcePotassiumNitratePowder" count="5" tag="oreWoodHarvest"/>
+	<drop event="Harvest" name="resourceScrapLead" count="5" tag="oreWoodHarvest"/>
+	</insertAfter>
+	
+</JaxTeller718>

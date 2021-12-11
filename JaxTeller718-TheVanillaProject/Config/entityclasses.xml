@@ -1,0 +1,38 @@
+﻿<JaxTeller718>
+
+
+
+	<set xpath="/entity_classes/entity_class[@name='animalStag']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalDoe']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalRabbit']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalChicken']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalBear']/drop[@event='Harvest' and @name='resourceLeather']/@count">3</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalWolf']/drop[@event='Harvest' and @name='resourceLeather']/@count">2</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalSnake']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalBoar']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/drop[@event='Harvest' and @name='resourceLeather']/@count">2</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalCoyote']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/drop[@event='Harvest' and @name='resourceLeather']/@count">4</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalDireWolf']/drop[@event='Harvest' and @name='resourceLeather']/@count">3</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalZombieVulture']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalZombieDog']/drop[@event='Harvest' and @name='resourceLeather']/@count">1</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalBossGrace']/drop[@event='Harvest' and @name='resourceLeather']/@count">12</set>
+	
+	<set xpath="//drop[@event='Harvest' and @name='resourceLeather']/@name">resourceAnimalHideJT</set>
+
+
+</JaxTeller718>
