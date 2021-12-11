@@ -379,24 +379,7 @@
 </item>
 
 
-<item name="ammo9mmBulletPrimitive">
-	<property name="Tags" value="ammo"/>
-	<property name="DisplayType" value="ammoBullet"/>
-	<property name="HoldType" value="45"/>
-	<property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
-	<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
-	<property name="Material" value="Mbrass"/>
-	<property name="MeltTimePerUnit" value=".4"/>
-	<property name="Stacknumber" value="300"/> <!-- STK ammo high -->
-	<property name="EconomicValue" value="6"/>
-	<property name="Group" value="Ammo/Weapons,Ammo,Ranged Weapons"/>
-	<effect_group name="ammo9mmBulletBall" tiered="false">
-		<passive_effect name="EntityDamage" operation="base_set" value="25" tags="perkGunslinger,9mmGun"/>
-		<passive_effect name="BlockDamage" operation="base_set" value="4" tags="perkGunslinger"/>
-		<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
-		<passive_effect name="DamageModifier" operation="perc_add" value="2" tags="wood"/>
-	</effect_group>
-</item>
+
 
 <item name="ammoBundlePrimitiveMaster">
 	<property name="CreativeMode" value="None"/>
@@ -425,9 +408,28 @@
 	</property>
 </item>
 
+<item name="ammo9mmBulletPrimitive">
+	<property name="Tags" value="ammo"/>
+	<property name="DisplayType" value="ammoBullet"/>
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="Mbrass"/>
+	<property name="MeltTimePerUnit" value=".4"/>
+	<property name="Stacknumber" value="300"/> <!-- STK ammo high -->
+	<property name="EconomicValue" value="6"/>
+	<property name="Group" value="Ammo/Weapons,Ammo,Ranged Weapons"/>
+	<effect_group name="ammo9mmBulletBall" tiered="false">
+		<passive_effect name="EntityDamage" operation="base_set" value="25" tags="perkGunslinger,9mmGun"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="4" tags="perkGunslinger"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="2" tags="wood"/>
+	</effect_group>
+</item>
+
 <item name="ammoBundle9mmBulletPrimitive">
 	<property name="Extends" value="ammoBundlePrimitiveMaster"/>
-	<property name="CustomIcon" value="ammoBundle9mmBulletPrimitive"/>
+	<property name="CustomIcon" value="ammo9mmBulletPrimitive"/>
 	<property name="EconomicValue" value="250"/>
 	<property class="Action0">
 		<property name="Create_item" value="ammo9mmBulletPrimitive"/>
@@ -465,7 +467,7 @@
 
 <item name="ammoBundleShotgunShellPrimitive">
 	<property name="Extends" value="ammoBundlePrimitiveMaster"/>
-	<property name="CustomIcon" value="ammoBundleShotgunShellPrimitive"/>
+	<property name="CustomIcon" value="ammoShotgunShellPrimitive"/>
 	<property name="EconomicValue" value="250"/>
 	<property class="Action0">
 		<property name="Create_item" value="ammoShotgunShellPrimitive"/>
@@ -486,7 +488,7 @@
 
 <item name="ammoBundle762mmBulletPrimitive">
 	<property name="Extends" value="ammoBundlePrimitiveMaster"/>
-	<property name="CustomIcon" value="ammoBundle762mmBulletPrimitive"/>
+	<property name="CustomIcon" value="ammo762mmBulletPrimitive"/>
 	<property name="EconomicValue" value="250"/>
 	<property class="Action0">
 		<property name="Create_item" value="ammo762mmBulletPrimitive"/>
