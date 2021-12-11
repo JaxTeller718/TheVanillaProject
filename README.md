@@ -2,7 +2,7 @@
 
 The Vanilla Project
 
-Brings back old changes and removals from previous Alphas. The purpose of this mod is to compliment A20 and its new features by inorrporating older features and items. This will not dramatically alter or change the new alpha experience rather it will present the alpha as it would be if removals had not occurred. Consider this ac oompanion DLC.
+Brings back old changes and removals from previous Alphas. The purpose of this mod is to compliment A20 and its new features by inorrporating older features and items. This will not dramatically alter or change the new alpha experience rather it will present the alpha as it would be if removals had not occurred. Consider this a coompanion DLC.
 
 What this does and what is included
 
