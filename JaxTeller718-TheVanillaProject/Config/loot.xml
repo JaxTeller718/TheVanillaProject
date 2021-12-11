@@ -1,4 +1,4 @@
-<config>
+<JaxTeller718>
 	<append xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
 		<item name="resourceCandyTin" count ="1,2"/>
 	</append>
@@ -23,4 +23,4 @@
 	</append>
 		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0rifle']/item[@name='ammo762mmBulletBall']/@name">ammoBlunderbuss</set>
 
-</config>
+</JaxTeller718>

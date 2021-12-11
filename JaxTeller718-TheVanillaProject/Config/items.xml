@@ -1,4 +1,4 @@
-<config>
+<JaxTeller718>
 	<remove xpath="/items/item[@name='foodCanBeef']"/>
 	<remove xpath="/items/item[@name='foodCanChicken']"/>
 	<remove xpath="/items/item[@name='foodCanLamb']"/>
@@ -577,4 +577,4 @@
 <set xpath="/items/item[@name='questRewardT0ShotgunBundle']/property[@class='Action0']/property[@name='Create_item' and @value='gunShotgunT0PipeShotgun,ammoShotgunShell']/@value">gunShotgunT0PipeShotgun,ammoShotgunShellPrimitive</set>
 <set xpath="/items/item[@name='questRewardT0MachineGunBundle']/property[@class='Action0']/property[@name='Create_item' and @value='gunMGT0PipeMachineGun,ammo762mmBulletBall']/@value">gunMGT0PipeMachineGun,ammo762mmBulletPrimitive</set>
 
-</config>
+</JaxTeller718>
