@@ -86,5 +86,16 @@ v1.1
 
 -Replaced Animal Fat in candles, flaming arrows and torches with Tallow
 
+-World crops can now be picled up with E like in previous alphas. Planted crops must be punched. Credi tto Khaine for inspiration on this.
+
+-Reduced healthj on trees
+
+-Removed harvest on trees
+
+-Trees give logs on Destroy only
+
+-Dead Tree Bushes Now Give Back Sticks
+
+
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

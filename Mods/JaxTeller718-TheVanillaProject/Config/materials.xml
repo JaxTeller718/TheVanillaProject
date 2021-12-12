@@ -15,9 +15,9 @@
 		</material>
 	</append>
 	
-	<set xpath="/materials/material[@id='MtreeWoodSmall']/property[@name='MaxDamage']/@value">200</set>
-	<set xpath="/materials/material[@id='MtreeWoodMedium']/property[@name='MaxDamage']/@value">350</set>
-	<set xpath="/materials/material[@id='MtreeWoodLarge']/property[@name='MaxDamage']/@value">500</set>
-	<set xpath="/materials/material[@id='MtreeWoodFull']/property[@name='MaxDamage']/@value">700</set>
+	<set xpath="/materials/material[@id='MtreeWoodSmall']/property[@name='MaxDamage']/@value">150</set>
+	<set xpath="/materials/material[@id='MtreeWoodMedium']/property[@name='MaxDamage']/@value">250</set>
+	<set xpath="/materials/material[@id='MtreeWoodLarge']/property[@name='MaxDamage']/@value">300</set>
+	<set xpath="/materials/material[@id='MtreeWoodFull']/property[@name='MaxDamage']/@value">500</set>
 	
 </JaxTeller718>
