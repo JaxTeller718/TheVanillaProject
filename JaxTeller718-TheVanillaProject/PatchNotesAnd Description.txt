@@ -39,4 +39,12 @@ V1.0
 -Adds old menu screen
 
 
+
+v1.1
+
+-Added Primitive ammo to twitch integration and loot
+
+
+
+
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

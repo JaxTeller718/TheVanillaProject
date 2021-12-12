@@ -4,6 +4,15 @@
 	<remove xpath="/recipes/recipe[@name='mineHubcap']"/>
 	<remove xpath="/recipes/recipe[@name='mineAirFilter']"/>
 	<remove xpath="/recipes/recipe[@name='mineCookingPot']"/>
+	<remove xpath="/recipes/recipe[@name='foodBoiledMeat']" />
+	<remove xpath="/recipes/recipe[@name='foodGrilledMeat']" />
+	<remove xpath="/recipes/recipe[@name='foodCharredMeat']" />
+	<remove xpath="/recipes/recipe[@name='foodMeatStew']" />
+	<remove xpath="/recipes/recipe[@name='foodBaconAndEggs']" />
+	<remove xpath="/recipes/recipe[@name='foodChiliDog']" />
+	<remove xpath="/recipes/recipe[@name='foodSteakAndPotato']" />
+
+
 	<append xpath="/recipes">
 		<recipe name="mineCandyTin" count="1" craft_area="workbench">
 			<!-- trap size 1 -->
@@ -105,6 +114,179 @@
 		<recipe name="resourceStickJT" count="4" craft_time="1">
 			<ingredient name="resourceWoodPlanksJT" count="1"/>
 		</recipe>
+		
+<recipe name="foodBearGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodBearMeat" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodChickenGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodChicken" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodChicken"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodPorkGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodPork" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodRabbit" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodVenison" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodBearStew" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodBearMeat" count="5"/>
+	<ingredient name="foodCropPotato" count="2"/>
+	<ingredient name="foodCropCorn" count="2"/>
+	<ingredient name="resourceAnimalFat" count="1"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitStew" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodRabbit" count="5"/>
+	<ingredient name="foodCropPotato" count="2"/>
+	<ingredient name="foodCropCorn" count="2"/>
+	<ingredient name="resourceAnimalFat" count="1"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonStew" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodVenison" count="5"/>
+	<ingredient name="foodCropPotato" count="2"/>
+	<ingredient name="foodCropCorn" count="2"/>
+	<ingredient name="resourceAnimalFat" count="1"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodBearCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodBearMeat" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodChickenCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodChicken" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodChicken"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodPorkCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodPork" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodRabbit" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodVenison" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodBearBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodBearMeat" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodPorkBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodPork" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodRabbit" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodVenison" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodBaconAndEggs" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodPork" count="5"/>
+	<ingredient name="foodEgg" count="2"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodChiliDog" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodCanChili" count="1"/>
+	<ingredient name="foodPork" count="5"/>
+	<ingredient name="foodCornBread" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodSteakAndPotato" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodBearMeat" count="5"/>
+	<ingredient name="foodCropPotato" count="2"/>
+	<ingredient name="foodCropMushrooms" count="2"/>
+	<ingredient name="resourceAnimalFat" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodSteakAndPotato" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodVenison" count="5"/>
+	<ingredient name="foodCropPotato" count="2"/>
+	<ingredient name="foodCropMushrooms" count="2"/>
+	<ingredient name="resourceAnimalFat" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
 	</append>
 	
 		<set xpath="/recipes/recipe[@name='drugAntibiotics']/ingredient[@name='foodShamSandwich']/@name">foodMoldyBread</set>

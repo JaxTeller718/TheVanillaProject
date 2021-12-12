@@ -1,26 +1,191 @@
 <JaxTeller718>
+
+
 	<append xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
 		<item name="resourceCandyTin" count ="1,2"/>
 	</append>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='groupScrapRare']">
 		<item name="resourceHubcap" count ="1,2"/>
 		<item name="resourceAirFilter" count ="1,2"/>
 	</append>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRegularT0']">
-		<item name="ammoBlunderbuss" count="3,6"/>
+		<item name="ammo9mmBulletPrimitive" count="3,6"/>
+		<item name="ammo762mmBulletPrimitive" count="3,6"/>
+		<item name="ammoShotgunShellPrimitive" count="3,6"/>
 	</append>
-	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRegularT0']">
-		<item name="ammoBlunderbuss" count="15,30"/>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRegularT1']">
+		<item name="ammo9mmBulletPrimitive" count="15,30"/>
+		<item name="ammo762mmBulletPrimitive" count="15,30"/>
+		<item name="ammoShotgunShellPrimitive" count="15,30"/>
 	</append>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='rottenFood']">
 		<item name="foodMoldyBread"/>
 	</append>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='groupMedicalUncommon']">
 		<item name="drinkJarGrainAlcohol"/>
 	</append>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='twitch_med3']">
 		<item name="drinkJarGrainAlcohol" count="1,2"/>
 	</append>
-		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0rifle']/item[@name='ammo762mmBulletBall']/@name">ammoBlunderbuss</set>
+	
+		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0rifle']/item[@name='ammo762mmBulletBall']/@name">ammo762mmBulletPrimitive</set>
+		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0shotgun']/item[@name='ammoShotgunShell']/@name">ammoShotgunShellPrimitive</set>
+		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0machinegun']/item[@name='ammo762mmBulletBall']/@name">ammo762mmBulletPrimitive</set>
+		<set xpath="/lootcontainers/lootgroup[@name='twitch_tier0pistol']/item[@name='ammo9mmBulletBall']/@name">ammo9mmBulletPrimitive</set>
 
+	<remove xpath="/lootcontainers/lootgroup[@name='groupIngredientsRare']/item[@name='foodRawMeat']"/>
+
+	<insertAfter xpath="/lootcontainers/lootgroup[@name='groupIngredientsUncommon']">
+		<lootgroup name="groupRawMeat">
+			<item name="foodBearMeat"/>
+			<item name="foodChicken"/>
+			<item name="foodPork"/>
+			<item name="foodRabbit"/>
+			<item name="foodVenison"/>
+		</lootgroup>
+	</insertAfter>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupIngredientsRare']">
+		<lootgroup name="groupRawMeat"/>
+	</append>	
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodRare']/item[@name='foodMeatStew']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT2']/item[@name='foodMeatStew']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT3']/item[@name='foodMeatStew']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT1']/item[@name='foodMeatStewSchematic']"/>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupFoodRare']">
+		<lootgroup name="groupRawMeat"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT2']">
+		<item name="foodBearStew" count="2,4" />
+		<item name="foodRabbitStew" count="2,4" />
+		<item name="foodVenisonStew" count="2,4" />
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT3']">
+		<item name="foodBearStew" count="2,4" />
+		<item name="foodRabbitStew" count="2,4" />
+		<item name="foodVenisonStew" count="2,4" />
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT1']">
+		<item name="foodRabbitStewSchematic"/>
+		<item name="foodVenisonStewSchematic"/>
+		<item name="foodBearStewSchematic"/>
+	</append>	
+
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']/item[@name='foodBoiledMeat']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']/item[@name='foodGrilledMeat']"/>
+
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']">
+		<item name="foodBearBoiled" count="2,4" />
+		<item name="foodPorkBoiled" count="2,4" />
+		<item name="foodRabbitBoiled" count="2,4" />
+		<item name="foodVenisonBoiled" count="2,4" />
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']">
+		<item name="foodBearGrilled" count="2,4" />
+		<item name="foodChickenGrilled" count="2,4" />
+		<item name="foodPorkGrilled" count="2,4" />
+		<item name="foodRabbitGrilled" count="2,4" />
+		<item name="foodVenisonGrilled" count="2,4" />
+	</append>	
+	
+	<insertAfter xpath="/lootcontainers/lootgroup[@name='groupIngredientsUncommon']">
+		<lootgroup name="groupGrillsMeatCharred">
+			<item name="foodBearGrilled"/>
+			<item name="foodChickenGrilled"/>
+			<item name="foodPorkGrilled"/>
+			<item name="foodRabbitGrilled"/>
+			<item name="foodVenisonGrilled"/>
+		</lootgroup>
+
+		<lootgroup name="groupGrillsMeatGrilled">
+			<item name="foodBearCharred"/>
+			<item name="foodChickenCharred"/>
+			<item name="foodPorkCharred"/>
+			<item name="foodRabbitCharred"/>
+			<item name="foodVenisonCharred"/>
+		</lootgroup>
+	</insertAfter>
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupGrills']/item[@name='foodCharredMeat']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupGrills']/item[@name='foodGrilledMeat']"/>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupGrills']">
+		<lootgroup name="groupGrillsMeatCharred" count="1,2" loot_prob_template="low"/>
+		<lootgroup name="groupGrillsMeatGrilled" count="1,2" loot_prob_template="veryLow"/>
+	</append>	
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodCommon']/item[@name='foodCharredMeat']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodPileCommon']/item[@name='foodCharredMeat']"/>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupFoodCommon']">
+		<lootgroup name="groupGrillsMeatCharred"/>
+	</append>	
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupFoodPileCommon']">
+		<lootgroup name="groupGrillsMeatCharred"/>
+	</append>
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupOven01']/item[@name='foodCharredMeat']"/>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupOven01']">
+	<lootgroup name="foodCharredMeat" count="1,2" loot_prob_template="low"/>
+	</append>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT0']/item[@name='foodCharredMeat']"/>
+
+
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT0']">
+		<lootgroup name="groupGrillsMeatCharred" count="3,4"/>
+	</append>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']/item[@name='foodGrilledMeat']"/>
+
+	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']">
+		<lootgroup name="groupGrillsMeatGrilled" count="2,4"/>
+	</append>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']/item[@name='foodGrilledMeatSchematic']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']/item[@name='foodBoiledMeatSchematic']"/>
+
+
+	<append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']">
+		<item name="foodBearGrilledSchematic"/>
+		<item name="foodChickenGrilledSchematic"/>
+		<item name="foodPorkGrilledSchematic"/>
+		<item name="foodRabbitGrilledSchematic"/>
+		<item name="foodVenisonGrilledSchematic"/>
+	</append>	
+
+	<append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']">
+		<item name="foodBearBoiledSchematic"/>
+		<item name="foodPorkBoiledSchematic"/>
+		<item name="foodRabbitBoiledSchematic"/>
+		<item name="foodVenisonBoiledSchematic"/>
+	</append>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 </JaxTeller718>

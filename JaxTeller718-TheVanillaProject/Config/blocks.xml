@@ -15,5 +15,48 @@
 	<drop event="Harvest" name="resourcePotassiumNitratePowder" count="5" tag="oreWoodHarvest"/>
 	<drop event="Harvest" name="resourceScrapLead" count="5" tag="oreWoodHarvest"/>
 	</insertAfter>
+
+	<set xpath="//drop[@event='Harvest' and @name='resourceWood' and @count='30']/@count">5</set>
+	<set xpath="//drop[@event='Harvest' and @name='resourceWood' and @count='70']/@count">15</set>
+	<set xpath="//drop[@event='Harvest' and @name='resourceWood' and @count='110']/@count">24</set>
+	<set xpath="//drop[@event='Harvest' and @name='resourceWood' and @count='150']/@count">36</set>
+	<set xpath="/blocks/block[@name='treeStump']/drop[@event='Harvest' and @name='resourceWood' and @count='20,30']/@count">2,4</set>
+	<set xpath="/blocks/block[@name='treeJuniper4m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeOakSml01']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeOakMed01']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeOakMed02']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeOakLrg01']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedOak08m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedOak16m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedOak27m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedOak41m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlainsTree2']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine12m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine19m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine27m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine31m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine41m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPine48m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeMountainPineDry21m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePineBurntLrg']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePineBurntMed']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePineBurntFullMed']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeFirLrg01']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedMountainPine12m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedMountainPine19m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedMountainPine27m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedMountainPine41m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeWinterEverGreen']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeWinterPine13m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeWinterPine19m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeWinterPine28m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedWinterPine6m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedWinterPine13m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedWinterPine19m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treePlantedWinterPine28m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeBurntMaple01']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeBurntMaple02']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeBurntMaple03']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
+	<set xpath="/blocks/block[@name='treeStump']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
 	
 </JaxTeller718>

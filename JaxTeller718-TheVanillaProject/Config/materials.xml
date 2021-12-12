@@ -6,5 +6,18 @@
 			<property name="forge_category" value="iron"/>
 			<property name="Experience" value="8"/>
 		</material>
+		
+		<material id="MresourceStick">
+			<property name="damage_category" value="wood"/>
+			<property name="surface_category" value="wood"/>
+			<property name="forge_category" value="stick"/>
+			<property name="Experience" value="1.5"/>
+		</material>
 	</append>
+	
+	<set xpath="/materials/material[@id='MtreeWoodSmall']/property[@name='MaxDamage']/@value">200</set>
+	<set xpath="/materials/material[@id='MtreeWoodMedium']/property[@name='MaxDamage']/@value">350</set>
+	<set xpath="/materials/material[@id='MtreeWoodLarge']/property[@name='MaxDamage']/@value">500</set>
+	<set xpath="/materials/material[@id='MtreeWoodFull']/property[@name='MaxDamage']/@value">700</set>
+	
 </JaxTeller718>

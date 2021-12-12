@@ -35,4 +35,29 @@
 	<set xpath="//drop[@event='Harvest' and @name='resourceLeather']/@name">resourceAnimalHideJT</set>
 
 
+	<set xpath="/entity_classes/entity_class[@name='animalStag']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodVenison</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalDoe']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodVenison</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalRabbit']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodRabbit</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalChicken']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodChicken</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalBear']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodBearMeat</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalWolf']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalSnake']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalBoar']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalCoyote']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+	
+	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodBearMeat</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalDireWolf']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
+
+	<set xpath="/entity_classes/entity_class[@name='animalBossGrace']/drop[@event='Harvest' and @name='foodRawMeat']/@name">foodPork</set>
 </JaxTeller718>
