@@ -48,7 +48,7 @@ v1.1
 
 -Added Chicken Meat and associated recipes (grilled and charred)
 
--Added Pork Meat and associated recipes (grilled, boiled andcharred)
+-Added Pork Meat and associated recipes (grilled, boiled and charred)
 
 -Added Rabbit Meat and associated recipes (grilled, boiled, charred and stew)
 
@@ -86,9 +86,9 @@ v1.1
 
 -Replaced Animal Fat in candles, flaming arrows and torches with Tallow
 
--World crops can now be picled up with E like in previous alphas. Planted crops must be punched. Credi tto Khaine for inspiration on this.
+-World crops can now be picked up with E like in previous alphas. Planted crops must be punched. Credit to Khaine for inspiration on this.
 
--Reduced healthj on trees
+-Reduced health on trees
 
 -Removed harvest on trees
 
