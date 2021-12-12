@@ -115,6 +115,14 @@
 			<ingredient name="resourceWoodPlanksJT" count="1"/>
 		</recipe>
 		
+		<recipe name="resourceSharpStone" count="1" craft_time="1">
+			<ingredient name="resourceRockSmall" count="1"/>
+		</recipe>
+		
+		<recipe name="resourceTallow" count="1" craft_time="3">
+			<ingredient name="resourceAnimalFat" count="1"/>
+		</recipe>
+		
 <recipe name="foodBearGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
 	<ingredient name="foodBearMeat" count="5"/>
 	<effect_group>
@@ -288,6 +296,12 @@
 </recipe>
 
 	</append>
+
+  <set xpath="//ingredient[@name='foodBearMeat']/@count">2</set>
+  <set xpath="//ingredient[@name='foodChicken']/@count">2</set>
+  <set xpath="//ingredient[@name='foodPork']/@count">2</set>
+  <set xpath="//ingredient[@name='foodRabbit']/@count">2</set>
+  <set xpath="//ingredient[@name='foodVenison']/@count">2</set>
 	
 		<set xpath="/recipes/recipe[@name='drugAntibiotics']/ingredient[@name='foodShamSandwich']/@name">foodMoldyBread</set>
 		<set xpath="/recipes/recipe[@name='drugFortBites']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
@@ -316,6 +330,21 @@
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT1IronSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT3SteelSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='trapSpikesWoodDmg0']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
+	<set xpath="/recipes/recipe[@name='meleeToolRepairT0StoneAxe']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
+	<set xpath="/recipes/recipe[@name='ammoBundleCrossbowBoltStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
+	<set xpath="/recipes/recipe[@name='ammoCrossbowBoltStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
+	<set xpath="/recipes/recipe[@name='ammoArrowStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
+	<set xpath="/recipes/recipe[@name='ammoBundleArrowStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
+	<set xpath="/recipes/recipe[@name='ammoBundleCrossbowBoltStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
+	<set xpath="/recipes/recipe[@name='ammoCrossbowBoltStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
+	<set xpath="/recipes/recipe[@name='ammoArrowStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
+	<set xpath="/recipes/recipe[@name='ammoBundleArrowStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
+	<set xpath="/recipes/recipe[@name='resourceCloth']/ingredient[@name='resourceCropCottonPlant']/@count">2</set>
+	<set xpath="/recipes/recipe[@name='bedrollBlockVariantHelper']/ingredient[@name='resourceYuccaFibers']/@name">resourceCloth</set>
+	<set xpath="/recipes/recipe[@name='candle']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
+	<set xpath="/recipes/recipe[@name='ammoArrowFlaming']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
+	<set xpath="/recipes/recipe[@name='ammoBundleArrowFlaming']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
+	<set xpath="/recipes/recipe[@name='meleeToolTorch']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
 
   <set xpath="//ingredient[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
 

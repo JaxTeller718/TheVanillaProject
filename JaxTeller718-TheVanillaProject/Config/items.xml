@@ -621,6 +621,63 @@
 			<property name="CraftingIngredientTime" value=".25"/>
 		</item>
 		
+<item name="resourceSharpStone"> <!-- scrap material -->
+	<property name="HoldType" value="40"/>
+	<property name="Meshfile" value="#Other/Items?Crafting/rock_smallPrefab.prefab"/>
+	<property name="DropScale" value="6"/>
+	<property name="Material" value="MresourceRockSmall"/>
+	<property name="Stacknumber" value="6000"/> <!-- STK resource -->
+	<property name="RepairAmount" value="300"/>
+	<property name="RepairTime" value=".5"/>
+	<property name="Weight" value="5"/>
+	<property name="MeltTimePerUnit" value=".5"/>
+	<property name="EconomicValue" value="50"/>
+	<property name="EconomicBundleSize" value="50"/>
+	<property class="Action0">
+		<property name="Class" value="ThrowAway"/>
+		<property name="Delay" value="1.2"/> <!-- obsolete if rounds per minute exists -->
+		<property name="Throw_strength_default" value="8"/>
+		<property name="Throw_strength_max" value="60"/>
+		<property name="Max_strain_time" value="1.25"/>
+		<property name="Sound_start" value="swoosh"/>
+	</property>
+	<property name="ThrowableDecoy" value="true"/>
+	<property name="DistractionTags" value="zombie,requires_contact"/>
+	<effect_group name="decoy" tiered="false">
+		<passive_effect name="DistractionRadius" operation="base_set" value="25"/>
+		<passive_effect name="DistractionLifetime" operation="base_set" value="1"/>
+		<passive_effect name="DistractionStrength" operation="base_set" value="100"/>
+	</effect_group>
+	<property name="Group" value="Resources"/>
+	<property name="CraftingIngredientTime" value=".5"/>
+</item>
+
+<item name="resourceTallow">
+	<property name="HoldType" value="31"/>
+	<property name="DisplayType" value="foodRaw"/>
+	<property name="Meshfile" value="#Other/Items?Misc/parcelPrefab.prefab"/>
+	<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="MresourceAnimalFat"/>
+	<property name="FuelValue" value="20"/>
+	<property name="Stacknumber" value="500"/> <!-- STK resource -->
+	<property name="EconomicValue" value="20"/>
+	<property name="CraftingIngredientTime" value="15"/>
+	<property name="Group" value="Food/Cooking,CFFood/Cooking"/>
+	<property class="Action0">
+		<property name="Class" value="Eat"/>
+		<property name="Delay" value="1"/>
+		<property name="Use_time" value="..."/>
+		<property name="Sound_start" value="player_eating"/>
+	</property>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="2"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" operation="add" value="-5"/><display_value name="foodHealthAmount" value="-5"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="-1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+	</effect_group>
+</item>
+		
 <item name="foodBearMeat">
 	<property name="Tags" value="food"/>
 	<property name="HoldType" value="31"/>

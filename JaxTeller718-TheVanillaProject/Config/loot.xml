@@ -83,7 +83,6 @@
 	</append>	
 
 	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']/item[@name='foodBoiledMeat']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']/item[@name='foodGrilledMeat']"/>
 
 	<append xpath="/lootcontainers/lootgroup[@name='twitch_foodT1']">
 		<item name="foodBearBoiled" count="2,4" />

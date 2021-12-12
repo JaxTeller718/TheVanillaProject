@@ -1,0 +1,9 @@
+<Scomar82_A19-HUD>
+
+    <!-- Neue Farben -->
+    <append xpath="/styles/global">
+        <style_entry name="ora" value="222,79,13"/>
+        <style_entry name="gelb" value="238,238,34"/>
+    </append>
+
+</Scomar82_A19-HUD>

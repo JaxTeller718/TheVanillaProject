@@ -44,7 +44,47 @@ v1.1
 
 -Added Primitive ammo to twitch integration and loot
 
+-Added Bear Meat and associated recipes (grilled, boiled, charred and stew)
 
+-Added Chicken Meat and associated recipes (grilled and charred)
+
+-Added Pork Meat and associated recipes (grilled, boiled andcharred)
+
+-Added Rabbit Meat and associated recipes (grilled, boiled, charred and stew)
+
+-Added Venison Meat and associated recipes (grilled, boiled, charred and stew)
+
+-Replaced raw meat in animals with proper meats
+
+-Reduced Harvests on Animal Meat
+
+-Reduced meat needed in recipes from 5 to 2
+
+-Added Wood Logs to Trees
+
+-Added Wood Planks and recipes
+
+-Replaced Wood with Wood Planks in building recipes
+
+-Added Sticks and recipes
+
+-Replaced Tool and Weapon and Arrow recipes using wood with sticks
+
+-Added Sharp Stone and recipes
+
+-Replaced stone in recipes for arrows and stone tools with sharp stone
+
+-Added Basic UI with Food and Water thanks to Scomar
+
+-Added recipe for cloth made with 2 cotton
+
+-Changed bedroll recipe to require cotton instead of fiber
+
+-Removed Starting Quest
+
+-Added Tallow and recipes made from Animal Fat
+
+-Replaced Animal Fat in candles, flaming arrows and torches with Tallow
 
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
