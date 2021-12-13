@@ -101,6 +101,7 @@ v1.2
 
 -Boiled Water now requires cooking pot
 
+-Added Scrap, Plastic, Reinforced, Steel, Iron, Military Padding Mods
 
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
