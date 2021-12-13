@@ -21,7 +21,67 @@
 	<remove xpath="/items/item[@name='resourceHubcap']"/>
 	<remove xpath="/items/item[@name='resourceAirFilter']"/>
 	<remove xpath="/items/item[@name='resourceCandyTin']"/>
-	<!-- <remove xpath="/items/item[@name='gunShotgunT0PipeShotgun']"/> -->
+<!-- 	<remove xpath="/items/item[@name='meleeHandPlayer']"/>
+
+
+	<insertAfter xpath="/items/item[@name='meleeHandMaster']">
+
+<item name="meleeHandPlayer"> 
+	<property name="Extends" value="meleeHandMaster"/>
+	<property name="Tags" value="blunt,melee,grunting,light,perkFlurryOfBlows,attFortitude,perkBrawler"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="HoldType" value="0"/>
+	<property class="Action0">
+		<property name="Class" value="DynamicMelee"/>
+		<property name="Sphere" value=".15"/>
+		<property name="Damage_type" value="Bashing"/>
+
+		<property name="GrazeStart" value=".3"/>
+		<property name="GrazeEnd" value=".5"/>
+		<property name="SwingDegrees" value="5"/>
+		<property name="UseGrazingHits" value="true"/>
+		<property name="SwingAngle" value="-90"/>
+
+	</property>
+	<property class="Action1"> 
+		<property name="Class" value="Eat"/>
+		<property name="UsePowerAttackAnimation" value="false"/>
+		<property name="Delay" value="0"/>
+		<property name="Focused_blockname_1" value="water"/>
+		<property name="Focused_blockname_2" value="waterMoving"/>
+		<property name="Focused_blockname_3" value="waterStaticBucket"/>
+		<property name="Focused_blockname_4" value="waterMovingBucket"/>
+		<property name="Focused_blockname_5" value="terrWaterPOI"/>
+	</property>
+
+	<effect_group name="meleeHandPlayer" tiered="false">
+		<passive_effect name="EntityDamage" operation="base_set" value="5"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="2.2"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="earth"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="stone"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="metal"/>
+		<passive_effect name="AttacksPerMinute" operation="base_set" value="80"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="10.5" tags="primary"/>
+
+		<passive_effect name="MaxRange" operation="base_set" value="2.0"/>
+		<passive_effect name="BlockRange" operation="base_set" value="2.6"/>
+	</effect_group>
+	<effect_group tiered="false" name="Drink Tier 0">
+		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="10"/>
+		<display_value name="dStaminaRegen" value=".15"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".DiseaseRoll" operation="set" value="12"/><display_value name="dDysenteryRisk" value=".12"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".DiseaseRoll" operation="add" value="@$MetabolismResist"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDysenteryCatchDrink">
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="@.DiseaseRoll"/>
+		</triggered_effect>
+	</effect_group>
+</item>
+	</insertAfter> -->
+
 
 	<append xpath="/items">
 		<item name="foodCanBeef">
@@ -1444,6 +1504,73 @@
 	<property name="Unlocks" value="foodVenisonBoiled"/>
 	<effect_group tiered="false">
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodVenisonBoiled" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+
+<item name="modArmorReinforcedPaddingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorReinforcedPadding"/>
+	<property name="Unlocks" value="modArmorReinforcedPadding"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorReinforcedPadding" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+<item name="modArmorPlasticPlatingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorPlasticPlating"/>
+	<property name="Unlocks" value="modArmorPlasticPlating"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorPlasticPlating" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+<item name="modArmorMilitaryPlatingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorMilitaryPlating"/>
+	<property name="Unlocks" value="modArmorMilitaryPlating"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorMilitaryPlating" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+<item name="modArmorScrapPlatingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorScrapPlating"/>
+	<property name="Unlocks" value="modArmorScrapPlating"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorScrapPlating" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+<item name="modArmorIronPlatingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorIronPlating"/>
+	<property name="Unlocks" value="modArmorIronPlating"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorIronPlating" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+</item>
+
+<item name="modArmorSteelPlatingSchematic">
+	<property name="Extends" value="schematicNoQualityMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="modArmorSteelPlating"/>
+	<property name="Unlocks" value="modArmorSteelPlating"/>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="modArmorSteelPlating" operation="set" value="1"/>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
 	</effect_group>
 </item>

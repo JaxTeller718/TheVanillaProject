@@ -1,5 +1,7 @@
 <JaxTeller718>
+
 	<set xpath="/recipes/recipe[@name='drugRecog']/ingredient[@name='resourceAcid']/@count">5</set>
+	
 	<remove xpath="/recipes/recipe[@name='mineCandyTin']"/>
 	<remove xpath="/recipes/recipe[@name='mineHubcap']"/>
 	<remove xpath="/recipes/recipe[@name='mineAirFilter']"/>
@@ -12,6 +14,7 @@
 	<remove xpath="/recipes/recipe[@name='foodChiliDog']" />
 	<remove xpath="/recipes/recipe[@name='foodSteakAndPotato']" />
 
+	<setattribute xpath="/recipes/recipe[@name='drinkJarBoiledWater']" name="craft_tool">toolCookingPot</setattribute>
 
 	<append xpath="/recipes">
 		<recipe name="mineCandyTin" count="1" craft_area="workbench">
@@ -293,6 +296,46 @@
 	<effect_group>
 		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
 	</effect_group>
+</recipe>
+
+<recipe name="modArmorIronPlating" count="1" craft_area="workbench" tags="learnable">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceDuctTape" count="2"/>
+	<ingredient name="resourceScrapPolymers" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="2"/>
+	<ingredient name="resourceSewingKit" count="1"/>
+</recipe>
+
+<recipe name="modArmorMilitaryPlating" count="1" craft_area="workbench" tags="learnable">
+	<ingredient name="resourceMilitaryFiber" count="10"/>
+	<ingredient name="resourceDuctTape" count="3"/>
+	<ingredient name="resourceScrapPolymers" count="3"/>
+	<ingredient name="resourceMechanicalParts" count="3"/>
+	<ingredient name="resourceSewingKit" count="1"/>
+</recipe>
+
+<recipe name="modArmorPlasticPlating" count="1" craft_area="workbench" tags="learnable">
+	<ingredient name="resourceScrapPolymers" count="10"/>
+	<ingredient name="resourceOil" count="2"/>
+	<ingredient name="resourceDuctTape" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="2"/>
+	<ingredient name="resourceSewingKit" count="1"/>
+</recipe>
+
+<recipe name="modArmorReinforcedPadding" count="1" craft_area="workbench" tags="learnable">
+	<ingredient name="resourceCloth" count="10"/>
+	<ingredient name="resourceDuctTape" count="1"/>
+	<ingredient name="resourceScrapPolymers" count="1"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceSewingKit" count="1"/>
+</recipe>
+
+<recipe name="modArmorScrapPlating" count="1" craft_area="workbench" tags="learnable">
+	<ingredient name="resourceScrapIron" count="10"/>
+	<ingredient name="resourceDuctTape" count="2"/>
+	<ingredient name="resourceScrapPolymers" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="2"/>
+	<ingredient name="resourceSewingKit" count="1"/>
 </recipe>
 
 	</append>

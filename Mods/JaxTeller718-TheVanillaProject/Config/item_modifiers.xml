@@ -1,0 +1,66 @@
+<JaxTeller718>
+
+	<append xpath="/item_modifiers">
+
+	<item_modifier name="modArmorReinforcedPadding" installable_tags="lightarmor" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorLight"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorReinforcedPaddingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="1"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorPlasticPlating" installable_tags="lightarmor" blocked_tags="padded" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorLight"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorPlasticPlatingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="2"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorMilitaryPlating" installable_tags="lightarmor" blocked_tags="padded" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorLight"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorMilitaryPlatingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="3"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorScrapPlating" installable_tags="heavyarmor" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorHeavy"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorScrapPlatingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="1"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorIronPlating" installable_tags="heavyarmor" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorHeavy"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorIronPlatingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="2"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorSteelPlating" installable_tags="heavyarmor" modifier_tags="resistance" type="attachment" rarity="0.5">
+		<property name="DisplayType" value="modArmorHeavy"/>
+		<property name="Stacknumber" value="1"/>
+		<property name="UnlockedBy" value="modArmorSteelPlatingSchematic"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="3"/>
+		</effect_group>
+	</item_modifier>
+
+	</append>
+</JaxTeller718>
