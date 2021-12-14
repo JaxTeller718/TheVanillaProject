@@ -338,6 +338,18 @@
 	<ingredient name="resourceSewingKit" count="1"/>
 </recipe>
 
+		<recipe name="resourceRockSmall" count="4" craft_time="5">
+			<ingredient name="terrDestroyedStone" count="1"/>
+		</recipe>
+		
+		<recipe name="resourceWoodPlanksJT" count="4" craft_time="5">
+			<ingredient name="terrDestroyedWoodDebris" count="1"/>
+		</recipe>
+
+		<recipe name="resourceLeather" count="5" craft_time="7">
+			<ingredient name="resourceLeatherStripsJT" count="1"/>
+		</recipe>
+		
 	</append>
 
   <set xpath="//ingredient[@name='foodBearMeat']/@count">2</set>

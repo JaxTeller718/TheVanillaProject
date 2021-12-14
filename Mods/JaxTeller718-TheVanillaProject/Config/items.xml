@@ -1574,6 +1574,21 @@
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
 	</effect_group>
 </item>
+
+		<item name="resourceLeatherStripsJT">
+			<property name="HoldType" value="45"/>
+			<property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+			<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="MresourceLeather"/>
+			<property name="Weight" value="10"/>
+			<property name="RepairAmount" value="150"/>
+			<property name="Stacknumber" value="250"/>
+			<!-- STK resource -->
+			<property name="FuelValue" value="5"/>
+			<property name="EconomicValue" value="22"/>
+			<property name="Group" value="Resources"/>
+			<property name="CraftingIngredientTime" value="2"/>
+		</item>
 	
 	</append>
 	

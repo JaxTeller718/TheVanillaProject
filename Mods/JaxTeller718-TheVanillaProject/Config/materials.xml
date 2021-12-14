@@ -13,6 +13,14 @@
 			<property name="forge_category" value="stick"/>
 			<property name="Experience" value="1.5"/>
 		</material>
+		
+		<material id="MresourceLeatherStrips">
+			<property name="damage_category" value="cloth"/>
+			<property name="surface_category" value="cloth"/>
+			<property name="forge_category" value="leatherstrip"/>
+			<property name="Experience" value="4"/>
+		</material>
+		
 	</append>
 	
 	<set xpath="/materials/material[@id='MtreeWoodSmall']/property[@name='MaxDamage']/@value">150</set>

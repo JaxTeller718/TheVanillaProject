@@ -103,5 +103,22 @@ v1.2
 
 -Added Scrap, Plastic, Reinforced, Steel, Iron, Military Padding Mods
 
+-All small stone harvests and destroys now give destroyed stone (exceptions being ore boulders and boulders)
+
+-All wood harvests and destroys now give wood debris (exceptions being trees)
+
+-Recipes added to turn destroyed stone and wood debris into small stones and wood planks
+
+-Leather harvests and destroys now give leather strips (exception being animals)
+
+-Recipe added to turn leather strips into leather
+
+-Rage removed from normal zombies
+
+-Repairs requiring wood changed to wood planks
+
+-Added Action Skills. For now they offer bonuses as you level but we will expand this to cover as much A16 features as possible. This requires a new game.
+
+
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
