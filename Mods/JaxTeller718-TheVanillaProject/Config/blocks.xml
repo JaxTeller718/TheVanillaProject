@@ -289,15 +289,13 @@
 	<set xpath="//drop[@event='Destroy' and @name='resourceWood']/@name">terrDestroyedWoodDebris</set>
 	<set xpath="//drop[@event='Harvest' and @name='resourceWood']/@name">terrDestroyedWoodDebris</set>
 	<set xpath="//drop[@event='Harvest' and @name='terrDestroyedWoodDebris' and @count='30']/@count">3</set>
-	<set xpath="//drop[@event='Harvest' and @name='terrDestroyedWoodDebris' and @count='70']/@count">4</set>
-	<set xpath="//drop[@event='Harvest' and @name='terrDestroyedWoodDebris' and @count='110']/@count">5</set>
-	<set xpath="//drop[@event='Harvest' and @name='terrDestroyedWoodDebris' and @count='150']/@count">7</set>
+
 	<set xpath="//drop[@event='Destroy' and @name='terrDestroyedWoodDebris']/@count">2</set>
 	
 	<set xpath="//drop[@event='Harvest' and @name='resourceLeather']/@name">terrDestroyedStone</set>
 	<set xpath="//drop[@event='Destroy' and @name='resourceLeather']/@name">terrDestroyedWoodDebris</set>
 	
 	<set xpath="//property[@class='RepairItems']/property[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
-	<set xpath="//property[@class='UpgradeBlock']/property[@name='Item and @value='resourceWood'']/@name">resourceWoodPlanksJT</set>
+	<set xpath="//property[@class='UpgradeBlock']/property[@name='Item' and @value='resourceWood']/@name">resourceWoodPlanksJT</set>
 	
 </JaxTeller718>
