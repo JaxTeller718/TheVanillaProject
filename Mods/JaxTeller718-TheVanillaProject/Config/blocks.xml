@@ -298,5 +298,6 @@
 	<set xpath="//drop[@event='Destroy' and @name='resourceLeather']/@name">terrDestroyedWoodDebris</set>
 	
 	<set xpath="//property[@class='RepairItems']/property[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
+	<set xpath="//property[@class='UpgradeBlock']/property[@name='Item and @value='resourceWood'']/@name">resourceWoodPlanksJT</set>
 	
 </JaxTeller718>
