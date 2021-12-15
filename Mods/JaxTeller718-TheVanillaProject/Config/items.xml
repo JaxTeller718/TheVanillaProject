@@ -613,7 +613,7 @@
 	<item name="resourceAnimalHideJT">
 		<!-- scrap material -->
 		<property name="HoldType" value="45"/>
-		<property name="CustomIcon" value="resourceLeatherJT"/>
+		<property name="CustomIcon" value="resourceAnimalHideJT"/>
 		<property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
 		<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
 		<property name="Material" value="MresourceLeather"/>
@@ -1602,4 +1602,7 @@
 <set xpath="/items/item[@name='questRewardT0ShotgunBundle']/property[@class='Action0']/property[@name='Create_item' and @value='gunShotgunT0PipeShotgun,ammoShotgunShell']/@value">gunShotgunT0PipeShotgun,ammoShotgunShellPrimitive</set>
 <set xpath="/items/item[@name='questRewardT0MachineGunBundle']/property[@class='Action0']/property[@name='Create_item' and @value='gunMGT0PipeMachineGun,ammo762mmBulletBall']/@value">gunMGT0PipeMachineGun,ammo762mmBulletPrimitive</set>
 
+	<append xpath="/items/item[@name='resourceLeather']">
+		<property name="CustomIcon" value="resourceLeatherJT"/>
+	</append>
 </JaxTeller718>
