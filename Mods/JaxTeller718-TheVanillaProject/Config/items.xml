@@ -84,6 +84,38 @@
 
 
 	<append xpath="/items">
+	
+	    <item name="resourceBricks">
+	        <property name="Extends" value="resourceRockSmall"/>
+		    <property name="CustomIcon" value="Bricks"/>
+		    <property name="DescriptionKey" value="resourceBricksDesc"/>
+	    </item>
+		
+		<item name="resourceEmptyMold">
+	        <property name="Extends" value="resourceClayLump"/>
+		    <property name="CustomIcon" value="EmptyMold"/>
+		    <property name="DescriptionKey" value="resourceEmptyMoldDesc"/>
+	    </item>
+	
+	    <item name="toolBrickMold">
+	        <property name="HoldType" value="45"/>
+	        <property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+	        <property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	        <property name="Material" value="Morganic"/>
+	        <property name="Stacknumber" value="1"/>
+	        <property name="Group" value="Tools/Traps"/>
+	        <property name="EconomicValue" value="10"/>
+	        <property name="SellableToTrader" value="false"/>
+	        <property name="ItemTypeIcon" value="forge"/>
+		    <property name="DisplayType" value="toolAnvil"/>
+		    <property name="CustomIcon" value="BrickMold"/>
+		    <property name="DescriptionKey" value="toolBrickMoldDesc"/>
+		    <effect_group tiered="false">
+			    <passive_effect name="CraftingTime" operation="perc_add" value="-.333"/>
+			    <display_value name="dCraftingTime" value=".5"/>
+	        </effect_group>
+	    </item>
+		
 		<item name="foodCanBeef">
 			<property name="Tags" value="food"/>
 			<property name="HoldType" value="31"/>
@@ -2211,9 +2243,8 @@
 		</effect_group>
 	</append>
 	
-	<append xpath="/items/item[@name='meleeToolRepairT1ClawHammer']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT</append>
-	<append xpath="/items/item[@name='meleeToolRepairT0StoneAxe']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT</append>
-	<append xpath="/items/item[@name='meleeToolRepairT3Nailgun']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT</append>
-
-
+	<append xpath="/items/item[@name='meleeToolRepairT1ClawHammer']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceNail,resourceBricks</append>
+	<append xpath="/items/item[@name='meleeToolRepairT0StoneAxe']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceNail,resourceBricks</append>
+	<append xpath="/items/item[@name='meleeToolRepairT3Nailgun']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceBricks</append>
+	
 </JaxTeller718>

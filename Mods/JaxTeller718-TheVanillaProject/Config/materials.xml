@@ -1,5 +1,115 @@
 <JaxTeller718>
 	<append xpath="/materials">
+	
+		<material id="MwoodWshapes">
+	        <property name="damage_category" value="wood"/>
+	        <property name="surface_category" value="wood"/>
+	        <property name="forge_category" value="wood"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="wood"/>
+	        <property name="stability_glue" value="40"/>
+	        <property name="Mass" type="int" value="5"/>
+	        <property name="MaxDamage" value="50"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="MwoodN_shapes">
+	        <property name="damage_category" value="wood"/>
+	        <property name="surface_category" value="wood"/>
+	        <property name="forge_category" value="wood"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="wood"/>
+	        <property name="stability_glue" value="40"/>
+	        <property name="Mass" type="int" value="5"/>
+	        <property name="MaxDamage" value="200"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+	    <material id="MwoodR_shapes">
+	        <property name="damage_category" value="wood"/>
+	        <property name="surface_category" value="wood"/>
+	        <property name="forge_category" value="wood"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="wood"/>
+	        <property name="stability_glue" value="40"/>
+	        <property name="Mass" type="int" value="5"/>
+	        <property name="MaxDamage" value="400"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="MwoodMR_shapes">
+	        <property name="damage_category" value="metal"/>
+	        <property name="surface_category" value="metal"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="metal"/>
+	        <property name="stability_glue" value="300"/>
+	        <property name="Mass" type="int" value="20"/>
+	        <property name="MaxDamage" value="600"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="Mflagstone_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="MaxDamage" value="800"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="McobblestoneN_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="MaxDamage" value="1100"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="MbrickN_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="MaxDamage" value="1500"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="MconcreteN_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="explosionresistance" value="1.2"/>
+	        <property name="MaxDamage" value="2500"/>
+	        <property name="Experience" value="4"/>
+        </material>
+		
+		<material id="MconcreteR_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="explosionresistance" value="1.8"/>
+	        <property name="MaxDamage" value="6000"/>
+	        <property name="Experience" value="4"/>
+        </material>
+		
 		<material id="MresourceHubcap">
 			<property name="damage_category" value="metal"/>
 			<property name="surface_category" value="metal"/>
