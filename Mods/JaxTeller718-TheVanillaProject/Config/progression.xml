@@ -63,7 +63,7 @@
 
 	<append xpath="/progression/perks">
 		<!-- Tools -->
-		<perk name="perkASMiningTools" parent="skillASTools" max_level="100" base_skill_point_cost="1" name_key="Mining Tools" desc_key="perkASMiningToolsDesc" icon="ui_game_symbol_mining">
+		<perk name="perkASMiningTools" parent="skillASTools" max_level="100" base_skill_point_cost="0" name_key="Mining Tools" desc_key="perkASMiningToolsDesc" icon="ui_game_symbol_mining">
 			<effect_group>
 				<passive_effect name="BlockDamage" operation="perc_add" value="0.01,1" level="1,100"/>
 				<passive_effect name="HarvestCount" operation="perc_add" value="0.01,1" level="1,100" tags="oreWoodHarvest"/>
@@ -87,7 +87,7 @@
 		</perk>
 		
 		<!-- Tools -->
-		<perk name="perkASConstructionTools" parent="skillASTools" max_level="100" base_skill_point_cost="1" name_key="Construction Tools" desc_key="perkASConstructionToolsDesc" icon="ui_game_symbol_block_repair">
+		<perk name="perkASConstructionTools" parent="skillASTools" max_level="100" base_skill_point_cost="0" name_key="Construction Tools" desc_key="perkASConstructionToolsDesc" icon="ui_game_symbol_block_repair">
 			<effect_group>
 				<passive_effect name="BlockDamage" operation="perc_add" value="0.01,1" level="1,100"/>
 				<passive_effect name="HarvestCount" operation="perc_add" value="0.01,1" level="1,100" tags="oreWoodHarvest"/>
@@ -111,7 +111,7 @@
 		</perk>
 
 		<!-- Weapons -->
-		<perk name="perkASBlunt" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Blunt Weapons" desc_key="perkASBluntDesc" icon="ui_game_symbol_sledge">
+		<perk name="perkASBlunt" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Blunt Weapons" desc_key="perkASBluntDesc" icon="ui_game_symbol_sledge">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="blunt"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -134,7 +134,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Blunt Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASBladed" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Bladed Weapons" desc_key="perkASBladedDesc" icon="ui_game_symbol_deep_cuts">
+		<perk name="perkASBladed" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Bladed Weapons" desc_key="perkASBladedDesc" icon="ui_game_symbol_deep_cuts">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDeepCuts"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -157,7 +157,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Bladed Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASElectric" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Electric Weapons" desc_key="perkASElectricDesc" icon="ui_game_symbol_electric_power">
+		<perk name="perkASElectric" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Electric Weapons" desc_key="perkASElectricDesc" icon="ui_game_symbol_electric_power">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkElectrocutioner"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -181,7 +181,7 @@
 			</effect_group>
 		</perk>
 
-		<perk name="perkASTurret" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Turret Weapons" desc_key="perkASTurretDesc" icon="ui_game_symbol_electric_turret">
+		<perk name="perkASTurret" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Turret Weapons" desc_key="perkASTurretDesc" icon="ui_game_symbol_electric_turret">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkTurrets"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -212,7 +212,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Turret Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASJavelin" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Javelin Weapons" desc_key="perkASJavelinDesc" icon="ui_game_symbol_spear">
+		<perk name="perkASJavelin" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Javelin Weapons" desc_key="perkASJavelinDesc" icon="ui_game_symbol_spear">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkJavelinMaster"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -259,7 +259,7 @@
 			</effect_group>
 		</perk>
 
-		<perk name="perkASArchery" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Archery Weapons" desc_key="perkASArcheryDesc" icon="ui_game_symbol_archery">
+		<perk name="perkASArchery" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Archery Weapons" desc_key="perkASArcheryDesc" icon="ui_game_symbol_archery">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkArchery"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -285,7 +285,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Archery Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASPistols" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Pistol Weapons" desc_key="perkASPistolsDesc" icon="ui_game_symbol_gunslinger">
+		<perk name="perkASPistols" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Pistol Weapons" desc_key="perkASPistolsDesc" icon="ui_game_symbol_gunslinger">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkGunslinger"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -316,7 +316,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Pistol Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASShotguns" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Shotgun Weapons" desc_key="perkASShotgunsDesc" icon="ui_game_symbol_shotgun">
+		<perk name="perkASShotguns" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Shotgun Weapons" desc_key="perkASShotgunsDesc" icon="ui_game_symbol_shotgun">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkBoomstick"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -347,7 +347,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Shotgun Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASRifles" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Rifle Weapons" desc_key="perkASRiflesDesc" icon="ui_game_symbol_map_cursor">
+		<perk name="perkASRifles" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Rifle Weapons" desc_key="perkASRiflesDesc" icon="ui_game_symbol_map_cursor">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDeadEye"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>
@@ -378,7 +378,7 @@
 				<triggered_effect trigger="onPerkLevelChanged" action="ShowToolbeltMessage" message="Rifle Weapons Level Increased"/>
 			</effect_group>
 		</perk>
-		<perk name="perkASAutomatics" parent="skillASWeapons" max_level="100" base_skill_point_cost="1" name_key="Automatic Weapons" desc_key="perkASAutomaticsDesc" icon="ui_game_symbol_rifle">
+		<perk name="perkASAutomatics" parent="skillASWeapons" max_level="100" base_skill_point_cost="0" name_key="Automatic Weapons" desc_key="perkASAutomaticsDesc" icon="ui_game_symbol_rifle">
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkMachineGunner"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="0.003,0.3" level="1,100"/>

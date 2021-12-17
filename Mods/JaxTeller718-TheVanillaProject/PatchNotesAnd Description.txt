@@ -120,5 +120,28 @@ v1.2
 -Added Action Skills. For now they offer bonuses as you level but we will expand this to cover as much A16 features as possible. This requires a new game.
 
 
+Updated to 1.3
+
+-Fix for Upgrade Blocks Requiring Wood. Now requires planks
+
+
+
+v1.4
+
+-Fixed Nulls on wood items
+
+-Fixed nulls on Zombie Aggro
+
+
+
+v1.5
+
+-Fix for Action Skills Not Showing
+
+-Fixed Stone Axe, Hammer and Nailgun not using Wood Planks for Upgrades
+
+-Removed Buying Action Skills. Purchasing skills would not work with levelling through usage. You still had to buy the skill making LBD useless
+
+
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
