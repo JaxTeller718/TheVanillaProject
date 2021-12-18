@@ -97,7 +97,7 @@ perkASTurretDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level
 attactionskills,progression,Attribute,Action Skills
 attActionSkillsDesc,progression,Attribute,Action Skills Will Level As You Use Them.
 attActionSkillsName,progression,Attribute,Attribute: Action Skills
-uiLoadLoadingXml,UI,Game loading,Loading The Vanilla Project v20.0b233-1.6
+uiLoadLoadingXml,UI,Game loading,Loading The Vanilla Project v20.0b233-1.7
 
 resourceBricks,items,item,Bricks
 resourceBricksDesc,items,item,A despised resource now it becomes useful. You can find them when harvesting brick pallets they are necessary to improve the cobblestone blocks. You can also make them at the forge.
