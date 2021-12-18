@@ -18,6 +18,15 @@
 
 	<append xpath="/recipes">
 	
+	    <recipe name="drinkCanRiverWater" count="1" craft_area="campfire" tags="perkMasterChef">
+	        <ingredient name="resourceSnowBall" count="1"/>
+	        <ingredient name="drinkCanEmpty" count="1"/>
+        </recipe>
+	    
+		<recipe name="drinkCanBoiledWater" count="1" craft_area="campfire" craft_time="30" tags="perkMasterChef,perkChefBoiledWater,boiledWater">
+	        <ingredient name="drinkCanRiverWater" count="1"/>
+        </recipe>
+	
 	    <recipe name="resourceEmptyMold" count="1" craft_time="6">
 	        <ingredient name="resourceClayLump" count="6"/>
 	        <ingredient name="drinkJarBoiledWater" count="1"/>

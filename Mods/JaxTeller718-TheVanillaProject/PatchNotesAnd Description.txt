@@ -143,5 +143,15 @@ v1.5
 -Removed Buying Action Skills. Purchasing skills would not work with levelling through usage. You still had to buy the skill making LBD useless
 
 
+v1.6
+
+-Blood Moons will now last until morning, even from the first one. The zombies that will attack ahen initial horde is done are normal zombies
+
+-Added back upgrade paths thanks to Gouki's modlet which can be found here https://community.7daystodie.com/topic/20168-gouki%C2%B4s-a20a19-modlets/
+
+-Zombie corpses now lootable thanks to Survagers Zombie Loot Modlet which can be found here https://community.7daystodie.com/topic/20470-lootable-static-zombie-corpses-and-dead-zombies-modlet-a20-a19/ . This may need balancing as it may be op. Mostly junk loot with some special loot mixed in.
+
+-Canned Boiled and Murky Water returns
+
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

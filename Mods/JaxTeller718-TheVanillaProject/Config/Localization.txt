@@ -54,6 +54,12 @@ foodVenisonBoiledSchematic,items,Food,Boiled Venison Recipe,,,,,
 foodBearStewSchematic,items,Food,Bear Stew Recipe,,,,,
 foodRabbitStewSchematic,items,Food,Rabbit Stew Recipe,,,,,
 foodVenisonStewSchematic,items,Food,Venison Stew Recipe,,,,,
+drinkCanRiverWater,items,Food,Can of Murky Water,,,,,
+drinkCanBoiledWater,items,Food,Boiled Water,,,,,
+drinkCanBoiledWaterDesc,items,Food,Boiled water is safe to drink. Probably.,,,,,
+drinkCanRiverWaterDesc,items,Food,Not so appealing but it will have to do.,,,,,
+drinkCanEmpty,items,Food,Empty Can,,,,,
+drinkCanEmptyDesc,items,Food,An empty can which you can scrap or fill with water.,,,,,
 
 
 modArmorIronPlatingDesc,items,Item,Improve your armor rating with this iron plating. Can only be installed in  heavy armor.,,,,,

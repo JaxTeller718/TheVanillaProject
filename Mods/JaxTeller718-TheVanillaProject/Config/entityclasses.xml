@@ -127,4 +127,452 @@
 		</effect_group>
 	</append>
 	
+	<!--
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']" >
+		<property name="LootListOnDeath" value="210"/>
+	</append>
+	-->
+	
+	
+	<set xpath="/entity_classes/entity_class[
+	@name='zombieTemplateMale' or
+	@name='zombieArlene' or
+	@name='zombieArleneFeral' or
+	@name='zombieArleneRadiated' or
+	@name='zombieMarlene' or
+	@name='zombieMarleneFeral' or
+	@name='zombieMarleneRadiated' or
+	@name='zombiePartyGirl' or
+	@name='zombiePartyGirlFeral' or
+	@name='zombiePartyGirlRadiated' or
+	@name='zombieNurse' or
+	@name='zombieNurseFeral' or
+	@name='zombieNurseRadiated' or
+	@name='zombieJoe' or
+	@name='zombieJoeFeral' or
+	@name='zombieJoeRadiated' or
+	@name='zombieSteve' or
+	@name='zombieSteveFeral' or
+	@name='zombieSteveRadiated' or
+	@name='zombieTomClark' or
+	@name='zombieTomClarkFeral' or
+	@name='zombieTomClarkRadiated' or
+	@name='zombieBusinessMan' or
+	@name='zombieBusinessManFeral' or
+	@name='zombieBusinessManRadiated' or
+	@name='zombieBurnt' or
+	@name='zombieBurntFeral' or
+	@name='zombieBurntRadiated' or
+	@name='zombieSpider' or
+	@name='zombieSpiderFeral' or
+	@name='zombieSpiderRadiated' or
+	@name='zombieBoe' or
+	@name='zombieBoeFeral' or
+	@name='zombieBoeRadiated' or
+	@name='zombieJanitor' or
+	@name='zombieJanitorFeral' or
+	@name='zombieJanitorRadiated' or
+	@name='zombieMoe' or
+	@name='zombieMoeFeral' or
+	@name='zombieMoeRadiated' or
+	@name='zombieLab' or
+	@name='zombieLabFeral' or
+	@name='zombieLabRadiated' or
+	@name='zombieDarlene' or
+	@name='zombieDarleneFeral' or
+	@name='zombieDarleneRadiated' or
+	@name='zombieYo' or
+	@name='zombieYoFeral' or
+	@name='zombieYoRadiated' or
+	@name='zombieUtilityWorker' or
+	@name='zombieUtilityWorkerFeral' or
+	@name='zombieUtilityWorkerRadiated' or
+	@name='zombieBiker' or
+	@name='zombieBikerFeral' or
+	@name='zombieBikerRadiated' or
+	@name='zombieLumberjack' or
+	@name='zombieLumberjackFeral' or
+	@name='zombieLumberjackRadiated' or
+	@name='zombieFemaleFat' or
+	@name='zombieFemaleFatFeral' or
+	@name='zombieFemaleFatRadiated' or
+	@name='zombieFatHawaiian' or
+	@name='zombieFatHawaiianFeral' or
+	@name='zombieFatHawaiianRadiated' or
+	@name='zombieMaleHazmat' or
+	@name='zombieMaleHazmatFeral' or
+	@name='zombieMaleHazmatRadiated' or
+	@name='zombieFatCop' or
+	@name='zombieFatCopFeral' or
+	@name='zombieFatCopRadiated' or
+	@name='zombieSkateboarder' or
+	@name='zombieSkateboarderFeral' or
+	@name='zombieSkateboarderRadiated' or
+	@name='zombieSoldier' or
+	@name='zombieSoldierFeral' or
+	@name='zombieSoldierRadiated' or
+	@name='zombieWightFeral' or
+	@name='zombieWightRadiated' or
+	@name='zombieScreamer' or
+	@name='zombieScreamerFeral' or
+	@name='zombieScreamerRadiated' or
+	@name='zombieMutated' or
+	@name='zombieMutatedFeral' or
+	@name='zombieMutatedRadiated' or
+	@name='zombieDemolition' or
+	@name='zombieSteveCrawler' or
+	@name='zombieSteveCrawlerFeral']/property[@name='LootDropProb']/@value">0</set>
+	
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieArlene']" >
+		<property name="LootListOnDeath" value="zombieArlene"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieArleneFeral']" >
+		<property name="LootListOnDeath" value="zombieArleneFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieArleneRadiated']" >
+		<property name="LootListOnDeath" value="zombieArleneRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMarlene']" >
+		<property name="LootListOnDeath" value="zombieMarlene"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMarleneFeral']" >
+		<property name="LootListOnDeath" value="zombieMarleneFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMarleneRadiated']" >
+		<property name="LootListOnDeath" value="zombieMarleneRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirl']" >
+		<property name="LootListOnDeath" value="zombiePartyGirl"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlFeral']" >
+		<property name="LootListOnDeath" value="zombiePartyGirlFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlRadiated']" >
+		<property name="LootListOnDeath" value="zombiePartyGirlRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieNurse']" >
+		<property name="LootListOnDeath" value="zombieNurse"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieNurseFeral']" >
+		<property name="LootListOnDeath" value="zombieNurseFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieNurseRadiated']" >
+		<property name="LootListOnDeath" value="zombieNurseRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJoe']" >
+		<property name="LootListOnDeath" value="zombieJoe"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJoeFeral']" >
+		<property name="LootListOnDeath" value="zombieJoeFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJoeRadiated']" >
+		<property name="LootListOnDeath" value="zombieJoeRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSteve']" >
+		<property name="LootListOnDeath" value="zombieSteve"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveFeral']" >
+		<property name="LootListOnDeath" value="zombieSteveFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveRadiated']" >
+		<property name="LootListOnDeath" value="zombieSteveRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClark']" >
+		<property name="LootListOnDeath" value="zombieTomClark"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkFeral']" >
+		<property name="LootListOnDeath" value="zombieTomClarkFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkRadiated']" >
+		<property name="LootListOnDeath" value="zombieTomClarkRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessMan']" >
+		<property name="LootListOnDeath" value="zombieBusinessMan"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManFeral']" >
+		<property name="LootListOnDeath" value="zombieBusinessManFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManRadiated']" >
+		<property name="LootListOnDeath" value="zombieBusinessManRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBurnt']" >
+		<property name="LootListOnDeath" value="zombieBurnt"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBurntFeral']" >
+		<property name="LootListOnDeath" value="zombieBurntFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBurntRadiated']" >
+		<property name="LootListOnDeath" value="zombieBurntRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSpider']" >
+		<property name="LootListOnDeath" value="zombieSpider"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSpiderFeral']" >
+		<property name="LootListOnDeath" value="zombieSpiderFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSpiderRadiated']" >
+		<property name="LootListOnDeath" value="zombieSpiderRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBoe']" >
+		<property name="LootListOnDeath" value="ZombieBoe"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBoeFeral']" >
+		<property name="LootListOnDeath" value="zombieBoeFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBoeRadiated']" >
+		<property name="LootListOnDeath" value="zombieBoeRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitor']" >
+		<property name="LootListOnDeath" value="zombieJanitor"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitorFeral']" >
+		<property name="LootListOnDeath" value="zombieJanitorFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitorRadiated']" >
+		<property name="LootListOnDeath" value="zombieJanitorRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMoe']" >
+		<property name="LootListOnDeath" value="zombieMoe"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMoeFeral']" >
+		<property name="LootListOnDeath" value="zombieMoeFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMoeRadiated']" >
+		<property name="LootListOnDeath" value="zombieMoeRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLab']" >
+		<property name="LootListOnDeath" value="zombieLab"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLabFeral']" >
+		<property name="LootListOnDeath" value="zombieLabFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLabRadiated']" >
+		<property name="LootListOnDeath" value="zombieLabRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieDarlene']" >
+		<property name="LootListOnDeath" value="zombieDarlene"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieDarleneFeral']" >
+		<property name="LootListOnDeath" value="zombieDarleneFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieDarleneRadiated']" >
+		<property name="LootListOnDeath" value="zombieDarleneRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieYo']" >
+		<property name="LootListOnDeath" value="zombieYo"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieYoFeral']" >
+		<property name="LootListOnDeath" value="zombieYoFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieYoRadiated']" >
+		<property name="LootListOnDeath" value="zombieYoRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorker']" >
+		<property name="LootListOnDeath" value="zombieUtilityWorker"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerFeral']" >
+		<property name="LootListOnDeath" value="zombieUtilityWorkerFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerRadiated']" >
+		<property name="LootListOnDeath" value="zombieUtilityWorkerRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBiker']" >
+		<property name="LootListOnDeath" value="zombieBiker"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBikerFeral']" >
+		<property name="LootListOnDeath" value="zombieBikerFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieBikerRadiated']" >
+		<property name="LootListOnDeath" value="zombieBikerRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjack']" >
+		<property name="LootListOnDeath" value="zombieLumberjack"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackFeral']" >
+		<property name="LootListOnDeath" value="zombieLumberjackFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackRadiated']" >
+		<property name="LootListOnDeath" value="zombieLumberjackRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFat']" >
+		<property name="LootListOnDeath" value="zombieFemaleFat"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatFeral']" >
+		<property name="LootListOnDeath" value="zombieFemaleFatFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatRadiated']" >
+		<property name="LootListOnDeath" value="zombieFemaleFatRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiian']" >
+		<property name="LootListOnDeath" value="zombieFatHawaiian"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianFeral']" >
+		<property name="LootListOnDeath" value="zombieFatHawaiianFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianRadiated']" >
+		<property name="LootListOnDeath" value="zombieFatHawaiianRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmat']" >
+		<property name="LootListOnDeath" value="zombieMaleHazmat"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatFeral']" >
+		<property name="LootListOnDeath" value="zombieMaleHazmatFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatRadiated']" >
+		<property name="LootListOnDeath" value="zombieMaleHazmatRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCop']" >
+		<property name="LootListOnDeath" value="zombieFatCop"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCopFeral']" >
+		<property name="LootListOnDeath" value="zombieFatCopFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCopRadiated']" >
+		<property name="LootListOnDeath" value="zombieFatCopRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarder']" >
+		<property name="LootListOnDeath" value="zombieSkateboarder"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderFeral']" >
+		<property name="LootListOnDeath" value="zombieSkateboarderFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderRadiated']" >
+		<property name="LootListOnDeath" value="zombieSkateboarderRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldier']" >
+		<property name="LootListOnDeath" value="zombieSoldier"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']" >
+		<property name="LootListOnDeath" value="zombieSoldierFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']" >
+		<property name="LootListOnDeath" value="zombieSoldierRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieWightFeral']" >
+		<property name="LootListOnDeath" value="zombieWightFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieWightRadiated']" >
+		<property name="LootListOnDeath" value="zombieWightRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamer']" >
+		<property name="LootListOnDeath" value="zombieScreamer"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamerFeral']" >
+		<property name="LootListOnDeath" value="zombieScreamerFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamerRadiated']" >
+		<property name="LootListOnDeath" value="zombieScreamerRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMutated']" >
+		<property name="LootListOnDeath" value="zombieMutated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMutatedFeral']" >
+		<property name="LootListOnDeath" value="zombieMutatedFeral"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieMutatedRadiated']" >
+		<property name="LootListOnDeath" value="zombieMutatedRadiated"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieDemolition']" >
+		<property name="LootListOnDeath" value="zombieDemolition"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawler']" >
+		<property name="LootListOnDeath" value="zombieSteveCrawler"/>
+	</append>
+	
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerFeral']" >
+		<property name="LootListOnDeath" value="zombieSteveCrawlerFeral"/>
+	</append>	
+	
+	<!-- Need list for zombieMutated, zombieMutatedFeral, zombieMutatedRadiated, zombiePartyGirlRadiated, zombieLumberjackRadiated, zombieNurseRadiated, zombieTomClark, zombieTomClarkFeral, zombieTomClarkRadiated, zombieBusinessManRadiated, zombieFatHawaiianRadiated, zombieMaleHazmatFeral, zombieMaleHazmatRadiated -->
+	<!-- zombieBurntFeral NOT ISSUE -->
+	<!-- zombieBurntRadiated NOT ISSUE -->
+	
+	<set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='TimeStayAfterDeath']/@value">180</set>
+	<set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='DeadBodyHitPoints']/@value">100</set>
+	
 </JaxTeller718>
