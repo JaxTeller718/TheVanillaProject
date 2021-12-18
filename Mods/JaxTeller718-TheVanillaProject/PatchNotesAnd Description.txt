@@ -156,4 +156,10 @@ v1.6
 -ReAdded the Challenge Quests in loot and traders
 
 
+v1.7
+
+-Removed Clay from Desert terrain
+
+
+
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

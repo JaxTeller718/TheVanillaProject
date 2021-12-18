@@ -1,5 +1,9 @@
 <JaxTeller718>
 
+<remove xpath="/blocks/block[@name='terrDesertGround']/drop[@event='Harvest' and @name='resourceClayLump']" />
+<remove xpath="/blocks/block[@name='terrDesertGround']/property[@class='RepairItems']/property[@name='resourceClayLump']" />
+
+
     <set xpath="/blocks/block[@name='frameShapes']">    
 	        <property name="Group" value="Basics,Building,advBuilding"/>
 	        <property name="Tags" value="wood"/>
