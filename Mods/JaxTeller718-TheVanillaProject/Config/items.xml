@@ -1621,6 +1621,142 @@
 			<property name="Group" value="Resources"/>
 			<property name="CraftingIngredientTime" value="2"/>
 		</item>
+		
+<item name="qc_silenceofthelambs">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="UseAnimation" value="false"/>
+		<property name="QuestGiven" value="challenge_silenceofthelambs"/>
+	</property>
+</item>
+
+<item name="qc_drunkanddisorderly">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="UseAnimation" value="false"/>
+		<property name="QuestGiven" value="challenge_drunkanddisorderly"/>
+	</property>
+</item>
+
+<item name="qc_nurseyoubacktohealth">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_nurseyoubacktohealth"/>
+	</property>
+</item>
+
+<item name="qc_starvingtourists">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_starvingtourists"/>
+	</property>
+</item>
+
+<item name="qc_dogdaysareover">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_dogdaysareover"/>
+	</property>
+</item>
+
+<item name="qc_itsbitsyspider">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_itsybitsyspider"/>
+	</property>
+</item>
+
+<item name="qc_ladykiller">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_ladykiller"/>
+	</property>
+</item>
+
+<item name="qc_maneater">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_maneater"/>
+	</property>
+</item>
+
+<item name="qc_imalumberjackandimokay">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_imalumberjackandimokay"/>
+	</property>
+</item>
+
+<item name="qc_yournothingspecial">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_yournothingspecial"/>
+	</property>
+</item>
+
+<item name="qc_killthewabbit">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_killthewabbit"/>
+	</property>
+</item>
+
+<item name="qc_nailsomechicks">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_nailsomechicks"/>
+	</property>
+</item>
+
+<item name="qc_thatlldopig">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_thatlldopig"/>
+	</property>
+</item>
+
+<item name="qc_stagparty">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_stagparty"/>
+	</property>
+</item>
+
+<item name="qc_dontfeedthebears">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_dontfeedthebears"/>
+	</property>
+</item>
+
+<item name="qc_buythefarm">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property name="DescriptionKey" value="qc_AnimalGroupDesc"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_buythefarm"/>
+	</property>
+</item>
+
+
+
+<item name="qc_dishonorabledischarge">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_dishonorabledischarge"/>
+	</property>
+</item>
+
+<item name="qc_cableguysnevermadeit">
+	<property name="Extends" value="challengeQuestMaster"/>
+	<property class="Action0">
+		<property name="QuestGiven" value="challenge_cableguysnevermadeit"/>
+	</property>
+</item>
 	
 	</append>
 	

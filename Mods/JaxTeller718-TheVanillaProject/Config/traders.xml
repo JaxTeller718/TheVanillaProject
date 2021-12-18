@@ -1,5 +1,39 @@
 <JaxTeller718>
 
+	<insertBefore xpath="/traders/trader_item_groups/trader_item_group[@name='perkBooks']">
+		<trader_item_group name="groupQuestChallenge" count="1">
+			<item name="qc_silenceofthelambs" count="1"/>
+			<item name="qc_drunkanddisorderly" count="1"/>
+			<item name="qc_nurseyoubacktohealth" count="1"/>
+			<item name="qc_starvingtourists" count="1"/>
+			<item name="qc_dogdaysareover" count="1"/>
+			<item name="qc_itsbitsyspider" count="1"/>
+			<item name="qc_ladykiller" count="1"/>
+			<item name="qc_maneater" count="1"/>
+			<item name="qc_imalumberjackandimokay" count="1"/>
+			<item name="qc_yournothingspecial" count="1"/>
+			<item name="qc_dishonorabledischarge" count="1"/>
+			<item name="qc_cableguysnevermadeit" count="1"/>
+			<item name="qc_killthewabbit" count="1"/>
+			<item name="qc_nailsomechicks" count="1"/>
+			<item name="qc_thatlldopig" count="1"/>
+			<item name="qc_stagparty" count="1"/>
+			<item name="qc_dontfeedthebears" count="1"/>
+			<item name="qc_buythefarm" count="1"/>
+			<item name="qt_taylor" count="1" prob="0.2"/>
+			<item name="qt_nickole" count="1" prob="0.2"/>
+			<item name="qt_stephan" count="1" prob="0.2"/>
+			<item name="qt_jennifer" count="1" prob="0.2"/>
+			<item name="qt_claude" count="1" prob="0.2"/>
+			<item name="qt_sarah" count="1" prob="0.2"/>
+			<item name="qt_raphael" count="1" prob="0.2"/>
+		</trader_item_group>
+	</insertBefore>
+	
+	<append xpath="/traders/trader_item_groups/trader_item_group[@name='commonBooks']">
+			<item group="groupQuestChallenge" prob="42"/>
+	</append>
+	
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='farmingCookingRecipes']/item[@name='foodBoiledMeatSchematic']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='farmingCookingRecipes']/item[@name='foodGrilledMeatSchematic']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='farmingCookingRecipes']/item[@name='foodMeatStewSchematic']"/>

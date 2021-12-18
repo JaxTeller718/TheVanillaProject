@@ -9,4 +9,580 @@
 		<reward type="SkillPoints" value="4" chainreward="true" />
 	</append>
 	
+	<insertBefore xpath="/quests/quest[@id='treasure_taylor']">
+	<!-- CHALLENGES -->
+	<quest id="challenge_silenceofthelambs">
+		<property name="name_key" value="challenge_silenceofthelambs"/>
+		<property name="subtitle_key" value="challenge_silenceofthelambs_subtitle"/>
+		<property name="description_key" value="challenge_silenceofthelambs_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_silenceofthelambs_offer"/>
+		<property name="difficulty" value="insane"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieScreamer" value="2" phase="3"/>
+		<objective type="ZombieKill" id="zombieScreamer" value="2" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<!-- You can define a range of rewards like <reward type="Item" id="casinoCoin" value="200-500"/> -->
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_drunkanddisorderly">
+		<property name="name_key" value="challenge_drunkanddisorderly"/>
+		<property name="subtitle_key" value="challenge_drunkanddisorderly_subtitle"/>
+		<property name="description_key" value="challenge_drunkanddisorderly_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_drunkanddisorderly_offer"/>
+		<property name="difficulty" value="medium"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="ZombieKill" value="2" phase="1"/>
+		<requirement type="Holding" id="" phase="1"/>
+
+		<requirement type="Group" value="OR" phase="1" >
+			<requirement type="Buff" id="buffBeer"/>
+			<requirement type="Buff" id="buffDrunkGrandpasMoonshine"/>
+		</requirement>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_nurseyoubacktohealth">
+		<property name="name_key" value="challenge_nurseyoubacktohealth"/>
+		<property name="subtitle_key" value="challenge_nurseyoubacktohealth_subtitle"/>
+		<property name="description_key" value="challenge_nurseyoubacktohealth_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_nurseyoubacktohealth_offer"/>
+		<property name="difficulty" value="medium"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieNurse" value="5" phase="3"/>
+		<objective type="ZombieKill" id="zombieNurse" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_starvingtourists">
+		<property name="name_key" value="challenge_starvingtourists"/>
+		<property name="subtitle_key" value="challenge_starvingtourists_subtitle"/>
+		<property name="description_key" value="challenge_starvingtourists_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_starvingtourists_offer"/>
+		<property name="difficulty" value="hard"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieFatHawaiian" value="5" phase="3"/>
+		<objective type="ZombieKill" id="zombieFatHawaiian" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_dogdaysareover">
+		<property name="name_key" value="challenge_dogdaysareover"/>
+		<property name="subtitle_key" value="challenge_dogdaysareover_subtitle"/>
+		<property name="description_key" value="challenge_dogdaysareover_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_dogdaysareover_offer"/>
+		<property name="difficulty" value="hard"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="animalZombieDog" value="5" phase="3"/>
+
+		<objective type="ZombieKill" id="animalZombieDog" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_itsybitsyspider">
+		<property name="name_key" value="challenge_itsybitsyspider"/>
+		<property name="subtitle_key" value="challenge_itsybitsyspider_subtitle"/>
+		<property name="description_key" value="challenge_itsybitsyspider_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_itsybitsyspider_offer"/>
+		<property name="difficulty" value="medium"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieSpider" value="5" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieSpider" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_ladykiller">
+		<property name="name_key" value="challenge_ladykiller"/>
+		<property name="subtitle_key" value="challenge_ladykiller_subtitle"/>
+		<property name="description_key" value="challenge_ladykiller_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_ladykiller_offer"/>
+		<property name="difficulty" value="medium"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieArlene" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieDarlene" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieMarlene" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieNurse" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombiePartyGirl" value="2" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieArlene" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieDarlene" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieMarlene" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieNurse" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombiePartyGirl" value="1" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_maneater">
+		<property name="name_key" value="challenge_maneater"/>
+		<property name="subtitle_key" value="challenge_maneater_subtitle"/>
+		<property name="description_key" value="challenge_maneater_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_maneater_offer"/>
+		<property name="difficulty" value="medium"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieBoe" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieJoe" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieMoe" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieYo" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieSteve" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieTomClark" value="2" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieBoe" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieJoe" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieMoe" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieYo" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieSteve" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieTomClark" value="1" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_yournothingspecial">
+		<property name="name_key" value="challenge_yournothingspecial"/>
+		<property name="subtitle_key" value="challenge_yournothingspecial_subtitle"/>
+		<property name="description_key" value="challenge_yournothingspecial_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_yournothingspecial_offer"/>
+		<property name="difficulty" value="insane"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieSpider" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieFatHawaiian" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieWightFeral" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieScreamer" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieBurnt" value="2" phase="3"/>
+		<action type="SpawnEnemy" id="zombieMaleHazmat" value="2" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieSpider" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieFatHawaiian" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieWightFeral" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieScreamer" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieBurnt" value="1" phase="3"/>
+		<objective type="ZombieKill" id="zombieMaleHazmat" value="1" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_imalumberjackandimokay">
+		<property name="name_key" value="challenge_imalumberjackandimokay"/>
+		<property name="subtitle_key" value="challenge_imalumberjackandimokay_subtitle"/>
+		<property name="description_key" value="challenge_imalumberjackandimokay_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_imalumberjackandimokay_offer"/>
+		<property name="difficulty" value="hard"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieLumberjack" value="5" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieLumberjack" value="3" phase="3"/>
+
+		<requirement type="Group" id="requirementGroupAxe" value="OR" phase="3">
+			<requirement type="Holding" id="meleeToolRepairT0StoneAxe"/>
+			<requirement type="Holding" id="meleeToolAxeT1IronFireaxe"/>
+			<requirement type="Holding" id="meleeToolAxeT2SteelAxe"/>
+		</requirement>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+
+
+	<quest id="challenge_dishonorabledischarge">
+		<property name="name_key" value="challenge_dishonorabledischarge"/>
+		<property name="subtitle_key" value="challenge_dishonorabledischarge_subtitle"/>
+		<property name="description_key" value="challenge_dishonorabledischarge_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_dishonorabledischarge_offer"/>
+		<property name="difficulty" value="hard"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieSoldier" value="5" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieSoldier" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_cableguysnevermadeit">
+		<property name="name_key" value="challenge_cableguysnevermadeit"/>
+		<property name="subtitle_key" value="challenge_cableguysnevermadeit_subtitle"/>
+		<property name="description_key" value="challenge_cableguysnevermadeit_offer"/>
+		<property name="icon" value="ui_game_symbol_zombie"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_cableguysnevermadeit_offer"/>
+		<property name="difficulty" value="hard"/>
+		<property name="completiontype" value="TurnIn"/>
+
+		<objective type="RandomGoto" value="500-800" phase="1">
+			<property name="completion_distance" value="50"/>
+			<property name="nav_object" value="quest" />
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<action type="SpawnEnemy" id="zombieUtilityWorker" value="5" phase="3"/>
+
+		<objective type="ZombieKill" id="zombieUtilityWorker" value="3" phase="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+		</objective>
+
+		<reward type="Exp" value="500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+	</quest>
+
+	<quest id="challenge_killthewabbit">
+		<property name="name_key" value="challenge_killthewabbit"/>
+		<property name="subtitle_key" value="challenge_killthewabbit_subtitle"/>
+		<property name="description_key" value="challenge_killthewabbit_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_killthewabbit_offer"/>
+		<property name="difficulty" value="medium"/>
+
+		<objective type="AnimalKill" id="animalRabbit" value="5"/>
+
+		<requirement type="Group" id="requirementGroupShotgun" value="OR" phase="1">
+			<requirement type="Holding" id="gunShotgunT0PipeShotgun"/>
+			<requirement type="Holding" id="gunShotgunT1DoubleBarrel"/>
+			<requirement type="Holding" id="gunShotgunT2PumpShotgun"/>
+			<requirement type="Holding" id="gunShotgunT3AutoShotgun"/>
+		</requirement>
+
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="600"/>
+		<reward type="Item" id="casinoCoin" value="625"/>
+	</quest>
+
+	<quest id="challenge_nailsomechicks">
+		<property name="name_key" value="challenge_nailsomechicks"/>
+		<property name="subtitle_key" value="challenge_nailsomechicks_subtitle"/>
+		<property name="description_key" value="challenge_nailsomechicks_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_nailsomechicks_offer"/>
+		<property name="difficulty" value="medium"/>
+
+		<objective type="AnimalKill" id="animalChicken" value="5"/>
+
+		<requirement type="Holding" id="meleeToolRepairT3Nailgun"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="600"/>
+		<reward type="Item" id="casinoCoin" value="625"/>
+	</quest>
+
+	<quest id="challenge_thatlldopig">
+		<property name="name_key" value="challenge_thatlldopig"/>
+		<property name="subtitle_key" value="challenge_thatlldopig_subtitle"/>
+		<property name="description_key" value="challenge_thatlldopig_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_thatlldopig_offer"/>
+		<property name="difficulty" value="easy"/>
+
+		<objective type="AnimalKill" id="animalBoar" value="5"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="600"/>
+		<reward type="Item" id="casinoCoin" value="625"/>
+	</quest>
+
+	<quest id="challenge_stagparty">
+		<property name="name_key" value="challenge_stagparty"/>
+		<property name="subtitle_key" value="challenge_stagparty_subtitle"/>
+		<property name="description_key" value="challenge_stagparty_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_stagparty_offer"/>
+		<property name="difficulty" value="easy"/>
+
+		<objective type="AnimalKill" id="animalStag,animalDoe" value="5">
+			<property name="objective_name_key" value="animalDeer"/>
+		</objective>
+		<!-- <objective type="AnimalKill" id="animalDoe" value="5"/> -->
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="600"/>
+		<reward type="Item" id="casinoCoin" value="625"/>
+	</quest>
+
+	<quest id="challenge_dontfeedthebears">
+		<property name="name_key" value="challenge_dontfeedthebears"/>
+		<property name="subtitle_key" value="challenge_dontfeedthebears_subtitle"/>
+		<property name="description_key" value="challenge_dontfeedthebears_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_dontfeedthebears_offer"/>
+		<property name="difficulty" value="hard"/>
+
+		<objective type="AnimalKill" id="animalBear" value="3"/>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="600"/>
+		<reward type="Item" id="casinoCoin" value="625"/>
+	</quest>
+
+	<quest id="challenge_buythefarm">
+		<property name="name_key" value="challenge_buythefarm"/>
+		<property name="subtitle_key" value="challenge_buythefarm_subtitle"/>
+		<property name="description_key" value="challenge_buythefarm_offer"/>
+		<property name="icon" value="ui_game_symbol_knife"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="offer_key" value="challenge_buythefarm_offer"/>
+		<property name="difficulty" value="medium"/>
+
+		<objective type="AnimalKill" id="animalRabbit" value="1"/>
+		<objective type="AnimalKill" id="animalChicken" value="1"/>
+		<objective type="AnimalKill" id="animalBoar" value="1"/>
+		<objective type="AnimalKill" id="animalStag" value="1"/>
+		<objective type="AnimalKill" id="animalBear" value="1"/>
+
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+		</objective>
+
+		<reward type="Exp" value="750"/>
+		<reward type="Item" id="casinoCoin" value="875"/>
+	</quest>
+	</insertBefore>	
+
 </JaxTeller718>

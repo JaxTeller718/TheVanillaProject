@@ -1,6 +1,28 @@
 <JaxTeller718>
 
-
+	<insertBefore xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
+<lootgroup name="groupQuestChallenge">
+	<item name="qc_silenceofthelambs"/>
+	<item name="qc_drunkanddisorderly"/>
+	<item name="qc_nurseyoubacktohealth"/>
+	<item name="qc_starvingtourists"/>
+	<item name="qc_dogdaysareover"/>
+	<item name="qc_itsbitsyspider"/>
+	<item name="qc_ladykiller"/>
+	<item name="qc_maneater"/>
+	<item name="qc_imalumberjackandimokay"/>
+	<item name="qc_yournothingspecial"/>
+	<item name="qc_dishonorabledischarge"/>
+	<item name="qc_cableguysnevermadeit"/>
+	<item name="qc_killthewabbit"/>
+	<item name="qc_nailsomechicks"/>
+	<item name="qc_thatlldopig"/>
+	<item name="qc_stagparty"/>
+	<item name="qc_dontfeedthebears"/>
+	<item name="qc_buythefarm"/>
+</lootgroup>
+	</insertBefore>
+	
 	<append xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
 		<item name="resourceCandyTin" count ="1,2"/>
 	</append>
@@ -204,7 +226,14 @@
 		<item name="modArmorSteelPlatingSchematic"/>
 	</append>
 
-
+	<append xpath="/lootcontainers/lootgroup[@name='groupReading1']">
+		<item group="groupQuestChallenge" loot_prob_template="veryLow"/>
+	</append>	
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
+		<item group="groupQuestChallenge" count="1"/>
+	</append>		
+	
 	<append xpath="/lootcontainers">
 	
 		<!-- Мусор --> 	<!-- 0.06 = .23 % -->
