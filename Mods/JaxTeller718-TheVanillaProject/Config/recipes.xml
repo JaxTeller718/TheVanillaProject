@@ -18,6 +18,14 @@
 
 	<append xpath="/recipes">
 	
+		<recipe name="scrapIronLogSpike4" count="1"> 
+			<ingredient name="resourceScrapIron" count="40"/>
+		</recipe>
+
+		<recipe name="woodLogSpike1" count="1"> 
+			<ingredient name="resourceWood" count="15"/>
+		</recipe>
+		
 <recipe name="ammoBlunderbuss" count="1">
 	<ingredient name="resourceRockSmall" count="1"/>
 	<ingredient name="resourceGunPowder" count="2"/>
