@@ -1,5 +1,15 @@
 <JaxTeller718>
 
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRegularT0']">
+		<item name="ammoBlunderbuss" count="3,6"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT0_Boomstick']">
+		<item name="gunShotgunT0Blunderbuss"/>
+		<item name="ammoBlunderbuss" count="5,12"/>
+	</append>
+
+
 	<insertBefore xpath="/lootcontainers/lootgroup[@name='groupScrapCommon']">
 <lootgroup name="groupQuestChallenge">
 	<item name="qc_silenceofthelambs"/>

@@ -18,6 +18,25 @@
 
 	<append xpath="/recipes">
 	
+<recipe name="ammoBlunderbuss" count="1">
+	<ingredient name="resourceRockSmall" count="1"/>
+	<ingredient name="resourceGunPowder" count="2"/>
+	<ingredient name="resourcePaper" count="1"/>
+</recipe>
+
+<recipe name="ammoBundleBlunderbuss" count="1" craft_time="240" tags="learnable">
+	<ingredient name="resourceRockSmall" count="80"/>
+	<ingredient name="resourceGunPowder" count="160"/>
+	<ingredient name="resourcePaper" count="80"/>
+</recipe>
+
+<recipe name="gunShotgunT0Blunderbuss" count="1" tags="perkBoomstick">
+	<ingredient name="resourceMetalPipe" count="4"/>
+	<ingredient name="resourceGlue" count="2"/>
+	<ingredient name="resourceWood" count="6"/>
+</recipe>
+
+	
 	    <recipe name="drinkCanRiverWater" count="1" craft_area="campfire" tags="perkMasterChef">
 	        <ingredient name="resourceSnowBall" count="1"/>
 	        <ingredient name="drinkCanEmpty" count="1"/>
