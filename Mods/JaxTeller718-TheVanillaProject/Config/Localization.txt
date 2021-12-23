@@ -141,3 +141,4 @@ buffFatiguedDesc,buffs,Buff,You are fatigued and take 10% more damage from all a
 
 Key,English
 tutorialTipQuest02, "You're now playing with the Wellness system. Your maximum health and Stamina will match what your Wellness is. It decreases with death, and increases with good quality food & drink. There is a limit on how quickly you can increase Wellness, and you cannot increase it while the buffs 'Good or Average quality Drink or Food' are active. Enjoy."
+terrStoneJT,blocks,Terrain,Stone

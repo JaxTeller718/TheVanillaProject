@@ -15,9 +15,14 @@
 	<remove xpath="/recipes/recipe[@name='foodSteakAndPotato']" />
 
 	<setattribute xpath="/recipes/recipe[@name='drinkJarBoiledWater']" name="craft_tool">toolCookingPot</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceCement']" name="craft_tool">toolCementMold</setattribute>
 
 	<append xpath="/recipes">
 	
+<recipe name="terrStoneJT" count="1" material_based="true" craft_area="forge" craft_time="5" craft_exp_gain="0" always_unlocked="true" use_ingredient_modifier="false">
+	<ingredient name="unit_stone" count="15"/>
+</recipe>	
+
 		<recipe name="scrapIronLogSpike4" count="1"> 
 			<ingredient name="resourceScrapIron" count="40"/>
 		</recipe>
@@ -64,6 +69,11 @@
 	        <ingredient name="resourceBricks" count="1"/>
         </recipe>
 	
+		<recipe name="toolCementMold" count="1" craft_time="12">
+	        <ingredient name="resourceEmptyMold" count="1"/>
+	        <ingredient name="resourceCement" count="1"/>
+        </recipe>
+		
 	    <recipe name="resourceBricks" count="1" material_based="true" craft_time="10" craft_area="forge" craft_tool="toolBrickMold">
 	        <ingredient name="unit_clay" count="12"/>
         </recipe>

@@ -409,7 +409,40 @@
 	<drop event="Harvest" name="resourceScrapLead" count="5" tag="oreWoodHarvest"/>
 	</insertAfter>
 	
+	<append xpath="/blocks">
 
+
+<block name="terrStoneJT">
+	<property name="Material" value="Mstone"/>
+	<property name="NoScrapping" value="true"/>
+	<property name="Shape" value="Terrain"/>
+	<property name="Mesh" value="terrain"/>
+	<property name="Texture" value="1"/>
+	<property name="TerrainIndex" value="1"/>
+	<property name="ImposterExclude" value="true"/>
+	<property name="LPHardnessScale" value="2"/>
+	<property name="Weight" value="125"/>
+	<property name="Map.Color" value="100,100,100"/>
+	<property class="RepairItems">
+		<property name="resourceCobblestones" value="6"/>
+	</property>
+	<drop event="Harvest" name="resourceCrushedSand" count="4" tag="oreWoodHarvest"/>
+	<drop event="Harvest" name="resourceRockSmall" count="12" tag="oreWoodHarvest"/>
+	<drop event="Destroy" count="0"/>
+	<!-- Better to have fewer stacks with higher numbers for performance reasons. -->
+	<!-- With a stick chance fallen resources just get buried and fall off the earth. -->
+	<!-- Could maybe do "0.1" stick but it would quickly make the whole endeavor unfun. -->
+	<property name="CanMobsSpawnOn" value="true"/> <!-- BM and horde AI can ONLY spawn on these blocks, the minimum distance to any player is 30m -->
+	<property name="EconomicValue" value="5"/>
+	<property name="EconomicBundleSize" value="1"/>
+	<property name="SellableToTrader" value="false"/>
+	<property name="FilterTags" value="MC_outdoor,SC_terrain"/>
+	<property name="SortOrder1" value="d0j0"/>
+	<property name="SortOrder2" value="0050"/>
+	<property name="DisplayType" value="blockTerrain"/>
+</block>
+
+	</append>
 
 	<set xpath="/blocks/block[@name='treeStump']/drop[@event='Harvest' and @name='resourceWood' and @count='20,30']/@count">0</set>
 	<set xpath="/blocks/block[@name='treeJuniper4m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
@@ -736,6 +769,10 @@
 	
 	<set xpath="//drop[@event='Harvest' and @name='resourceRockSmall']/@name">terrDestroyedStone</set>
 	<set xpath="/blocks/block[@name='oreBoulderMaster']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">terrStoneJT</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrStoneJT']/@count">18</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='terrStoneJT']/@count">12</set>
+
 	<set xpath="/blocks/block[@name='rockResource']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 	<set xpath="/blocks/block[@name='terrDestroyedStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 
