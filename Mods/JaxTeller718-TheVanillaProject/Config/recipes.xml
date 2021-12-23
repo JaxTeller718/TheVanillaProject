@@ -349,6 +349,16 @@
 	</effect_group>
 </recipe>
 
+<recipe name="foodRabbitOnAStick" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodRabbit" count="3"/>
+	<ingredient name="foodCropPotato" count="1"/>
+	<ingredient name="foodCropCorn" count="1"/>
+	<ingredient name="resourceStickJT" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
 <recipe name="modArmorIronPlating" count="1" craft_area="workbench" tags="learnable">
 	<ingredient name="resourceForgedIron" count="10"/>
 	<ingredient name="resourceDuctTape" count="2"/>

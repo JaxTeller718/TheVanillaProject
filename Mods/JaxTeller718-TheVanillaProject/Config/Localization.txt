@@ -60,7 +60,8 @@ drinkCanBoiledWaterDesc,items,Food,Boiled water is safe to drink. Probably.,,,,,
 drinkCanRiverWaterDesc,items,Food,Not so appealing but it will have to do.,,,,,
 drinkCanEmpty,items,Food,Empty Can,,,,,
 drinkCanEmptyDesc,items,Food,An empty can which you can scrap or fill with water.,,,,,
-
+foodRabbitOnAStick,items,Food,Rabbit KaBob,,,,,
+foodRabbitOnAStickDesc,items,Food,Rabbit on a stick for your pleasure.,,,,,
 
 modArmorIronPlatingDesc,items,Item,Improve your armor rating with this iron plating. Can only be installed in  heavy armor.,,,,,
 modArmorIronPlatingSchematic,items,,New,Iron Plating Schematic,,,,,
