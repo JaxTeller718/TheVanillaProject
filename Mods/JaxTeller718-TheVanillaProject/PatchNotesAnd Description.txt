@@ -164,6 +164,17 @@ v1.7
 
 -ReAdded Blunderbuss
 
+-ReAdded Blunderbuss Ammo
+
+-Fixed Wood Item Repair Issue
+
+-Added Yakovs Wellness Modlet which can be found here https://7daystodiemods.com/yakovs-wellness-system/
+
+-Added Goukis Old Farmland  https://7daystodiemods.com/gk-return-to-old-farmland/
+
+-Added Rabbit KaBobs
+
+
 
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
