@@ -464,5 +464,14 @@
 
   <set xpath="//ingredient[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
 
+    <append xpath="/recipes">
+
+        <recipe name="meleeToolFarmT2IronHoe" count="1" tags="learnable,perkLivingOffTheLand">
+	        <ingredient name="resourceForgedIron" count="16"/>
+	        <ingredient name="resourceStickJT" count="12"/>
+	        <ingredient name="resourceLeather" count="2"/>
+	        <ingredient name="resourceDuctTape" count="2"/>
+        </recipe>
+	</append>
 
 </JaxTeller718>

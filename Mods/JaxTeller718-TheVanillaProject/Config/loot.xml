@@ -1971,6 +1971,12 @@
 		
 	</append>
 
-
+    <append xpath="/lootcontainers/lootgroup[@name='schematicsToolsCommon']">
+        <item name="meleeToolFarmT2IronHoeSchematic" prob="0.8"/>
+    </append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupJunk02']">
+        <item name="meleeToolFarmT2IronHoeSchematic" prob="0.2"/> 
+    </append>
 	
 </JaxTeller718>

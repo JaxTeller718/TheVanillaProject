@@ -674,6 +674,66 @@
 		<property name="FilterTags" value="foutdoor,fcrops"/>
 	</append>
 	
+	
+
+    <append xpath="/blocks" >
+	    <block name="terrFertilizedFarmland">
+	        <property name="Material" value="MfertilizedFarmland"/>
+	        <property name="Shape" value="Terrain"/>
+	        <property name="Mesh" value="terrain"/>
+	        <property name="Texture" value="2"/>
+	        <property name="ImposterExclude" value="true"/>
+	        <property name="CanMobsSpawnOn" value="false"/>
+	        <property class="RepairItems"> <property name="resourceClayLump" value="14"/> </property>
+	        <drop event="Harvest" name="resourceClayLump" count="22" tag="oreWoodHarvest"/>
+	        <drop event="Destroy" count="0"/>
+	        <drop event="Fall" name="terrFertileDirt" count="1" prob="0.25" stick_chance="1"/>
+	        <drop event="Fall" name="resourceClayLump" count="44" prob="0.187" stick_chance="0"/>
+	        <property name="DescriptionKey" value="terrainBlockGroupDesc"/>
+	        <property name="FilterTags" value="fterrain"/>
+	        <property name="SortOrder1" value="d0m0"/>
+	        <property name="SortOrder2" value="0050"/>
+	        <property name="DisplayType" value="blockTerrainFertile" />
+        </block>
+
+	</append>
+
+	<append xpath="/blocks/block[@name='terrDirt']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrForestGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrBurntForestGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrDesertGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
 	<set xpath="//drop[@event='Harvest' and @name='resourceRockSmall']/@name">terrDestroyedStone</set>
 	<set xpath="/blocks/block[@name='oreBoulderMaster']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 	<set xpath="/blocks/block[@name='rockResource']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
@@ -690,5 +750,7 @@
 	
 	<set xpath="//property[@class='RepairItems']/property[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
 	<set xpath="//property[@class='UpgradeBlock']/property[@name='Item' and @value='resourceWood']/@value">resourceWoodPlanksJT</set>
-	
+
+
+
 </JaxTeller718>

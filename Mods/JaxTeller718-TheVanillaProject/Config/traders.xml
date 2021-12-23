@@ -81,4 +81,12 @@
 			<item name="foodVenison" count="10,40"/>
 	</append>
 
+    <append xpath="//trader_item_group[@name='perkBooks']">
+	    <item name="meleeToolFarmT2IronHoeSchematic"/>
+	</append>
+    
+	<append xpath="//trader_item_group[@name='traderAlways']">
+	    <item name="meleeToolFarmT2IronHoeSchematic"/>
+	</append>
+	
 </JaxTeller718>
