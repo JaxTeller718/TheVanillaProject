@@ -2911,7 +2911,7 @@
 		</effect_group>
 	</append>	
 	
-	<set xpath="//property[@name='RepairTools']/property[@value='resourceWood']/@name">resourceWoodPlanksJT</set>
+	<set xpath="//property[@name='RepairTools' and @value='resourceWood']/@value">resourceWoodPlanksJT</set>
 
 
 

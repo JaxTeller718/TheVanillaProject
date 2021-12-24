@@ -771,7 +771,8 @@
 	<set xpath="/blocks/block[@name='oreBoulderMaster']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">terrStoneJT</set>
 	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrStoneJT']/@count">18</set>
-	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='terrStoneJT']/@count">12</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='resourceRockSmall']/@count">12</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='resourceRockSmall']/@name">terrStoneJT</set>
 
 	<set xpath="/blocks/block[@name='rockResource']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 	<set xpath="/blocks/block[@name='terrDestroyedStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
