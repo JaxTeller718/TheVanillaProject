@@ -1,5 +1,24 @@
 <JaxTeller718>
 
+	<append xpath="/item_modifiers/item_modifier[@name='modGunLaserSight']">
+		<item_property_overrides name="gunShotgunT0Blunderbuss">
+			<property name="SideOffset" value="0,-.026,.27"/>
+		</item_property_overrides>
+	</append>
+
+	<append xpath="/item_modifiers/item_modifier[@name='modGunFlashlight']">
+		<item_property_overrides name="gunShotgunT0Blunderbuss">
+			<property name="SideOffset" value="0,-.026,.27"/>
+		</item_property_overrides>
+	</append>
+
+	<append xpath="/item_modifiers/item_modifier[@name='modGunReflexSight']">
+		<item_property_overrides name="gunShotgunT0Blunderbuss">
+			<property name="SideOffset" value="0,-.026,.27"/>
+		</item_property_overrides>
+	</append>
+	
+	
 	<append xpath="/item_modifiers">
 
 	<item_modifier name="modArmorReinforcedPadding" installable_tags="lightarmor" modifier_tags="resistance" type="attachment" rarity="0.5">

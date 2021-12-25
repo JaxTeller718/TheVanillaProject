@@ -156,4 +156,28 @@ v1.6
 -ReAdded the Challenge Quests in loot and traders
 
 
+v1.7
+
+-Removed Clay from Desert terrain
+
+-ReAdded Wood Log Spikes
+
+-ReAdded Blunderbuss
+
+-ReAdded Blunderbuss Ammo
+
+-Fixed Wood Item Repair Issue
+
+-Added Yakovs Wellness Modlet which can be found here https://7daystodiemods.com/yakovs-wellness-system/
+
+-Added Goukis Old Farmland  https://7daystodiemods.com/gk-return-to-old-farmland/
+
+-Added Rabbit KaBobs
+
+-Added Stone to Underground mining replacing small stones. Placed in forge 1 piece = 25 Units of Stone
+
+-Added Molds for the forge. Pipe/Bullet Casing/Tips/Jars/Nails/Cement
+
+
+
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

@@ -1,5 +1,9 @@
 <JaxTeller718>
 
+<remove xpath="/blocks/block[@name='terrDesertGround']/drop[@event='Harvest' and @name='resourceClayLump']" />
+<remove xpath="/blocks/block[@name='terrDesertGround']/property[@class='RepairItems']/property[@name='resourceClayLump']" />
+
+
     <set xpath="/blocks/block[@name='frameShapes']">    
 	        <property name="Group" value="Basics,Building,advBuilding"/>
 	        <property name="Tags" value="wood"/>
@@ -58,6 +62,137 @@
 	</set>
 	
 	<append xpath="/blocks">
+	
+		<block name="woodLogSpike1"> <!-- log spike 1 wood -->
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Class" value="TrunkTip"/>
+			<property name="BlockTag" value="Spike"/>
+			<property name="Damage" value="4"/>
+			<property name="Damage_received" value="6"/>
+			<property name="Material" value="Mwood_regular"/>
+			<property name="Shape" value="New"/>
+			<property name="LightOpacity" value="6"/> 
+			<property name="Model" value="cone1m"/>
+			<property name="Texture" value="21,21,22,22,22,22"/>
+			<property name="UseGlobalUV" value="Local"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="10"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="FuelValue" value="300"/>
+			<property class="RepairItems"> <property name="resourceWood" value="10"/> </property>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="rWoodLogSpike2"/>
+				<property name="Item" value="resourceWood"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="CustomUpgradeSound" value="place_block_wood"/>
+			<drop event="Destroy" name="resourceWood" count="2,6" />
+			<drop event="Fall" name="terrDestroyedWoodDebris" count="1" prob="0.75" stick_chance="1"/>
+			<property name="Group" value="Tools/Traps"/>
+			<property name="DescriptionKey" value="woodLogSpike1Desc"/>
+			<property name="EconomicValue" value="30"/>
+			<property name="EconomicBundleSize" value="20"/>
+			<property name="FilterTags" value="MC_building,SC_traps,fdecor,ftraps"/>
+			<property name="SortOrder1" value="70g0"/>
+		</block>
+
+		<block name="rWoodLogSpike2"> <!-- log spike 2 rWood -->
+			<property name="Extends" value="woodLogSpike1"/>
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Damage" value="6"/>
+			<property name="Damage_received" value="8"/>
+			<property name="Texture" value="379"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="119"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="rWoodMetalLogSpike3"/>
+				<property name="Item" value="resourceScrapIron"/>
+				<property name="ItemCount" value="20"/>
+			</property>
+			<property name="CustomUpgradeSound" value="place_block_metal"/>
+			<property name="DowngradeBlock" value="woodLogSpike1"/>
+			<property name="EconomicValue" value="0"/>
+		</block>
+
+		<block name="rWoodMetalLogSpike3"> <!-- log spike 3 wood+metal -->
+			<property name="Extends" value="rWoodLogSpike2" param1="RepairItems"/>
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Damage" value="8"/>
+			<property name="Damage_received" value="10"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="Texture" value="380"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="120"/>
+			<property class="RepairItems"> <property name="resourceScrapIron" value="20"/> </property>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="scrapIronLogSpike4"/>
+				<property name="ItemCount" value="40"/>
+			</property>
+			<property name="DowngradeBlock" value="rWoodLogSpike2"/>
+			<drop event="Destroy" name="resourceWood" count="0"/>
+			<drop event="Destroy" name="resourceScrapIron" count="8"/>
+		</block>
+
+		<block name="scrapIronLogSpike4"> <!-- log spike 4 scrap -->
+			<property name="Extends" value="rWoodLogSpike2" param1="DowngradeBlock,RepairItems"/>
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Damage" value="10"/>
+			<property name="Damage_received" value="12"/>
+			<property name="DisplayType" value="blockHardened"/>
+			<property name="Material" value="Mmetal_medium"/>
+			<property name="Texture" value="307"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="87"/>
+			<property class="RepairItems"> <property name="resourceScrapIron" value="40"/> </property>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="rScrapIronLogSpike5"/>
+				<property name="ItemCount" value="40"/>
+			</property>
+			<drop event="Destroy" name="resourceWood" count="0"/>
+			<drop event="Destroy" name="resourceScrapIron" count="15"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+		</block>
+
+		<block name="rScrapIronLogSpike5"> <!-- log spike 5 rScrap -->
+			<property name="Extends" value="scrapIronLogSpike4"/>
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Damage" value="12"/>
+			<property name="Damage_received" value="14"/>
+			<property name="Texture" value="352"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="110"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="steelLogSpike6"/>
+				<property name="Item" value="resourceForgedSteel"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="DowngradeBlock" value="scrapIronLogSpike4"/>
+		</block>
+
+		<block name="steelLogSpike6"> <!-- log spike 6 Steel -->
+			<property name="Class" value="TrunkTip"/>
+			<property name="BlockTag" value="Spike"/>
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Damage" value="14"/>
+			<property name="Damage_received" value="16"/>
+			<property name="DisplayType" value="blockHardened"/>
+			<property name="Material" value="Msteel"/>
+			<property name="Shape" value="New"/>
+			<property name="LightOpacity" value="6"/>
+			<property name="Model" value="cone1m"/>
+			<property name="Texture" value="356,355,356,356,356,356"/>
+			<property name="ImposterExchange" value="imposterPyramid" param1="112"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="UseGlobalUV" value="Local"/>
+			<property class="RepairItems"> <property name="resourceForgedSteel" value="10"/> </property>
+			<property name="CustomUpgradeSound" value="place_block_metal"/>
+			<property name="DowngradeBlock" value="rScrapIronLogSpike5"/>
+			<drop event="Destroy" name="resourceScrapIron" count="10,20" />
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="160"/>
+			<property name="Group" value="Tools/Traps"/>
+			<property name="DescriptionKey" value="woodLogSpike1Desc"/>
+			<property name="FilterTags" value="MC_building,SC_traps,fdecor,ftraps"/>
+			<property name="SortOrder1" value="70g0"/>
+		</block>
+		
 	    <block name="woodReinforcedShapes" shapes="All">
 	        <property name="Group" value="Building,advBuilding"/>
 	        <property name="Tags" value="wood"/>
@@ -274,7 +409,40 @@
 	<drop event="Harvest" name="resourceScrapLead" count="5" tag="oreWoodHarvest"/>
 	</insertAfter>
 	
+	<append xpath="/blocks">
 
+
+<block name="terrStoneJT">
+	<property name="Material" value="Mstone"/>
+	<property name="NoScrapping" value="true"/>
+	<property name="Shape" value="Terrain"/>
+	<property name="Mesh" value="terrain"/>
+	<property name="Texture" value="1"/>
+	<property name="TerrainIndex" value="1"/>
+	<property name="ImposterExclude" value="true"/>
+	<property name="LPHardnessScale" value="2"/>
+	<property name="Weight" value="25"/>
+	<property name="Map.Color" value="100,100,100"/>
+	<property class="RepairItems">
+		<property name="resourceCobblestones" value="6"/>
+	</property>
+	<drop event="Harvest" name="resourceCrushedSand" count="4" tag="oreWoodHarvest"/>
+	<drop event="Harvest" name="resourceRockSmall" count="12" tag="oreWoodHarvest"/>
+	<drop event="Destroy" count="0"/>
+	<!-- Better to have fewer stacks with higher numbers for performance reasons. -->
+	<!-- With a stick chance fallen resources just get buried and fall off the earth. -->
+	<!-- Could maybe do "0.1" stick but it would quickly make the whole endeavor unfun. -->
+	<property name="CanMobsSpawnOn" value="true"/> <!-- BM and horde AI can ONLY spawn on these blocks, the minimum distance to any player is 30m -->
+	<property name="EconomicValue" value="5"/>
+	<property name="EconomicBundleSize" value="1"/>
+	<property name="SellableToTrader" value="false"/>
+	<property name="FilterTags" value="MC_outdoor,SC_terrain"/>
+	<property name="SortOrder1" value="d0j0"/>
+	<property name="SortOrder2" value="0050"/>
+	<property name="DisplayType" value="blockTerrain"/>
+</block>
+
+	</append>
 
 	<set xpath="/blocks/block[@name='treeStump']/drop[@event='Harvest' and @name='resourceWood' and @count='20,30']/@count">0</set>
 	<set xpath="/blocks/block[@name='treeJuniper4m']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceWoodLogJT</set>
@@ -539,8 +707,73 @@
 		<property name="FilterTags" value="foutdoor,fcrops"/>
 	</append>
 	
+	
+
+    <append xpath="/blocks" >
+	    <block name="terrFertilizedFarmland">
+	        <property name="Material" value="MfertilizedFarmland"/>
+	        <property name="Shape" value="Terrain"/>
+	        <property name="Mesh" value="terrain"/>
+	        <property name="Texture" value="2"/>
+	        <property name="ImposterExclude" value="true"/>
+	        <property name="CanMobsSpawnOn" value="false"/>
+	        <property class="RepairItems"> <property name="resourceClayLump" value="14"/> </property>
+	        <drop event="Harvest" name="resourceClayLump" count="22" tag="oreWoodHarvest"/>
+	        <drop event="Destroy" count="0"/>
+	        <drop event="Fall" name="terrFertileDirt" count="1" prob="0.25" stick_chance="1"/>
+	        <drop event="Fall" name="resourceClayLump" count="44" prob="0.187" stick_chance="0"/>
+	        <property name="DescriptionKey" value="terrainBlockGroupDesc"/>
+	        <property name="FilterTags" value="fterrain"/>
+	        <property name="SortOrder1" value="d0m0"/>
+	        <property name="SortOrder2" value="0050"/>
+	        <property name="DisplayType" value="blockTerrainFertile" />
+        </block>
+
+	</append>
+
+	<append xpath="/blocks/block[@name='terrDirt']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrForestGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrBurntForestGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
+	<append xpath="/blocks/block[@name='terrDesertGround']">
+	    <property class="UpgradeBlock">
+		    <property name="ToBlock" value="terrFertilizedFarmland"/>
+		    <property name="Item" value="meleeToolFarmT2IronHoe"/>
+		    <property name="ItemCount" value="0"/>
+		    <property name="UpgradeHitCount" value="4"/>
+	    </property>
+	</append>
+	
 	<set xpath="//drop[@event='Harvest' and @name='resourceRockSmall']/@name">terrDestroyedStone</set>
 	<set xpath="/blocks/block[@name='oreBoulderMaster']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">terrStoneJT</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Harvest' and @name='terrStoneJT']/@count">18</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='resourceRockSmall']/@count">12</set>
+	<set xpath="/blocks/block[@name='terrStone']/drop[@event='Fall' and @name='resourceRockSmall']/@name">terrStoneJT</set>
+
 	<set xpath="/blocks/block[@name='rockResource']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 	<set xpath="/blocks/block[@name='terrDestroyedStone']/drop[@event='Harvest' and @name='terrDestroyedStone']/@name">resourceRockSmall</set>
 
@@ -555,5 +788,7 @@
 	
 	<set xpath="//property[@class='RepairItems']/property[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
 	<set xpath="//property[@class='UpgradeBlock']/property[@name='Item' and @value='resourceWood']/@value">resourceWoodPlanksJT</set>
-	
+
+
+
 </JaxTeller718>

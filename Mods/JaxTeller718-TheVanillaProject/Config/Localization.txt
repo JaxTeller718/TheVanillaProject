@@ -60,7 +60,8 @@ drinkCanBoiledWaterDesc,items,Food,Boiled water is safe to drink. Probably.,,,,,
 drinkCanRiverWaterDesc,items,Food,Not so appealing but it will have to do.,,,,,
 drinkCanEmpty,items,Food,Empty Can,,,,,
 drinkCanEmptyDesc,items,Food,An empty can which you can scrap or fill with water.,,,,,
-
+foodRabbitOnAStick,items,Food,Rabbit KaBob,,,,,
+foodRabbitOnAStickDesc,items,Food,Rabbit on a stick for your pleasure.,,,,,
 
 modArmorIronPlatingDesc,items,Item,Improve your armor rating with this iron plating. Can only be installed in  heavy armor.,,,,,
 modArmorIronPlatingSchematic,items,,New,Iron Plating Schematic,,,,,
@@ -79,8 +80,8 @@ modArmorReinforcedPaddingSchematic,items,mod,New,Reinforced Padding Schematic,,,
 modArmorScrapPlating,item_modifiers,mod,New,Scrap Plating,,,,,
 modArmorScrapPlatingDesc,item_modifiers,mod,New,Improve your armor rating with this scrap plating. Can only be installed in  heavy armor.,,,,,
 modArmorScrapPlatingSchematic,items,mod,New,Scrap Plating Schematic,,,,,
-resourceLeatherStripsRH,items,Item,Leather Strips,,,,,
-resourceLeatherStripsRHDesc,items,Item,Strips of leather that can be combined to make leather.,,,,,
+resourceLeatherStrips,items,Item,Leather Strips,,,,,
+resourceLeatherStripsDesc,items,Item,Strips of leather that can be combined to make leather.,,,,,
 perkASMiningToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
 perkASConstructionToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
 perkASBluntDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
@@ -97,7 +98,6 @@ perkASTurretDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level
 attactionskills,progression,Attribute,Action Skills
 attActionSkillsDesc,progression,Attribute,Action Skills Will Level As You Use Them.
 attActionSkillsName,progression,Attribute,Attribute: Action Skills
-uiLoadLoadingXml,UI,Game loading,Loading The Vanilla Project v20.0b233-1.6
 
 resourceBricks,items,item,Bricks
 resourceBricksDesc,items,item,A despised resource now it becomes useful. You can find them when harvesting brick pallets they are necessary to improve the cobblestone blocks. You can also make them at the forge.
@@ -105,3 +105,46 @@ resourceEmptyMold,items,item,Empty Mold
 resourceEmptyMoldDesc,items,item,This empty mold is needed to make the tool with which you will make bricks in the forge.
 toolBrickMold,items,item,Bricks Mold
 toolBrickMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
+toolCementMold,items,item,Cement Mold
+toolCementMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
+
+
+rScrapIronLogSpike5,blocks,Trap,R Iron Log Spike 5
+rWoodLogSpike2,blocks,Trap,Reinforced Wood Log Spike 2
+rWoodMetalLogSpike3,blocks,Trap,Reinforced Wood Metal Log Spike 3
+scrapIronLogSpike4,blocks,Trap,Iron Log Spike
+steelLogSpike6,blocks,Trap,Steel Log Spike 6
+woodLogSpike1,blocks,Trap,Wood Log Spike
+woodLogSpike1Desc,blocks,Trap,"Log spike traps can damage, cripple, even kill enemies and last longer than spike traps. Place them using the secondary action. (Upgradable)"
+
+meleeToolFarmT2IronHoe,items,item,Advanced Iron Hoe
+meleeToolFarmT2IronHoeDesc,items,item,Indispensable tool for plowing the farmland.
+meleeToolFarmT2IronHoeSchematic,items,item,Advanced Iron Hoe schematic
+
+buffAverageFoodDesc,buffs,Buff,You have consumed some average quality food. Your health will slowly regenerate while this buff is active.,,,,
+buffAverageFoodName,buffs,Buff,Average Quality Food,,,,
+buffAverageFoodTooltip,buffs,Buff,Not a bad quality meal.,,,,
+buffGoodFoodDesc,buffs,Buff,You have consumed some good quality food. Your health will regenerate while this buff is active.,,,,
+buffGoodFoodName,buffs,Buff,Good Quality Food,,,,
+buffGoodFoodTooltip,buffs,Buff,That was a pretty good meal.,,,,
+buffAverageDrinkDesc,buffs,Buff,You have consumed an average quality drink. Your maximum health will slowly regenerate while this buff is active.,,,,
+buffAverageDrinkName,buffs,Buff,Average Quality Drink,,,,
+buffAverageDrinkTooltip,buffs,Buff,Not a bad drink.,,,,
+buffGoodDrinkDesc,buffs,Buff,You have consumed a good quality drink. Your maximum health will regenerate while this buff is active.,,,,
+buffGoodDrinkName,buffs,Buff,Good Quality Drink,,,,
+buffGoodDrinkTooltip,buffs,Buff,That was a pretty good drink.,,,,
+statWellness,UI,Item stat,Wellness,,,,
+buffLegBrokenDesc,buffs,Buff,Your broken leg is slowing you down. A cast will speed up healing. Jumping or sprinting will delay healing or even hurt you. Your wellness has been permanently reduced by 5.,,,,
+buffArmBrokenDesc,buffs,Buff,"Your arm is broken, slowing your weapon handling, reload speed and swing speeds. A cast will speed up healing. Ranged or power attacks will delay healing or even hurt you. Your wellness has been permanently reduced by 5.",,,,
+buffInjuryAbrasionDesc,buffs,Buff,"Bumps and bruises are the most common type of injury and heal over time. Perks or medical items like Aloe Cream, First Aid Bandages or First Aid Kits increase the healing speed. Your wellness has been permanently reduced by 3.",,,,
+buffInjuryConcussionDesc,buffs,Buff,You have suffered a concussion and all attributes are lowered by 1. Use painkillers to cure this. Your wellness has been permanently reduced by 5.,,,,
+buffLacerationDesc,buffs,Buff,A deep laceration can only be properly treated with a First Aid Kit or Sewing Kit but a simple bandage will stop the bleeding. Your wellness has been permanently reduced by 5.,,,,
+buffFatiguedDesc,buffs,Buff,You are fatigued and take 10% more damage from all attacks. Eat vitamins to cure this. Your wellness has been permanently reduced by 3.,,,,
+tutorialTipQuest02,"You're now playing with the Wellness system. Your maximum health and Stamina will match what your Wellness is. It decreases with death, and increases with good quality food & drink. There is a limit on how quickly you can increase Wellness, and you cannot increase it while the buffs 'Good or Average quality Drink or Food' are active. Enjoy."
+terrStoneJT,blocks,Terrain,Stone
+toolBulletCasingMold,items,Item,Bullet Casing Mold,,,,,
+toolBulletTipMold,items,Item,Bullet Tip Mold,,,,,
+toolNailMold,items,Item,Nail Mold,,,,,
+toolScrewsMold,items,Item,Screw Mold,,,,,
+toolPipeMold,items,Item,Pipe Mold,,,,,
+toolEmptyJarMold,items,Item,Empty Jar Mold,,,,,
