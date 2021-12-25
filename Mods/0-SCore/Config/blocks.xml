@@ -171,17 +171,17 @@
         <property name="GenerationType" value="Legacy" />
         <!-- Generate cave system only in mountains (above terrain height 100, or random through the map. All for every chunk has a cave system ) -->
         <!-- Deep Mountains will produce up to 100 levels, or until it reaches bedrock. This could cause lag during generation and an FPS drop. -->
-        <property name="CaveType" value="Random" />
+        <property name="CaveType" value="All" />
         <!-- Mountains, Random, All, DeepMountains -->
 
         <!-- Default is up to 5 levels, depending on depth of terrain. Note: This value is ignored if DeepMountains is selected -->
-        <property name="MaxCaveLevels"  value="3" />
+        <property name="MaxCaveLevels"  value="5" />
 
         <!-- How many cave clusters to create on a map. This value only takes effect when CaveType is Random  -->
-        <property name="CaveCluster" value="15" />
+        <property name="CaveCluster" value="50" />
 
         <!-- How many chunks to include per cluster. This value only takes effect when CaveType is Random -->
-        <property name="CavesClusterSize" value="5" />
+        <property name="CavesClusterSize" value="20" />
 
         <!-- RigidMulti, Billow, or FBM-->
         <!-- Default is RigidMulti-->
