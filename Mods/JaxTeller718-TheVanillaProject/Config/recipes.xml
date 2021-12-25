@@ -15,12 +15,11 @@
 	<remove xpath="/recipes/recipe[@name='foodSteakAndPotato']" />
 
 	<setattribute xpath="/recipes/recipe[@name='drinkJarBoiledWater']" name="craft_tool">toolCookingPot</setattribute>
-	<setattribute xpath="/recipes/recipe[@name='resourceCement']" name="craft_tool">toolCementMold</setattribute>
 
 	<append xpath="/recipes">
 	
 <recipe name="terrStoneJT" count="1" material_based="true" craft_area="forge" craft_time="5" craft_exp_gain="0" always_unlocked="true" use_ingredient_modifier="false">
-	<ingredient name="unit_stone" count="15"/>
+	<ingredient name="unit_stone" count="25"/>
 </recipe>	
 
 		<recipe name="scrapIronLogSpike4" count="1"> 
@@ -73,6 +72,39 @@
 	        <ingredient name="resourceEmptyMold" count="1"/>
 	        <ingredient name="resourceCement" count="1"/>
         </recipe>
+		
+		<recipe name="toolBulletCasingMold" count="1">
+			<ingredient name="resourceEmptyMold" count="1"/>
+			<ingredient name="resourceBulletCasing" count="1"/>
+		</recipe>
+		
+		<recipe name="toolBulletTipMold" count="1">
+			<ingredient name="resourceEmptyMold" count="1"/>
+			<ingredient name="resourceBulletTip" count="1"/>
+		</recipe>
+
+		<recipe name="toolNailMold" count="1">
+			<ingredient name="resourceEmptyMold" count="1"/>
+			<ingredient name="resourceNail" count="1"/>
+		</recipe>
+		
+		<recipe name="toolPipeMold" count="1">
+			<ingredient name="resourceEmptyMold" count="1"/>
+			<ingredient name="resourceMetalPipe" count="1"/>
+		</recipe>
+		
+		<recipe name="toolEmptyJarMold" count="1">
+			<ingredient name="resourceEmptyMold" count="1"/>
+			<ingredient name="drinkJarEmpty" count="1"/>
+		</recipe>
+
+	<setattribute xpath="/recipes/recipe[@name='drinkJarEmpty']" name="craft_tool">toolEmptyJarMold</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceMetalPipe' and @craft_area='forge']" name="craft_tool">toolPipeMold</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceNail']" name="craft_tool">toolNailMold</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceBulletTip']" name="craft_tool">toolBulletTipMold</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceBulletCasing']" name="craft_tool">toolBulletCasingMold</setattribute>
+	<setattribute xpath="/recipes/recipe[@name='resourceCement']" name="craft_tool">toolCementMold</setattribute>
+
 		
 	    <recipe name="resourceBricks" count="1" material_based="true" craft_time="10" craft_area="forge" craft_tool="toolBrickMold">
 	        <ingredient name="unit_clay" count="12"/>

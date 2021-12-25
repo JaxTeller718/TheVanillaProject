@@ -421,7 +421,7 @@
 	<property name="TerrainIndex" value="1"/>
 	<property name="ImposterExclude" value="true"/>
 	<property name="LPHardnessScale" value="2"/>
-	<property name="Weight" value="125"/>
+	<property name="Weight" value="25"/>
 	<property name="Map.Color" value="100,100,100"/>
 	<property class="RepairItems">
 		<property name="resourceCobblestones" value="6"/>

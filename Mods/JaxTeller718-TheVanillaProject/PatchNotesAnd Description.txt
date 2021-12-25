@@ -174,6 +174,9 @@ v1.7
 
 -Added Rabbit KaBobs
 
+-Added Stone to Underground mining replacing small stones. Placed in forge 1 piece = 25 Units of Stone
+
+-Added Molds for the forge. Pipe/Bullet Casing/Tips/Jars/Nails/Cement
 
 
 

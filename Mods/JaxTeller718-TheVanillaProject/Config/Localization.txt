@@ -80,8 +80,8 @@ modArmorReinforcedPaddingSchematic,items,mod,New,Reinforced Padding Schematic,,,
 modArmorScrapPlating,item_modifiers,mod,New,Scrap Plating,,,,,
 modArmorScrapPlatingDesc,item_modifiers,mod,New,Improve your armor rating with this scrap plating. Can only be installed in  heavy armor.,,,,,
 modArmorScrapPlatingSchematic,items,mod,New,Scrap Plating Schematic,,,,,
-resourceLeatherStripsRH,items,Item,Leather Strips,,,,,
-resourceLeatherStripsRHDesc,items,Item,Strips of leather that can be combined to make leather.,,,,,
+resourceLeatherStrips,items,Item,Leather Strips,,,,,
+resourceLeatherStripsDesc,items,Item,Strips of leather that can be combined to make leather.,,,,,
 perkASMiningToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
 perkASConstructionToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
 perkASBluntDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
@@ -106,6 +106,9 @@ resourceEmptyMold,items,item,Empty Mold
 resourceEmptyMoldDesc,items,item,This empty mold is needed to make the tool with which you will make bricks in the forge.
 toolBrickMold,items,item,Bricks Mold
 toolBrickMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
+toolCementMold,items,item,Cement Mold
+toolCementMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
+
 
 rScrapIronLogSpike5,blocks,Trap,R Iron Log Spike 5
 rWoodLogSpike2,blocks,Trap,Reinforced Wood Log Spike 2
@@ -138,7 +141,11 @@ buffInjuryAbrasionDesc,buffs,Buff,"Bumps and bruises are the most common type of
 buffInjuryConcussionDesc,buffs,Buff,You have suffered a concussion and all attributes are lowered by 1. Use painkillers to cure this. Your wellness has been permanently reduced by 5.,,,,
 buffLacerationDesc,buffs,Buff,A deep laceration can only be properly treated with a First Aid Kit or Sewing Kit but a simple bandage will stop the bleeding. Your wellness has been permanently reduced by 5.,,,,
 buffFatiguedDesc,buffs,Buff,You are fatigued and take 10% more damage from all attacks. Eat vitamins to cure this. Your wellness has been permanently reduced by 3.,,,,
-
-Key,English
-tutorialTipQuest02, "You're now playing with the Wellness system. Your maximum health and Stamina will match what your Wellness is. It decreases with death, and increases with good quality food & drink. There is a limit on how quickly you can increase Wellness, and you cannot increase it while the buffs 'Good or Average quality Drink or Food' are active. Enjoy."
+tutorialTipQuest02,"You're now playing with the Wellness system. Your maximum health and Stamina will match what your Wellness is. It decreases with death, and increases with good quality food & drink. There is a limit on how quickly you can increase Wellness, and you cannot increase it while the buffs 'Good or Average quality Drink or Food' are active. Enjoy."
 terrStoneJT,blocks,Terrain,Stone
+toolBulletCasingMold,items,Item,Bullet Casing Mold,,,,,
+toolBulletTipMold,items,Item,Bullet Tip Mold,,,,,
+toolNailMold,items,Item,Nail Mold,,,,,
+toolScrewsMold,items,Item,Screw Mold,,,,,
+toolPipeMold,items,Item,Pipe Mold,,,,,
+toolEmptyJarMold,items,Item,Empty Jar Mold,,,,,
