@@ -180,4 +180,24 @@ v1.7
 
 
 
+v1.8
+
+-Updated Hud
+
+-Fixed Localization on Armor Mods
+
+-Added Old Menu Music (Will play after 5 seconds due to Pimps not allowing the logo screen to be edited)
+
+-Added Hornet from Khaines Modlet which can be found here https://community.7daystodie.com/topic/25751-khaines-a20-modlets-bigger-backpacks-lockable-slots-behemoths-random-wandering-hordes-etc/
+
+-Fixed Zombies Not Running
+
+-Updated ModInfo
+
+-Added Wolf and Snake Meat along with charred and grilled recipes
+
+-Rebalanced Zombie Loot. Now there is a chance of 0 loot in a zombie while looting them.
+
+
+
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.

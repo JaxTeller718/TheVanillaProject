@@ -254,6 +254,20 @@
 	</effect_group>
 </recipe>
 
+<recipe name="foodSnakeGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodSnake" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodSnake"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodWolfGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
+	<ingredient name="foodWolf" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodWolf"/>
+	</effect_group>
+</recipe>
+
 <recipe name="foodBearStew" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
 	<ingredient name="foodBearMeat" count="5"/>
 	<ingredient name="foodCropPotato" count="2"/>
@@ -319,6 +333,20 @@
 	<ingredient name="foodVenison" count="5"/>
 	<effect_group>
 		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodSnakeCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodSnake" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodSnake"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodWolfCharred" count="1" craft_area="campfire" tags="perkMasterChef">
+	<ingredient name="foodWolf" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodWolf"/>
 	</effect_group>
 </recipe>
 

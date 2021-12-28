@@ -52,6 +52,8 @@
 			<item name="foodPorkGrilledSchematic"/>
 			<item name="foodRabbitGrilledSchematic"/>
 			<item name="foodVenisonGrilledSchematic"/>
+			<item name="foodWolfGrilledSchematic"/>
+			<item name="foodSnakeGrilledSchematic"/>
 			<item name="foodBearBoiledSchematic"/>
 			<item name="foodPorkBoiledSchematic"/>
 			<item name="foodRabbitBoiledSchematic"/>
@@ -68,6 +70,8 @@
 			<item name="foodPorkGrilled" count="1,2"/>
 			<item name="foodRabbitGrilled" count="1,2"/>
 			<item name="foodVenisonGrilled" count="1,2"/>
+			<item name="foodWolfGrilled" count="1,2"/>
+			<item name="foodSnakeGrilled" count="1,2"/>
 			<item name="foodBearStew" count="1,2"/>
 			<item name="foodRabbitStew" count="1,2"/>
 			<item name="foodVenisonStew" count="1,2"/>
@@ -79,6 +83,8 @@
 			<item name="foodPork" count="10,40"/>
 			<item name="foodRabbit" count="10,40"/>
 			<item name="foodVenison" count="10,40"/>
+			<item name="foodSnake" count="10,40"/>
+			<item name="foodWolf" count="10,40"/>
 	</append>
 
 	<append xpath="/traders/trader_item_groups/trader_item_group[@name='commonBooks']">

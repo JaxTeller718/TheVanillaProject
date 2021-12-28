@@ -3,7 +3,7 @@
 <set xpath="/progression/perks/perk[@name='perkShotgunMessiahComplete']/effect_group/passive_effect[@name='RecipeTagUnlocked']/@tags">"ammoBundleShotgunShell,ammoBundleShotgunSlug,ammoBundleShotgunBreachingSlug,ammoBundleBlunderbuss"</set>
 
 
-	<set xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@level='1,5']/@tags">foodBaconAndEggs,foodBearBoiled,foodPorkBoiled,foodRabbitBoiled,foodVenisonBoiled,foodBearGrilled,foodChickenGrilled,foodPorkGrilled,foodRabbitGrilled,foodVenisonGrilled,foodBakedPotato,foodCornBread,foodCornOnTheCob,drinkJarRedTea,drinkJarCoffee,drinkJarGoldenRodTea</set>
+	<set xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@level='1,5']/@tags">foodBaconAndEggs,foodBearBoiled,foodPorkBoiled,foodRabbitBoiled,foodVenisonBoiled,foodBearGrilled,foodChickenGrilled,foodPorkGrilled,foodRabbitGrilled,foodVenisonGrilled,foodWolfGrilled,foodSnakeGrilled,foodBakedPotato,foodCornBread,foodCornOnTheCob,drinkJarRedTea,drinkJarCoffee,drinkJarGoldenRodTea</set>
 	<set xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@level='2,5']/@tags">foodSteakAndPotato,foodBlueberryPie,foodBearStew,foodRabbitStew,foodVenisonStew,foodVegetableStew,foodPumpkinPie,foodPumpkinCheesecake,foodPumpkinBread</set>
 
 	<append xpath="/progression/attributes">

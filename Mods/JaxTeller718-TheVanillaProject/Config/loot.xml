@@ -80,6 +80,8 @@
 			<item name="foodPork"/>
 			<item name="foodRabbit"/>
 			<item name="foodVenison"/>
+			<item name="foodSnake"/>
+			<item name="foodWolf"/>
 		</lootgroup>
 	</insertAfter>
 	
@@ -129,6 +131,8 @@
 		<item name="foodPorkGrilled" count="2,4" />
 		<item name="foodRabbitGrilled" count="2,4" />
 		<item name="foodVenisonGrilled" count="2,4" />
+		<item name="foodWolfGrilled" count="2,4" />
+		<item name="foodSnakeGrilled" count="2,4" />
 	</append>	
 	
 	<insertAfter xpath="/lootcontainers/lootgroup[@name='groupIngredientsUncommon']">
@@ -138,6 +142,8 @@
 			<item name="foodPorkGrilled"/>
 			<item name="foodRabbitGrilled"/>
 			<item name="foodVenisonGrilled"/>
+			<item name="foodWolfGrilled"/>
+			<item name="foodSnakeGrilled"/>
 		</lootgroup>
 
 		<lootgroup name="groupGrillsMeatGrilled">
@@ -146,6 +152,8 @@
 			<item name="foodPorkCharred"/>
 			<item name="foodRabbitCharred"/>
 			<item name="foodVenisonCharred"/>
+			<item name="foodSnakeCharred"/>
+			<item name="foodWolfCharred"/>
 		</lootgroup>
 	</insertAfter>
 	
@@ -197,6 +205,8 @@
 		<item name="foodPorkGrilledSchematic"/>
 		<item name="foodRabbitGrilledSchematic"/>
 		<item name="foodVenisonGrilledSchematic"/>
+		<item name="foodWolfGrilledSchematic"/>
+		<item name="foodSnakeGrilledSchematic"/>
 	</append>	
 
 	<append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']">
@@ -703,7 +713,7 @@
 		
 		
 		<!-- goreBlocks -->
-		<lootcontainer id="209" name="goreBlocks" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="209" name="goreBlocks" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="resourceBulletCasing"/>
 			<item name="gunHandgunT1Pistol" prob="0.01"/>
 			<item name="resourceCloth" count="2,7" prob="0.08"/>
@@ -713,7 +723,7 @@
 		</lootcontainer>
 		
 		<!-- zombieArlene -->
-		<lootcontainer id="210" name="zombieArlene" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="210" name="zombieArlene" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodGoodCan" prob="0.1"/>
 			<item group="foodNice" prob="0.05"/>
@@ -727,7 +737,7 @@
 		</lootcontainer>
 		
 		<!-- zombieArleneFeral -->
-		<lootcontainer id="211" name="zombieArleneFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="211" name="zombieArleneFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodGoodCan" prob="0.4"/>
 			<item group="foodNice" prob="0.8"/>
@@ -742,7 +752,7 @@
 		</lootcontainer>
 		
 		<!-- zombieArleneRadiated -->
-		<lootcontainer id="212" name="zombieArleneRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="212" name="zombieArleneRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodGoodCan" prob="0.7"/>
 			<item group="foodNice" prob="0.9"/>
@@ -757,7 +767,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMarlene -->
-		<lootcontainer id="213" name="zombieMarlene" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="213" name="zombieMarlene" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodGoodCan" prob="0.02"/>
 			<item group="foodNice" prob="0.02"/>
@@ -771,7 +781,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMarleneFeral -->
-		<lootcontainer id="214" name="zombieMarleneFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="214" name="zombieMarleneFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodGoodCan" prob="0.5"/>
 			<item group="foodNice" prob="0.5"/>
@@ -786,7 +796,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMarleneRadiated -->
-		<lootcontainer id="215" name="zombieMarleneRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="215" name="zombieMarleneRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodGoodCan" prob="0.8"/>
 			<item group="foodNice" prob="0.8"/>
@@ -801,7 +811,7 @@
 		</lootcontainer>
 		
 		<!-- zombiePartygirl -->
-		<lootcontainer id="216" name="zombiePartygirl" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="216" name="zombiePartygirl" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.7"/>
 			<item group="foodDrink" prob="0.6"/>
 			<item group="famaleClothes" prob="0.6"/>
@@ -813,7 +823,7 @@
 		</lootcontainer>
 		
 		<!-- zombiePartygirlFeral -->
-		<lootcontainer id="217" name="zombiePartygirlFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="217" name="zombiePartygirlFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.7"/>
 			<item group="famaleClothes" prob="0.6"/>
@@ -826,7 +836,7 @@
 		</lootcontainer>
 		
 		<!-- zombiePartygirlRadiated -->
-		<lootcontainer id="218" name="zombiePartygirlRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="218" name="zombiePartygirlRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.7"/>
 			<item group="famaleClothes" prob="0.6"/>
@@ -839,7 +849,7 @@
 		</lootcontainer>
 		
 		<!-- zombieNurse -->
-		<lootcontainer id="219" name="zombieNurse" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="219" name="zombieNurse" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.7"/>
 			<item group="foodMeds" prob="0.5"/>
 			<item group="ordinaryClothes" prob="0.7"/>
@@ -851,7 +861,7 @@
 		</lootcontainer>
 		
 		<!-- zombieNurseFeral -->
-		<lootcontainer id="220" name="zombieNurseFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="220" name="zombieNurseFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodMeds" prob="0.7"/>
 			<item group="ordinaryClothes" prob="0.6"/>
@@ -864,7 +874,7 @@
 		</lootcontainer>
 		
 		<!-- zombieNurseRadiated -->
-		<lootcontainer id="221" name="zombieNurseRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="221" name="zombieNurseRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodMeds" prob="0.9"/>
 			<item group="ordinaryClothes" prob="0.8"/>
@@ -877,7 +887,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJoe -->
-		<lootcontainer id="222" name="zombieJoe" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="222" name="zombieJoe" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -887,7 +897,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJoeFeral -->
-		<lootcontainer id="223" name="zombieJoeFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="223" name="zombieJoeFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -901,7 +911,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJoeRadiated -->
-		<lootcontainer id="224" name="zombieJoeRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="224" name="zombieJoeRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.5"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -914,7 +924,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSteve -->
-		<lootcontainer id="225" name="zombieSteve" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="225" name="zombieSteve" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -926,7 +936,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSteveFeral -->
-		<lootcontainer id="226" name="zombieSteveFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="226" name="zombieSteveFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.6"/>
 			<item group="foodRotting" prob="0.8"/>
@@ -941,7 +951,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSteveRadiated -->
-		<lootcontainer id="227" name="zombieSteveRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="227" name="zombieSteveRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.5"/>
 			<item group="foodRotting" prob="0.5"/>
@@ -956,7 +966,7 @@
 		</lootcontainer>
 		
 		<!-- zombieTomClark-->
-		<lootcontainer id="228" name="zombieTomClark" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="228" name="zombieTomClark" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -968,7 +978,7 @@
 		</lootcontainer>
 		
 		<!-- zombieTomClarkFeral-->
-		<lootcontainer id="229" name="zombieTomClarkFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="229" name="zombieTomClarkFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.9"/>
 			<item group="foodRotting" prob="0.95"/>
@@ -981,7 +991,7 @@
 		</lootcontainer>
 		
 		<!-- zombieTomClarkRadiated-->
-		<lootcontainer id="230" name="zombieTomClarkRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="230" name="zombieTomClarkRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.9"/>
 			<item group="foodRotting" prob="0.95"/>
@@ -994,7 +1004,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBusinessMan -->
-		<lootcontainer id="231" name="zombieBusinessMan" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="231" name="zombieBusinessMan" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item name="resourcePaper" prob="0.9"/>
 			<item name="apparelSuitDressShoes" prob="0.8"/>
@@ -1008,7 +1018,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBusinessManFeral -->
-		<lootcontainer id="232" name="zombieBusinessManFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="232" name="zombieBusinessManFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item name="resourcePaper" prob="0.8"/>
 			<item name="apparelSuitDressShoes" prob="0.5"/>
@@ -1023,7 +1033,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBusinessManRadiated -->
-		<lootcontainer id="233" name="zombieBusinessManRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="233" name="zombieBusinessManRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item name="resourcePaper" prob="0.9"/>
 			<item name="apparelSuitDressShoes" prob="0.7"/>
@@ -1038,7 +1048,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBurnt -->
-		<lootcontainer id="234" name="zombieBurnt" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="234" name="zombieBurnt" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="drinkJarEmpty" prob="0.5"/>
 			<item name="drinkCanEmpty" prob="0.5"/>
 			<item name="resourceCandleStick" prob="0.5"/>
@@ -1057,7 +1067,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBurntFeral -->
-		<lootcontainer id="235" name="zombieBurntFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="235" name="zombieBurntFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="drinkJarEmpty" prob="0.3"/>
 			<item name="drinkCanEmpty" prob="0.3"/>
 			<item name="resourceCandleStick" prob="0.6"/>
@@ -1077,7 +1087,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBurntRadiated -->
-		<lootcontainer id="236" name="zombieBurntRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="236" name="zombieBurntRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="drinkJarEmpty" prob="0.1"/>
 			<item name="drinkCanEmpty" prob="0.1"/>
 			<item name="resourceCandleStick" prob="0.9"/>
@@ -1098,7 +1108,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSpider -->
-		<lootcontainer id="237" name="zombieSpider" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="237" name="zombieSpider" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodAnimal" prob="0.1"/>
 			<item group="ordinaryClothes" prob="0.1"/>
@@ -1106,7 +1116,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSpiderFeral -->
-		<lootcontainer id="238" name="zombieSpiderFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="238" name="zombieSpiderFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodAnimal" prob="0.4"/>
 			<item group="ordinaryClothes" prob="0.3"/>
@@ -1115,7 +1125,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSpiderRadiated -->
-		<lootcontainer id="239" name="zombieSpiderRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="239" name="zombieSpiderRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodAnimal" prob="0.5"/>
 			<item group="ordinaryClothes" prob="0.3"/>
@@ -1124,7 +1134,7 @@
 		</lootcontainer>
 		
 		<!-- Zombie Boe -->
-		<lootcontainer id="240" name="ZombieBoe" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="240" name="ZombieBoe" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -1134,7 +1144,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBoeFeral -->
-		<lootcontainer id="241" name="zombieBoeFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="241" name="zombieBoeFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -1149,7 +1159,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBoeRadiated -->
-		<lootcontainer id="242" name="zombieBoeRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="242" name="zombieBoeRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -1164,7 +1174,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJanitor -->
-		<lootcontainer id="243" name="zombieJanitor" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="243" name="zombieJanitor" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item name="drinkJarBeer" prob="0.7"/>
 			<item name="foodShamSandwich" prob="0.9"/>
@@ -1175,7 +1185,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJanitorFeral -->
-		<lootcontainer id="244" name="zombieJanitorFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="244" name="zombieJanitorFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item name="drinkJarBeer" prob="0.8"/>
 			<item name="foodShamSandwich" prob="0.8"/>
@@ -1187,7 +1197,7 @@
 		</lootcontainer>
 		
 		<!-- zombieJanitorRadiated -->
-		<lootcontainer id="245" name="zombieJanitorRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="245" name="zombieJanitorRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item name="drinkJarBeer" prob="0.8"/>
 			<item name="foodShamSandwich" prob="0.8"/>
@@ -1199,7 +1209,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMoe -->
-		<lootcontainer id="246" name="zombieMoe" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="246" name="zombieMoe" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1214,7 +1224,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMoeFeral -->
-		<lootcontainer id="247" name="zombieMoeFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="247" name="zombieMoeFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1230,7 +1240,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMoeRadiated -->
-		<lootcontainer id="248" name="zombieMoeRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="248" name="zombieMoeRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1246,7 +1256,7 @@
 		</lootcontainer>
 		
 		<!-- zombieLab -->
-		<lootcontainer id="249" name="zombieLab" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="249" name="zombieLab" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item name="resourcePaper" prob="0.8"/>
 			<item name="apparelNerdGlasses" prob="0.2"/>
@@ -1257,7 +1267,7 @@
 		</lootcontainer>
 		
 		<!-- zombieLabFeral -->
-		<lootcontainer id="250" name="zombieLabFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="250" name="zombieLabFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item name="resourcePaper" prob="0.6"/>
 			<item name="apparelNerdGlasses" prob="0.4"/>
@@ -1269,7 +1279,7 @@
 		</lootcontainer>
 		
 		<!-- zombieLabRadiated -->
-		<lootcontainer id="251" name="zombieLabRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="251" name="zombieLabRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item name="resourcePaper" prob="0.4"/>
 			<item name="apparelNerdGlasses" prob="0.6"/>
@@ -1281,7 +1291,7 @@
 		</lootcontainer>
 		
 		<!-- zombieDarlene -->
-		<lootcontainer id="252" name="zombieDarlene" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="252" name="zombieDarlene" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodGoodCan" prob="0.05"/>
 			<item group="foodNice" prob="0.01"/>
@@ -1295,7 +1305,7 @@
 		</lootcontainer>
 		
 		<!-- zombieDarleneFeral -->
-		<lootcontainer id="253" name="zombieDarleneFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="253" name="zombieDarleneFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodGoodCan" prob="0.8"/>
 			<item group="foodNice" prob="0.4"/>
@@ -1310,7 +1320,7 @@
 		</lootcontainer>
 		
 		<!-- zombieDarleneRadiated -->
-		<lootcontainer id="254" name="zombieDarleneRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="254" name="zombieDarleneRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodGoodCan" prob="0.9"/>
 			<item group="foodNice" prob="0.7"/>
@@ -1325,7 +1335,7 @@
 		</lootcontainer>
 		
 		<!-- zombieYo -->
-		<lootcontainer id="255" name="zombieYo" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="255" name="zombieYo" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodDrink" prob="0.8"/>
 			<item group="foodRotting" prob="0.9"/>
@@ -1337,7 +1347,7 @@
 		</lootcontainer>
 		
 		<!-- zombieYoFeral -->
-		<lootcontainer id="256" name="zombieYoFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="256" name="zombieYoFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodDrink" prob="0.6"/>
 			<item group="foodRotting" prob="0.8"/>
@@ -1351,7 +1361,7 @@
 		</lootcontainer>
 		
 		<!-- zombieYoRadiated -->
-		<lootcontainer id="257" name="zombieYoRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="257" name="zombieYoRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodDrink" prob="0.5"/>
 			<item group="foodRotting" prob="0.5"/>
@@ -1365,7 +1375,7 @@
 		</lootcontainer>
 		
 		<!-- zombieUtilityWorker -->
-		<lootcontainer id="258" name="zombieUtilityWorker" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="258" name="zombieUtilityWorker" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item name="drinkJarBeer" prob="0.7"/>
 			<item name="foodShamSandwich" prob="0.9"/>
@@ -1376,7 +1386,7 @@
 		</lootcontainer>
 		
 		<!-- zombieUtilityWorkerFeral -->
-		<lootcontainer id="259" name="zombieUtilityWorkerFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="259" name="zombieUtilityWorkerFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item name="drinkJarBeer" prob="0.7"/>
 			<item name="foodShamSandwich" prob="0.9"/>
@@ -1388,7 +1398,7 @@
 		</lootcontainer>
 		
 		<!-- zombieUtilityWorkerRadiated-->
-		<lootcontainer id="260" name="zombieUtilityWorkerRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="260" name="zombieUtilityWorkerRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item name="drinkJarBeer" prob="0.9"/>
 			<item name="foodShamSandwich" prob="0.95"/>
@@ -1400,7 +1410,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBiker -->
-		<lootcontainer id="261" name="zombieBiker" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="261" name="zombieBiker" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1420,7 +1430,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBikerFeral -->
-		<lootcontainer id="262" name="zombieBikerFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="262" name="zombieBikerFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.2"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1440,7 +1450,7 @@
 		</lootcontainer>
 		
 		<!-- zombieBikerRadiated -->
-		<lootcontainer id="263" name="zombieBikerRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="263" name="zombieBikerRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodDrink" prob="0.9"/>
@@ -1461,7 +1471,7 @@
 		</lootcontainer>
 		
 		<!-- zombieLumberjack -->
-		<lootcontainer id="264" name="zombieLumberjack" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="264" name="zombieLumberjack" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.4"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodEnergy" prob="0.8"/>
@@ -1472,7 +1482,7 @@
 		</lootcontainer>
 		
 		<!-- zombieLumberjackFeral -->
-		<lootcontainer id="265" name="zombieLumberjackFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="265" name="zombieLumberjackFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.2"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodEnergy" prob="0.8"/>
@@ -1494,7 +1504,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFemaleFat -->
-		<lootcontainer id="267" name="zombieFemaleFat" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="267" name="zombieFemaleFat" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.9"/>
 			<item group="foodHomeMade" prob="0.6"/>
@@ -1508,7 +1518,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFemaleFatFeral -->
-		<lootcontainer id="268" name="zombieFemaleFatFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="268" name="zombieFemaleFatFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.2"/>
 			<item group="foodHomeMade" prob="0.7"/>
 			<item group="foodAnimal" prob="0.9"/>
@@ -1521,7 +1531,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFemaleFatRadiated -->
-		<lootcontainer id="269" name="zombieFemaleFatRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="269" name="zombieFemaleFatRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodHomeMade" prob="0.7"/>
 			<item group="foodDrink" prob="0.6"/>
@@ -1533,7 +1543,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFatHawaiian -->
-		<lootcontainer id="270" name="zombieFatHawaiian" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="270" name="zombieFatHawaiian" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.6"/>
 			<item group="foodGoodCan" prob="0.6"/>
@@ -1575,7 +1585,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMaleHazmat -->
-		<lootcontainer id="273" name="zombieMaleHazmat" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="273" name="zombieMaleHazmat" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="gunAutomatic" prob="0.3"/>
 			<item group="ammo762mmBullets" prob="0.5"/>
@@ -1626,7 +1636,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFatCop -->
-		<lootcontainer id="276" name="zombieFatCop" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="276" name="zombieFatCop" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.4"/>
 			<item group="foodGoodCan" prob="0.5"/>
@@ -1646,7 +1656,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFatCopFeral -->
-		<lootcontainer id="277" name="zombieFatCopFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="277" name="zombieFatCopFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.2"/>
 			<item group="foodRotting" prob="0.3"/>
 			<item group="foodGoodCan" prob="0.4"/>
@@ -1665,7 +1675,7 @@
 		</lootcontainer>
 		
 		<!-- zombieFatCopRadiated -->
-		<lootcontainer id="278" name="zombieFatCopRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="278" name="zombieFatCopRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodRotting" prob="0.2"/>
 			<item group="foodGoodCan" prob="0.6"/>
@@ -1684,7 +1694,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSkateboarder -->
-		<lootcontainer id="279" name="zombieSkateboarder" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="279" name="zombieSkateboarder" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.7"/>
 			<item group="foodRotting" prob="0.7"/>
 			<item group="foodEnergy" prob="0.3"/>
@@ -1725,7 +1735,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSoldier -->
-		<lootcontainer id="281" name="zombieSoldier" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="281" name="zombieSoldier" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.4"/>
 			<item group="armyClothes" prob="0.7"/>
 			<item group="armyArmor" prob="0.2"/>
@@ -1767,7 +1777,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSoldierRadiated -->
-		<lootcontainer id="283" name="zombieSoldierRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="283" name="zombieSoldierRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="armyClothes" prob="0.8"/>
 			<item group="armyArmor" prob="0.5"/>
@@ -1788,7 +1798,7 @@
 		</lootcontainer>
 		
 		<!-- zombieWightFeral -->
-		<lootcontainer id="284" name="zombieWightFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="284" name="zombieWightFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.2"/>
 			<item group="itemsMoney" prob="0.2"/>
 			<item name="resourceAcid" prob="0.03"/>
@@ -1799,7 +1809,7 @@
 		</lootcontainer>
 		
 		<!-- zombieWightRadiated -->
-		<lootcontainer id="285" name="zombieWightRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="285" name="zombieWightRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="itemsMoney" prob="0.5"/>
 			<item name="resourceAcid" prob="0.04"/>
@@ -1811,7 +1821,7 @@
 		</lootcontainer>
 		
 		<!-- zombieScreamer -->
-		<lootcontainer id="286" name="zombieScreamer" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="286" name="zombieScreamer" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item name="drinkJarGoldenRodTea" prob="0.9"/>
 			<item name="foodShamSandwich" prob="0.9"/>
@@ -1850,7 +1860,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMutated-->
-		<lootcontainer id="289" name="zombieMutated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="289" name="zombieMutated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.5"/>
 			<item group="foodRotting" prob="0.4"/>
 			<item group="foodGoodCan" prob="0.5"/>
@@ -1870,7 +1880,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMutatedFeral-->
-		<lootcontainer id="290" name="zombieMutatedFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="290" name="zombieMutatedFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.3"/>
 			<item group="foodRotting" prob="0.5"/>
 			<item group="foodGoodCan" prob="0.6"/>
@@ -1889,7 +1899,7 @@
 		</lootcontainer>
 		
 		<!-- zombieMutatedRadiated 291-->
-		<lootcontainer id="291" name="zombieMutatedRadiated" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="291" name="zombieMutatedRadiated" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="foodRotting" prob="0.2"/>
 			<item group="foodGoodCan" prob="0.2"/>
@@ -1908,7 +1918,7 @@
 		</lootcontainer>
 		
 		<!-- zombieDemolition -->
-		<lootcontainer id="292" name="zombieDemolition" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="292" name="zombieDemolition" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item group="junkNew" prob="0.1"/>
 			<item group="armyClothes" prob="0.7"/>
 			<item group="armyArmor" prob="0.1"/>
@@ -1950,7 +1960,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSteveCrawler -->
-		<lootcontainer id="293" name="zombieSteveCrawler" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="293" name="zombieSteveCrawler" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="resourceBone" count="5" prob="0.9"/>
 			<item name="foodRottingFlesh" count="3" prob="0,8"/>
 			<item name="resourceCrushedSand" count="4" prob="0,5"/>
@@ -1959,7 +1969,7 @@
 		</lootcontainer>
 		
 		<!-- zombieSteveCrawlerFeral -->
-		<lootcontainer id="294" name="zombieSteveCrawlerFeral" count="1,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
+		<lootcontainer id="294" name="zombieSteveCrawlerFeral" count="0,2" size="6,3" destroy_on_close="false" sound_open="UseActions/open_corpse" sound_close="UseActions/close_corpse" loot_quality_template="qualBaseTemplate">
 			<item name="resourceBone" count="3,5" prob="0.9"/>
 			<item name="foodRottingFlesh" count="2,8" prob="0,8"/>
 			<item name="resourceCrushedSand" count="10,18" prob="0,8"/>
