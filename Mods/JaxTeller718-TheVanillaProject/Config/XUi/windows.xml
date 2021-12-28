@@ -73,12 +73,13 @@
 				</rect>
 			</rect>
 
+
 <!--Erfahrung-->
-			<rect name="Lvl" pos="320,37" width="70" height="70" >
-				<sprite depth="1" name="border" sprite="ui_game_filled_circle" color="0,0,0,240" pivot="center"/>
-				<sprite depth="2" height="68" width="68" name="background" sprite="ui_game_filled_circle" color="{xpcolor}" pivot="center" globalopacity="false" type="filled" fill="{xp}" filldirection="radial360" controller="ToolbeltWindow"/>
-				<label depth="5" name="levelNumber" width="68" height="24" pivot="center" justify="center" text="XP" font_size="20"/>
-			</rect>
+            <rect name="Lvl" pos="320,37" width="70" height="70" controller="ToolbeltWindow">
+                <sprite depth="1" name="border" sprite="ui_game_filled_circle" color="0,0,0,240" pivot="center"/>
+                <sprite depth="2" height="68" width="68" name="background" sprite="ui_game_filled_circle" color="{xpcolor}" pivot="center" globalopacity="false" type="filled" fill="{xp}" filldirection="radial360" controller="ToolbeltWindow"/>
+                <label depth="5" name="levelNumber" width="68" height="24" pivot="center" justify="center" text="Lvl: {cvar($LastPlayerLevel)}" font_size="18"/>
+            </rect>
 <!--Schleichen-->			
 			<rect name="hud" pos="9,195" rows="1" cols="1" width="173" cell_width="173" cell_height="48" side="left">
 				<rect width="171" height="46" controller="HUDStatBar" stat_type="Stealth" visible="{statvisible}">
