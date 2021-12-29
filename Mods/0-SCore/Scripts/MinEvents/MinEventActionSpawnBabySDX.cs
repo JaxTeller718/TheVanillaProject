@@ -9,6 +9,23 @@ public class MinEventActionSpawnBabySDX : MinEventActionSpawnEntitySDX
 {
 }
 
+public class MinEventActionAddBuffToPrimaryPlayer : MinEventActionAddBuff
+{
+    public override void Execute(MinEventParams _params)
+    {
+        if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer)
+            return;
+        EntityPlayer primaryPlayer = GameManager.Instance.World.GetPrimaryPlayer();
+        if (primaryPlayer == null) return;
+
+        foreach (var name in this.buffNames)
+        {
+            primaryPlayer.Buffs.AddBuff(name, -1, true, false, false);
+        }
+    }
+}
+
+
 public class MinEventActionSpawnEntitySDX : MinEventActionRemoveBuff
 {
     private string strCvar = "Mother";
@@ -33,24 +50,21 @@ public class MinEventActionSpawnEntitySDX : MinEventActionRemoveBuff
                     EntityID = EntityGroups.GetRandomFromGroup(strSpawnGroup, ref ClassID);
                 }
 
-//                entity.world.GetRandomSpawnPositionMinMaxToPosition(entity.position, 2, 6, 2, true, out transformPos);
-
                 GameManager.Instance.World.GetRandomSpawnPositionMinMaxToPosition(entity.position, 2, 6, 2, false, out var transformPos);
                 if (transformPos == Vector3.zero)
                     transformPos = entity.position + Vector3.back;
 
-                var NewEntity = EntityFactory.CreateEntity(EntityID, transformPos, entity.rotation);
+
+                var NewEntity = EntityFactory.CreateEntity(EntityID, transformPos, entity.rotation) as EntityAlive;
                 if (NewEntity)
                 {
                     NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
-                    GameManager.Instance.World.SpawnEntityInWorld(NewEntity);
+                    Debug.Log("Setting " + strCvar + " ID to: " + entity.entityId + " for " + NewEntity.entityId);
+                    NewEntity.Buffs.SetCustomVar(strCvar, entity.entityId);
 
-                    if (NewEntity is EntityAlive)
-                    {
-                        Debug.Log("Setting " + strCvar + " ID to: " + entity.entityId + " for " + NewEntity.entityId);
-                        (NewEntity as EntityAlive).Buffs.SetCustomVar(strCvar, entity.entityId);
-                        EntityUtilities.SetCurrentOrder(NewEntity.entityId, EntityUtilities.Orders.Follow);
-                    }
+                    var entityCreationData = new EntityCreationData(NewEntity);
+                    GameManager.Instance.RequestToSpawnEntityServer(entityCreationData);
+                    NewEntity.OnEntityUnload();
                 }
                 else
                 {

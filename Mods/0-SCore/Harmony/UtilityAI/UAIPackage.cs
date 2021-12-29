@@ -146,6 +146,7 @@ namespace Harmony.UtilityAI
                 int availableActions = 0;
                 int actionRans = 0;
 
+
                 var packageEntityFilter = SCoreUtils.GetEntityFilter(__instance, null, _context.Self);
                 var packageWaypointFilter = SCoreUtils.GetWaypointFilter(__instance, null, _context.Self);
                 if (packageEntityFilter != null)

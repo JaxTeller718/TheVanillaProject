@@ -118,6 +118,10 @@ public class EntityAliveSDX : EntityTrader
     }
 
 
+    public bool IsOnMission()
+    {
+        return this.Buffs.HasCustomVar("onMission") && this.Buffs.GetCustomVar("onMission") == 1f;
+    }
     // SendOnMission will make the NPC disappear and be unavailable
     public void SendOnMission(bool send)
     {
@@ -125,13 +129,22 @@ public class EntityAliveSDX : EntityTrader
         {
             var enemy = GetRevengeTarget();
             if (enemy != null)
-                enemy.SetAttackTarget(null, 50);
-                
+            {
+                SetAttackTarget(null, 0);
+                enemy.SetAttackTarget(null, 0);
+                enemy.SetRevengeTarget(null);
+                enemy.DoRagdoll(new DamageResponse());
+                SetRevengeTarget(null);
+            }
+
             Buffs.AddCustomVar("onMission", 1f);
             emodel.avatarController.SetBool("IsBusy", true);
             RootTransform.gameObject.SetActive(false);
+            
             if ( this.NavObject != null )
                 this.NavObject.IsActive = false;
+            this.DebugNameInfo = "";
+            
         }
         else
         {
@@ -140,6 +153,7 @@ public class EntityAliveSDX : EntityTrader
             RootTransform.gameObject.SetActive(true);
             if (this.NavObject != null)
                 this.NavObject.IsActive = true;
+
         }
     }
 
@@ -301,7 +315,9 @@ public class EntityAliveSDX : EntityTrader
             return new EntityActivationCommand[0];
         }
 
-        Debug.Log("Greet");
+        if (EntityUtilities.GetAttackOrRevengeTarget(entityId) != null)
+            return new EntityActivationCommand[0];
+
         return new[]
         {
             new EntityActivationCommand("Greet " + EntityName, "talk", true)
@@ -315,7 +331,10 @@ public class EntityAliveSDX : EntityTrader
         var myRelationship = FactionManager.Instance.GetRelationshipTier(this, _entityFocusing);
         if (myRelationship == FactionManager.Relationship.Hate)
             return false;
-        
+
+        if (EntityUtilities.GetAttackOrRevengeTarget(entityId) != null)
+            return false;
+
         // Look at the entity that is talking to you.
         SetLookPosition(_entityFocusing.getHeadPosition());
 
@@ -496,6 +515,29 @@ public class EntityAliveSDX : EntityTrader
         questJournal.AddQuest(newQuest);
     }
 
+    protected override void UpdateJump()
+    {
+        if (this.walkType == 4 && !this.isSwimming)
+        {
+            base.FaceJumpTo();
+            this.jumpState = EntityAlive.JumpState.Climb;
+            if (!this.emodel.avatarController || !this.emodel.avatarController.IsAnimationJumpRunning())
+            {
+                this.Jumping = false;
+            }
+            if (this.jumpTicks == 0 && this.accumulatedRootMotion.y > 0.005f)
+            {
+                this.jumpTicks = 30;
+            }
+            return;
+        }
+        base.UpdateJump();
+        if (this.isSwimming)
+        {
+            return;
+        }
+        this.accumulatedRootMotion.y = 0f;
+    }
     public override void MoveEntityHeaded(Vector3 _direction, bool _isDirAbsolute)
     {
         // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
@@ -505,6 +547,39 @@ public class EntityAliveSDX : EntityTrader
         if (isBusy)
             return;
 
+        if (this.walkType == 4 && this.Jumping)
+        {
+            this.motion = this.accumulatedRootMotion;
+            this.accumulatedRootMotion = Vector3.zero;
+            this.IsRotateToGroundFlat = true;
+            if (this.moveHelper != null)
+            {
+                Vector3 vector = this.moveHelper.JumpToPos - this.position;
+                if (Utils.FastAbs(vector.y) < 0.2f)
+                {
+                    this.motion.y = vector.y * 0.2f;
+                }
+                if (Utils.FastAbs(vector.x) < 0.3f)
+                {
+                    this.motion.x = vector.x * 0.2f;
+                }
+                if (Utils.FastAbs(vector.z) < 0.3f)
+                {
+                    this.motion.z = vector.z * 0.2f;
+                }
+                if (vector.sqrMagnitude < 0.010000001f)
+                {
+                    if (this.emodel && this.emodel.avatarController)
+                    {
+                        this.emodel.avatarController.StartAnimationJump(AnimJumpMode.Land);
+                    }
+                    this.Jumping = false;
+                }
+            }
+            this.entityCollision(this.motion);
+            return;
+        }
+        base.MoveEntityHeaded(_direction, _isDirAbsolute);
         base.MoveEntityHeaded(_direction, _isDirAbsolute);
     }
 
@@ -627,38 +702,76 @@ public class EntityAliveSDX : EntityTrader
             _tileEntityTrader.TraderData.TraderID = NPCInfo.TraderID;
         }
 
+        if (!this.isEntityRemote)
+        {
+            if (this.emodel)
+            {
+                AvatarController avatarController = this.emodel.avatarController;
+                if (avatarController)
+                {
+                    var flag = this.onGround || this.isSwimming || this.bInElevator;
+                    if (flag)
+                    {
+                        this.fallTime = 0f;
+                        this.fallThresholdTime = 0f;
+                        if (this.bInElevator)
+                        {
+                            this.fallThresholdTime = 0.6f;
+                        }
+                    }
+                    else
+                    {
+                        if (this.fallThresholdTime == 0f)
+                        {
+                            this.fallThresholdTime = 0.1f + this.rand.RandomFloat * 0.3f;
+                        }
+                        this.fallTime += 0.05f;
+                    }
+                    var canFall = !this.emodel.IsRagdollActive && this.bodyDamage.CurrentStun == EnumEntityStunType.None && !this.isSwimming && !this.bInElevator && this.jumpState == EntityAlive.JumpState.Off && !this.IsDead();
+                    if (this.fallTime <= this.fallThresholdTime)
+                    {
+                        canFall = false;
+                    }
+                    avatarController?.SetFallAndGround(canFall, flag);
+                }
+            }
+        }
 
         //var entitiesInBounds = GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(position, Vector3.one * 5f));
-        //if (entitiesInBounds.Count > 0)
-        //{
-        //    foreach (var entity in entitiesInBounds)
-        //    {
-        //        if (entity is EntityPlayerLocal || entity is EntityPlayer)
-        //        {
-        //            // Check your faction relation. If you hate each other, don't stop and talk.
-        //            var myRelationship = FactionManager.Instance.GetRelationshipTier(this, entity as EntityPlayer);
-        //            if (myRelationship == FactionManager.Relationship.Hate)
-        //                break;
+    //if (entitiesInBounds.Count > 0)
+    //{
+    //    foreach (var entity in entitiesInBounds)
+    //    {
+    //        if (entity is EntityPlayerLocal || entity is EntityPlayer)
+    //        {
+    //            // Check your faction relation. If you hate each other, don't stop and talk.
+    //            var myRelationship = FactionManager.Instance.GetRelationshipTier(this, entity as EntityPlayer);
+    //            if (myRelationship == FactionManager.Relationship.Hate)
+    //                break;
 
-        //            var player = entity as EntityPlayer;
-        //            if (player && player.IsSpectator)
-        //                    continue;
+    //            var player = entity as EntityPlayer;
+    //            if (player && player.IsSpectator)
+    //                    continue;
 
-        //            if (GetDistance(player) < 1.5 && moveHelper != null)
-        //            { 
-        //                moveHelper.SetMoveTo(player.GetLookVector(), false);
-        //                break;
-        //            }
+    //            if (GetDistance(player) < 1.5 && moveHelper != null)
+    //            { 
+    //                moveHelper.SetMoveTo(player.GetLookVector(), false);
+    //                break;
+    //            }
 
-        //            // Turn to face the player, and stop the movement.
-        //            SetLookPosition(entity.getHeadPosition());
-        //            RotateTo(entity, 90f, 90f);
-        //            EntityUtilities.Stop(entityId);
-        //            break;
-        //        }
-        //    }
-        //}
-    }
+    //            // Turn to face the player, and stop the movement.
+    //            SetLookPosition(entity.getHeadPosition());
+    //            RotateTo(entity, 90f, 90f);
+    //            EntityUtilities.Stop(entityId);
+    //            break;
+    //        }
+    //    }
+    //}
+}
+    private float fallTime;
+
+
+    private float fallThresholdTime;
 
     public override Ray GetLookRay()
     {
@@ -679,13 +792,13 @@ public class EntityAliveSDX : EntityTrader
 
     public override int DamageEntity(DamageSource _damageSource, int _strength, bool _criticalHit, float _impulseScale)
     {
-        if (EntityUtilities.IsAnAlly(entityId, _damageSource.getEntityId()))
-            return 0;
-
         if (EntityUtilities.GetBoolValue(entityId, "Invulnerable"))
             return 0;
 
         if (Buffs.HasBuff("buffInvulnerable"))
+            return 0;
+
+        if (!SCoreUtils.CanDamage(this, world.GetEntity(_damageSource.getEntityId())))
             return 0;
 
         // If we are being attacked, let the state machine know it can fight back
@@ -701,6 +814,9 @@ public class EntityAliveSDX : EntityTrader
 
     public new void SetRevengeTarget(EntityAlive _other)
     {
+        if (IsOnMission())
+            return;
+
         if (_other)
         {
             // Forgive friendly fire, even from explosions.
@@ -720,14 +836,16 @@ public class EntityAliveSDX : EntityTrader
         Buffs.AddBuff("buffNotifyTeamAttack");
     }
 
-
+    
     public new void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
     {
         if (_attackTarget != null)
             if (_attackTarget.IsDead())
                 return;
 
-
+        if (IsOnMission())
+            return;
+        
         if (_attackTarget == null)
             // Some of the AI tasks resets the attack target when it falls down stunned; this will prevent the NPC from ignoring its stunned opponent.
             if (attackTarget != null && attackTarget.IsAlive())

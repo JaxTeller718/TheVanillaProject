@@ -10,23 +10,32 @@ namespace UAI
 {
     public static class SCoreUtils
     {
-        public static void DisplayDebugInformation( Context _context, string prefix = "", string postfix="" )
+        public static void DisplayDebugInformation(Context _context, string prefix = "", string postfix = "")
         {
             if (!GamePrefs.GetBool(EnumGamePrefs.DebugMenuEnabled))
             {
                 _context.Self.DebugNameInfo = "";
                 return;
             }
+
             var message = $" ( {_context.Self.entityId} ) {prefix}\n";
             message += $" Active Action: {_context.ActionData.Action?.Name}\n";
             var taskIndex = _context.ActionData.TaskIndex;
             var tasks = _context.ActionData.Action?.GetTasks();
+            if (tasks == null)
+            {
+                message += $" Active Task: None";
+                _context.Self.DebugNameInfo = message;
+                return;
+            }
+
             message += $" Active Task: {tasks[taskIndex]}\n";
             message += $" Active Target: {_context.ActionData.Target}\n";
             message += $" {postfix}";
-            
+
             _context.Self.DebugNameInfo = message;
         }
+
         public static void SimulateActionInstantExecution(Context _context, int _actionIdx, ItemStack _itemStack)
         {
             if (!Equals(_itemStack, ItemStack.Empty))
@@ -70,6 +79,48 @@ namespace UAI
             }
         }
 
+        public static void CheckJump(Context _context)
+        {
+            if (!_context.Self.onGround || _context.Self.Jumping)
+                return;
+
+            // Find out feet, and just a smidge ahead
+            var a = _context.Self.position + _context.Self.GetForwardVector() * 0.2f;
+            a.y += 0.4f;
+
+            RaycastHit ray;
+            // Check if we can hit anything downwards
+            if (Physics.Raycast(a - Origin.position, Vector3.down, out ray, 3.4f, 1082195968) && !(ray.distance > 2.2f)) return;
+            
+            // if we WILL hit something, don't jump.
+            var vector3i = new Vector3i(Utils.Fastfloor(_context.Self.position.x), Utils.Fastfloor(_context.Self.position.y + 2.35f), Utils.Fastfloor(_context.Self.position.z));
+            var block = _context.Self.world.GetBlock(vector3i);
+            if (block.Block.IsMovementBlocked(_context.Self.world, vector3i, block, BlockFace.None)) return;
+
+            
+            // Stop the forward movement, so we don't slide off the edge.
+            EntityUtilities.Stop(_context.Self.entityId);
+
+            // If our target is below us, just drop down without jumping a lot.
+            var entityAlive = UAIUtils.ConvertToEntityAlive(_context.ActionData.Target);
+            if (entityAlive != null && entityAlive.IsAlive())
+            {
+                var drop = Mathf.Abs( entityAlive.position.y - _context.Self.position.y);
+                if (drop > 2)
+                {
+                    _context.Self.moveHelper.StartJump(true, 1f, 0f);
+                    return;
+                }
+            }
+            // if we are going to land on air, let's not jump so far out.
+            var landingSpot = _context.Self.position + _context.Self.GetForwardVector() + _context.Self.GetForwardVector() + Vector3.down;
+            var block2 = _context.Self.world.GetBlock(new Vector3i(landingSpot));
+            if ( block2.isair)
+                _context.Self.moveHelper.StartJump(true, 1f, 0f);
+            else
+                _context.Self.moveHelper.StartJump(true, 2f, 1f);
+        }
+
         public static bool IsBlocked(Context _context)
         {
             // Still calculating the path, let's let it finish.
@@ -79,20 +130,23 @@ namespace UAI
             if (_context.Self.bodyDamage.CurrentStun != EnumEntityStunType.None)
                 return true;
 
-            var result = _context.Self.moveHelper.BlockedTime <= 0.3f;//&& !_context.Self.navigator.noPathAndNotPlanningOne();
+            // Check if we need to jump.
+            CheckJump(_context);
+
+            var result = _context.Self.moveHelper.BlockedTime <= 0.3f; //&& !_context.Self.navigator.noPathAndNotPlanningOne();
             if (result)
                 return false;
 
             CheckForClosedDoor(_context);
             return _context.Self.moveHelper.IsBlocked;
-
-
         }
+
 
         public static void TeleportToPosition(Context _context, Vector3 position)
         {
             _context.Self.SetPosition(position);
         }
+
         public static void TeleportToLeader(Context _context)
         {
             var leader = EntityUtilities.GetLeaderOrOwner(_context.Self.entityId) as EntityAlive;
@@ -111,38 +165,143 @@ namespace UAI
             if (targetEntity.IsDead())
                 return false;
 
-            // Checks if we are allies: either share a leader, or is our leader.
-            if (IsAlly(self, targetEntity))
+            return IsEnemyOrPotentialEnemy(self, target, false);
+        }
+
+        /// <summary>
+        /// Tests to see if the target entity is a friend. A "friend" is defined as yourself,
+        /// your leader, allies (those who share a leader), and entities in "loved" factions
+        /// (including members of your own faction, if not overridden by your leader).
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool IsFriend(EntityAlive self, Entity target)
+        {
+            if (!(target is EntityAlive targetEntity))
                 return false;
 
-            // Do we have a revenge target? Are they the ones attacking us?
-            var revengeTarget = self.GetRevengeTarget();
-            if (revengeTarget != null && revengeTarget.entityId == targetEntity.entityId)
-            {
+            if (targetEntity.IsDead())
+                return false;
+
+            if (self.entityId == target.entityId)
                 return true;
-            }
 
-            var leader = EntityUtilities.GetLeaderOrOwner(self.entityId);
-            if (leader != null)
-            {
-                // If the target entity is attacking our leader, target them too.
-                var enemyTarget = EntityUtilities.GetAttackOrRevengeTarget(targetEntity.entityId);
-                if (enemyTarget != null && enemyTarget.entityId == leader.entityId)
-                {
-                    return true;
-                }
-
-                // If our leader is attacking the target entity, target them too.
-                var leaderTarget = EntityUtilities.GetAttackOrRevengeTarget(targetEntity.entityId);
-                if (leaderTarget != null && enemyTarget.entityId == leaderTarget.entityId)
-                {
-                    return true;
-                }
-            }
-
-            // If they share our faction, or are in a faction we don't hate, they're not an enemy.
-            return !EntityUtilities.CheckFaction(self.entityId, targetEntity);
+            return !IsEnemyOrPotentialEnemy(self, target, true);
         }
+
+        /// <summary>
+        /// This method checks to see if damage, presumably caused by another entity,
+        /// is allowed to actually do damage to the checking entity.
+        /// </summary>
+        /// <param name="checkingEntity">The entity that is checking to see if it can be damaged.</param>
+        /// <param name="damagingEntity">The entity causing the damage, if any.</param>
+        /// <returns></returns>
+        public static bool CanDamage(EntityAlive checkingEntity, Entity damagingEntity)
+        {
+            // If the damage was not caused by an entity, take that damage.
+            if (damagingEntity == null)
+                return true;
+
+            // If the damaging entity is not even a potential enemy, ignore that damage.
+            // Note: this also ignores explosion damage caused by friendly fire.
+            // If people find that unacceptable, we could check EnumGameStats.PlayerKillingMode,
+            // or create a feature block flag, or something along those lines.
+            return IsEnemyOrPotentialEnemy(checkingEntity, damagingEntity, true);
+        }
+
+        private static bool IsEnemyOrPotentialEnemy(EntityAlive self, Entity target, bool potential)
+        {
+            // The entities to use to check faction relationships - themselves or their leaders.
+            var targetingEntity = self;
+            var targetedEntity = target as EntityAlive;
+
+            // Player targets require special logic, so keep in a separate var.
+            var targetPlayer = target as EntityPlayer;
+
+            var ourLeader = EntityUtilities.GetLeaderOrOwner(self.entityId);
+            var theirLeader = EntityUtilities.GetLeaderOrOwner(target.entityId);
+
+            if (ourLeader != null)
+            {
+                // Checks if we are allies: either share a leader, or is our leader.
+                if (IsAlly(self, target))
+                    return false;
+
+                // If our leader is a player, perform friendly fire checks for multiplayer.
+                if (ourLeader is EntityPlayer ourPlayer)
+                {
+                    if (targetPlayer != null)
+                        return ourPlayer.FriendlyFireCheck(targetPlayer);
+
+                    if (theirLeader is EntityPlayer theirPlayer)
+                        return ourPlayer.FriendlyFireCheck(theirPlayer);
+                }
+
+                // If they're fighting our leader, they're an enemy.
+                if (AreFighting(ourLeader, target))
+                    return true;
+
+                // We have a leader, so use it to check faction relationships.
+                if (ourLeader is EntityAlive livingLeader)
+                    targetingEntity = livingLeader;
+            }
+
+            if (theirLeader != null)
+            {
+                // If their leader is a player, perform a friendly fire check against us.
+                // (We already did a friendly fire check when both leaders are players.)
+                if (theirLeader is EntityPlayer theirPlayer && self is EntityPlayer us)
+                    return theirPlayer.FriendlyFireCheck(us);
+
+                // If their leader is fighting us, they're an enemy.
+                if (AreFighting(theirLeader, self))
+                    return true;
+
+                // They have a leader, so use it to check faction relationships.
+                if (theirLeader is EntityAlive livingLeader)
+                    targetedEntity = livingLeader;
+            }
+
+            // If the target is a player that passed the friendly fire and ally checks, they
+            // should always be considered a _potential_ enemy. This is so non-hired NPCs can take
+            // damage from players regardless of faction relationship.
+            if (potential && targetPlayer != null)
+                return true;
+
+            // If the entity damaged us, they're an enemy, regardless of faction.
+            var revengeTarget = self.GetRevengeTarget();
+            if (revengeTarget != null && revengeTarget.entityId == target.entityId)
+                return true;
+
+            var relationship = FactionManager.Instance.GetRelationshipValue(
+                targetingEntity,
+                targetedEntity);
+
+            // A faction relationship value less than 800 (Love) means they are a potential enemy.
+            // A faction relationship value less than 200 (Dislike) means they are an actual enemy.
+            var friendRelationship = potential ?
+                FactionManager.Relationship.Love :
+                FactionManager.Relationship.Dislike;
+
+            return relationship < (int)friendRelationship;
+        }
+
+        private static bool AreFighting(Entity targetingEntity, Entity target)
+        {
+            if (targetingEntity != null)
+            {
+                var enemyTarget = EntityUtilities.GetAttackOrRevengeTarget(target.entityId);
+                if (enemyTarget != null && enemyTarget.entityId == targetingEntity.entityId)
+                    return true;
+
+                var leaderTarget = EntityUtilities.GetAttackOrRevengeTarget(targetingEntity.entityId);
+                if (leaderTarget != null && leaderTarget.entityId == target.entityId)
+                    return true;
+            }
+            return false;
+        }
+
         public static bool HasBuff(Context _context, string buff)
         {
             return !string.IsNullOrEmpty(buff) && _context.Self.Buffs.HasBuff(buff);
@@ -193,8 +352,10 @@ namespace UAI
 
             var ray = new Ray(headPosition, direction);
             ray.origin += direction.normalized * 0.2f;
-            var flag = Voxel.Raycast(sourceEntity.world, ray, seeDistance, true, true);
-            if (flag)
+
+            int hitMask = GetHitMaskByWeaponBuff(sourceEntity);
+            if (Voxel.Raycast(sourceEntity.world, ray, seeDistance, hitMask, 0.0f))
+            //if (Voxel.Raycast(sourceEntity.world, ray, seeDistance, true, true)) // Original code
             {
                 var hitRootTransform = GameUtils.GetHitRootTransform(Voxel.voxelRayHitInfo.tag, Voxel.voxelRayHitInfo.transform);
                 if (hitRootTransform == null)
@@ -210,8 +371,10 @@ namespace UAI
                     return true;
                 }
             }
+
             return false;
         }
+
         public static bool IsEnemyNearby(Context _context, float distance = 20f)
         {
             var nearbyEntities = new List<Entity>();
@@ -233,7 +396,7 @@ namespace UAI
                 // Can we see them?
                 if (!SCoreUtils.CanSee(_context.Self, x))
                     continue;
-                
+
 
                 // Otherwise they are an enemy.
                 return true;
@@ -309,6 +472,7 @@ namespace UAI
             _context.Self.navigator.setMoveSpeed(speed);
             return speed;
         }
+
         public static void FindPath(Context _context, Vector3 _position, bool panic = false)
         {
             // If we have a leader, and following, match the player speed.
@@ -335,28 +499,29 @@ namespace UAI
                 if (distance < 2f)
                     return;
             }
-            _context.Self.SetLookPosition(_position);
-            _context.Self.RotateTo(_position.x, _position.y, _position.z, 45f, 45);
+            //      _context.Self.SetLookPosition(_position);
+            //_context.Self.RotateTo(_position.x, _position.y, _position.z, 45f, 45);
 
-            
+
             // Path finding has to be set for Breaking Blocks so it can path through doors
             //var path = PathFinderThread.Instance.GetPath(_context.Self.entityId);
-           // if (path.path == null && !PathFinderThread.Instance.IsCalculatingPath(_context.Self.entityId))
-                _context.Self.FindPath(_position, speed, true, null);
+            // if (path.path == null && !PathFinderThread.Instance.IsCalculatingPath(_context.Self.entityId))
+            _context.Self.FindPath(_position, speed, true, null);
         }
 
 
-        public static Vector3 AlignToEdge( Vector3 vector )
+        public static Vector3 AlignToEdge(Vector3 vector)
         {
             return new Vector3i(vector).ToVector3();
         }
+
         // allows the NPC to climb ladders
         public static Vector3 GetMoveToLocation(Context _context, Vector3 position, float maxDist = 10f)
         {
             var vector = _context.Self.world.FindSupportingBlockPos(position);
             if (!(maxDist > 0f)) return vector;
 
-            var Targetblock = _context.Self.world.GetBlock(new Vector3i( vector ));
+            var Targetblock = _context.Self.world.GetBlock(new Vector3i(vector));
             if (Targetblock.Block is BlockLadder)
                 vector = SCoreUtils.AlignToEdge(vector);
             var vector2 = new Vector3(_context.Self.position.x, vector.y, _context.Self.position.z);
@@ -365,7 +530,7 @@ namespace UAI
             var magnitude = vector3.magnitude;
 
             if (magnitude > 5f)
-                return vector; 
+                return vector;
             if (magnitude <= maxDist)
             {
                 // When climbing ladders, align the vector to its edges to allow better ladder migration.
@@ -374,12 +539,12 @@ namespace UAI
                 {
                     return SCoreUtils.AlignToEdge(vector);
                 }
+
                 return vector2;
                 //return vector.y - _context.Self.position.y > 1.5f ? vector : vector2;
             }
             else
             {
-
                 vector3 *= maxDist / magnitude;
                 var vector4 = vector - vector3;
                 vector4.y += 0.51f;
@@ -395,6 +560,7 @@ namespace UAI
                         vector4.y = raycastHit.point.y + Origin.position.y;
                         return vector4;
                     }
+
                     if (block2.IsElevator((int)block.rotation))
                     {
                         vector4.y = vector.y;
@@ -668,5 +834,54 @@ namespace UAI
         private static readonly string WaypointFilterAttrubute = "waypoint_filter";
 
         private static readonly Dictionary<string, XmlElement> _storedElements = new Dictionary<string, XmlElement>();
+
+        private static int GetHitMaskByWeaponBuff(EntityAlive entity)
+        {
+            // Raycasts should always collide with these types of blocks.
+            // This is 0x42, which is the "base" value used if you call the
+            // Voxel.Raycast(World _worldData, Ray ray, float distance, bool bHitTransparentBlocks, bool bHitNotCollidableBlocks)
+            // overload; the transparent and non-collidable values are "ORed" to that, as needed.
+            int baseMask =
+                (int)HitMasks.CollideMovement |
+                (int)HitMasks.Liquid;
+
+            // Check for specialized ranged weapons
+            if (entity.Buffs.HasBuff("LBowUser") ||
+                entity.Buffs.HasBuff("XBowUser"))
+            {
+                return baseMask | (int)HitMasks.CollideArrows;
+            }
+
+            if (entity.Buffs.HasBuff("RocketLUser"))
+            {
+                return baseMask | (int)HitMasks.CollideRockets;
+            }
+
+            // Otherwise, if it has the "ranged" tag, assume bullets
+            if (entity.HasAnyTags(FastTags.Parse("ranged")))
+            {
+                return baseMask | (int)HitMasks.CollideBullets;
+            }
+
+            // Otherwise, assume melee
+            return baseMask | (int)HitMasks.CollideMelee;
+        }
+
+
+        /// <summary>
+        /// These hit mask values are taken verbatim from Voxel.raycastNew.
+        /// The names represent whether a raycast should <em>collide with</em> the block.
+        /// </summary>
+        private enum HitMasks : int
+        {
+            Transparent = 1,
+            Liquid = 2,
+            NotCollidable = 4,
+            CollideBullets = 8,
+            CollideRockets = 0x10,
+            CollideArrows = 0x20,
+            CollideMovement = 0x40,
+            CollideMelee = 0x80,
+        }
     }
 }
