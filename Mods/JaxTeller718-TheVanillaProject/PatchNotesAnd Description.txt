@@ -198,6 +198,9 @@ v1.8
 
 -Rebalanced Zombie Loot. Now there is a chance of 0 loot in a zombie while looting them.
 
+-Added Spheres New Cave System and Updated Spherecore. New maps reuired for new caves
+
+
 
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
