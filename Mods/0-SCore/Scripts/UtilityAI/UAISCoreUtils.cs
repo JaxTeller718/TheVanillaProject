@@ -12,7 +12,7 @@ namespace UAI
     {
         public static void DisplayDebugInformation(Context _context, string prefix = "", string postfix = "")
         {
-            if (!GamePrefs.GetBool(EnumGamePrefs.DebugMenuEnabled))
+            if (!GamePrefs.GetBool(EnumGamePrefs.DebugMenuEnabled) || _context.Self.IsDead())
             {
                 _context.Self.DebugNameInfo = "";
                 return;
@@ -274,9 +274,7 @@ namespace UAI
             if (revengeTarget != null && revengeTarget.entityId == target.entityId)
                 return true;
 
-            var relationship = FactionManager.Instance.GetRelationshipValue(
-                targetingEntity,
-                targetedEntity);
+            var relationship = FactionManager.Instance.GetRelationshipValue(targetedEntity, targetingEntity );
 
             // A faction relationship value less than 800 (Love) means they are a potential enemy.
             // A faction relationship value less than 200 (Dislike) means they are an actual enemy.
@@ -347,8 +345,10 @@ namespace UAI
             var seeDistance = sourceEntity.GetSeeDistance();
             if (direction.magnitude > seeDistance)
                 return false;
-            if (!sourceEntity.IsInViewCone(headPosition2))
-                return false;
+
+            // if zombies have 360 view, we probably don't need the IsInViewCone()
+//            if (!sourceEntity.IsInViewCone(headPosition2))
+                //return false;
 
             var ray = new Ray(headPosition, direction);
             ray.origin += direction.normalized * 0.2f;
@@ -377,6 +377,8 @@ namespace UAI
 
         public static bool IsEnemyNearby(Context _context, float distance = 20f)
         {
+            var revengeTarget = EntityUtilities.GetAttackOrRevengeTarget(_context.Self.entityId);
+         
             var nearbyEntities = new List<Entity>();
 
             // Search in the bounds are to try to find the most appealing entity to follow.
@@ -391,13 +393,19 @@ namespace UAI
                 if (x.IsDead()) continue;
 
                 // If they are friendly
-                if (EntityUtilities.CheckFaction(_context.Self.entityId, x)) continue;
-
+                //if (EntityUtilities.CheckFaction(_context.Self.entityId, x)) continue;
+                if (revengeTarget && x.entityId == revengeTarget.entityId)
+                {
+                    if (IsEnemy(_context.Self, revengeTarget))
+                        return true;
+                }
                 // Can we see them?
                 if (!SCoreUtils.CanSee(_context.Self, x))
                     continue;
 
 
+                if (!IsEnemy(_context.Self, x)) continue;
+                    
                 // Otherwise they are an enemy.
                 return true;
             }

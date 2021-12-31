@@ -54,15 +54,11 @@ public class MinEventActionSpawnEntitySDX : MinEventActionRemoveBuff
                 if (transformPos == Vector3.zero)
                     transformPos = entity.position + Vector3.back;
 
-
                 var NewEntity = EntityFactory.CreateEntity(EntityID, transformPos, entity.rotation) as EntityAlive;
                 if (NewEntity)
                 {
-                    NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
-                    Debug.Log("Setting " + strCvar + " ID to: " + entity.entityId + " for " + NewEntity.entityId);
-                    NewEntity.Buffs.SetCustomVar(strCvar, entity.entityId);
-
                     var entityCreationData = new EntityCreationData(NewEntity);
+                    entityCreationData.id = -1;
                     GameManager.Instance.RequestToSpawnEntityServer(entityCreationData);
                     NewEntity.OnEntityUnload();
                 }
