@@ -55,10 +55,10 @@ namespace UAI
                 {
                     if (entity is EntityPlayerLocal || entity is EntityPlayer)
                     {
-                        if (SCoreUtils.IsEnemy(_context.Self, entity))
+                        if (EntityTargetingUtilities.IsEnemy(_context.Self, entity))
                             break;
-                        _context.Self.RotateTo(entity, 15f, 15f);
-                        _context.Self.SetLookPosition(entity.getHeadPosition());
+
+                        SCoreUtils.SetLookPosition(_context, entity);
                         break;
                     }
                 }

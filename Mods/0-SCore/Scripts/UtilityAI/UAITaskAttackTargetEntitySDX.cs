@@ -10,12 +10,15 @@ namespace UAI
         // Default to action 0.
         private int _actionIndex = 0;
         private string _buffThrottle = "buffReload2";
+        private int _targetTimeout = 20;
 
         protected override void initializeParameters()
         {
             base.initializeParameters();
             if (Parameters.ContainsKey("action_index")) _actionIndex = int.Parse(Parameters["action_index"]);
             if (Parameters.ContainsKey("buff_throttle")) _buffThrottle = Parameters["buff_throttle"];
+            if (Parameters.ContainsKey("target_timeout")) _targetTimeout = int.Parse(Parameters["target_timeout"]);
+
         }
 
         public override void Start(Context _context)
@@ -55,25 +58,22 @@ namespace UAI
                 }
                 if (entityAlive.IsDead())
                 {
+                    SCoreUtils.SetLookPosition(_context, Vector3.forward);
                     Stop(_context);
                     return;
                 }
 
-                if ( entityAlive.IsWalkTypeACrawl())
-                    SCoreUtils.SetCrouching(_context, entityAlive.IsWalkTypeACrawl());
+          //      if ( entityAlive.IsWalkTypeACrawl())
+            //        SCoreUtils.SetCrouching(_context, entityAlive.IsWalkTypeACrawl());
 
-                if ( entityAlive.height < 1.1f)
-                    SCoreUtils.SetCrouching(_context, true);
+              //  if ( entityAlive.height < 1.1f)
+                //    SCoreUtils.SetCrouching(_context, true);
 
-                _context.Self.RotateTo(entityAlive, 30f, 30f);
-                _context.Self.SetLookPosition(entityAlive.getHeadPosition());
+  
             }
 
             if (_context.ActionData.Target is Vector3 vector)
-            {
-                _context.Self.RotateTo(vector.x, vector.y, vector.z, 30f, 30);
-                _context.Self.SetLookPosition(vector);
-            }
+                SCoreUtils.SetLookPosition(_context, vector);
 
             // Reloading
             if (_context.Self.Buffs.HasBuff(_buffThrottle))
@@ -96,24 +96,29 @@ namespace UAI
             var minDistance = distance * distance;
             var a = entityAlive.position - _context.Self.position;
 
-            // not within range?
+            // not within range? qq
             if (a.sqrMagnitude > minDistance)
             {
                 Stop(_context);
                 return;
             }
 
+            // Face the target right before hitting them.
+            if (entityAlive != null)
+                SCoreUtils.SetLookPosition(_context, entityAlive);
 
             // Action Index = 1 is Use, 0 is Attack.
             if (_actionIndex > 0)
             {
                 if (!_context.Self.Use(false)) return;
                 _context.Self.Use(true);
+                _context.Self.SetAttackTarget(entityAlive, _targetTimeout);
             }
             else
             {
                 if (!_context.Self.Attack(false)) return;
                 _context.Self.Attack(true);
+                _context.Self.SetAttackTarget(entityAlive, _targetTimeout);
             }
 
             // Reset the attackTimeout, and allow another task to run.

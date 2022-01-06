@@ -2,7 +2,7 @@
 
 public class XUiC_CharacterFrameWindowSDX : XUiController
 {
-    private EntityAlive entity;
+    private EntityAliveSDX entity;
     private bool isDirty;
     private XUiV_Label lbldescriptionText;
     private EntityPlayerLocal player;
@@ -10,7 +10,11 @@ public class XUiC_CharacterFrameWindowSDX : XUiController
     private List<ProgressionValue> skills = new List<ProgressionValue>();
     private List<ProgressionValue> currentSkills = new List<ProgressionValue>();
 
-
+    public override void OnClose()
+    {
+        entity = null;
+        base.OnClose();
+    }
     public override void Init()
     {
         base.Init();
@@ -77,6 +81,12 @@ public class XUiC_CharacterFrameWindowSDX : XUiController
     public override void Update(float _dt)
     {
         if (GameManager.Instance == null || GameManager.Instance.World == null) return;
+        if (entity == null || !(entity is EntityAliveSDX))
+        {
+            lbldescriptionText.Text = "";
+            OnClose();
+            return;
+        }
         if (isDirty)
         {
             lbldescriptionText.Text = GetDescription();
@@ -98,7 +108,7 @@ public class XUiC_CharacterFrameWindowSDX : XUiController
 
         // Do not display the extra information until they are hired.
         entity = player.world.GetEntity(entityID) as EntityAliveSDX;
-        if (entity)
+        if (entity != null)
         {
             var leader = EntityUtilities.GetLeaderOrOwner(entityID);
             if (leader && leader.entityId == player.entityId)

@@ -1285,7 +1285,7 @@ public static class EntityUtilities
         return result;
     }
 
-    public static void OpenDoor(int EntityID, Vector3i blockPos)
+    public static void OpenDoor(int EntityID, Vector3i blockPos, bool forceLock = false)
     {
         var myEntity = GameManager.Instance.World.GetEntity(EntityID) as EntityAlive;
         if (myEntity)
@@ -1294,6 +1294,12 @@ public static class EntityUtilities
             if (Block.list[block.type].HasTag(BlockTags.Door) && !BlockDoor.IsDoorOpen(block.meta))
             {
                 var chunk = myEntity.world.GetChunkFromWorldPos(blockPos) as Chunk;
+                if ( forceLock )
+                {
+                    var tileEntitySecureDoor = (TileEntitySecureDoor)GameManager.Instance.World.GetTileEntity(0, blockPos);
+                    if( tileEntitySecureDoor != null)
+                        tileEntitySecureDoor.SetLocked(false);
+                }
                 block.Block.OnBlockActivated(myEntity.world, chunk.ClrIdx, blockPos, block, myEntity);
             }
         }
@@ -1461,9 +1467,9 @@ public static class EntityUtilities
             return false;
         }
 
-        var myRelationship = FactionManager.Instance.GetRelationshipTier(myEntity, entity);
+        var myRelationship = GetFactionRelationship(myEntity, entity);
         DisplayLog(" CheckFactionForEnemy: " + myRelationship);
-        if (myRelationship == FactionManager.Relationship.Hate)
+        if (myRelationship < (float)FactionManager.Relationship.Dislike)
         {
             DisplayLog(" I hate this entity: " + entity);
             return false;
@@ -1471,6 +1477,43 @@ public static class EntityUtilities
 
         DisplayLog(" My relationship with this " + entity + " is: " + myRelationship);
         return true;
+    }
+
+    /// <summary>
+    /// Reliably gets the faction relationship between yourself and a target.
+    /// </summary>
+    /// <param name="self"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public static float GetFactionRelationship(EntityAlive self, EntityAlive target)
+    {
+        // Player does not have a full faction, so the return freom GetRelationshpValue is a 400, which is default.
+        // However, the self does have a full faction, with a relationship with the player faction id, even if the faction does not exist.
+        var relationship = 400f;
+        var selfFaction = FactionManager.Instance.GetFaction(self.factionId);
+        if (selfFaction != null && !selfFaction.IsPlayerFaction)
+        {
+            relationship = selfFaction.GetRelationship(target.factionId);
+        }
+        else
+        {
+            // The self doesn't have a full faction, or it's a player. Let's flip it.
+            selfFaction = FactionManager.Instance.GetFaction(target.factionId);
+            if (selfFaction != null)
+                relationship = selfFaction.GetRelationship(self.factionId);
+        }
+        return relationship;
+
+        //var selfCheckTarget = FactionManager.Instance.GetRelationshipValue(self, target);
+        //// This is needed because if you don't have a faction entry in npcs.xml, the vanilla code
+        //// will return "neutral." In this case, we assume the target does have a faction entry,
+        //// and check ourselves against their entry.
+        //if (selfCheckTarget != (float)FactionManager.Relationship.Neutral)
+        //{
+        //    return selfCheckTarget;
+        //}
+
+        //return FactionManager.Instance.GetRelationshipValue(target, self);
     }
 
     public static bool CheckForBuff(int EntityID, string strBuff)

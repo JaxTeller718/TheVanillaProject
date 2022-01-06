@@ -19,7 +19,6 @@ namespace Harmony.Dialog
                 myEntity.emodel.avatarController.SetBool("IsBusy", false);
 
             }
-
             return true;
         }
     }
