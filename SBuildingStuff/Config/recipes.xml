@@ -1,0 +1,93 @@
+<!--
+Sam's Building Stuff
+v20.0.0
+by saminal
+
+recipes.xml
+-->
+
+<configs>
+	<append xpath="/recipes">
+		<recipe name="woodBars" count="1">
+			<ingredient name="resourceWood" count="6"/>
+		</recipe>
+
+		<recipe name="woodBarsCentered" count="1">
+			<ingredient name="resourceWood" count="6"/>
+		</recipe>
+
+		<recipe name="woodBarsCNR" count="1">
+			<ingredient name="resourceWood" count="6"/>
+		</recipe>
+
+		<recipe name="steelBars" count="1" material_based="true" craft_area="forge" tags="perkAdvancedEngineering" craft_tool="toolForgeCrucible">
+			<ingredient name="unit_iron" count="200"/>
+			<ingredient name="unit_clay" count="40"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" operation="perc_add" level="0,1,2,3,4" value=".25,.25,.25,.177,.12" tags="unit_clay,unit_iron"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="steelBarsCentered" count="1" material_based="true" craft_area="forge" tags="perkAdvancedEngineering" craft_tool="toolForgeCrucible">
+			<ingredient name="unit_iron" count="200"/>
+			<ingredient name="unit_clay" count="40"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" operation="perc_add" level="0,1,2,3,4" value=".25,.25,.25,.177,.12" tags="unit_clay,unit_iron"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="steelBarsCNR" count="1" material_based="true" craft_area="forge" tags="perkAdvancedEngineering" craft_tool="toolForgeCrucible">
+			<ingredient name="unit_iron" count="200"/>
+			<ingredient name="unit_clay" count="40"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" operation="perc_add" level="0,1,2,3,4" value=".25,.25,.25,.177,.12" tags="unit_clay,unit_iron"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="trapSpikesSteelDmg0" count="1" material_based="true" craft_area="forge" tags="perkAdvancedEngineering" craft_tool="toolForgeCrucible">
+			<ingredient name="unit_iron" count="200"/>
+			<ingredient name="unit_clay" count="40"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" operation="perc_add" level="0,1,2,3,4" value=".25,.25,.25,.177,.12" tags="unit_clay,unit_iron"/>
+			</effect_group>
+		</recipe>
+		
+		<recipe name="commercialDoor1_v1" count="1">
+			<ingredient name="resourceForgedIron" count="10"/>
+			<ingredient name="resourceScrapBrass" count="10"/>
+			<ingredient name="resourceMechanicalParts" count="2"/>
+		</recipe>
+		
+		<recipe name="houseFrontDoor1_v1" count="1">
+			<ingredient name="resourceWood" count="10"/>
+			<ingredient name="resourceScrapBrass" count="20"/>
+		</recipe>
+		
+		<recipe name="commercialDoor2_v1" count="1">
+			<ingredient name="resourceForgedIron" count="10"/>
+			<ingredient name="resourceScrapBrass" count="10"/>
+			<ingredient name="resourceMechanicalParts" count="2"/>
+		</recipe>
+		
+		<recipe name="houseFrontDoor2_v1" count="1">
+			<ingredient name="resourceWood" count="10"/>
+			<ingredient name="resourceScrapBrass" count="20"/>
+		</recipe>
+
+		<recipe name="manholeHatch" count="1">
+			<ingredient name="resourceForgedIron" count="10"/>
+			<ingredient name="resourceSpring" count="4"/>
+			<ingredient name="resourceMechanicalParts" count="4"/>
+		</recipe>
+
+		<recipe name="window02" count="1">
+			<ingredient name="resourceWood" count="4"/>
+			<ingredient name="glassBlockVariantHelper" count="1"/>
+		</recipe>
+
+		<recipe name="window04" count="1">
+			<ingredient name="resourceWood" count="4"/>
+			<ingredient name="glassBlockVariantHelper" count="1"/>
+		</recipe>
+	</append>
+</configs>

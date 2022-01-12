@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Sam's Building Stuff" />
+		<Description value="Re-adds wood bars, makes iron bars upgrade to steel bars. Adds steel spikes. Adds recipes for some doors and windows." />
+		<Author value="Saminal" />
+		<Version value="20.0.0" />
+		<Website value="https://discord.gg/mBJwEw4kj8" />
+	</ModInfo>
+</xml>

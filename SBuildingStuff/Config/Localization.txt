@@ -1,0 +1,12 @@
+Key,File,Type,english
+trapSpikesSteelDmg0,blocks,Trap,Steel Spikes Trap
+trapSpikesSteelDmg1,blocks,Trap,Steel Spikes Trap 1
+trapSpikesSteelDmg2,blocks,Trap,Steel Spikes Trap 2
+steelBars,blocks,Block,Steel Bars
+steelBarsCentered,blocks,Block,Steel Bars Centered
+steelBarsCNR,blocks,Block,Steel Bars Corner
+steelBarsDesc,blocks,Block,You can see and shoot through steel bars and they offer awesome protection.
+woodBars,blocks,Block,Wood Bars
+woodBarsCentered,blocks,Block,Wood Bars Centered
+woodBarsCNR,blocks,Block,Wood Bars Corner
+woodBarsDesc,blocks,Block,You can see and shoot through wood bars and they offer some protection.

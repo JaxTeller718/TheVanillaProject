@@ -1,0 +1,25 @@
+<!--
+Sam's Building Stuff
+v20.0.0
+by saminal
+
+materials.xml
+-->
+
+<configs>
+	<append xpath="/materials">
+		<material id="MtrapSpikesSteel">
+			<property name="damage_category" value="metal"/>
+			<property name="surface_category" value="metal"/>
+			<property name="forge_category" value="iron"/>
+			<property name="Hardness" type="float" value="1"/>
+			<property name="stepsound" value="metal"/>
+			<property name="stability_glue" value="300"/>
+			<property name="Mass" type="int" value="30"/>
+			<property name="explosionresistance" value="1.4"/>
+			<property name="MaxDamage" value="99"/>
+			<property name="Experience" value="2"/>
+			<property name="movement_factor" value="0.18"/>
+		</material>
+	</append>
+</configs>

@@ -1,5 +1,17 @@
 <JaxTeller718>
 
+    <append xpath="/progression/perks/perk[@name='perkAdvancedEngineering']">
+	    <effect_group>
+	        <passive_effect name="RecipeTagUnlocked" operation="base_set" level="3,5" value="1" tags="resourceAcceleratorConcrete"/>
+		</effect_group>	
+	</append>
+	
+    <append xpath="/progression/perks/perk[@name='perkAdvancedEngineering']">
+	    <effect_group>
+	        <passive_effect name="RecipeTagUnlocked" operation="base_set" level="5,5" value="1" tags="resourceSteelPolishH"/>
+		</effect_group>	
+	</append>
+	
 <set xpath="/progression/perks/perk[@name='perkShotgunMessiahComplete']/effect_group/passive_effect[@name='RecipeTagUnlocked']/@tags">"ammoBundleShotgunShell,ammoBundleShotgunSlug,ammoBundleShotgunBreachingSlug,ammoBundleBlunderbuss"</set>
 
 

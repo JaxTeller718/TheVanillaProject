@@ -48,6 +48,32 @@
 	        <property name="Experience" value="2"/>
         </material>
 		
+		<material id="MscrapIron_shapes">
+	        <property name="damage_category" value="metal"/>
+	        <property name="surface_category" value="metal"/>
+	        <property name="forge_category" value="iron"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="metal"/>
+	        <property name="stability_glue" value="300"/>
+	        <property name="Mass" type="int" value="20"/>
+	        <property name="explosionresistance" value="1.1"/>
+	        <property name="MaxDamage" value="800"/>
+	        <property name="Experience" value="1"/>
+        </material>
+		
+		<material id="MscrapIR_shapes">
+	        <property name="damage_category" value="metal"/>
+	        <property name="surface_category" value="metal"/>
+	        <property name="forge_category" value="iron"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="metal"/>
+	        <property name="stability_glue" value="300"/>
+	        <property name="Mass" type="int" value="20"/>
+	        <property name="explosionresistance" value="1.3"/>
+	        <property name="MaxDamage" value="1000"/>
+	        <property name="Experience" value="1"/>
+        </material>
+		
 		<material id="Mflagstone_shapes">
 	        <property name="damage_category" value="stone"/>
 	        <property name="surface_category" value="stone"/>
@@ -56,7 +82,7 @@
 	        <property name="stepsound" value="stone"/>
 	        <property name="stability_glue" value="120"/>
 	        <property name="Mass" type="int" value="10"/>
-	        <property name="MaxDamage" value="800"/>
+	        <property name="MaxDamage" value="1200"/>
 	        <property name="Experience" value="2"/>
         </material>
 		
@@ -68,7 +94,7 @@
 	        <property name="stepsound" value="stone"/>
 	        <property name="stability_glue" value="120"/>
 	        <property name="Mass" type="int" value="10"/>
-	        <property name="MaxDamage" value="1100"/>
+	        <property name="MaxDamage" value="1400"/>
 	        <property name="Experience" value="2"/>
         </material>
 		
@@ -80,7 +106,33 @@
 	        <property name="stepsound" value="stone"/>
 	        <property name="stability_glue" value="120"/>
 	        <property name="Mass" type="int" value="10"/>
+	        <property name="MaxDamage" value="1800"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="Mpouredconcrete_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="explosionresistance" value="1.0"/>
 	        <property name="MaxDamage" value="1500"/>
+	        <property name="Experience" value="2"/>
+        </material>
+		
+		<material id="MpouredCN_shapes">
+	        <property name="damage_category" value="stone"/>
+	        <property name="surface_category" value="stone"/>
+	        <property name="forge_category" value="stone"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="stone"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="explosionresistance" value="1.0"/>
+	        <property name="MaxDamage" value="2000"/>
 	        <property name="Experience" value="2"/>
         </material>
 		
@@ -92,7 +144,7 @@
 	        <property name="stepsound" value="stone"/>
 	        <property name="stability_glue" value="120"/>
 	        <property name="Mass" type="int" value="10"/>
-	        <property name="explosionresistance" value="1.2"/>
+	        <property name="explosionresistance" value="1.0"/>
 	        <property name="MaxDamage" value="2500"/>
 	        <property name="Experience" value="4"/>
         </material>
@@ -105,9 +157,34 @@
 	        <property name="stepsound" value="stone"/>
 	        <property name="stability_glue" value="120"/>
 	        <property name="Mass" type="int" value="10"/>
-	        <property name="explosionresistance" value="1.8"/>
+	        <property name="explosionresistance" value="1.2"/>
 	        <property name="MaxDamage" value="6000"/>
 	        <property name="Experience" value="4"/>
+        </material>
+		
+		<material id="Mstainless_shapes">
+	        <property name="damage_category" value="metal"/>
+	        <property name="surface_category" value="metal"/>
+	        <property name="forge_category" value="iron"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="metal"/>
+	        <property name="stability_glue" value="300"/>
+	        <property name="Mass" type="int" value="20"/>
+	        <property name="explosionresistance" value="2.0"/>
+	        <property name="MaxDamage" value="26000"/>
+	        <property name="Experience" value="6"/>
+        </material>
+		
+		<material id="MrebarI_shapes">
+	        <property name="damage_category" value="metal"/>
+	        <property name="surface_category" value="metal"/>
+	        <property name="forge_category" value="iron"/>
+	        <property name="Hardness" type="float" value="1"/>
+	        <property name="stepsound" value="metal"/>
+	        <property name="stability_glue" value="120"/>
+	        <property name="Mass" type="int" value="10"/>
+	        <property name="MaxDamage" value="100"/>
+	        <property name="Experience" value="0"/>
         </material>
 		
 		<material id="MresourceHubcap">

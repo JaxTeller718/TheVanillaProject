@@ -1,0 +1,202 @@
+<!--
+Sam's Building Stuff
+v20.0.0
+by saminal
+
+blocks.xml
+-->
+
+<configs>
+
+	<!-- SJ: Change Iron Bars to upgrade to custom steel bars, not vanilla concrete ones -->
+	<set xpath="/blocks/block[@name='ironBarsCentered']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">steelBarsCentered</set>
+	<set xpath="/blocks/block[@name='ironBarsCentered']/property[@class='UpgradeBlock']/property[@name='Item']/@value">resourceForgedSteel</set>
+	
+	<set xpath="/blocks/block[@name='ironBars']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">steelBars</set>
+	<set xpath="/blocks/block[@name='ironBars']/property[@class='UpgradeBlock']/property[@name='Item']/@value">resourceForgedSteel</set>
+
+	<set xpath="/blocks/block[@name='ironBarsCNR']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">steelBarsCNR</set>
+	<set xpath="/blocks/block[@name='ironBarsCNR']/property[@class='UpgradeBlock']/property[@name='Item']/@value">resourceForgedSteel</set>
+
+	<append xpath="/blocks/block[@name='trapSpikesIronDmg0']">
+		<property class="UpgradeBlock">
+			<property name="ToBlock" value="trapSpikesSteelDmg0"/>
+			<property name="Item" value="resourceForgedSteel"/>
+			<property name="ItemCount" value="10"/>
+			<property name="UpgradeHitCount" value="4"/>
+		</property>
+	</append>
+		
+	<append xpath="/blocks">
+		<block name="woodBarsCentered">
+			<property name="CustomIcon" value="ironBarsCentered"/>
+			<property name="CustomIconTint" value="C4A484"/>
+			<property name="DisplayType" value="blockHardened"/>
+			<property name="Material" value="Mwood_regular"/>
+			<property name="MaxDamage" value="300"/>
+			<property name="Shape" value="New"/>
+			<property name="LightOpacity" value="0"/>
+			<property name="Model" value="iron_bars_centered"/>
+			<property name="Texture" value="84"/>
+			<property name="UseGlobalUV" value="Local"/>
+			<property name="ImposterExcludeAndStop" value="true"/>
+			<property name="Place" value="TowardsPlacer"/>
+			<property name="AllowAllRotations" value="true"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="ironBarsCentered"/>
+				<property name="Item" value="resourceForgedIron"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="Collide" value="movement,melee,rocket"/> <!-- -rocket -->
+			<property class="RepairItems"> <property name="resourceWood" value="3"/> </property>
+			<drop event="Harvest" name="resourceWood" count="2" tag="allHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="terrDestroyedWoodDebris" count="1" prob="0.75" stick_chance="1"/>
+			<property name="Group" value="Building,advBuilding"/>
+			<property name="EconomicValue" value="10"/>
+			<property name="DescriptionKey" value="woodBarsDesc"/>
+			<property name="FilterTags" value="MC_building,SC_windows"/>
+			<property name="SortOrder1" value="7060"/>
+			<property name="SortOrder2" value="0061"/> <!-- SortDoors -->
+		</block>
+
+		<block name="woodBars">
+			<property name="Extends" value="woodBarsCentered"/>
+			<property name="CustomIcon" value="ironBarsCentered"/>
+			<property name="CustomIconTint" value="C4A484"/>
+			<property name="Model" value="iron_bars"/>
+			<property name="Place" value="TowardsPlacerInverted"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="ironBars"/>
+				<property name="Item" value="resourceForgedIron"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="SortOrder2" value="0060"/> <!-- SortDoors -->
+		</block>
+		
+		<block name="woodBarsCNR">
+			<property name="Extends" value="woodBarsCentered"/>
+			<property name="CustomIcon" value="ironBarsCNR"/>
+			<property name="CustomIconTint" value="C4A484"/>
+			<property name="Model" value="iron_bars_corner"/>
+			<property name="Place" value="TowardsPlacerInverted"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="ironBarsCNR"/>
+				<property name="Item" value="resourceForgedIron"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="SortOrder2" value="0060"/> <!-- SortDoors -->
+		</block>
+
+		<block name="steelBarsCentered">
+			<property name="CustomIcon" value="ironBarsCentered"/>
+			<property name="CustomIconTint" value="ccccff"/>
+			<property name="DisplayType" value="blockHardened"/>
+			<property name="Material" value="Msteel"/>
+			<property name="Shape" value="New"/>
+			<property name="LightOpacity" value="0"/>
+			<property name="Model" value="iron_bars_centered"/>
+			<property name="Texture" value="191"/>
+			<property name="UseGlobalUV" value="Local"/>
+			<property name="ImposterExcludeAndStop" value="true"/>
+			<property name="Place" value="TowardsPlacer"/>
+			<property name="AllowAllRotations" value="true"/>
+			<property name="Collide" value="movement,melee,rocket"/> <!-- -rocket -->
+			<property class="RepairItems"> <property name="resourceForgedSteel" value="10"/> </property>
+			<drop event="Harvest" name="resourceScrapIron" count="32" tag="allHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="Group" value="Building,advBuilding"/>
+			<property name="EconomicValue" value="10"/>
+			<property name="DescriptionKey" value="steelBarsDesc"/>
+			<property name="FilterTags" value="MC_building,SC_windows"/>
+			<property name="SortOrder1" value="7060"/>
+			<property name="SortOrder2" value="0061"/> <!-- SortDoors -->
+		</block>
+
+		<block name="steelBars">
+			<property name="Extends" value="steelBarsCentered"/>
+			<property name="CustomIcon" value="ironBarsCentered"/>
+			<property name="CustomIconTint" value="ccccff"/>
+			<property name="Model" value="iron_bars"/>
+			<property name="Place" value="TowardsPlacerInverted"/>
+			<property name="SortOrder2" value="0060"/> <!-- SortDoors -->
+		</block>
+		
+		<block name="steelBarsCNR">
+			<property name="Extends" value="steelBarsCentered"/>
+			<property name="CustomIcon" value="ironBarsCNR"/>
+			<property name="CustomIconTint" value="ccccff"/>
+			<property name="Model" value="iron_bars_corner"/>
+			<property name="Place" value="TowardsPlacerInverted"/>
+			<property name="SortOrder2" value="0060"/> <!-- SortDoors -->
+		</block>
+		
+		<block name="trapSpikesScrapSteelMaster">
+			<!-- <property name="DisplayInfo" value="Name"/> -->
+			<property name="CreativeMode" value="None"/>
+			<property name="Class" value="TrunkTip"/>
+			<property name="BlockTag" value="Spike"/>
+			<property name="Damage" value="66"/>
+			<property name="Damage_received" value="66"/>
+			<property name="Material" value="MtrapSpikesSteel"/>
+			<property name="DisplayType" value="blockHardened"/>
+			<property name="MaxDamage" value="264"/>
+			<property name="Shape" value="ModelEntity"/>
+    		<property name="Model" value="Entities/traps/ironSpikesTrapPrefab"/>
+			<property name="Texture" value="191"/>
+			<property name="IsTerrainDecoration" value="false"/>
+			<property name="ImposterExclude" value="true"/>
+			<property name="Collide" value="movement,melee"/>
+			<property name="LightOpacity" value="6"/>
+			<property name="Path" value="solid"/>
+			<!-- <property name="BuffsWhenWalkedOn" value="trapDamageZombie"/> -->
+			<property class="RepairItems"> <property name="resourceForgedSteel" value="2"/> </property>
+			<property name="CustomUpgradeSound" value="place_block_metal"/>
+			<drop event="Destroy" name="resourceScrapIron" count="10,20"/>
+			<drop event="Fall" count="0"/>
+			<property name="Group" value="Tools/Traps"/>
+			<property name="DescriptionKey" value="trapSpikesGroupDesc"/>
+			<property name="EconomicValue" value="60"/>
+			<property name="EconomicBundleSize" value="20"/>
+			<property name="FilterTags" value="MC_building,SC_traps"/>
+			<property name="SortOrder1" value="70g1"/>
+		</block>
+
+		<block name="trapSpikesSteelDmg2">
+			<property name="Extends" value="trapSpikesScrapSteelMaster"/>
+			<property name="CreativeMode" value="None"/>
+			<property name="Model" value="Entities/traps/ironSpikesTrap2BloodPrefab"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="trapSpikesSteelDmg0"/>
+				<property name="Item" value="resourceForgedSteel"/>
+				<property name="ItemCount" value="1"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+		</block>
+
+		<block name="trapSpikesSteelDmg1">
+			<property name="Extends" value="trapSpikesScrapSteelMaster"/>
+			<property name="CreativeMode" value="None"/>
+			<property name="Model" value="Entities/traps/ironSpikesTrap1BloodPrefab"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="trapSpikesSteelDmg0"/>
+				<property name="Item" value="resourceForgedSteel"/>
+				<property name="ItemCount" value="1"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="DowngradeBlock" value="trapSpikesSteelDmg2"/>
+		</block>
+
+		<block name="trapSpikesSteelDmg0">
+			<property name="Extends" value="trapSpikesScrapSteelMaster"/>
+			<property name="CustomIcon" value="trapSpikesScrapIronMaster"/>
+			<property name="CustomIconTint" value="ccccff"/>
+			<property name="DowngradeBlock" value="trapSpikesSteelDmg1"/>
+		</block>
+
+	</append>
+</configs>

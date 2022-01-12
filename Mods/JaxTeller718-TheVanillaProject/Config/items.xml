@@ -199,6 +199,12 @@
 		<property name="Create_item" value="ammoBlunderbuss"/>
 	</property>
 </item>
+	</append>
+	
+	<set xpath="/items/item[@name='bucketEmpty']/property[@name='Stacknumber']/@value">100</set>
+	<set xpath="/items/item[@name='bucketRiverWater']/property[@name='Stacknumber']/@value">100</set>
+	
+    <append xpath="/items">
 	
 	    <item name="resourceBricks">
 	        <property name="Extends" value="resourceRockSmall"/>
@@ -230,6 +236,39 @@
 			    <display_value name="dCraftingTime" value=".5"/>
 	        </effect_group>
 	    </item>
+		
+		<item name="resourceSteelPolishH">
+	        <property name="CreativeMode" value="Player"/>
+	        <property name="HoldType" value="45"/>
+	        <property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+	        <property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	        <property name="Material" value="Msteel"/>
+			<property name="CustomIcon" value="SteelPolishH"/>
+	        <property name="DescriptionKey" value="SteelPolishHDesc"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Weight" value="0"/>
+	        <property name="Stacknumber" value="500"/>
+	        <property name="EconomicValue" value="260"/>
+	        <property name="Group" value="Resources"/>
+        </item>
+		
+		<item name="resourceAcceleratorConcrete">
+	        <property name="CreativeMode" value="Player"/>
+	        <property name="HoldType" value="45"/>
+	        <property name="Meshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+	        <property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+	        <property name="Material" value="MresourceAcid"/>
+			<property name="CustomIcon" value="AcceleratorC"/>
+	        <property name="DescriptionKey" value="AcceleratorConcreteDesc"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Weight" value="0"/>
+	        <property name="Stacknumber" value="500"/>
+	        <property name="EconomicValue" value="200"/>
+	        <property name="Group" value="Resources"/>
+        </item>
+		
+	</append>
+    <append xpath="/items">
 		
 	    <item name="toolCementMold">
 	        <property name="HoldType" value="45"/>
@@ -2765,11 +2804,11 @@
 		</effect_group>
 	</append>
 	
-	<append xpath="/items/item[@name='meleeToolRepairT1ClawHammer']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceNail,resourceBricks</append>
-	<append xpath="/items/item[@name='meleeToolRepairT0StoneAxe']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceNail,resourceBricks</append>
-	<append xpath="/items/item[@name='meleeToolRepairT3Nailgun']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceBricks</append>
-	
-	
+
+	<set xpath="/items/item[@name='meleeToolRepairT1ClawHammer']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">resourceWood,resourceClayLump,resourceSnowBall,resourceScrapIron,resourceForgedIron,resourceConcreteMix,resourceCobblestones,ironDoor1_v1,vaultDoor01,scrapHatch_v1,vaultHatch_v1,cellarDoorDoubleIron,cellarDoorDoubleSteel,shuttersIronBlockVariantHelper,shuttersSteelBlockVariantHelper,resourceYuccaFibers,resourceCloth,resourceScrapPolymers,resourceNail,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceBricks</set>
+	<set xpath="/items/item[@name='meleeToolRepairT3Nailgun']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">resourceWood,resourceClayLump,resourceSnowBall,resourceScrapIron,resourceForgedIron,resourceForgedSteel,resourceConcreteMix,resourceCobblestones,ironDoor1_v1,vaultDoor01,scrapHatch_v1,vaultHatch_v1,cellarDoorDoubleIron,cellarDoorDoubleSteel,shuttersIronBlockVariantHelper,shuttersSteelBlockVariantHelper,resourceYuccaFibers,resourceCloth,resourceScrapPolymers,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceNail,resourceBricks,resourceSteelPolishH</set>
+	<set xpath="/items/item[@name='meleeToolRepairT0StoneAxe']/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value">resourceWood,resourceClayLump,resourceSnowBall,resourceScrapIron,resourceForgedIron,resourceCobblestones,ironDoor1_v1,vaultDoor01,scrapHatch_v1,vaultHatch_v1,cellarDoorDoubleIron,cellarDoorDoubleSteel,shuttersIronBlockVariantHelper,shuttersSteelBlockVariantHelper,resourceYuccaFibers,resourceCloth,resourceScrapPolymers,resourceAnimalHideJT,resourceLeatherStripsJT,resourceWoodLogJT,resourceStickJT,resourceWoodPlanksJT,resourceBricks</set>
+		
    <append xpath="/items/item[@name='drinkCanEmpty']">
        
         <property class="Action1">

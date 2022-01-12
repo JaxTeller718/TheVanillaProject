@@ -58,15 +58,7 @@
 	        <ingredient name="drinkCanRiverWater" count="1"/>
         </recipe>
 	
-	    <recipe name="resourceEmptyMold" count="1" craft_time="6">
-	        <ingredient name="resourceClayLump" count="6"/>
-	        <ingredient name="drinkJarBoiledWater" count="1"/>
-        </recipe>
-		
-		<recipe name="toolBrickMold" count="1" craft_time="12">
-	        <ingredient name="resourceEmptyMold" count="1"/>
-	        <ingredient name="resourceBricks" count="1"/>
-        </recipe>
+
 	
 		<recipe name="toolCementMold" count="1" craft_time="12">
 	        <ingredient name="resourceEmptyMold" count="1"/>
@@ -97,6 +89,95 @@
 			<ingredient name="resourceEmptyMold" count="1"/>
 			<ingredient name="drinkJarEmpty" count="1"/>
 		</recipe>
+	</append>
+	
+   <append xpath="/recipes">
+	
+	    <recipe name="resourceEmptyMold" count="1" craft_time="6">
+	        <ingredient name="resourceClayLump" count="6"/>
+	        <ingredient name="drinkJarBoiledWater" count="1"/>
+        </recipe>
+		
+		<recipe name="toolBrickMold" count="1" craft_time="12">
+	        <ingredient name="resourceEmptyMold" count="1"/>
+	        <ingredient name="resourceBricks" count="1"/>
+        </recipe>
+	
+	    <recipe name="resourceBricks" count="1" material_based="true" craft_time="10" craft_area="forge" craft_tool="toolBrickMold">
+	        <ingredient name="unit_clay" count="12"/>
+        </recipe>
+		
+		<recipe name="woodReinforcedShapes:VariantHelper" count="1">
+	        <ingredient name="resourceWood" count="10"/>
+        </recipe>
+		
+		<recipe name="woodReinforcedMetalShapes:VariantHelper" count="1">
+		    <ingredient name="resourceWood" count="10"/>
+	        <ingredient name="resourceScrapIron" count="10"/>
+        </recipe>
+		
+		<recipe name="rebarFrameIShapes:VariantHelper" count="1">
+	        <ingredient name="resourceScrapIron" count="10"/>
+        </recipe>
+		
+		<recipe name="scrapIronShapes:VariantHelper" count="1">
+	        <ingredient name="resourceScrapIron" count="10"/>
+        </recipe>
+		
+		<recipe name="scrapIronRShapes:VariantHelper" count="1">
+	        <ingredient name="resourceScrapIron" count="10"/>
+        </recipe>
+		
+		<recipe name="FlagstoneShapes:VariantHelper" count="1">
+	        <ingredient name="resourceCobblestones" count="10"/>
+        </recipe>
+		
+		<recipe name="brickShapes:VariantHelper" count="1">
+	        <ingredient name="resourceBricks" count="10"/>
+        </recipe>
+		
+		<recipe name="pouredConcreteShapes:VariantHelper" count="1" craft_area="cementMixer" tags="cementMixerCrafting">
+	        <ingredient name="resourceConcreteMix" count="10"/>
+        </recipe>
+		
+		<recipe name="pouredConcreteNShapes:VariantHelper" count="1" craft_area="cementMixer" tags="cementMixerCrafting">
+	        <ingredient name="resourceConcreteMix" count="10"/>
+        </recipe>
+		
+		<recipe name="concreteReinforcedShapes:VariantHelper" count="1" craft_area="workbench" tags="workbenchCrafting">
+	        <ingredient name="resourceConcreteMix" count="10"/>
+			<ingredient name="rebarFrameIShapes:VariantHelper" count="1"/>
+        </recipe>
+		
+		<recipe name="stainlessSteelShapes:VariantHelper" count="1" craft_area="workbench" tags="workbenchCrafting">
+	        <ingredient name="resourceForgedSteel" count="10"/>
+			<ingredient name="resourceSteelPolishH" count="2"/>
+        </recipe>
+		
+		<recipe name="resourceSteelPolishH" count="10" craft_area="chemistryStation" craft_time="10" tags="learnable,chemStationCrafting">
+	        <ingredient name="resourceOil" count="1"/>
+	        <ingredient name="resourceAnimalFat" count="1"/>
+			<ingredient name="resourceScrapPolymers" count="6"/>
+        </recipe>
+		
+		<recipe name="resourceAcceleratorConcrete" count="10" craft_area="chemistryStation" craft_time="10" tags="learnable,chemStationCrafting">
+	        <ingredient name="resourceAcid" count="1"/>
+	        <ingredient name="resourceOil" count="1"/>
+			<ingredient name="resourceScrapPolymers" count="6"/>
+        </recipe>
+		
+	</append>
+    
+	<remove xpath="/recipes/recipe[@name='resourceConcreteMix']"/>
+	<append xpath="/recipes">
+	    <recipe name="resourceConcreteMix" count="20" craft_area="cementMixer" tags="cementMixerCrafting">
+	        <ingredient name="resourceCrushedSand" count="10"/>
+	        <ingredient name="resourceRockSmall" count="10"/>
+	        <ingredient name="resourceCement" count="10"/>
+			<ingredient name="bucketRiverWater" count="1"/>
+			<ingredient name="resourceAcceleratorConcrete" count="1"/>
+        </recipe>  
+	</append>
 
 	<setattribute xpath="/recipes/recipe[@name='drinkJarEmpty']" name="craft_tool">toolEmptyJarMold</setattribute>
 	<setattribute xpath="/recipes/recipe[@name='resourceMetalPipe' and @craft_area='forge']" name="craft_tool">toolPipeMold</setattribute>
@@ -106,9 +187,8 @@
 	<setattribute xpath="/recipes/recipe[@name='resourceCement']" name="craft_tool">toolCementMold</setattribute>
 
 		
-	    <recipe name="resourceBricks" count="1" material_based="true" craft_time="10" craft_area="forge" craft_tool="toolBrickMold">
-	        <ingredient name="unit_clay" count="12"/>
-        </recipe>
+
+	<append xpath="/recipes">
 		
 		<recipe name="mineCandyTin" count="1" craft_area="workbench">
 			<!-- trap size 1 -->

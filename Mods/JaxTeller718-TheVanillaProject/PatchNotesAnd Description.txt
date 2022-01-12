@@ -200,6 +200,10 @@ v1.8
 
 -Added Spheres New Cave System and Updated Spherecore. New maps reuired for new caves
 
+-Updated Goukis Building
+
+-Updated Spherecore
+
 
 
 
