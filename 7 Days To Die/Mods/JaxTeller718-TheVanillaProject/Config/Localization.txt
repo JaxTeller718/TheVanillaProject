@@ -155,30 +155,10 @@ steelLogSpike6,blocks,Trap,Steel Log Spike 6
 woodLogSpike1,blocks,Trap,Wood Log Spike
 woodLogSpike1Desc,blocks,Trap,"Log spike traps can damage, cripple, even kill enemies and last longer than spike traps. Place them using the secondary action. (Upgradable)"
 
-meleeToolFarmT2IronHoe,items,item,Advanced Iron Hoe
+meleeToolFarmT2IronHoe,items,item,Iron Hoe
 meleeToolFarmT2IronHoeDesc,items,item,Indispensable tool for plowing the farmland.
-meleeToolFarmT2IronHoeSchematic,items,item,Advanced Iron Hoe schematic
+meleeToolFarmT2IronHoeSchematic,items,item,Iron Hoe Schematic
 
-buffAverageFoodDesc,buffs,Buff,You have consumed some average quality food. Your health will slowly regenerate while this buff is active.,,,,
-buffAverageFoodName,buffs,Buff,Average Quality Food,,,,
-buffAverageFoodTooltip,buffs,Buff,Not a bad quality meal.,,,,
-buffGoodFoodDesc,buffs,Buff,You have consumed some good quality food. Your health will regenerate while this buff is active.,,,,
-buffGoodFoodName,buffs,Buff,Good Quality Food,,,,
-buffGoodFoodTooltip,buffs,Buff,That was a pretty good meal.,,,,
-buffAverageDrinkDesc,buffs,Buff,You have consumed an average quality drink. Your maximum health will slowly regenerate while this buff is active.,,,,
-buffAverageDrinkName,buffs,Buff,Average Quality Drink,,,,
-buffAverageDrinkTooltip,buffs,Buff,Not a bad drink.,,,,
-buffGoodDrinkDesc,buffs,Buff,You have consumed a good quality drink. Your maximum health will regenerate while this buff is active.,,,,
-buffGoodDrinkName,buffs,Buff,Good Quality Drink,,,,
-buffGoodDrinkTooltip,buffs,Buff,That was a pretty good drink.,,,,
-statWellness,UI,Item stat,Wellness,,,,
-buffLegBrokenDesc,buffs,Buff,Your broken leg is slowing you down. A cast will speed up healing. Jumping or sprinting will delay healing or even hurt you. Your wellness has been permanently reduced by 5.,,,,
-buffArmBrokenDesc,buffs,Buff,"Your arm is broken, slowing your weapon handling, reload speed and swing speeds. A cast will speed up healing. Ranged or power attacks will delay healing or even hurt you. Your wellness has been permanently reduced by 5.",,,,
-buffInjuryAbrasionDesc,buffs,Buff,"Bumps and bruises are the most common type of injury and heal over time. Perks or medical items like Aloe Cream, First Aid Bandages or First Aid Kits increase the healing speed. Your wellness has been permanently reduced by 3.",,,,
-buffInjuryConcussionDesc,buffs,Buff,You have suffered a concussion and all attributes are lowered by 1. Use painkillers to cure this. Your wellness has been permanently reduced by 5.,,,,
-buffLacerationDesc,buffs,Buff,A deep laceration can only be properly treated with a First Aid Kit or Sewing Kit but a simple bandage will stop the bleeding. Your wellness has been permanently reduced by 5.,,,,
-buffFatiguedDesc,buffs,Buff,You are fatigued and take 10% more damage from all attacks. Eat vitamins to cure this. Your wellness has been permanently reduced by 3.,,,,
-tutorialTipQuest02,"You're now playing with the Wellness system. Your maximum health and Stamina will match what your Wellness is. It decreases with death, and increases with good quality food & drink. There is a limit on how quickly you can increase Wellness, and you cannot increase it while the buffs 'Good or Average quality Drink or Food' are active. Enjoy."
 terrStoneJT,blocks,Terrain,Stone
 toolBulletCasingMold,items,Item,Bullet Casing Mold,,,,,
 toolBulletTipMold,items,Item,Bullet Tip Mold,,,,,

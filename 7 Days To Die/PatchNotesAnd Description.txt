@@ -212,7 +212,9 @@ v1.8
 
 -Added Wood Log Spikes and Spikes
 
+-Changed Color and Wording of Iron Hoe
 
+-Removed Wellness
 
 
 This mod will be updated with more removed vanilla features in the future. If there is anything you think that should be returned from older alphas feel free to comment below and all feedback is welcome.
