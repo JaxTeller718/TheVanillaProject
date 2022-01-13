@@ -204,6 +204,14 @@ v1.8
 
 -Updated Spherecore
 
+-Added Opening Logos and BepinEx
+
+-Added Steel Bars and Wood Bars
+
+-Added Window Recipes
+
+-Added Wood Log Spikes and Spikes
+
 
 
 

@@ -807,7 +807,7 @@ public static class EntityUtilities
         return leader;
     }
 
-    public static void Respawn(int leaderID)
+    public static void Respawn(int leaderID, RespawnType _respawnReason)
     {
         var leader = GameManager.Instance.World.GetEntity(leaderID) as EntityPlayer;
         if (leader == null) return;
@@ -826,10 +826,14 @@ public static class EntityUtilities
                         continue;
                     }
 
-                    // Set the position, then re-set it after the validateTeleport gets done, as there's a delay.
-                    entity.SetPosition(leader.position);
-                    entity.StartCoroutine(entity.validateTeleport());
-                    
+                    bool canRespawn = entity.Buffs.HasCustomVar("respawn");
+                    if (_respawnReason == RespawnType.Died && !canRespawn)
+                    {
+                        continue;
+                    }
+                    entity.TeleportToPlayer(leader);
+
+
                 }
                 else // Clean up the invalid entries
                 {
@@ -874,7 +878,10 @@ public static class EntityUtilities
         var myEntity = GameManager.Instance.World.GetEntity(EntityID) as EntityAliveSDX;
         var leaderEntity = GameManager.Instance.World.GetEntity(LeaderID) as EntityAlive;
         if (myEntity != null && leaderEntity != null)
+        {
             myEntity.Buffs.SetCustomVar("Owner", LeaderID);
+            leaderEntity.Buffs.SetCustomVar("EntityID", LeaderID);
+        }
     }
 
     public static void SetLeaderAndOwner(int EntityID, int LeaderID)
@@ -938,9 +945,25 @@ public static class EntityUtilities
         var myEntity = GameManager.Instance.World.GetEntity(EntityID) as EntityAlive;
         if (myEntity)
         {
-            DisplayLog(" Setting Current Order: " + order);
-            myEntity.Buffs.SetCustomVar("PreviousOrder", (float)GetCurrentOrder(EntityID), false);
-            myEntity.Buffs.SetCustomVar("CurrentOrder", (float)order, false);
+            switch(order)
+            {
+                case Orders.Follow:
+                    myEntity.Buffs.AddBuff("buffOrderFollow");
+                    break;
+                case Orders.Stay:
+                    myEntity.Buffs.AddBuff("buffOrderStay");
+                    break;
+
+                case Orders.Loot:
+                    myEntity.Buffs.AddBuff("buffOrderLoot");
+                    break;
+
+                case Orders.Patrol:
+                    myEntity.Buffs.AddBuff("buffOrderPatrol");
+                    break;
+
+
+            }
         }
     }
 
