@@ -32,27 +32,30 @@ public static class EntityTargetingUtilities
         if (IsAllyOfLeader(myLeader, target))
             return CanDamageAlly(self, target);
 
-        // If you are a player, don't damage your followers, or the followers of unkillable players
-        // (as defined by the "Player Killing" setting). Everyone else is on the table.
+        // If two players are involved (directly or as leaders), determine whether they or their
+        // followers can damage each other from the "Player Killing" setting.
+        var selfPlayer = GetPlayerLeader(self, myLeader);
+        var targetPlayer = GetPlayerLeader(target);
+        if (selfPlayer != null && targetPlayer != null)
+        {
+            // FriendlyFireCheck returns true if the players can damage each other
+            return selfPlayer.FriendlyFireCheck(targetPlayer);
+        }
+
+        // If you are a player, don't damage your followers. Everyone else is on the table.
         if (self is EntityPlayer)
         {
-            if (IsAlly(target, self))
-                return CanDamageAlly(target, self);
-
-            return !IsPlayerFriendlyFire(target, self);
+            return IsAlly(target, self) ? CanDamageAlly(target, self) : true;
         }
 
         // You can always damage your revenge target, even if it's a player (since they hit first).
         if (IsCurrentRevengeTarget(self, target))
             return true;
 
-        // Otherwise, if the target is a player, you can only damage them if your player leader can
-        // kill them, or if you or your (not necessarily player) leader hate them.
+        // Otherwise, if the target is a player, you can only damage them if you or your
+        // (not necessarily player) leader hate them.
         if (target is EntityPlayer)
         {
-            if (IsPlayerFriendlyFire(self, target))
-                return false;
-
             return myLeader == null
                 ? IsEnemyByFaction(self, target)
                 : IsEnemyByFaction(myLeader, target);
@@ -208,8 +211,10 @@ public static class EntityTargetingUtilities
 
     /// <summary>
     /// Tests to see if the target entity is a friend. A "friend" is defined as yourself,
-    /// your leader, allies (those who share a leader), and entities in "loved" factions
-    /// (including members of your own faction, if not overridden by your leader).
+    /// your leader, allies (those who share a leader), entities in "loved" factions
+    /// (including members of your own faction, if not overridden by your leader),
+    /// players who are immune to friendly fire from you or your leader, and the followers
+    /// of those players.
     /// </summary>
     /// <param name="self"></param>
     /// <param name="target"></param>
@@ -232,8 +237,15 @@ public static class EntityTargetingUtilities
         if (IsAllyOfLeader(myLeader, target) || IsAlly(target, self))
             return true;
 
-        if (IsPlayerFriendlyFire(self, target))
-            return true;
+        // If two players are involved (directly or as leaders), determine whether they and their
+        // followers are freinds from the "Player Killing" setting.
+        var selfPlayer = GetPlayerLeader(self, myLeader);
+        var targetPlayer = GetPlayerLeader(target);
+        if (selfPlayer != null && targetPlayer != null)
+        {
+            // FriendlyFireCheck returns true if the players can damage each other
+            return !selfPlayer.FriendlyFireCheck(targetPlayer);
+        }
 
         // Don't consider revenge targets to be our friends.
         if (IsCurrentRevengeTarget(self, target))
@@ -245,45 +257,8 @@ public static class EntityTargetingUtilities
 
         // They are a friend if we love them, or our leader loves them.
         return myLeader == null
-            ? IsEnemyByFaction(self, target)
-            : IsEnemyByFaction(myLeader, target);
-    }
-
-    /// <summary>
-    /// <para>
-    /// Determines if attacking the target would constitute player friendly fire,
-    /// as defined by the "Player Killing" setting in the "Multiplayer" tab.
-    /// </para>
-    /// <para>
-    /// It handles cases where you or the target are players, or have leaders who are players.
-    /// If no players are involved, it returns false.
-    /// </para>
-    /// </summary>
-    /// <param name="self"></param>
-    /// <param name="target"></param>
-    /// <returns></returns>
-    public static bool IsPlayerFriendlyFire(Entity self, Entity target)
-    {
-        EntityPlayer player = null;
-        EntityAlive other = target as EntityAlive;
-
-        if (self is EntityPlayer us)
-        {
-            player = us;
-        }
-        else if (EntityUtilities.GetLeaderOrOwner(self.entityId) is EntityPlayer ourLeader)
-        {
-            player = ourLeader;
-        }
-
-        if (EntityUtilities.GetLeaderOrOwner(target.entityId) is EntityPlayer theirLeader)
-        {
-            other = theirLeader;
-        }
-
-        return player != null
-            // FriendlyFireCheck returns true if it _fails_ the friendly fire check
-            && !player.FriendlyFireCheck(other);
+            ? IsFriendlyFireByFaction(self, target)
+            : IsFriendlyFireByFaction(myLeader, target);
     }
 
     /// <summary>
@@ -354,6 +329,34 @@ public static class EntityTargetingUtilities
         // In the future, we may do something different according to the "Player Killing" setting
         // in the "Multiplayer" tab.
         return IsAlly(self, target);
+    }
+
+    /// <summary>
+    /// Private helper method to get a player who is either yourself or your leader.
+    /// Will return null if neither yourself nor your leader (if any) is a player.
+    /// </summary>
+    /// <param name="self"></param>
+    /// <returns></returns>
+    private static EntityPlayer GetPlayerLeader(Entity self)
+    {
+        return GetPlayerLeader(self, EntityUtilities.GetLeaderOrOwner(self.entityId));
+    }
+
+    /// <summary>
+    /// Private helper method to get a player who is either yourself or your leader.
+    /// Will return null if neither yourself nor your leader is a player.
+    /// This method should be used when you already have an object representing your leader,
+    /// as it avoids a call to GetLeaderOrOwner.
+    /// </summary>
+    /// <param name="self"></param>
+    /// <param name="leader"></param>
+    /// <returns></returns>
+    private static EntityPlayer GetPlayerLeader(Entity self, Entity leader)
+    {
+        if (self is EntityPlayer playerSelf)
+            return playerSelf;
+
+        return leader as EntityPlayer;
     }
 
     /// <summary>
