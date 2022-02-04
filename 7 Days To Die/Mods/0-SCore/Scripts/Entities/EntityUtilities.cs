@@ -32,7 +32,8 @@ public static class EntityUtilities
         Patrol = 5,
         Hire = 6,
         Loot = 7,
-        Task = 8
+        Task = 8,
+        Guard  = 9
     }
 
 
@@ -620,6 +621,18 @@ public static class EntityUtilities
         return false;
     }
 
+    public static string GetPropertyValues(int EntityID, string Property)
+    {
+        var myEntity = GameManager.Instance.World.GetEntity(EntityID) as EntityAlive;
+        if (myEntity == null)
+            return String.Empty;
+
+        var entityClass = EntityClass.list[myEntity.entityClass];
+        if (entityClass.Properties.Values.ContainsKey(Property))
+            return entityClass.Properties.Values[Property];
+        
+        return String.Empty;
+    }
 
     public static void ProcessConsumables(int EntityID)
     {
@@ -674,6 +687,11 @@ public static class EntityUtilities
                 // Add the stack of currency to the NPC, and set its orders.
                 //myEntity.bag.AddItem(stack);
                 SetLeaderAndOwner(EntityID, _player.entityId);
+
+                // If we're going to hire them, they need to wake up.
+                if (myEntity.IsSleeping)
+                    myEntity.ConditionalTriggerSleeperWakeUp();
+                
                 return true;
             }
 
@@ -693,13 +711,17 @@ public static class EntityUtilities
         {
             if (currentEntity.Buffs.HasCustomVar("Leader"))
             {
-                leader = GameManager.Instance.World.GetEntity((int)currentEntity.Buffs.GetCustomVar("Leader"));
+                int leaderId = (int)currentEntity.Buffs.GetCustomVar("Leader");
+                // This is a guard against some code, somewhere, getting the cvar value without
+                // checking to see if it exists first. If so, the cvar exists with a value of 0.
+                if (leaderId > 0)
+                    leader = GameManager.Instance.World.GetEntity(leaderId);
 
                 // Something happened to our leader.
                 if (leader == null)
                 {
                     currentEntity.Buffs.RemoveCustomVar("Leader");
-                    leader = currentEntity;
+                    leader = null;
                 }
             }
         }
@@ -802,14 +824,58 @@ public static class EntityUtilities
         if (myEntity == null) return null;
 
         if (myEntity.Buffs.HasCustomVar("Owner"))
-            leader = GameManager.Instance.World.GetEntity((int)myEntity.Buffs.GetCustomVar("Owner"));
+        {
+            int leaderId = (int)myEntity.Buffs.GetCustomVar("Owner");
+            // This is a guard against some code, somewhere, getting the cvar value without
+            // checking to see if it exists first. If so, the cvar exists with a value of 0.
+            if (leaderId > 0)
+                leader = GameManager.Instance.World.GetEntity(leaderId);
+        }
 
         return leader;
     }
 
+    public static void CheckForDanglingHires(int leaderID)
+    {
+        var leader = GameManager.Instance.World.GetEntity(leaderID) as EntityAlive;
+        if (leader == null) return;
+
+        var totalHired = 0;
+        var totalCleared = 0;
+        var removeList = new List<string>();
+        foreach (var cvar in leader.Buffs.CVars)
+        {
+            if (cvar.Key.StartsWith("hired_"))
+            {
+                totalHired++; 
+                var entity = GameManager.Instance.World.GetEntity((int)cvar.Value) as EntityAlive;
+                if (entity == null)
+                {
+                    totalCleared++;
+                    removeList.Add(cvar.Key);
+                    continue;
+                }
+                var leader2 = EntityUtilities.GetLeaderOrOwner(entity.entityId);
+                if ( leader2 && leader2.entityId == leaderID)
+                {
+                    // Still hired.
+                    continue;
+                }
+                totalCleared++;
+                removeList.Add(cvar.Key);
+
+            }
+        }
+
+        foreach (var cvar in removeList)
+            leader.Buffs.CVars.Remove(cvar);
+
+        if (totalHired == totalCleared)
+            leader.Buffs.RemoveCustomVar("EntityID");
+    }
     public static void Despawn(int leaderID)
     {
-        var leader = GameManager.Instance.World.GetEntity(leaderID) as EntityPlayer;
+        var leader = GameManager.Instance.World.GetEntity(leaderID) as EntityAlive;
         if (leader == null) return;
 
         var removeList = new List<string>();
@@ -817,7 +883,7 @@ public static class EntityUtilities
         {
             if (cvar.Key.StartsWith("hired_"))
             {
-                var entity = GameManager.Instance.World.GetEntity((int)cvar.Value) as EntityAliveSDX;
+                var entity = GameManager.Instance.World.GetEntity((int)cvar.Value) as EntityAlive;
                 if (entity)
                 {
                     if (entity.IsDead()) // Are they dead? Don't teleport their dead bodies
@@ -826,7 +892,6 @@ public static class EntityUtilities
                         continue;
                     }
 
-                    Debug.Log($"Despawning Hired Entity {entity.EntityName}");
                     entity.ForceDespawn();
                 }
                 else // Clean up the invalid entries
@@ -844,32 +909,48 @@ public static class EntityUtilities
         var leader = GameManager.Instance.World.GetEntity(leaderID) as EntityPlayer;
         if (leader == null) return;
 
+        //for (int j = 0; j < leader.Companions.Count; j++)
+        //{
+        //    var companion = leader.Companions[j] as EntityAliveSDX;
+        //    if (companion != null)
+        //    {
+        //        bool canRespawn = companion.Buffs.HasCustomVar("respawn");
+        //        if (_respawnReason == RespawnType.Died && !canRespawn)
+        //        {
+        //            continue;
+        //        }
+
+        //        Log.Out($"Teleporting {companion.EntityName} ({companion.entityId})");
+        //        companion.TeleportToPlayer(leader, true);
+        //    }
+        //}
+
         var removeList = new List<string>();
-        foreach( var cvar in leader.Buffs.CVars)
+        foreach (var cvar in leader.Buffs.CVars)
         {
-            if ( cvar.Key.StartsWith("hired_"))
+            if (cvar.Key.StartsWith("hired_"))
             {
                 var entity = GameManager.Instance.World.GetEntity((int)cvar.Value) as EntityAliveSDX;
-                if ( entity)
+                if (entity)
                 {
-                    if ( entity.IsDead()) // Are they dead? Don't teleport their dead bodies
+                    if (entity.IsDead()) // Are they dead? Don't teleport their dead bodies
                     {
                         removeList.Add(cvar.Key);
                         continue;
                     }
 
-                    bool canRespawn = entity.Buffs.HasCustomVar("respawn");
+                    bool canRespawn = entity.Buffs.HasCustomVar("respawn") && entity.Buffs.GetCustomVar("respawn") > 0;
                     if (_respawnReason == RespawnType.Died && !canRespawn)
                     {
                         continue;
                     }
-                    entity.TeleportToPlayer(leader);
+                    entity.TeleportToPlayer(leader, true);
 
 
                 }
                 else // Clean up the invalid entries
                 {
-                    removeList.Add(cvar.Key);   
+                    removeList.Add(cvar.Key);
                 }
             }
         }
@@ -879,10 +960,24 @@ public static class EntityUtilities
     }
     public static Entity GetLeaderOrOwner(int EntityID)
     {
+        if ( SphereCache.LeaderCache.ContainsKey(EntityID))
+        {
+            var cacheLeader = SphereCache.LeaderCache[EntityID];
+            if (cacheLeader != null)
+                return cacheLeader;
+        }
         var leader = GetLeader(EntityID);
         if (leader == null)
             leader = GetOwner(EntityID);
-     
+
+        // If we acquired a leader again, cache it.
+        if (leader != null)
+        {
+            if ( SphereCache.LeaderCache.ContainsKey((int)EntityID))
+                SphereCache.LeaderCache[EntityID] = leader;
+            else
+                SphereCache.LeaderCache.Add((int)EntityID, leader); 
+        }
         return leader;
     }
 
@@ -894,8 +989,15 @@ public static class EntityUtilities
 
         // Set up a link from the hired NPC to the player.
         leaderEntity.Buffs.SetCustomVar($"hired_{EntityID}", (float)EntityID);
-
         myEntity.Buffs.SetCustomVar("Leader", LeaderID);
+        leaderEntity.Buffs.SetCustomVar("EntityID", LeaderID);
+
+        // Cache the leader.
+        if (SphereCache.LeaderCache.ContainsKey(EntityID))
+            SphereCache.LeaderCache[EntityID] = leaderEntity;
+        else
+            SphereCache.LeaderCache.Add(EntityID, leaderEntity);
+
         myEntity.moveSpeed = leaderEntity.moveSpeed;
         myEntity.moveSpeedAggro = leaderEntity.moveSpeedAggro;
         myEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);

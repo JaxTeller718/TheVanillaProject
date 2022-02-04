@@ -12,15 +12,20 @@ namespace UAI
     {
         public static void DisplayDebugInformation(Context _context, string prefix = "", string postfix = "")
         {
-            if ( !GameManager.IsDedicatedServer)
+            if (!GameManager.IsDedicatedServer)
             {
-                if (GamePrefs.GetBool(EnumGamePrefs.DebugMenuShowTasks) || _context.Self.IsDead())
+                if (!GamePrefs.GetBool(EnumGamePrefs.DebugMenuShowTasks) || _context.Self.IsDead())
                 {
-                    _context.Self.DebugNameInfo = "";
+                    if (EntityUtilities.GetLeaderOrOwner(_context.Self.entityId) == null)
+                        _context.Self.DebugNameInfo = String.Empty;
+                    else
+                    {
+                        if (string.IsNullOrEmpty(_context.Self.DebugNameInfo))
+                            _context.Self.DebugNameInfo = _context.Self.EntityName;
+                    }
                     return;
                 }
             }
-
             var message = $" ( {_context.Self.entityId} ) {prefix}\n";
             message += $" Active Action: {_context.ActionData.Action?.Name}\n";
             var taskIndex = _context.ActionData.TaskIndex;
@@ -64,6 +69,42 @@ namespace UAI
             _context.Self.moveHelper.SetMoveTo(position, true);
         }
 
+        public static void TurnToFaceEntity(Context _context, EntityAlive priorityEntity = null)
+        {
+            if (_context.Self.IsSleeping)
+                return;
+
+            var entitiesInBounds = GameManager.Instance.World.GetEntitiesInBounds(_context.Self, new Bounds(_context.Self.position, Vector3.one * 5f));
+            if (entitiesInBounds.Count > 0)
+            {
+                Entity lookEntity = null;
+
+                foreach (var entity in entitiesInBounds)
+                {
+                    // Prioritize your leader over non-leader players
+                    if (priorityEntity != null && entity.entityId == priorityEntity.entityId)
+                    {
+                        lookEntity = entity;
+                        break;
+                    }
+
+                    if (entity is EntityPlayerLocal || entity is EntityPlayer)
+                    {
+                        if (EntityTargetingUtilities.IsEnemy(_context.Self, entity))
+                            continue;
+
+                        if (_context.Self.GetActivationCommands(new Vector3i(_context.Self.position), lookEntity as EntityAlive).Length > 0)
+                            lookEntity = entity;
+                    }
+                }
+
+                if (lookEntity != null)
+                {
+                    SCoreUtils.SetLookPosition(_context, lookEntity);
+                }
+
+            }
+        }
         public static void HideWeapon(Context _context)
         {
             if (_context.Self.inventory.holdingItemIdx != _context.Self.inventory.DUMMY_SLOT_IDX)
@@ -94,13 +135,13 @@ namespace UAI
             RaycastHit ray;
             // Check if we can hit anything downwards
             if (Physics.Raycast(a - Origin.position, Vector3.down, out ray, 3.4f, 1082195968) && !(ray.distance > 2.2f)) return;
-            
+
             // if we WILL hit something, don't jump.
             var vector3i = new Vector3i(Utils.Fastfloor(_context.Self.position.x), Utils.Fastfloor(_context.Self.position.y + 2.35f), Utils.Fastfloor(_context.Self.position.z));
             var block = _context.Self.world.GetBlock(vector3i);
             if (block.Block.IsMovementBlocked(_context.Self.world, vector3i, block, BlockFace.None)) return;
 
-            
+
             // Stop the forward movement, so we don't slide off the edge.
             EntityUtilities.Stop(_context.Self.entityId);
 
@@ -108,7 +149,7 @@ namespace UAI
             var entityAlive = UAIUtils.ConvertToEntityAlive(_context.ActionData.Target);
             if (entityAlive != null && entityAlive.IsAlive())
             {
-                var drop = Mathf.Abs( entityAlive.position.y - _context.Self.position.y);
+                var drop = Mathf.Abs(entityAlive.position.y - _context.Self.position.y);
                 if (drop > 2)
                 {
                     _context.Self.moveHelper.StartJump(true, 1f, 0f);
@@ -118,7 +159,7 @@ namespace UAI
             // if we are going to land on air, let's not jump so far out.
             var landingSpot = _context.Self.position + _context.Self.GetForwardVector() + _context.Self.GetForwardVector() + Vector3.down;
             var block2 = _context.Self.world.GetBlock(new Vector3i(landingSpot));
-            if ( block2.isair)
+            if (block2.isair)
                 _context.Self.moveHelper.StartJump(true, 1f, 0f);
             else
                 _context.Self.moveHelper.StartJump(true, 2f, 1f);
@@ -155,7 +196,7 @@ namespace UAI
             var leader = EntityUtilities.GetLeaderOrOwner(_context.Self.entityId) as EntityAlive;
             if (leader == null) return;
 
-            if ( blocked )
+            if (blocked)
             {
                 GameManager.Instance.World.GetRandomSpawnPositionMinMaxToPosition(leader.position, 1, 2, 3, false, out var position);
                 if (position == Vector3.zero)
@@ -166,8 +207,10 @@ namespace UAI
             // If we are on a mission, don't execute this teleport; let the one on entityaliveSDX handle it.
             var entityAlive = _context.Self as EntityAliveSDX;
             if (entityAlive != null)
-                entityAlive.TeleportToPlayer(leader);
-                
+            {
+                if ( !entityAlive.IsOnMission())
+                    entityAlive.TeleportToPlayer(leader, false);
+            }
         }
 
         public static bool HasBuff(Context _context, string buff)
@@ -207,11 +250,23 @@ namespace UAI
             return false;
         }
 
-        public static bool CanSee(EntityAlive sourceEntity, EntityAlive targetEntity)
+        public static bool CanSee(EntityAlive sourceEntity, EntityAlive targetEntity, float maxDistance = -1)
         {
             // If they are dead, you can't see them anymore...
             if (targetEntity.IsDead())
                 return false;
+
+            // If the entity isn't very close to us, make sure they are in our viewcone.
+            var distance = sourceEntity.GetDistanceSq(targetEntity);
+            if ( distance > 100)
+            {
+                if (!sourceEntity.IsInViewCone(targetEntity.position))
+                    return false;
+            }
+
+            // Check to see if its in our "See" cache
+            if (sourceEntity.CanSee(targetEntity))
+                return true;
 
             // Are we already targetting each other?
             var target = EntityUtilities.GetAttackOrRevengeTarget(targetEntity.entityId);
@@ -222,7 +277,12 @@ namespace UAI
             var headPosition = sourceEntity.getHeadPosition();
             var headPosition2 = targetEntity.getHeadPosition();
             var direction = headPosition2 - headPosition;
-            var seeDistance = sourceEntity.GetSeeDistance();
+            var seeDistance = maxDistance;
+            if ( maxDistance > -1)
+                seeDistance = maxDistance;
+            else
+                seeDistance = sourceEntity.GetSeeDistance();
+
             if (direction.magnitude > seeDistance)
                 return false;
 
@@ -230,7 +290,7 @@ namespace UAI
             ray.origin += direction.normalized * 0.2f;
 
             int hitMask = GetHitMaskByWeaponBuff(sourceEntity);
-            if (Voxel.Raycast(sourceEntity.world, ray, seeDistance, hitMask, 0.0f) )//|| Voxel.Raycast(sourceEntity.world, ray, seeDistance, false, false))
+            if (Voxel.Raycast(sourceEntity.world, ray, seeDistance, hitMask, 0.0f))//|| Voxel.Raycast(sourceEntity.world, ray, seeDistance, false, false))
             //if (Voxel.Raycast(sourceEntity.world, ray, seeDistance, true, true)) // Original code
             {
                 var hitRootTransform = GameUtils.GetHitRootTransform(Voxel.voxelRayHitInfo.tag, Voxel.voxelRayHitInfo.transform);
@@ -244,6 +304,13 @@ namespace UAI
                     var leader = EntityUtilities.GetLeaderOrOwner(sourceEntity.entityId) as EntityAlive;
                     if (leader != null && leader.IsCrouching && component.IsSleeping)
                         return false;
+
+                    if (sourceEntity.GetDistanceSq(targetEntity) > 10)
+                    {
+                        if (!sourceEntity.IsInViewCone(targetEntity.position)) return false;
+                    }
+                    /// Add the entity to our CanSee Cache, which expires.
+                    sourceEntity.SetCanSee(targetEntity);
                     return true;
                 }
             }
@@ -253,8 +320,11 @@ namespace UAI
 
         public static bool IsEnemyNearby(Context _context, float distance = 20f)
         {
-            var revengeTarget = EntityUtilities.GetAttackOrRevengeTarget(_context.Self.entityId);
-         
+            // Do we have a revenge target at any distance? If so, stay paranoid.
+            var revengeTarget = _context.Self.GetRevengeTarget();
+            if (revengeTarget && !EntityTargetingUtilities.ShouldForgiveDamage(_context.Self, revengeTarget))
+                return true;
+
             var nearbyEntities = new List<Entity>();
 
             // Search in the bounds are to try to find the most appealing entity to follow.
@@ -268,20 +338,12 @@ namespace UAI
                 if (x == _context.Self) continue;
                 if (x.IsDead()) continue;
 
-                // If they are friendly
-                //if (EntityUtilities.CheckFaction(_context.Self.entityId, x)) continue;
-                if (revengeTarget && x.entityId == revengeTarget.entityId)
-                {
-                    if (EntityTargetingUtilities.IsEnemy(_context.Self, revengeTarget))
-                        return true;
-                }
-                // Can we see them?
-                if (!SCoreUtils.CanSee(_context.Self, x))
-                    continue;
-
-
+                // Check to see if they are our enemy first, before deciding if we should see them.
                 if (!EntityTargetingUtilities.IsEnemy(_context.Self, x)) continue;
-                    
+
+                // Can we see them?
+                if (!SCoreUtils.CanSee(_context.Self, x, distance)) continue;
+
                 // Otherwise they are an enemy.
                 return true;
             }
@@ -313,8 +375,16 @@ namespace UAI
                     var tileEntities = chunk.GetTileEntities();
                     foreach (var tileEntity in tileEntities.list)
                     {
-                        foreach (var filterType in _targetTypes.Split(','))
+                        foreach (var filterTypeFull in _targetTypes.Split(','))
                         {
+                            // Check if the filter type includes a :, which may indicate we want a precise block.
+                            var filterType = filterTypeFull;
+                            var blockNames = "";
+                            if (filterTypeFull.Contains(":"))
+                            {
+                                filterType = filterTypeFull.Split(':')[0];
+                                blockNames = filterTypeFull.Split(':')[1];
+                            }
                             // Parse the filter type and verify if the tile entity is in the filter.
                             var targetType = EnumUtils.Parse<TileEntityType>(filterType, true);
                             if (tileEntity.GetTileEntityType() != targetType) continue;
@@ -334,6 +404,12 @@ namespace UAI
                                     break;
                             }
 
+                            // Search for the tile entity's block name to see if its filtered.
+                            if ( !string.IsNullOrEmpty(blockNames))
+                            {
+                                if (!blockNames.Contains(tileEntity.blockValue.Block.GetBlockName()))
+                                    continue;
+                            }
                             var position = tileEntity.ToWorldPos().ToVector3();
                             paths.Add(position);
                         }
@@ -379,9 +455,9 @@ namespace UAI
             //}
 
             // Path finding has to be set for Breaking Blocks so it can path through doors
-            //var path = PathFinderThread.Instance.GetPath(_context.Self.entityId);
-            // if (path.path == null && !PathFinderThread.Instance.IsCalculatingPath(_context.Self.entityId))
-            _context.Self.FindPath(_position, speed, true, null);
+//            var path = PathFinderThread.Instance.GetPath(_context.Self.entityId);
+  //          if (path.path == null && !PathFinderThread.Instance.IsCalculatingPath(_context.Self.entityId))
+                _context.Self.FindPath(_position, speed, true, null);
         }
 
 
@@ -489,7 +565,7 @@ namespace UAI
         public static void SetLookPosition(Context _context, object target)
         {
             var enemytarget = EntityUtilities.GetAttackOrRevengeTarget(_context.Self.entityId);
-            if ( enemytarget != null && enemytarget.IsDead())
+            if (enemytarget != null && enemytarget.IsDead())
             {
                 _context.Self.SetAttackTarget(null, 30);
                 _context.Self.SetRevengeTarget(null);
