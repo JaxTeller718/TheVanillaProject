@@ -90,12 +90,12 @@ public class EntityAliveSDX : EntityTrader
 
     public string Title
     {
-        get { return _strTitle; }
+        get { return Localization.Get(_strTitle); }
     }
 
     public string FirstName
     {
-        get { return _strMyName; }
+        get { return Localization.Get(_strMyName); }
     }
 
     public override string EntityName
@@ -191,7 +191,20 @@ public class EntityAliveSDX : EntityTrader
 
     public override float GetEyeHeight()
     {
-        return flEyeHeight == -1f ? base.GetEyeHeight() : flEyeHeight;
+        if (this.walkType == 4)
+        {
+            return 0.15f;
+        }
+        if (this.walkType == 8)
+        {
+            return 0.6f;
+        }
+        if (!this.IsCrouching)
+        {
+            return base.height * 0.8f;
+        }
+        return base.height * 0.5f;
+       // return flEyeHeight == -1f ? base.GetEyeHeight() : flEyeHeight;
     }
 
     public override void SetModelLayer(int _layerId, bool _force = false)
@@ -219,7 +232,7 @@ public class EntityAliveSDX : EntityTrader
 
         if (_entityClass.Properties.Values.ContainsKey("SleeperInstantAwake"))
             isAlwaysAwake = true;
-
+     
         if (_entityClass.Properties.Values.ContainsKey("Titles"))
         {
             var text = _entityClass.Properties.Values["Titles"];
@@ -261,6 +274,7 @@ public class EntityAliveSDX : EntityTrader
             var center = StringParsers.ParseVector3(strCenter);
             ConfigureBoundaryBox(box, center);
         }
+
     }
 
     protected override float getNextStepSoundDistance()
@@ -355,6 +369,7 @@ public class EntityAliveSDX : EntityTrader
         var target = EntityUtilities.GetAttackOrRevengeTarget(entityId);
         if (target != null && EntityTargetingUtilities.CanDamage(this, target)) return false;
 
+        if (SCoreUtils.IsEnemyNearby(this, 10f)) return false;
 
         Buffs.SetCustomVar("Persist", 1);
 
@@ -526,19 +541,19 @@ public class EntityAliveSDX : EntityTrader
 
     public void SetupAutoPathingBlocks()
     {
+        // If we already have a pathing code, don't re-scan.
         if (Buffs.HasCustomVar("PathingCode") && (Buffs.GetCustomVar("PathingCode") < 0 || Buffs.GetCustomVar("PathingCode") > 0))
             return;
 
         // Check if pathing blocks are defined.
         var blocks = EntityUtilities.ConfigureEntityClass(entityId, "PathingBlocks");
         if (blocks.Count == 0)
-            return;
+            blocks = new List<string> { "PathingCube" };
 
         //Scan for the blocks in the area
         var pathingVectors = ModGeneralUtilities.ScanForTileEntityInChunksListHelper(position, blocks, entityId);
         if (pathingVectors == null || pathingVectors.Count == 0)
             return;
-
 
         // Find the nearest block, and if its a sign, read its code.
         var target = ModGeneralUtilities.FindNearestBlock(position, pathingVectors);
@@ -547,13 +562,37 @@ public class EntityAliveSDX : EntityTrader
 
         // Since signs can have multiple codes, splite with a ,, parse each one.
         var text = tileEntitySign.GetText();
-        foreach (var temp in text.Split(','))
-        {
-            if (!StringParsers.TryParseFloat(temp, out var code)) continue;
 
-            Buffs.AddCustomVar("PathingCode", code);
-            return;
+        // We need to apply the buffs during this scan, as the creation of the entity + adding buffs is not really MP safe.
+        var Task = PathingCubeParser.GetValue(text, "task");
+        if (!string.IsNullOrEmpty(Task))
+        {
+            if (Task.ToLower() == "stay")
+                Buffs.AddBuff("buffOrderStay");
+            else if (Task.ToLower() == "wander")
+                Buffs.AddBuff("buffOrderWander");
+            else if (Task.ToLower() == "guard")
+                Buffs.AddBuff("buffOrderGuard");
+            else if (Task.ToLower() == "follow")
+                Buffs.AddBuff("buffOrderFollow");
+            else 
+                Buffs.AddBuff(Task);
         }
+
+        // Set up the pathing code.
+        var PathingCode = PathingCubeParser.GetValue(text, "pc");
+        if (StringParsers.TryParseFloat(PathingCode, out var pathingCode))
+            Buffs.SetCustomVar("PathingCode", pathingCode);
+
+        isAlwaysAwake = true;
+
+        //foreach (var temp in text.Split(','))
+        //{
+        //    if (!StringParsers.TryParseFloat(temp, out var code)) continue;
+
+        //    Buffs.AddCustomVar("PathingCode", code);
+        //    return;
+        //}
     }
 
     // Saves the buff and quest information
@@ -788,6 +827,8 @@ public class EntityAliveSDX : EntityTrader
                         {
                             this.NavObject.UseOverrideColor = true;
                             this.NavObject.OverrideColor = v;
+                            this.NavObject.DisplayName = EntityName;
+
                         }
                     }
                 }
@@ -799,8 +840,8 @@ public class EntityAliveSDX : EntityTrader
                 // This needs to be set for the entities to be still alive, so the player can teleport them
                 IsEntityUpdatedInUnloadedChunk = false;
                 bWillRespawn = false; // this needs to be off for entities to despawn after being killed. Handled via SetDead()
-
-                player.Companions.Remove(this);
+                if (player)
+                    player.Companions.Remove(this);
                 break;
         }
     }
@@ -1307,6 +1348,7 @@ public class EntityAliveSDX : EntityTrader
         }
         this.bLastAttackReleased = _bAttackReleased;
         this.attackingTime = 60;
+
         ItemAction itemAction = this.inventory.holdingItem.Actions[actionIndex];
         if (itemAction != null)
         {
