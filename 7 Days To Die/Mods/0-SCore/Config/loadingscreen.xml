@@ -1,5 +1,5 @@
 ﻿<configs>
-  <append xpath="/doc/tips" >
+<!--   <append xpath="/doc/tips" >
     <tip key="loadingTipScoreSigns" />
-  </append>
+  </append> -->
 </configs>
