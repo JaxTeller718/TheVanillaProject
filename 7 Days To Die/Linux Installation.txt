@@ -1,0 +1,11 @@
+In order to start the game with Ravenhearst mod properly on Linux you will need to jump through few hoops. Once you have done the usual installation of the mod, below needs to be performed as well. 
+
+
+
+1. Make run_bepinex.sh executable. Execute below command in your game root directory. 
+chmod u+x run_bepinex.sh 
+
+
+2. Start the game. You have 2 options: 
+ a) in the console while in your game root directly type ./run_bepinex.sh 
+ b) while in GUI file manager right click the run_bepinex.sh and pick "Run as a Program"
