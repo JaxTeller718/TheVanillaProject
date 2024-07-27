@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>   
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAllArmor']">
+	
+		<item name="armorEnforcerOutfit_M_ledger"/>
+		<item name="armorEnforcerGloves_M_ledger"/>
+		<item name="armorEnforcerBoots_M_ledger"/>
+		<item name="armorEnforcerHelmet_M_ledger"/>
+		
+		<item name="armorEnforcerOutfit_M_phoenix"/>
+		<item name="armorEnforcerGloves_M_phoenix"/>
+		<item name="armorEnforcerBoots_M_phoenix"/>
+		<item name="armorEnforcerHelmet_M_phoenix"/>
+		
+		<item name="armorEnforcerOutfit_M_wick"/>
+		<item name="armorEnforcerGloves_M_wick"/>
+		<item name="armorEnforcerBoots_M_wick"/>
+		<item name="armorEnforcerHelmet_M_wick"/>
+		
+		<item name="armorEnforcerOutfit_M_lobito"/>
+		<item name="armorEnforcerGloves_M_lobito"/>
+		<item name="armorEnforcerBoots_M_lobito"/>
+		<item name="armorEnforcerHelmet_M_lobito"/>
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupShamwayShelves01']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupWorkbenchLoot01']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate02']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupLaundry01']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupLaundry02']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupArmorParts']">
+		
+		<item name="resourceCloth_ledger" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_pheonix" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_wick" count="1,4" loot_prob_template="low"/>
+		<item name="resourceCloth_lobito" count="1,4" loot_prob_template="low"/>		
+		
+	</append>
+	
+
+</configs>

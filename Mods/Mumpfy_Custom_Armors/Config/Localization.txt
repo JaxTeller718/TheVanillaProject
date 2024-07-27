@@ -1,0 +1,25 @@
+Key,English
+resourceCloth_ledger,"Custom Print Fabric: Ledger"
+resourceCloth_pheonix,"Custom Print Fabric: Pheonix"
+resourceCloth_wick,"Custom Print Fabric: Wick"
+resourceCloth_lobito,"Custom Print Fabric: Lobito"
+
+armorEnforcerOutfit_M_ledger,"Enforcer Outfit: Ledger Variant"
+armorEnforcerGloves_M_ledger,"Enforcer Gloves: Ledger Variant"
+armorEnforcerBoots_M_ledger,"Enforcer Boots: Ledger Variant"
+armorEnforcerHelmet_M_ledger,"Enforcer Helmet: Ledger Variant"
+		
+armorEnforcerOutfit_M_phoenix,"Enforcer Outfit: Pheonix Variant"
+armorEnforcerGloves_M_phoenix,"Enforcer Gloves: Pheonix Variant"
+armorEnforcerBoots_M_phoenix,"Enforcer Boots: Pheonix Variant"
+armorEnforcerHelmet_M_phoenix,"Enforcer Helmet: Pheonix Variant"
+		
+armorEnforcerOutfit_M_wick,"Enforcer Outfit: Wick Variant"
+armorEnforcerGloves_M_wick,"Enforcer Gloves: Wick Variant"
+armorEnforcerBoots_M_wick,"Enforcer Boots: Wick Variant"
+armorEnforcerHelmet_M_wick,"Enforcer Helmet: Wick Variant"
+		
+armorEnforcerOutfit_M_lobito,"Enforcer Outfit: Lobito Variant"
+armorEnforcerGloves_M_lobito,"Enforcer Gloves: Lobito Variant"
+armorEnforcerBoots_M_lobito,"Enforcer Boots: Lobito Variant"
+armorEnforcerHelmet_M_lobito,"Enforcer Helmet: Lobito Variant"

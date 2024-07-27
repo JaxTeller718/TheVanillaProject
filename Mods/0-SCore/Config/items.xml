@@ -1,0 +1,179 @@
+﻿<configs>
+  <append xpath="/items">
+    <item name="BanditFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="BanditFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ChangeFactionSDX, SCore" value="bandits" />
+      </effect_group>
+    </item>
+
+    <item name="UndeadFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ChangeFactionSDX, SCore" value="undead" />
+      </effect_group>
+    </item>
+
+
+    <item name="ResetFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="ResetFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ChangeFactionSDX, SCore" value="original" />
+      </effect_group>
+    </item>
+    <item name="WhiteRiverFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="WhiteRiverFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ChangeFactionSDX, SCore" value="whiteriver" />
+      </effect_group>
+    </item>
+
+    <item name="DukeRiverFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="DukeRiverFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ChangeFactionSDX, SCore" value="duke" />
+      </effect_group>
+    </item>
+
+    <item name="UndeadPositiveFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadPositiveFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+          <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyFactionSDX, SCore" target="self" faction="undead" value="100" /> 
+      </effect_group>
+    </item>
+
+    <item name="UndeadNegativeFactionSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadNegativeFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyFactionSDX, SCore" target="self" faction="undead" value="-100" />
+      </effect_group>
+    </item>
+
+    <item name="UndeadPositiveRelatedFactionsSchematic">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadPositiveFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyRelatedFactionsSDX, SCore" target="self" faction="undead" value="100" related="bandits,whiteriver,duke" scale="0.5" />
+      </effect_group>
+    </item>
+
+	  <item name="sphereTorch">
+		  <property name="Extends" value="meleeToolTorch" />
+		  <effect_group name="Allow target block to catch on fire." tiered="false">
+			  <triggered_effect trigger="onSelfDamagedBlock" action="AddFireDamage, SCore" />
+		  </effect_group>
+      </item>
+
+	  <item name="sphereExtinguish">
+		  <property name="Extends" value="meleeToolShovelT0StoneShovel" />
+		  <effect_group name="Allow target block extinguish" tiered="false">
+			  <triggered_effect trigger="onSelfDamagedBlock" action="RemoveFire, SCore" target="positionAOE" range="2"/> <!-- range is int, 2 blocks in all direction will have fire removed. -->
+		  </effect_group>
+	  </item>
+
+
+    <item name="spherePickUpNPC">
+      <property name="HoldType" value="7"/>
+      <property name="Meshfile" value="@:Entities/Vehicles/minibike_Prefab.prefab"/>
+      <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+      <property name="Material" value="Mmetal"/>
+      <property name="HoldingItemHidden" value="true"/>
+      <property name="Weight" value="0"/>
+      <property name="Stacknumber" value="1"/>
+      <property name="EconomicValue" value="6000"/>
+      <property name="CustomIcon" value="schematicMaster" />
+      <property name="IsQuestItem" value="true" />
+      
+      <!-- Probably not a good precedent to be sellable.-->
+      <property name="SellableToTrader" value="false"/>
+      <property class="Action1">
+        <property name="Class" value="DeployNPCSDX, SCore"/>
+      </property>
+
+  </item>
+
+    <item name="spherePickUpNPC2">
+      <property name="Extends" value="spherePickUpNPC" />
+      <property name="EntityClass" value="npcBakerClub" />
+      <property name="AutoHire" value="true" />
+      <property name="EntityName" value="John Wayne" />
+    </item>
+	  <!-- Example of an item that can spoil, when the foot spoilage is turned on 
+		  <item name="foodSpoilageTest">
+			  <property name="Extends" value="foodShamSandwich"/>
+			  <property name="DisplayType" value="melee"/>
+			  <property name="Tags" value="perkMasterChef"/> 	 
+
+			  <property name="Spoilable" value="true" />
+			  <property name="SpoiledItem" value="foodRottingFlesh" />   
+			  <property name="TickPerLoss" value="500" /> 	 
+
+			  <property name="ShowQuality" value="false"/>
+			  <property name="SpoilageMax" value="1000" />
+			  <property name="SpoilagePerTick" value="1" />
+		  </item>
+    -->
+
+
+    <item name="scoreOpenNPCWindow">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <property name="Consume" value="false" />
+      <property class="Action0">
+        <property name="Class" value="Eat"/>
+        <property name="Consume" value="false"/>
+        <property name="Delay" value="1.0"/>
+        <property name="UseAnimation" value="false"/>
+        <property name="Sound_start" value="read_mod"/>
+        <property name="Sound_in_head" value="true"/>
+      </property>
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="OpenWindow, SCore" window="SCoreCompanionsGroup" />
+      </effect_group>
+    </item>
+
+    <item name="scoreTeleportNow">
+      <property name="Extends" value="schematicMaster" />
+      <property name="DescriptionKey" value="UndeadFactionSchematicDesc" />
+      <property name="CreativeMode" value="Player" />
+      <property name="CustomIcon" value="schematicMaster" />
+      <property name="Consume" value="false" />
+      <property class="Action0">
+        <property name="Class" value="Eat"/>
+        <property name="Consume" value="false"/>
+        <property name="Delay" value="1.0"/>
+        <property name="UseAnimation" value="false"/>
+        <property name="Sound_start" value="read_mod"/>
+        <property name="Sound_in_head" value="true"/>
+      </property>
+      <effect_group tiered="false">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="TeamTeleportNow, SCore" />
+      </effect_group>
+    </item>
+  </append>
+</configs>

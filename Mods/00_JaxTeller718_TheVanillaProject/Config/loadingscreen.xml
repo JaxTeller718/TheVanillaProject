@@ -1,0 +1,7 @@
+<JaxTeller718>
+	<set xpath="/doc/backgrounds/tex[@file='GUI/loading_screen_1']/@file">@modfolder:UIAtlases/ItemIconAtlas/7Days01.png</set>
+	<set xpath="/doc/backgrounds/tex[@file='GUI/loading_screen_2']/@file">@modfolder:UIAtlases/ItemIconAtlas/7Days03.png</set>
+	<set xpath="/doc/backgrounds/tex[@file='GUI/loading_screen_3']/@file">@modfolder:UIAtlases/ItemIconAtlas/7Days05.png</set>
+	<set xpath="/doc/backgrounds/tex[@file='GUI/loading_screen_4']/@file">@modfolder:UIAtlases/ItemIconAtlas/7Days06.png</set>
+
+</JaxTeller718>

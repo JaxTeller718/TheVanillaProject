@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<Name value="CustomMenuMusic" />
+	<DisplayName value="Khaine's Custom Menu Music Mod" />
+	<Description value="Allows modders to change the menu music. Please see the readme file for more information." />
+	<Author value="KhaineGB" />
+	<Version value="1.0.0.1" />
+	<Website value="" />
+	<SkipWithAntiCheat value="true" />
+</xml>

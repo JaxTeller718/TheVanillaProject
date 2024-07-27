@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<Name value="Mumpfy_Custom_Armors" />
+	<DisplayName value="Mumpfy_Custom_Armors" />
+	<Description value="Custom textured character armor variants" />
+	<Author value="mumpfy" />
+	<Version value="1.1.0.4" />
+	<Website value="" />
+	<SkipWithAntiCheat value="true" />
+</xml>

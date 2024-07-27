@@ -1,0 +1,8 @@
+<JaxTeller718>
+
+	<set xpath="/windows/window[@name='menuBackground']/texture[@name='bgTexture']/@texture">@modfolder:UIAtlases/ItemIconAtlas/vanbackground.png</set>
+
+	<remove xpath="/windows/window[@name='mainMenuLogo']"/>
+
+
+</JaxTeller718>

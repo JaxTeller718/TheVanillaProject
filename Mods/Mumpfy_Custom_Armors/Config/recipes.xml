@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+	<append xpath="/recipes">
+ 
+		<recipe name="resourceCloth_ledger" count="5">
+			<ingredient name="modDyePurple" count="1"/>
+			<ingredient name="resourceCloth" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth_pheonix" count="5">
+			<ingredient name="modDyeRed" count="1"/>
+			<ingredient name="resourceCloth" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth_wick" count="5">
+			<ingredient name="modDyeBlack" count="1"/>
+			<ingredient name="resourceCloth" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth_lobito" count="5">
+			<ingredient name="modDyeYellow" count="1"/>
+			<ingredient name="resourceCloth" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth" count="5" craft_area="campfire" craft_tool="toolCookingPot">
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+			<ingredient name="resourceCloth_ledger" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth" count="5" craft_area="campfire" craft_tool="toolCookingPot">
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+			<ingredient name="resourceCloth_pheonix" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth" count="5" craft_area="campfire" craft_tool="toolCookingPot">
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+			<ingredient name="resourceCloth_wick" count="5"/>
+		</recipe>
+ 
+		<recipe name="resourceCloth" count="5" craft_area="campfire" craft_tool="toolCookingPot">
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+			<ingredient name="resourceCloth_lobito" count="5"/>
+		</recipe>
+ 
+	<!-- Ledger Print Set -->
+		<recipe name="armorEnforcerHelmet_M_ledger" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_ledger" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_ledger"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerOutfit_M_ledger" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_ledger" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_ledger"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerGloves_M_ledger" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_ledger" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_ledger"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerBoots_M_ledger" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_ledger" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_ledger"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+ 
+	<!-- Pheonix Print Set -->
+		<recipe name="armorEnforcerHelmet_M_phoenix" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_pheonix" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_pheonix"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerOutfit_M_phoenix" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_pheonix" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_pheonix"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerGloves_M_phoenix" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_pheonix" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_pheonix"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerBoots_M_phoenix" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_pheonix" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_pheonix"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+ 
+	<!-- Wick Print Set -->
+		<recipe name="armorEnforcerHelmet_M_wick" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_wick" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_wick"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerOutfit_M_wick" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_wick" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_wick"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerGloves_M_wick" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_wick" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_wick"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerBoots_M_wick" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_wick" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_wick"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+ 
+	<!-- Lobito Print Set -->
+		<recipe name="armorEnforcerHelmet_M_lobito" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_lobito" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_lobito"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerOutfit_M_lobito" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_lobito" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_lobito"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerGloves_M_lobito" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_lobito" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_lobito"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+		<recipe name="armorEnforcerBoots_M_lobito" count="1" craft_area="workbench" tags="learnable">
+			<ingredient name="resourceArmorCraftingKit" count="1"/>
+			<ingredient name="resourceCloth_lobito" count="5"/>
+			<ingredient name="resourceForgedIron" count="0"/>
+			<ingredient name="resourceForgedSteel" count="0"/>
+			<ingredient name="resourceLegendaryParts" count="0"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="2,6" operation="base_add" value="1,5" tags="resourceArmorCraftingKit"/>
+				<passive_effect name="CraftingIngredientCount" level="2,3,4,5,6" operation="base_add" value="5,10,15,20,20" tags="resourceCloth_lobito"/>
+				<passive_effect name="CraftingIngredientCount" level="3,4,5,6" operation="base_add" value="5,10,25,25" tags="resourceForgedIron"/>
+				<passive_effect name="CraftingIngredientCount" level="5,6" operation="base_add" value="10,25" tags="resourceForgedSteel"/>
+				<passive_effect name="CraftingIngredientCount" level="6" operation="base_add" value="1" tags="resourceLegendaryParts"/>
+			</effect_group>
+		</recipe>
+
+
+
+	</append>
+
+</configs>
