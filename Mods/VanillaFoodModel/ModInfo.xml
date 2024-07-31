@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<Name value="VanillaFoodModel" />
+	<DisplayName value="VanillaFoodModel" />
+	<Description value="Adds the unused food model from A16 or older back to the game." />
+	<Author value="XCXHarry" />
+	<Version value="1" />
+	<Website value="N/A" />
+	<SkipWithAntiCheat value="true" />
+</xml>

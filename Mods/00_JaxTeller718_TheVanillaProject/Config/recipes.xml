@@ -32,10 +32,582 @@
 	<remove xpath="/recipes/recipe[@name='cntDewCollector']"/>
 	<remove xpath="/recipes/recipe[@name='meleeWpnSpearT0StoneSpear']"/>
 	<remove xpath="/recipes/recipe[@name='meleeWpnSledgeT0StoneSledgehammer']"/>
+	<remove xpath="/recipes/recipe[@name='appliancesVariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='metalFurnitureBlockVariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='toiletsBlockVariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='sinksToiletsBlockVariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='resourceForgedSteel']"/>
+	<remove xpath="/recipes/recipe[@name='resourceForgedIron']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolPickT1IronPickaxe']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolPickT2SteelPickaxe']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolShovelT1IronShovel']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolShovelT2SteelShovel']"/>
+	<remove xpath="/recipes/recipe[@name='meleeWpnSledgeT1IronSledgehammer']"/>
+	<remove xpath="/recipes/recipe[@name='meleeWpnSledgeT3SteelSledgehammer']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolAxeT1IronFireaxe']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolAxeT2SteelAxe']"/>
 
 
 	<append xpath="/recipes">
 	
+<recipe name="meleeToolPickT1IronPickaxe" count="1" tags="learnable,craftingHarvestingTools"><!-- perkMiner69r -->
+	<ingredient name="resourceIronIngot" count="3"/>
+	<ingredient name="resourceStickJT" count="3"/>
+</recipe>
+
+<recipe name="meleeToolPickT2SteelPickaxe" count="1" craft_area="workbench" tags="learnable,craftingHarvestingTools"><!-- perkMiner69r -->
+	<ingredient name="resourceSteelIngot" count="4"/>
+	<ingredient name="resourceStickJT" count="3"/>
+</recipe>
+
+<recipe name="meleeToolShovelT1IronShovel" count="1" tags="learnable,craftingHarvestingTools"><!-- perkMiner69r -->
+	<ingredient name="resourceIronIngot" count="4"/>
+	<ingredient name="resourceStickJT" count="3"/>
+</recipe>
+
+<recipe name="meleeWpnSledgeT1IronSledgehammer" count="1" tags="learnable,perkSkullCrusher">
+	<ingredient name="resourceIronIngot" count="3"/>
+	<ingredient name="resourceStickJT" count="3"/>
+</recipe>
+
+<recipe name="meleeToolAxeT1IronFireaxe" count="1" tags="learnable,perkMiner69r,craftingHarvestingTools">
+	<ingredient name="resourceIronIngot" count="2"/>
+	<ingredient name="resourceStickJT" count="3"/>
+</recipe>
+
+
+
+<recipe name="resourceIronIngot" count="1" material_based="true" craft_area="forge" is_trackable="false" craft_tool="toolIronIngotMold" tags="perkAdvancedEngineering">
+	<ingredient name="unit_iron" count="10"/>
+	<ingredient name="unit_clay" count="5"/>
+</recipe>
+
+<recipe name="resourceSteelIngot" count="1" material_based="true" craft_area="forge" is_trackable="false" tags="perkAdvancedEngineering" craft_tool="toolSteelIngotMold">
+	<ingredient name="unit_iron" count="20"/>
+	<ingredient name="unit_clay" count="10"/>
+</recipe>
+
+<recipe name="resourceForgedIron" count="1">
+	<ingredient name="resourceIronIngot" count="5"/>
+</recipe>
+
+
+<recipe name="cntStoveModernVer1Closed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntStoveOldVer1Closed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntMicrowaveOvenVer1Closed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntMicrowaveOvenVer2Closed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntToaster" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntCoffeeMaker" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntRetroFridgeVer1Closed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntFridgeStainlessSteel_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntWasherClosed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntDryerClosed_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntgasRangeWhite" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntgasRangeGrey" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntgasRangeBlack" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntwallOvenFullWhite_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntwallOvenFullGrey_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+
+
+<recipe name="cntwallOvenFullBlack_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntDishwasherFullWhite_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntDishwasherFullYellow_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntDishwasherFullGreen_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntDishwasherFullBlack_Player" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeWhite" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeYellow" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeGreen" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeGrey" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeBlack" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeWhiteOffset" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeYellowOffset" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeGreenOffset" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeGreyOffset" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="hoodRangeBlackOffset" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+
+
+<recipe name="decoComputerDeskTopPC" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="decoComputerMonitorKeyboardMousePC" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="decoComputerMonitorKeyboardMouse" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="decoComputerMonitorKeyboardMouse2" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+
+
+<recipe name="decoComputerMonitor" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="decoLaptop" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="wallClock" count="1">
+	<ingredient name="resourceForgedIron" count="10"/>
+	<ingredient name="resourceMechanicalParts" count="5"/>
+	<ingredient name="resourceElectricParts" count="5"/>
+	<ingredient name="resourceMetalPipe" count="5"/>
+	<ingredient name="resourceHeadlight" count="1"/>
+</recipe>
+
+<recipe name="cntLockersShortClosed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntLockersTallClosed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntLockersTallDoubleClosed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntLockersTallMixClosed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntLockersTallMixLinkClosed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntStoreShelfSingleBottomEmpty" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntStoreShelfSingleTopEmpty" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntStoreShelfDoubleBottomEmpty" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntStoreShelfDoubleTopEmpty" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullWhite_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullBrown_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullRed_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullOrange_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullYellow_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullGreen_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+
+
+
+<recipe name="cntDeskMetalFullBlue_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullPurple_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullGrey_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullBlack_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullPink_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDeskMetalFullArmyGreen_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="rustyIronTable" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntBinTrashMetalFullWhite_Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="cntDomedTrashCanFull" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="radiatorHouse01Player" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+<recipe name="decoHoistChainSingleCenter" count="1" craft_area="workbench" tags="workbenchCrafting">
+	<ingredient name="resourceForgedIron" count="3"/>
+</recipe>
+
+
+<recipe name="pedestalSink" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="utilitySink" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="wallMountSinkCommercial" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="counterMountedSinkCommercial" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="cntCabinetGraniteSinkHoleRound" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="faucet04" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="faucet02" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="showerHead" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="drinkingfountainSingle" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="drinkingfountainDouble" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="urinalCommercialMounted" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="cntToilet01" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="cntToilet02" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+<recipe name="cntToilet03" count="1">
+	<ingredient name="bucketRiverWater" count="1"/>
+	<ingredient name="resourceMetalPipe" count="2"/>
+	<ingredient name="resourceMechanicalParts" count="1"/>
+	<ingredient name="resourceWood" count="4"/>
+</recipe>
+
+
+
+
+
+
+
+
+
 <recipe name="terrStoneJT" count="1" material_based="true" craft_area="forge" craft_time="5" craft_exp_gain="0" always_unlocked="true" use_ingredient_modifier="false">
 	<ingredient name="unit_stone" count="25"/>
 </recipe>	
@@ -105,6 +677,14 @@
 		<recipe name="toolBrickMold" count="1" craft_time="12">
 	        <ingredient name="resourceEmptyMold" count="1"/>
 	        <ingredient name="resourceBricks" count="1"/>
+        </recipe>
+		
+		<recipe name="toolSteelIngotMold" count="1" craft_time="12">
+	        <ingredient name="resourceClayLump" count="6"/>
+        </recipe>
+		
+		<recipe name="toolIronIngotMold" count="1" craft_time="12">
+	        <ingredient name="resourceClayLump" count="6"/>
         </recipe>
 	
 	    <recipe name="resourceBricks" count="1" material_based="true" craft_time="10" craft_area="forge" craft_tool="toolBrickMold">
@@ -664,6 +1244,7 @@
 	<set xpath="/recipes/recipe[@name='ammoBundleArrowFlaming']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
 
   <set xpath="//ingredient[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
+  <set xpath="//ingredient[@name='resourceForgedSteel']/@name">resourceSteelIngot</set>
 
 
 

@@ -115,6 +115,8 @@ toolBrickMold,items,item,Bricks Mold
 toolBrickMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
 toolCementMold,items,item,Cement Mold
 toolCementMoldDesc,items,item,A tool that can be installed in a forge. It increases the crafting speed of that forge.
+toolIronIngotMold,items,item,Iron Ingot Mold
+toolSteelIngotMold,items,item,Steel Ingot Mold
 
 woodReinforcedShapes:VariantHelper,blocks,block,Wood Reinforced Shapes
 woodReinforcedMetalShapes:VariantHelper,blocks,block,Wood Reinforced M Shapes
@@ -195,4 +197,5 @@ cntVanillaWoodenChestClosedDesc,blocks,Block,Press & hold [activate] to lock it 
 cntVanillaWoodenChestOpen,blocks,Block,Secure Storage Chest
 cntVanillaWoodenChestOpenDesc,blocks,Block,Press & hold [activate] to lock it or set a combination
 
-
+resourceIronIngot,items,Item,Iron Ingot
+resourceSteelIngot,items,Item,Steel Ingot

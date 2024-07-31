@@ -1,0 +1,423 @@
+<xml>
+	<append xpath="items/item[@name='drugAtomJunkies']">		
+		<property name="HoldType" value="3"/>
+		<property name="Meshfile" value="@:Other/Items/Crafting/candy_tinPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/candy_tinPrefab.prefab"/>
+		<property name="TintColor" value="101,67,33"/>
+		<property class="Action0">
+			<property name="Sound_start" value="player_painkillers"/>
+		</property>	
+	</append>
+	<append xpath="items/item[@name='drugCovertCats']">		
+		<property name="TintColor" value="47,141,255"/>
+	</append>
+	<append xpath="items/item[@name='drugEyeKandy']">		
+		<property name="TintColor" value="255,102,0"/>
+	</append>
+	<append xpath="items/item[@name='drugHackers']">		
+		<property name="TintColor" value="106,13,173"/>
+	</append>
+	<append xpath="items/item[@name='drugHealthBar']">		
+		<property name="TintColor" value="23,236,236"/>
+	</append>
+	<append xpath="items/item[@name='drugJailBreakers']">		
+		<property name="TintColor" value="50,50,50"/>
+	</append>
+	<append xpath="items/item[@name='drugNerdTats']">		
+		<property name="TintColor" value="255,195,11"/>
+	</append>
+	<append xpath="items/item[@name='drugOhShitzDrops']">		
+		<property name="TintColor" value="255,255,0"/>
+	</append>
+	<append xpath="items/item[@name='drugRockBusters']">		
+		<property name="TintColor" value="0,128,0"/>
+	</append>
+	<append xpath="items/item[@name='drugSkullCrushers']">		
+		<property name="TintColor" value="255,255,255"/>
+	</append>
+	<append xpath="items/item[@name='drugSugarButts']">		
+		<property name="TintColor" value="255,0,127"/>
+	</append>
+
+	<append xpath="items/item[@name='foodHoney']">		
+		<property name="HoldType" value="3"/>
+		<property name="Meshfile" value="@:Other/Items/Food/honeyPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/honeyPrefab.prefab"/>
+		<property name="TintColor" value="225,154,46"/>
+	</append>
+	<append xpath="items/item[@name='foodCanBeef']">	
+		<property name="HoldType" value="3"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_beefPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_beefPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanChicken']">	
+		<property name="HoldType" value="3"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_chickenPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_chickenPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanLamb']">		
+		<property name="HoldType" value="3"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_lambPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_lambPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanCatfood']">		
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_catfoodPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_catfoodPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanDogfood']">		
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_dogfoodPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_dogfoodPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanChili']">		
+		<property name="HoldType" value="3"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_chiliPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_chiliPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanTuna']">		
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_tunaPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_tunaPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanSham']">		
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_hamPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_hamPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanPasta']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_pastaPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_pastaPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanSalmon']">		
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_salmonPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_salmonPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanMiso']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_misoPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_misoPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanPeas']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_peasPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_peasPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanPears']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_pearsPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_pearsPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanSoup']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_soupPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_soupPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCanStock']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/can_stockPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_stockPrefab.prefab"/>
+	</append>
+
+	<append xpath="items/item[@name='foodCornOnTheCob']">		
+		<property name="HoldType" value="16"/>
+		<property name="Meshfile" value="@:Other/Items/Food/corn_cooked.fbx"/>
+	</append>
+	<append xpath="items/item[@name='foodCornBread']">		
+		<property name="HoldType" value="31"/>		
+		<!--<property name="Meshfile" value="@:Other/Items/Food/cornbreadPrefab.prefab"/>-->
+		<property name="Meshfile" value="@:Other/Items/Food/moldyBreadHandPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodShamSandwich']">			
+		<property name="TintColor" value="205,215,205"/>			
+	</append>
+	<append xpath="items/item[@name='foodCharredMeat']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/meat_pork_cooked.fbx"/>
+		<property name="TintColor" value="105,105,105"/>
+	</append>
+	<append xpath="items/item[@name='foodGrilledMeat']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/meat_pork_cooked.fbx"/>
+		<property name="TintColor" value="255,175,0"/>	
+	</append>	
+	<append xpath="items/item[@name='foodBoiledMeat']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/meat_pork.fbx"/>
+		<property name="TintColor" value="100,100,100"/>		
+	</append>		
+	<append xpath="items/item[@name='foodMeatStew']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_stew.fbx"/>		
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/cookingPot_01Prefab.prefab"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="MeatStew" prefab="@:Other/Items/Crafting/cookingPot_01Prefab.prefab" parentTransform="RightHand" localPos="0.21,0.4,0.1" localRot="0,90,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="MeatStew"/>
+		</effect_group>		
+	</append>
+	<append xpath="items/item[@name='foodSteakAndPotato']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/meat_pork_cooked.fbx"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="Potato" prefab="@:Other/Items/Food/seed_potatoPrefab.prefab" parentTransform="RightHand" localPos="0.08,0.03,-0.04" localRot="0,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Potato"/>
+		</effect_group>			
+	</append>
+	<append xpath="items/item[@name='foodShamChowder']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/venison_stewPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+		<property name="TintColor" value="255,205,0"/>
+		<property class="Action0">
+			<property name="Sound_start" value="player_drinking"/>
+		</property>
+	</append>
+	<append xpath="items/item[@name='foodHoboStew']">	
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_stew.fbx"/>			
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/cookingPot_01Prefab.prefab"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="HoboStew" prefab="@:Other/Items/Crafting/cookingPot_01Prefab.prefab" parentTransform="RightHand" localPos="0.21,0.4,0.1" localRot="0,90,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HoboStew"/>
+		</effect_group>			
+	</append>
+	<append xpath="items/item[@name='foodFishTacos']">			
+		<property name="Meshfile" value="@:Other/Items/Misc/parcelPrefab.prefab"/>
+		<property name="TintColor" value="255,255,0"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="Tacos" prefab="@:Other/Items/Crafting/plant_fibersPrefab.prefab" parentTransform="RightHand" localPos="0.1,0.035,0" localRot="90,0,45"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Tacos"/>
+		</effect_group>			
+	</append>
+	<append xpath="items/item[@name='foodChiliDog']">
+		<property name="HoldType" value="16"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/corn_cooked.fbx"/>
+		<property name="TintColor" value="62,34,21"/>		
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="ChiliDog" prefab="@:Other/Items/Crafting/cloth.fbx" parentTransform="RightHand" localPos="0.05,0.04,0.08" localRot="170,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="ChiliDog"/>
+		</effect_group>			
+	</append>
+	<append xpath="items/item[@name='foodBakedPotato']">	
+		<property name="HoldType" value="31"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/vegetable_potato_bakedPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodBlueberryPie']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/blueberry_piePrefab.prefab"/>
+		<property name="TintColor" value="255,197,148"/>		
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="Blueberry" prefab="@:Other/Items/Food/fruit_blueberryPrefab.prefab" parentTransform="RightHand" localPos="0.125,0.058,0.003" localRot="0,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Blueberry"/>
+		</effect_group>				
+	</append>
+	<append xpath="items/item[@name='foodPumpkinPie']">	
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/blueberry_piePrefab.prefab"/>
+		<property name="TintColor" value="71,45,23"/>			
+	</append>
+	<append xpath="items/item[@name='foodPumpkinCheesecake']">	
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/blueberry_piePrefab.prefab"/>
+		<property name="TintColor" value="255,255,155"/>			
+	</append>
+	<append xpath="items/item[@name='foodPumpkinBread']">	
+		<property name="HoldType" value="31"/>
+		<property name="Meshfile" value="@:Other/Items/Food/moldyBreadHandPrefab.prefab"/>
+		<property name="TintColor" value="148,87,58"/>		
+	</append>
+	<append xpath="items/item[@name='foodGumboStew']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_stew.fbx"/>	
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/cooking_pot.fbx"/>
+		<property class="Action0">
+			<property name="Sound_start" value="player_drinking"/>
+		</property>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="GumboStew" prefab="@:Other/Items/Crafting/cooking_pot.fbx" parentTransform="RightHand" localPos="0.24,-0.09,0.1" localRot="-90,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="GumboStew"/>
+		</effect_group>				
+	</append>
+	<append xpath="items/item[@name='foodShepardsPie']">	
+		<property name="HoldType" value="23"/>
+		<property name="Meshfile" value="@:Other/Items/Food/venison_stewPrefab.prefab"/>
+		<property name="TintColor" value="205,255,205"/>		
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="PotatoMashed" prefab="@:Other/Items/Food/vegetable_potato_bakedPrefab.prefab" parentTransform="RightHand" localPos="0.155,0.04,0.005" localRot="0,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="PotatoMashed"/>
+		</effect_group>					
+	</append>
+	<append xpath="items/item[@name='foodSpaghetti']">	
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/venison_stewPrefab.prefab"/>		
+	</append>
+	<append xpath="items/item[@name='foodTunaFishGravyToast']">	
+		<property name="HoldType" value="23"/>		
+		<property name="Meshfile" value="@:Other/Items/Misc/parcelPrefab.prefab"/>
+		<property name="TintColor" value="208,177,159"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="Toast" prefab="@:Other/Items/Misc/parcelPrefab.prefab" parentTransform="RightHand" localPos="0.13,0.035,0" localRot="0,-20,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Toast"/>
+		</effect_group>	
+	</append>
+	<append xpath="items/item[@name='foodEggBoiled']">		
+		<property name="Meshfile" value="@:Other/Items/Food/eggPrefab.prefab"/>
+		<property name="TintColor" value="255,255,225"/>
+		<!--<property name="TintColor" value="198,137,88"/>-->
+	</append>
+	<append xpath="items/item[@name='foodBaconAndEggs']">	
+		<property name="HoldType" value="23"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/meat_pork_cooked.fbx"/>
+		<property name="TintColor" value="255,205,0"/>	
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="Egg" prefab="@:Other/Items/Food/eggPrefab.prefab" parentTransform="RightHand" localPos="0.08,0.03,-0.02" localRot="-50,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Egg"/>
+		</effect_group>			
+	</append>
+	<append xpath="items/item[@name='foodVegetableStew']">	
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/can_stew.fbx"/>	
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/cookingPot_01Prefab.prefab"/>
+		<property name="TintColor" value="255,77,0"/>	
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="VegStew" prefab="@:Other/Items/Crafting/cookingPot_01Prefab.prefab" parentTransform="RightHand" localPos="0.21,0.4,0.1" localRot="0,90,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="VegStew"/>
+		</effect_group>		
+	</append>
+	<append xpath="items/item[@name='foodRawMeat']">	
+		<property name="HoldType" value="31"/>	
+		<property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
+		<property name="TintColor" value="255,182,193"/>		
+	</append>
+	<append xpath="items/item[@name='foodRottingFlesh']">		
+		<property name="HoldType" value="23"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/meat_rabbit.fbx"/>		
+		<property name="TintColor" value="95,110,80"/>	
+	</append>
+	<append xpath="items/item[@name='foodEgg']">		
+		<property name="Meshfile" value="@:Other/Items/Food/eggPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCornMeal']">		
+		<property name="Meshfile" value="@:Other/Items/Food/cornmealPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCropBlueberries']">		
+		<property name="HoldType" value="31"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/fruit_blueberryPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCropCorn']">	
+		<property name="HoldType" value="16"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/vegetable_cornPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCropGraceCorn']">		
+		<property name="HoldType" value="16"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/vegetable_cornPrefab.prefab"/>
+		<property name="TintColor" value="255,140,0"/>	
+	</append>
+	<append xpath="items/item[@name='foodCropPotato']">	
+		<property name="HoldType" value="31"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/vegetable_potatoPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='foodCropMushrooms']">		
+		<property name="HoldType" value="16"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/fruit_yucca.fbx"/>
+		<property name="TintColor" value="56,23,12"/>		
+	</append>
+	<append xpath="items/item[@name='foodCropYuccaFruit']">	
+		<property name="HoldType" value="16"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/fruit_yucca.fbx"/>
+	</append>
+	<append xpath="items/item[@name='foodCropPumpkin']">		
+		<property name="Meshfile" value="@:Other/Items/Food/seed_cornPrefab.prefab"/>
+		<property name="TintColor" value="255,165,0"/>		
+	</append>
+
+	<append xpath="items/item[@name='drinkJarRiverWater']">		
+		<property name="Meshfile" value="@:Other/Items/Food/bottledRiverWaterPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottledRiverWaterPrefab.prefab"/>
+		<property name="TintColor" value="155,155,155"/>	
+	</append>
+	<append xpath="items/item[@name='drinkJarBoiledWater']">		
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='drinkJarPureMineralWater']">		
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="TintColor" value="205,205,255"/>	
+	</append>
+	<append xpath="items/item[@name='drinkJarYuccaJuice']">		
+		<property name="Meshfile" value="@:Other/Items/Food/yucca_juicePrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/yucca_juicePrefab.prefab"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="YuccaJuice" prefab="@:Other/Items/Food/fruit_yucca.fbx" parentTransform="RightHand" localPos="0.1,0.065,-0.02" localRot="-100,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="YuccaJuice"/>
+		</effect_group>	
+	</append>
+	<append xpath="items/item[@name='drinkJarGoldenRodTea']">		
+		<property name="Meshfile" value="@:Other/Items/Food/goldenrod_teaPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/goldenrod_teaPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='drinkJarRedTea']">		
+		<property name="Meshfile" value="@:Other/Items/Food/redTeaPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/redTeaPrefab.prefab"/>
+	</append>
+	<append xpath="items/item[@name='drinkYuccaJuiceSmoothie']">		
+		<property name="Meshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="TintColor" value="0,205,205"/>	
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="YuccaSmoothie" prefab="@:Other/Items/Food/fruit_yucca.fbx" parentTransform="RightHand" localPos="0.1,0.065,-0.02" localRot="-100,0,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="YuccaSmoothie"/>
+		</effect_group>	
+	</append>
+	<append xpath="items/item[@name='drinkCanMegaCrush']">		
+		<!--<property name="Meshfile" value="@:Other/Items/Food/can_plain.fbx"/>-->
+		<!--<property name="DropMeshfile" value="@:Other/Items/Food/can_plain.fbx"/>-->	
+		<property name="Meshfile" value="@:Other/Items/Food/yucca_juicePrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/yucca_juicePrefab.prefab"/>	
+		<property name="TintColor" value="5,225,5"/>					
+	</append>
+	<append xpath="items/item[@name='drinkJarCoffee']">		
+		<property name="Meshfile" value="@:Other/Items/Food/coffeePrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/coffeePrefab.prefab"/>
+		<property name="TintColor" value="30,30,30"/>	
+	</append>
+	<append xpath="items/item[@name='drinkJarBlackStrapCoffee']">	
+		<property name="Meshfile" value="@:Other/Items/Food/can_emptyPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/can_emptyPrefab.prefab"/>	
+		<property name="TintColor" value="30,30,30"/>		
+	</append>
+	<append xpath="items/item[@name='drinkJarBeer']">		
+		<property name="Meshfile" value="@:Other/Items/Food/bottledBeerPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottledBeerPrefab.prefab"/>
+		<property name="TintColor" value="165,165,165"/>	
+	</append>
+	<append xpath="items/item[@name='drinkJarGrandpasMoonshine']">		
+		<property name="HoldType" value="14"/>		
+		<property name="Meshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="TintColor" value="225,225,215"/>		
+	</append>
+	<append xpath="items/item[@name='drinkJarGrandpasAwesomeSauce']">	
+		<property name="HoldType" value="14"/>		
+		<!--<property name="Meshfile" value="Entities/Commercial/wineBottlePrefab"/>-->	
+		<property name="Meshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<!--<property name="DropMeshfile" value="Entities/Commercial/wineBottlePrefab"/>-->	
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+		<property name="TintColor" value="255,155,0"/>	
+	</append>
+	<append xpath="items/item[@name='drinkJarGrandpasLearningElixir']">				
+		<property name="HoldType" value="14"/>	
+		<property name="Meshfile" value="@:Other/Items/Food/bottledRiverWaterPrefab.prefab"/>
+		<property name="DropMeshfile" value="@:Other/Items/Food/bottledRiverWaterPrefab.prefab"/>
+		<property name="TintColor" value="205,205,205"/>			
+	</append>
+	<append xpath="items/item[@name='drinkJarGrandpasForgettingElixir']">		
+		<property name="Meshfile" value="@:Other/Items/Crafting/fishing_weight.fbx"/>
+		<property name="DropMeshfile" value="@:Other/Items/Crafting/masonJar.FBX"/>
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddPart" part="ForgettingElixir" prefab="@:Other/Items/Crafting/masonJar.FBX" parentTransform="RightHand" localPos="0.1,0.1,0.03" localRot="30,180,0"/>			
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="ForgettingElixir"/>
+		</effect_group>
+	</append>
+</xml>

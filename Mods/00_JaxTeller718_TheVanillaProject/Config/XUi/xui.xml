@@ -4,5 +4,26 @@
 		<window_group name="focusedBlockHealth" actionSet="false">
 		</window_group>
 	</insertAfter>
-
+	<remove xpath="/xui/ruleset/window_group[@name='workstation_forge']"/>
+	<insertAfter xpath="/xui/ruleset/window_group[@name='workstation_chemistryStation']">
+		<window_group name="workstation_forge" controller="XUiC_WorkstationWindowGroup" open_backpack_on_open="true" close_compass_on_open="true">
+			<window name="windowCraftingList"/>
+			<window name="craftingInfoPanel"/>
+			<window name="windowCraftingQueue"/>
+			<window name="windowToolsForgeRH"/>
+			<window name="windowFuel"/>
+			<window name="windowForgeInput"/>
+			<window name="windowOutput"/>
+			<window name="windowNonPagingHeader"/>
+		</window_group>
+		<window_group name="workstation_campfire" controller="XUiC_WorkstationWindowGroup" open_backpack_on_open="true" close_compass_on_open="true" defaultSelected="bp.content">
+			<window name="windowCraftingList"/>
+			<window name="craftingInfoPanel"/>
+			<window name="windowCraftingQueue"/>
+			<window name="windowToolsCampfireRH" />
+			<window name="windowFuel" />
+			<window name="windowOutput" />
+			<window name="windowNonPagingHeader" />
+		</window_group>
+	</insertAfter>
 </JaxTeller718>

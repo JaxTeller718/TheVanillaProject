@@ -136,6 +136,18 @@
 			<property name="SellableToTrader" value="false"/>
 		</item>
 		
+		<item name="toolIronIngotMold">
+			<property name="Extends" value="toolBrickMold"/>
+			<property name="CustomIcon" value="toolIronIngotMold"/>
+			<property name="SellableToTrader" value="false"/>
+		</item>
+		
+		<item name="toolSteelIngotMold">
+			<property name="Extends" value="toolBrickMold"/>
+			<property name="CustomIcon" value="toolSteelIngotMold"/>
+			<property name="SellableToTrader" value="false"/>
+		</item>
+		
 		<item name="foodCanBeef">
 			<property name="Tags" value="food"/>
 			<property name="HoldType" value="31"/>
@@ -719,6 +731,39 @@
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="MresourceScrapIron"/>
 	<property name="Weight" value="5"/>
+	<property name="Stacknumber" value="6000"/> <!-- STK resource -->
+	<property name="EconomicValue" value="10"/>
+	<property name="EconomicBundleSize" value="10"/>
+	<property name="Group" value="Resources"/>
+	<property name="RepairTime" value=".5"/>
+	<property name="RepairAmount" value="20"/>
+	<property name="CraftingIngredientTime" value=".2"/>
+	<property name="SoundPickup" value="scrapiron_grab"/>
+	<property name="SoundPlace" value="scrapiron_place"/>
+</item>
+<item name="resourceIronIngot"> <!-- scrap material -->
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="MresourceScrapIron"/>
+	<property name="Weight" value="1"/>
+	<property name="Stacknumber" value="6000"/> <!-- STK resource -->
+	<property name="EconomicValue" value="10"/>
+	<property name="EconomicBundleSize" value="10"/>
+	<property name="Group" value="Resources"/>
+	<property name="RepairTime" value=".5"/>
+	<property name="RepairAmount" value="20"/>
+	<property name="CraftingIngredientTime" value=".2"/>
+	<property name="SoundPickup" value="scrapiron_grab"/>
+	<property name="SoundPlace" value="scrapiron_place"/>
+</item>
+
+<item name="resourceSteelIngot"> <!-- scrap material -->
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="MresourceScrapIron"/>
+	<property name="Weight" value="1"/>
 	<property name="Stacknumber" value="6000"/> <!-- STK resource -->
 	<property name="EconomicValue" value="10"/>
 	<property name="EconomicBundleSize" value="10"/>
