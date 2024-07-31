@@ -1741,6 +1741,9 @@
 			<item group="groupZpackStrong" prob="0.1"/>
 		</lootcontainer>
 		
+<lootcontainer name="vanillaStorage" count="0" size="8,4" sound_open="UseActions/crate_wood_open" sound_close="UseActions/crate_wood_close" loot_quality_template="qualBaseTemplate">
+	<item name="cobweb" count="0"/>
+</lootcontainer>		
 	</append>
 	<append xpath="/lootcontainers/lootgroup[@name='groupFarmTruck02']">
 		<item name="meleeToolFarmT2IronHoeSchematic" count="1" loot_prob_template="med"/>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xml>
+    <Name value="ensrickChallengesRemoved"/>
+    <DisplayName value="Challenges Removed"/>
+    <Version value="1.0.0"/>
+    <Description value="Removes all introductory all challenges, the tutorial trader quest."/>
+    <Author value="Ensrick AKA StormyG7"/>
+   	<Website value="https://next.nexusmods.com/profile/StormyG7/mods"/>
+</xml>

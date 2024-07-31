@@ -190,3 +190,9 @@ woodBars,blocks,Block,Wood Bars
 woodBarsCentered,blocks,Block,Wood Bars Centered
 woodBarsCNR,blocks,Block,Wood Bars Corner
 woodBarsDesc,blocks,Block,You can see and shoot through wood bars and they offer some protection.
+cntVanillaWoodenChestClosed,blocks,Block,Secure Storage Chest
+cntVanillaWoodenChestClosedDesc,blocks,Block,Press & hold [activate] to lock it or set a combination
+cntVanillaWoodenChestOpen,blocks,Block,Secure Storage Chest
+cntVanillaWoodenChestOpenDesc,blocks,Block,Press & hold [activate] to lock it or set a combination
+
+

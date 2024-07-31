@@ -1,0 +1,13 @@
+<LockSlotIconColor>
+		<set xpath="/controls/backpack_item_stack/rect/button/sprite[@name='button']/@color">{# userlockedslot ? '191,64,191' : '191,64,191' }</set>
+		<set xpath="/controls/backpack_item_stack/rect/sprite[@name='iconSlotLock']/@color">191,64,191</set>
+
+		<append xpath="/controls/backpack_item_stack/rect">
+			<sprite depth="6" name="iconSlotLock" width="67" height="3" sprite="menu_empty2px" pos="-1,1" type="sliced" globalopacity="true" visible="{# userlockedslot and !userlockmode}" color="191,64,191" />
+			<sprite depth="6" name="iconSlotLock" width="67" height="3" sprite="menu_empty2px" pos="-1,-63" type="sliced" globalopacity="true" visible="{# userlockedslot and !userlockmode}" color="191,64,191" />
+			<sprite depth="6" name="iconSlotLock" width="3" height="66" sprite="menu_empty2px" pos="-1,0" type="sliced" globalopacity="true" visible="{# userlockedslot and !userlockmode}" color="191,64,191" />
+			<sprite depth="6" name="iconSlotLock" width="3" height="66" sprite="menu_empty2px" pos="63,0" type="sliced" globalopacity="true" visible="{# userlockedslot and !userlockmode}" color="191,64,191" />
+		</append>
+</LockSlotIconColor>
+
+

@@ -1,4 +1,5 @@
 <JaxTeller718>
+	<set xpath="/blocks/block[@name='treeGrassMaster']/drop[@event='Harvest' and @name='resourceYuccaFibers']/@count">1</set>
 
 <remove xpath="/blocks/block[@name='terrDesertGround']/drop[@event='Harvest' and @name='resourceClayLump']" />
 <remove xpath="/blocks/block[@name='terrDesertGround']/property[@class='RepairItems']/property[@name='resourceClayLump']" />
@@ -455,7 +456,7 @@
 	<append xpath="/blocks/block[@name='treeStump']"><drop event="Destroy" name="resourceWoodLogJT" count="5" /></append>
 
 
-	
+	<set xpath="/blocks/block[@name='plantHedge']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/blocks/block[@name='treePlainsTree']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/blocks/block[@name='treeDeadPineLeaf']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/blocks/block[@name='treeSnowyDeadBush']/drop[@event='Harvest' and @name='resourceWood']/@name">resourceStickJT</set>
@@ -464,6 +465,7 @@
 	<set xpath="/blocks/block[@name='treeDeadPineLeaf']/drop[@event='Harvest' and @name='resourceStickJT']/@count">1,2</set>
 	<set xpath="/blocks/block[@name='treeSnowyDeadBush']/drop[@event='Harvest' and @name='resourceStickJT']/@count">1,2</set>
 	<set xpath="/blocks/block[@name='treeAzalea']/drop[@event='Harvest' and @name='resourceStickJT']/@count">1,2</set>
+	<set xpath="/blocks/block[@name='plantHedge']/drop[@event='Harvest' and @name='resourceStickJT']/@count">1,2</set>
 
 
 	<!-- Add the E action back to wild plants -->
@@ -503,25 +505,26 @@
 	<append xpath="/blocks/block[@name='plantedHop3Harvest']">
 		<property name="Class" value="CropsGrown"/>
 	</append>
+	<append xpath="/blocks/block[@name='plantedPumpkin3Harvest']">
+		<property name="Class" value="CropsGrown"/>
+	</append>
 	
 	<!-- Special fixes for player-grown crops so they can't be picked up with E -->
 	<set xpath="/blocks/block[@name='plantedYucca3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedYucca3HarvestPlayer']">
 		<property name="Material" value="Mcorn"/>
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/plant_yucca_harvestPrefab"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/Plants/plant_yucca_harvestPrefab"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedCotton3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedCotton3HarvestPlayer']">
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/plantCottonHarvestPrefab"/>
+		<property name="Texture" value="363"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedCoffee3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedCoffee3HarvestPlayer']">
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/plantCoffeePlant_Prefab"/>
+		<property name="Texture" value="395"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedGoldenrod3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
@@ -532,20 +535,20 @@
 	<set xpath="/blocks/block[@name='plantedAloe3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedAloe3HarvestPlayer']">
 		<property name="Material" value="Mcorn"/>
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/plant_aloe_harvestPrefab"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/Plants/plant_aloe_harvestPrefab"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedBlueberry3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedBlueberry3HarvestPlayer']">
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/blueberry_plant_harvestPrefab"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/Plants/blueberry_plant_harvestPrefab"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedPotato3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedPotato3HarvestPlayer']">
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/potato_plant_harvestPrefab"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/Plants/potato_plant_harvestPrefab"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedChrysanthemum3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
@@ -556,42 +559,57 @@
 	<set xpath="/blocks/block[@name='plantedGraceCorn3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedGraceCorn3HarvestPlayer']">
 		<property name="Material" value="Mcorn"/>
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/OutdoorDecor/cornStalkSuperPrefab"/>
-	<property name="ModelOffset" value="0,0,0"/>
-	<property name="MultiBlockDim" value="1,3,1"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/OutdoorDecor/cornStalkSuperPrefab"/>
+		<property name="ModelOffset" value="0,0,0"/>
+		<property name="MultiBlockDim" value="1,3,1"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedHop3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedHop3HarvestPlayer']">
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/Plants/plantHopsHarvestPrefab"/>
+			<property name="Texture" value="449"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedCorn3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedCorn3HarvestPlayer']">
 		<property name="Material" value="Mcorn"/>
-	<property name="Shape" value="ModelEntity"/>
-	<property name="Model" value="Entities/OutdoorDecor/cornStalkGreenPrefab"/>
-	<property name="ModelOffset" value="0,0,0"/>
-	<property name="MultiBlockDim" value="1,3,1"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/OutdoorDecor/cornStalkGreenPrefab"/>
+		<property name="ModelOffset" value="0,0,0"/>
+		<property name="MultiBlockDim" value="1,3,1"/>
 	</append>	
 	
 	<set xpath="/blocks/block[@name='plantedMushroom3HarvestPlayer']/property[@name='Extends']/@value">cropsHarvestableMaster</set>
 	<append xpath="/blocks/block[@name='plantedMushroom3HarvestPlayer']">
 		<property name="Material" value="Mmushrooms"/>
-		<property name="DisplayType" value="blockMulti" />
-		<property name="DisplayInfo" value="Description"/>
-	<property name="Model" value="Entities/OutdoorDecor/mushroomGrowthPrefab"/>
-
-		<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
-		<property name="IsTerrainDecoration" value="true"/>
 		<property name="PlantGrowing.FertileLevel" value="0"/>
 		<property name="CropsGrown.BonusHarvestDivisor" value="16"/>
+		<property name="DisplayType" value="blockMulti"/>
+		<property name="DisplayInfo" value="Description"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/OutdoorDecor/mushroomHarvestPrefab"/>
+		<property name="WaterFlow" value="permitted"/>
+		<property name="Collide" value="melee"/>
+		<property name="IsTerrainDecoration" value="true"/>
+		<property name="VehicleHitScale" value=".1"/>
 		<property name="HarvestOverdamage" value="false"/>
-		<property name="PickupJournalEntry" value="farmingTip"/>
 		<property name="FilterTags" value="foutdoor,fcrops"/>
-	</append>
+	</append>		
+	
+	<set xpath="/blocks/block[@name='plantedPumpkin3HarvestPlayer']">
+		<property name="Extends" value="cropsHarvestableMaster"/>
+		<property name="Material" value="Mcorn"/>
+		<property name="Shape" value="ModelEntity"/>
+		<property name="Model" value="Entities/Plants/pumpkinHarvestPrefab"/>
+		<property name="CreativeMode" value="None"/>
+		<property name="CustomIcon" value="plantedPumpkin1"/>
+		<property name="DescriptionKey" value="plantedPumpkin3HarvestDesc"/>
+		<drop event="Harvest" name="foodCropPumpkin" count="2" tag="cropHarvest"/>
+		<drop event="Harvest" name="foodCropPumpkin" prob="0.5" count="1" tag="bonusCropHarvest"/>
+		<drop event="Destroy" name="plantedPumpkin1" count="1" prob="0.5"/>
+		<property name="SortOrder1" value="B964"/>
+		<property name="SortOrder2" value="0002"/>
+	</set>
 	
 	
 
@@ -994,6 +1012,45 @@
 			<property name="FilterTags" value="MC_building,SC_traps,fdecor,ftraps"/>
 			<property name="SortOrder1" value="70g0"/>
 		</block>
+		
+<block name="cntVanillaWoodenChestClosed">
+	<property name="Class" value="SecureLoot"/>
+	<property name="Material" value="MwoodReinforced"/>
+	<property name="Shape" value="ModelEntity"/>
+	<property name="Model" value="@:Entities/LootContainers/woodenChest_01Prefab.prefab"/>
+	<property name="ImposterExchange" value="imposterQuarter" param1="154"/>
+	<property name="WaterFlow" value="permitted"/>
+	<property name="HandleFace" value="Bottom"/>
+	<property name="IsTerrainDecoration" value="true"/>
+	<property name="StabilitySupport" value="false"/>
+	<property name="LootList" value="vanillaStorage"/>
+	<property name="DescriptionKey" value="cntVanillaWoodenChestClosedDesc"/>
+	<property name="CustomIcon" value="cntVanillaWoodenChestClosed"/>
+	<property class="RepairItems">
+		<property name="resourceWood" value="10"/>
+		<property name="resourceNail" value="2"/>
+	</property>
+	<property name="DowngradeBlock" value="cntVanillaWoodenChestOpen"/>
+	<property name="DowngradeFX" value="impact_organic_on_metal,silencefiller"/>
+	<drop event="Harvest" name="resourceNailBent" count="0" tag="allHarvest"/>
+	<drop event="Destroy" name="cntVanillaWoodenChestClosed" count="0"/>
+	<property name="SortOrder1" value="B105"/>
+	<property name="SortOrder2" value="0003"/>
+	<property name="FilterTags" value="MC_building,SC_loot"/>
+</block>
+
+<block name="cntVanillaWoodenChestOpen">
+	<property name="Extends" value="cntVanillaWoodenChestClosed" param1="Class,LootList,DowngradeBlock"/>
+	<property name="Model" value="@:Entities/LootContainers/woodenChest_02Prefab.prefab"/>
+	<property name="SortOrder2" value="0004"/>
+	<property name="LootList" value="vanillaStorage"/>
+	<drop event="Destroy" name="cntVanillaWoodenChestClosed" count="1"/>
+	<drop event="Destroy" name="cntVanillaWoodenChestOpen" count="0"/>
+	<property name="CustomIcon" value="cntVanillaWoodenChestClosed"/>
+	<drop event="Fall" name="terrDestroyedWoodDebris" count="1" prob="0.75" stick_chance="1"/>
+</block>
 	</append>
+
+
 
 </JaxTeller718>

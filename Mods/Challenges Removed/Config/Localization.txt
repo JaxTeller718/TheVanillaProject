@@ -1,0 +1,13 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,spanish,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese
+
+challengeGroupRemoved,Challenges,Challenge,,,Challenges Removed,,Herausforderungen Entfernt,,Desafíos Eliminados,,Défis Supprimés,,Sfide Rimosse,,挑戰已移除,,挑战已移除
+
+challengesRemovedTitle,Challenges,Challenge,,,Challenges Removed,,Herausforderungen Entfernt,,Desafíos Eliminados,,Défis Supprimés,,Sfide Rimosse,,挑戰已移除,,挑战已移除
+
+challengesRemovedHint1,Challenges,Challenge,,,Challenges Removed,,Herausforderungen Entfernt,,Desafíos Eliminados,,Défis Supprimés,,Sfide Rimosse,,挑戰已移除,,挑战已移除
+
+challengesRemovedHint2,Challenges,Challenge,,,Challenges Removed,,Herausforderungen Entfernt,,Desafíos Eliminados,,Défis Supprimés,,Sfide Rimosse,,挑戰已移除,,挑战已移除
+
+challengesRemovedShort,Challenges,Challenge,,,All challenges have been removed.,,Alle Herausforderungen wurden entfernt.,,Todos los desafíos han sido eliminados.,,Tous les défis ont été supprimés.,,Todos os desafios foram removidos.,,Все вызовы были удалены.,,Tüm zorluklar kaldırıldı.,,所有挑战已被移除.,,所有挑戰已被移除
+
+challengesRemovedDesc,Challenges,Challenge,,,Nothing to do.,,Nichts zu tun.,,Nada que hacer.,,Rien à faire.,,Niente da fare.,,やることはありません。,没有要做的事情。,Nie ma nic do zrobienia.,,Yapılacak hiçbir şey yok.,,没有任何事情要做。,没有任何事情要做。

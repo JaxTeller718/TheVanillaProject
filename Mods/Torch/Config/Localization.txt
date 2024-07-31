@@ -1,0 +1,32 @@
+﻿Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,latam,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese,spanish
+
+loadingTipTorchCulling_title,UI,Loading Screen,x,,Torch Light Occlusion Culling
+loadingTipTorchCulling,UI,Loading Screen,x,,"Torch uses Occlusion Culling to remove lights that are not visible in the final frame, increasing performance in areas with lots of lights with few being visible"
+loadingTipTorchShadowMaps_title,UI,Loading Screen,x,,Torch Shadowmap Caching
+loadingTipTorchShadowMaps,UI,Loading Screen,x,,"Torch caches the Shadowmaps created from the lights to be used in future frames, increasing performance"
+torchSettingGeneral,UI,Menu,x,,General
+torchSettingGeneralTooltip,UI,Menu,x,,General settings for Torch
+torchSettingGIGeneral,UI,Menu,x,,General
+torchSettingGIGeneralTooltip,UI,Menu,x,,General settings for Torch's Real Time Global Illumination
+torchSettingEnabled,UI,Menu,x,,Torch
+torchSettingCulling,UI,Menu,x,,Light Occlusion Culling
+torchSettingShadowMapCaching,UI,Menu,x,,Shadow Map Caching
+torchSettingShadowMapResolution,UI,Menu,x,,Shadow Map Resolution
+torchSettingEnabledTooltip,UI,Menu,x,,"Enables or Disables Torch. This turns on or off both the Light Occlusion Culling System and the Shadow map Caching system on or off"
+torchSettingGIType,UI,Menu,x,,Global Illumination
+torchSettingGITypeTooltip,UI,Menu,x,,"Global Illumination Type \n\nScreen Space is using only what is on the screen to determine the amount of global illumination is in the frame"
+torchSettingGIQuality,UI,Menu,x,,Quality Level
+torchSettingGIQualityTooltip,UI,Menu,x,,"Global Illumination Quality Level"
+torchSettingCullingTooltip,UI,Menu,x,,"Enables or Disables Torch's Light Occlusion Culling system, if enabled, lights not visible in the final frame will not be rendered"
+torchSettingShadowMapCachingTooltip,UI,Menu,x,,"Enables or Disables Torch's Shadow Map Caching system, if enabled, all lights will have their shadow maps cached instead of being created each frame. This setting enabled increases VRAM usage"
+torchSettingShadowMapResolutionTooltip,UI,Menu,x,,"Sets the resolution for the shadow map of a light, a higher setting will increase VRAM usage"
+torchSettingMaxPixelLightShadowMaps,UI,Menu,x,,Max Pixel Light Shadows
+torchSettingMaxPixelLightShadowMapsTooltip,UI,Menu,x,,"The max amount of pixel lights with shadows when lighting Grass and Plants"
+torchSettingPixelLightCount,UI,Menu,x,,Pixel Light Count
+torchSettingPixelLightCountTooltip,UI,Menu,x,,"How many realtime lights can affect the same Grass or Plant. Increasing this setting can lower the amount of light bleeding on Grass and Plants. The Vanilla setting is Very Low. The higher this setting, the more potential drawcalls, slightly lowering FPS."
+torchSettingLights,UI,Menu,x,,Realtime Lights
+torchSettingLightsTooltip,UI,Menu,x,,Settings for realtime lights that are rendered by Unity
+torchSettingShadows,UI,Menu,x,,Shadows
+torchSettingShadowsTooltip,UI,Menu,x,,Settings for shadows rendered by Torch
+torchSettingMaxCascades,UI,Menu,x,,Max Shadow Cascades
+torchSettingMaxCascadesTooltip,UI,Menu,x,,The max number of shadow cascades that can be rendered

@@ -1,0 +1,38 @@
+<!-- Settings for Improved Hordes. -->
+<improved_hordes>
+	<!-- https://github.com/FilUnderscore/ImprovedHordes/wiki/Settings -->
+
+	<thread_tick_ms>100</thread_tick_ms> <!-- Update rate for threads (100ms by default or 0.1s). Increase this value if you are experiencing performance issues. -->
+
+	<!-- Entity Spawn Limit -->
+	<max_entities_spawned_per_player>16</max_entities_spawned_per_player> <!-- -1 to disable. Note: This is still limited by the game's MaxEnemyCount and MaxAnimalCount settings. -->
+	<max_hordes_spawned_per_player_group>3</max_hordes_spawned_per_player_group> <!-- -1 to disable. To calculate the max possible number of entities for a player group (given that both settings are greater than -1): max_hordes_spawned_per_player_group * max_entities_spawned_per_player -->
+
+	<max_spawn_capacity_percent>0.8</max_spawn_capacity_percent> <!-- 80% of MaxSpawnedZombies/MaxSpawnedAnimals can be occupied by hordes. -->
+
+	<!-- World Spawn Limits -->
+	<max_horde_density>2.0</max_horde_density> <!-- Max Horde Density per Horde. (Horde biome size) -->
+	<density_per_km_squared>9.3</density_per_km_squared> <!-- Max World Horde Density. (Number of hordes in world) -->
+	
+	<!-- Horde Biome Spawn Settings -->
+	<horde_biome_multiplier>0.5</horde_biome_multiplier> <!-- Biome multiplier. Higher = more hordes. -->
+	<horde_biome_curve_scale>1.5</horde_biome_curve_scale> <!-- Biome Curve Scale. Higher = more hordes in the wasteland. -->
+	
+	<!-- Horde Merge Distances -->
+	<loaded_merge_distance>10</loaded_merge_distance>
+	<unloaded_merge_distance>50</unloaded_merge_distance>
+	
+	<!-- Horde Populator Settings -->
+	<wandering_animal_wilderness_sparsity>64</wandering_animal_wilderness_sparsity>
+	<wandering_animal_enemy_wilderness_sparsity>32</wandering_animal_enemy_wilderness_sparsity>
+	
+	<wandering_enemy_wilderness_sparsity>32</wandering_enemy_wilderness_sparsity>
+	
+	<!-- Frequency of world horde repopulation (wilderness and city/town hordes) -->
+	<wilderness_horde_repopulation_days>7</wilderness_horde_repopulation_days>
+	<zone_horde_repopulation_days>7</zone_horde_repopulation_days>
+	
+	<!-- Events -->
+	<event_chunk_radius>3</event_chunk_radius>
+	<event_interest_distance_multiplier>0.5</event_interest_distance_multiplier>
+</improved_hordes>

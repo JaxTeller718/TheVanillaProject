@@ -1,0 +1,8 @@
+<JaxTeller718>
+	<remove xpath="/xui/ruleset/window_group[@name='focusedBlockHealth']"/>
+	<insertAfter xpath="/xui/ruleset/window_group[@name='interactionPrompt']">
+		<window_group name="focusedBlockHealth" actionSet="false">
+		</window_group>
+	</insertAfter>
+
+</JaxTeller718>

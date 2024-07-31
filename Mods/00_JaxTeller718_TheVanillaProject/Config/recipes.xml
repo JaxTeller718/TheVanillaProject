@@ -13,8 +13,26 @@
 	<remove xpath="/recipes/recipe[@name='foodBaconAndEggs']" />
 	<remove xpath="/recipes/recipe[@name='foodChiliDog']" />
 	<remove xpath="/recipes/recipe[@name='foodSteakAndPotato']" />
+	<remove xpath="/recipes/recipe[@name='frameShapes:VariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='cobblestoneShapes:VariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='concreteShapes:VariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='steelShapes:VariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='ammoArrowStone']"/>
+	<remove xpath="/recipes/recipe[@name='ammoBundleArrowStone']"/>
+	<remove xpath="/recipes/recipe[@name='gunBowT0PrimitiveBow']"/>
+	<remove xpath="/recipes/recipe[@name='meleeWpnClubT0WoodenClub']"/>
+	<remove xpath="/recipes/recipe[@name='meleeToolTorch']"/>
+	<remove xpath="/recipes/recipe[@name='campfire']"/>
+	<remove xpath="/recipes/recipe[@name='resourceCloth']"/>
+	<remove xpath="/recipes/recipe[@name='bedrollBlockVariantHelper']"/>
+	<remove xpath="/recipes/recipe[@name='medicalBandage']"/>
+	<remove xpath="/recipes/recipe[@name='cntWoodWritableCrate']"/>
+	<remove xpath="/recipes/recipe[@name='cntIronWritableCrate']"/>
+	<remove xpath="/recipes/recipe[@name='cntSteelWritableCrate']"/>
+	<remove xpath="/recipes/recipe[@name='cntDewCollector']"/>
+	<remove xpath="/recipes/recipe[@name='meleeWpnSpearT0StoneSpear']"/>
+	<remove xpath="/recipes/recipe[@name='meleeWpnSledgeT0StoneSledgehammer']"/>
 
-	<setattribute xpath="/recipes/recipe[@name='drinkJarBoiledWater']" name="craft_tool">toolCookingPot</setattribute>
 
 	<append xpath="/recipes">
 	
@@ -30,10 +48,12 @@
 			<ingredient name="resourceWood" count="15"/>
 		</recipe>
 		
-
+<recipe name="frameShapes:VariantHelper" count="1" craft_time="4">
+	<ingredient name="resourceWoodPlanksJT" count="8"/>
+</recipe>
 
 	
-	    <recipe name="drinkCanRiverWater" count="1" craft_area="campfire" tags="perkMasterChef">
+	    <recipe name="drinkCanRiverWater" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
 	        <ingredient name="resourceSnowBall" count="1"/>
 	        <ingredient name="drinkCanEmpty" count="1"/>
         </recipe>
@@ -239,13 +259,91 @@
 			<ingredient name="resourceWoodPlanksJT" count="1"/>
 		</recipe>
 		
-		<recipe name="resourceSharpStone" count="1" craft_time="1">
-			<ingredient name="resourceRockSmall" count="1"/>
-		</recipe>
-		
 		<recipe name="resourceTallow" count="1" craft_time="3">
 			<ingredient name="resourceAnimalFat" count="1"/>
 		</recipe>
+		
+
+<recipe name="foodBearCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodBearMeat" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodChickenCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodChicken" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodChicken"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodPorkCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodPork" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodRabbit" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodVenison" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodSnakeCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodSnake" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodSnake"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodWolfCharred" count="1" craft_area="campfire" craft_tool="resourceStickJT" tags="perkMasterChef">
+	<ingredient name="foodWolf" count="5"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodWolf"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodBearBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodBearMeat" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodPorkBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodPork" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodRabbitBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodRabbit" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
+	</effect_group>
+</recipe>
+
+<recipe name="foodVenisonBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
+	<ingredient name="foodVenison" count="5"/>
+	<ingredient name="drinkJarBoiledWater" count="1"/>
+	<effect_group>
+		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
+	</effect_group>
+</recipe>
 		
 <recipe name="foodBearGrilled" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
 	<ingredient name="foodBearMeat" count="5"/>
@@ -329,86 +427,6 @@
 	</effect_group>
 </recipe>
 
-<recipe name="foodBearCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodBearMeat" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodChickenCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodChicken" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodChicken"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodPorkCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodPork" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodRabbitCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodRabbit" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodVenisonCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodVenison" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodSnakeCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodSnake" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodSnake"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodWolfCharred" count="1" craft_area="campfire" tags="perkMasterChef">
-	<ingredient name="foodWolf" count="5"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodWolf"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodBearBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-	<ingredient name="foodBearMeat" count="5"/>
-	<ingredient name="drinkJarBoiledWater" count="1"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodBearMeat"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodPorkBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-	<ingredient name="foodPork" count="5"/>
-	<ingredient name="drinkJarBoiledWater" count="1"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodPork"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodRabbitBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-	<ingredient name="foodRabbit" count="5"/>
-	<ingredient name="drinkJarBoiledWater" count="1"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodRabbit"/>
-	</effect_group>
-</recipe>
-
-<recipe name="foodVenisonBoiled" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-	<ingredient name="foodVenison" count="5"/>
-	<ingredient name="drinkJarBoiledWater" count="1"/>
-	<effect_group>
-		<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodVenison"/>
-	</effect_group>
-</recipe>
 
 <recipe name="foodBaconAndEggs" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
 	<ingredient name="foodPork" count="5"/>
@@ -559,8 +577,57 @@
 			</effect_group>
 		</recipe>
 		
+<recipe name="ammoArrowStone" count="1">
+	<ingredient name="resourceRockSmall" count="1"/>
+	<ingredient name="resourceStickJT" count="1"/>
+	<ingredient name="resourceFeather" count="1"/>
+</recipe>
 
-		
+<recipe name="ammoBundleArrowStone" count="1" craft_time="240" tags="learnable">
+	<ingredient name="resourceRockSmall" count="80"/>
+	<ingredient name="resourceStickJT" count="80"/>
+	<ingredient name="resourceFeather" count="80"/>
+</recipe>
+
+<recipe name="gunBowT0PrimitiveBow" count="1" tags="perkArchery">
+	<ingredient name="resourceStickJT" count="6"/>
+	<ingredient name="resourceYuccaFibers" count="3"/>
+</recipe>	
+
+<recipe name="meleeWpnClubT0WoodenClub" count="1" tags="perkPummelPete">
+	<ingredient name="resourceStickJT" count="6"/>
+</recipe>	
+
+<recipe name="campfire" count="1">
+	<ingredient name="resourceRockSmall" count="8"/>
+</recipe>
+
+<recipe name="medicalBandage" count="1" >
+	<ingredient name="resourceCloth" count="2"/>
+</recipe>
+
+<recipe name="bedrollBlockVariantHelper" count="1">
+	<ingredient name="resourceCloth" count="6"/>
+</recipe>
+
+<recipe name="meleeToolTorch" count="1">
+	<ingredient name="resourceTallow" count="1"/>
+	<ingredient name="resourceCloth" count="1"/>
+	<ingredient name="resourceStickJT" count="1"/>
+</recipe>
+
+<recipe name="meleeToolTorch" count="1">
+	<ingredient name="resourceCoal" count="1"/>
+	<ingredient name="resourceStickJT" count="1"/>
+</recipe>
+
+<recipe name="resourceCloth" count="1">
+	<ingredient name="resourceCropCottonPlant" count="2"/>
+</recipe>
+
+<recipe name="cntVanillaWoodenChestClosed" count="1">
+	<ingredient name="resourceWoodPlanksJT" count="6"/>
+</recipe>
 	</append>
 
   <set xpath="//ingredient[@name='foodBearMeat']/@count">2</set>
@@ -580,37 +647,21 @@
 	<set xpath="/recipes/recipe[@name='meleeToolPickT2SteelPickaxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolShovelT1IronShovel']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolShovelT2SteelShovel']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolShovelT0StoneShovel']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeWpnSledgeT0StoneSledgehammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSledgeT1IronSledgehammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSledgeT3SteelSledgehammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolRepairT0StoneAxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolTorch']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='medicalSplint']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnClubT1BaseballBat']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeWpnClubT0WoodenClub']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolRepairT1ClawHammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolAxeT1IronFireaxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolAxeT2SteelAxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeWpnSpearT0StoneSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT1IronSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT3SteelSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='trapSpikesWoodDmg0']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolRepairT0StoneAxe']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
-	<set xpath="/recipes/recipe[@name='ammoBundleCrossbowBoltStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
-	<set xpath="/recipes/recipe[@name='ammoCrossbowBoltStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
-	<set xpath="/recipes/recipe[@name='ammoArrowStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
-	<set xpath="/recipes/recipe[@name='ammoBundleArrowStone']/ingredient[@name='resourceRockSmall']/@name">resourceSharpStone</set>
 	<set xpath="/recipes/recipe[@name='ammoBundleCrossbowBoltStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='ammoCrossbowBoltStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='ammoArrowStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='ammoBundleArrowStone']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='resourceCloth']/ingredient[@name='resourceCropCottonPlant']/@count">2</set>
-	<set xpath="/recipes/recipe[@name='bedrollBlockVariantHelper']/ingredient[@name='resourceYuccaFibers']/@name">resourceCloth</set>
 	<set xpath="/recipes/recipe[@name='candle']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
 	<set xpath="/recipes/recipe[@name='ammoArrowFlaming']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
 	<set xpath="/recipes/recipe[@name='ammoBundleArrowFlaming']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
-	<set xpath="/recipes/recipe[@name='meleeToolTorch']/ingredient[@name='resourceAnimalFat']/@name">resourceTallow</set>
 
   <set xpath="//ingredient[@name='resourceWood']/@name">resourceWoodPlanksJT</set>
 

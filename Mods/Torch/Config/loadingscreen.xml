@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Torch name="loadingscreen.xml">
+	<append xpath="/doc/tips">
+		<tip key="loadingTipTorchCulling" />
+		<tip key="loadingTipTorchShadowMaps" />
+	</append>
+</Torch>
