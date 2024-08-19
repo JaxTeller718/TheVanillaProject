@@ -1,5 +1,4 @@
 <JaxTeller718>
-
 	<set xpath="/worldgeneration/biomes/biome[@name='snow']/subbiome[@prob='0.3']/decorations/decoration[@type='block' and @blockname='resourceRock01']/@prob">0.00033</set>
 	<set xpath="/worldgeneration/biomes/biome[@name='snow']/subbiome[@prob='0.3']/decorations/decoration[@type='block' and @blockname='resourceRock02']/@prob">0.00033</set>
 	<set xpath="/worldgeneration/biomes/biome[@name='snow']/subbiome[@prob='0.3']/decorations/decoration[@type='block' and @blockname='rock06']/@prob">0.003</set>
@@ -725,5 +724,4 @@
 	<set xpath="/worldgeneration/pois/poi[@name='Road Gravel']/blockontop[@blockname='goreBlockAnimal']/@prob">0.0002</set>
 	<set xpath="/worldgeneration/pois/poi[@name='Road Gravel']/blockontop[@blockname='cntStreetRandomLootHelper']/@prob">0.0007</set>
 	<set xpath="/worldgeneration/pois/poi[@name='Road Gravel']/blockontop[@blockname='carsRandomHelper']/@prob">0.0005</set>
-
 </JaxTeller718>

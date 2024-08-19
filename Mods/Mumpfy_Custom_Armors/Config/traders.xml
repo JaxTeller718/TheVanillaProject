@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
-
 	<append xpath="/traders/trader_item_groups/trader_item_group[@name='groupArmorLight']">
-	
 		<item name="armorEnforcerOutfit_M_ledger"/>
 		<item name="armorEnforcerGloves_M_ledger"/>
 		<item name="armorEnforcerBoots_M_ledger"/>
 		<item name="armorEnforcerHelmet_M_ledger"/>
-		
 		<item name="armorEnforcerOutfit_M_phoenix"/>
 		<item name="armorEnforcerGloves_M_phoenix"/>
 		<item name="armorEnforcerBoots_M_phoenix"/>
 		<item name="armorEnforcerHelmet_M_phoenix"/>
-		
 		<item name="armorEnforcerOutfit_M_wick"/>
 		<item name="armorEnforcerGloves_M_wick"/>
 		<item name="armorEnforcerBoots_M_wick"/>
 		<item name="armorEnforcerHelmet_M_wick"/>
-		
 		<item name="armorEnforcerOutfit_M_lobito"/>
 		<item name="armorEnforcerGloves_M_lobito"/>
 		<item name="armorEnforcerBoots_M_lobito"/>
 		<item name="armorEnforcerHelmet_M_lobito"/>
-		
 	</append>
-
-
-
 </configs>

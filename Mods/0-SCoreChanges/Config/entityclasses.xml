@@ -1,9 +1,8 @@
 ﻿<JaxTeller718>
-
-    <append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
-        <property name="RandomWalkTypes" value="2,3,5,6,7" />
-		<property name="RandomSizes" value="0.9,1.0,1.1" />
-    </append>
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
+		<property name="RandomWalkTypes" value="2,3,5,6,7"/>
+		<property name="RandomSizes" value="0.9,1.0,1.1"/>
+	</append>
 	<append xpath="/entity_classes/entity_class[@name='vehicleBicycle']/property[@name='Tags']/@value">,takeable</append>
 	<append xpath="/entity_classes/entity_class[@name='entityJunkDrone']/property[@name='Tags']/@value">,notrample</append>
 </JaxTeller718>

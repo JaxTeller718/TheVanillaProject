@@ -1,8 +1,7 @@
 <JaxTeller718>
 	<remove xpath="/xui/ruleset/window_group[@name='focusedBlockHealth']"/>
 	<insertAfter xpath="/xui/ruleset/window_group[@name='interactionPrompt']">
-		<window_group name="focusedBlockHealth" actionSet="false">
-		</window_group>
+		<window_group name="focusedBlockHealth" actionSet="false"/>
 	</insertAfter>
 	<remove xpath="/xui/ruleset/window_group[@name='workstation_forge']"/>
 	<insertAfter xpath="/xui/ruleset/window_group[@name='workstation_chemistryStation']">
@@ -20,10 +19,10 @@
 			<window name="windowCraftingList"/>
 			<window name="craftingInfoPanel"/>
 			<window name="windowCraftingQueue"/>
-			<window name="windowToolsCampfireRH" />
-			<window name="windowFuel" />
-			<window name="windowOutput" />
-			<window name="windowNonPagingHeader" />
+			<window name="windowToolsCampfireRH"/>
+			<window name="windowFuel"/>
+			<window name="windowOutput"/>
+			<window name="windowNonPagingHeader"/>
 		</window_group>
 	</insertAfter>
 </JaxTeller718>

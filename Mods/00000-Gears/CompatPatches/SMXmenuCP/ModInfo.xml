@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Name value="Gears-SMXmenuCP"/>
+	<DisplayName value="Gears-SMXmenuCP"/>
+	<Description value="SMXmenu Compat UI patch to add support for Gears to SMXmenu"/>
+	<Author value="Laydor"/>
+	<Version value="v0.0.1"/>
+	<Website value=""/>
+</xml>

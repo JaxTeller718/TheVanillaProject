@@ -1,63 +1,41 @@
 <JaxTeller718>
-
 	<set xpath="/windows/window[@name='menuBackground']/texture[@name='bgTexture']/@texture">@modfolder:UIAtlases/ItemIconAtlas/vanbackground.png</set>
-
 	<remove xpath="/windows/window[@name='mainMenuLogo']"/>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsMultiplayer']/grid/gameoption[@name='LandClaimSize']/@values">21, 31, 41, 51, 71, 91, 101</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsMultiplayer']/grid/browsergameoptioncombined[@name='LandClaimSize']/@values">21, 31, 41, 51, 71, 91, 101</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='LootRespawnDays']/@values">-1, 1, 5, 7, 10, 14, 15, 30, 50</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='LootRespawnDays']/@values">-1, 1, 5, 7, 10, 14, 15, 30, 50</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/gameoption[@name='DayNightLength']/@values">10, 20, 30, 40, 50, 60, 75, 90, 120, 150, 180</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='DayNightLength']/@values">10, 20, 30, 40, 50, 60, 75, 90, 120, 150, 180</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='BloodMoonEnemyCount']/@values">2, 3, 4, 5, 10, 14, 16, 24, 32, 64, 100, 125, 150</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='BloodMoonEnemyCount']/@values">2, 3, 4, 5, 10, 14, 16, 24, 32, 64, 100, 125, 150</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='MaxChunkAge']/@values">-1, 1, 2, 3, 4, 5, 6, 7, 10, 20, 30, 40, 50, 75, 100</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='MaxChunkAge']/@values">-1, 1, 2, 3, 4, 5, 6, 7, 10, 20, 30, 40, 50, 75, 100</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsMultiplayer']/grid/gameoption[@name='PartySharedKillRange']/@values">0, 10, 25, 50, 75, 100, 500</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsMultiplayer']/grid/browsergameoptioncombined[@name='PartySharedKillRange']/@values">0, 10, 25, 50, 75, 100, 500</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/gameoption[@name='DayLightLength']/@values">0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/browsergameoptioncombined[@name='DayLightLength']/@values">0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/gameoption[@name='XPMultiplier']/@values">10, 25, 50, 75, 100, 125, 150, 175, 200</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/browsergameoptioncombined[@name='XPMultiplier']/@values">10, 25, 50, 75, 100, 125, 150, 175, 200</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='AirDropFrequency']/@values">0, 24, 48, 72, 96, 120, 144, 168</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='AirDropFrequency']/@values">0, 24, 48, 72, 96, 120, 144, 168</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='BlockDamagePlayer']/@values">5, 25, 50, 75, 85, 100, 145, 200</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='BlockDamagePlayer']/@values">5, 25, 50, 75, 85, 100, 145, 200</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='BlockDamageAI']/@values">5, 10, 25, 50, 75, 100, 120, 145, 200, 300</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='BlockDamageAI']/@values">5, 10, 25, 50, 75, 100, 120, 145, 200, 300</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='BlockDamageAIBM']/@values">5, 10, 25, 50, 75, 100, 120, 145, 200, 300</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='BlockDamageAIBM']/@values">5, 10, 25, 50, 75, 100, 120, 145, 200, 300</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/gameoption[@name='LootAbundance']/@values">10, 25, 50, 75, 100, 150, 200</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsAdvanced']/grid/browsergameoptioncombined[@name='LootAbundance']/@values">10, 25, 50, 75, 100, 150, 200</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsGeneral']/grid/gameoption[@name='BloodMoonFrequency']/@values">0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 20, 30</set>
-	
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='ZombieMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='ZombieMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='ZombieMoveNight']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='ZombieMoveNight']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='ZombieFeralMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='ZombieFeralMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='ZombieBMMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='ZombieBMMove']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
-
 	<set xpath="/windows/window[@name='newContinueGame']/rect[@name='tabs']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/gameoption[@name='ZombieFeralSense']/@display_names">goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare</set>
 	<set xpath="/windows/window[@name='serverBrowser']/panel[@name='serverfilters']/panel[@controller='TabSelector']/rect[@name='tabsContents']/rect[@tab_key='xuiGameSettingsBasic']/grid/browsergameoptioncombined[@name='ZombieFeralSense']/@display_names">goOff,goZMDay,goZMNight,goZMAll</set>
-
 </JaxTeller718>

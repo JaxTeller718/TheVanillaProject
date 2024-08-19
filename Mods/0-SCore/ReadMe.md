@@ -23,6 +23,267 @@ Direct Download to the 0-SCore.zip available on gitlab mirror:
 ### Change Logs
 
 [ Change Log ]
+Version: 1.0.51.1516
+	[ Resharpen ]
+		- Fixed an issue where the option would not be properly enabled.
+			- Was looking for the wrong property name.
+		<property name="SharpenItem" value="sharpeningStone" />
+
+	[ SphereII A Better Life ]
+		- Many fixes to the models to improve and add hit boxes ( xyth )
+		- Enables more fishes from pipermac. (xyth)
+		- Fixed the ModInfo.xml's name entry so it's properly ordered.
+
+Version: 1.0.49.1202
+
+	[ Repair From Containers ]
+		- Adjusted ordering of Nearby Enemy filter
+			- Check to see if in Party
+			- Check if nearby entity is in party
+			- Check if nearby entity is an ally
+			- Then check if nearby entity can damage you.
+		- Previously, the "can damage you" check was before the Party check
+
+	[ Food Spoilage ]
+		- Moved Food Spoilage to a Feature folder
+		- Food Spoilage items will have a new MetaData called "Freshness", which is a percentage of freshness less max durability.
+			currentSpoilage / maxSpoilage
+		- Freshness percentage is stored as 0,1 value, with 0.1 being 10%, and 1 being 100% fresh.
+		- The following vanilla code should be able to compare it through a requirement.
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffStillFresh">
+				<requirement name="CompareItemMetaFloat" operation="GTE" value="0.1" key="Freshness"/>
+			</triggered_effect>
+
+		- New Harmony Patches to allow custom Item Type Icons.
+		- If the Freshness % is above 0%, it will use the AltItemTypeIcon, if it's defined.
+		- If no AltItemTypeIcon is defined, nothing will display.
+		- Once freshness reaches 0%, the ItemTypeIcon will be used, if it's defined.
+		- Example item entry.
+				<!-- If there's freshness still available, display the campfire icon -->
+				<property name="AltItemTypeIcon" value="campfire"/>
+				<!-- If there's no freshness left, display the cold  icon -->
+				<property name="ItemTypeIcon" value="cold"/>
+
+
+	[ FreshnessOnly - A Food Spoilage Sub-Feature ]
+		- Added a Freshness Only property for ItemClass entry.
+			<property name="FreshnessOnly" value="true" />
+		- This FreshnessOnly property unlocks a light-weight food spoilage implementation.
+		- The concept of this feature is to provide an incentive to eat food fresh, without punishing players who are not interested in it.
+		- If the FreshnessCVar property is defined, then only the cvars listed will be executed again with the multiplier.
+			<property name="FreshnessCVar" value="cvar1,cvar2" />
+		- By default, FreshnessCVar is "all". 
+		- If FreshnessCVar is "none", then all ModifyCVars will be ignored from the multiplier.
+
+		- Items with this property set to true will not downgrade to another item when spoiled.
+		- All items in the same stack will lose its freshness at once.
+		- If this freshness value is 0%, then it will no longer perform calculations
+		- If this freshness value is 0%, the durability bar will disappear, and the item will appear normally.
+		- If a freshness value is greater than 0%, then the value of the consumable will be multiplied by that percentage
+
+		- Example:
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
+			With a freshness value of 0.5 ( 50% )
+				- the $waterAmountAdd will be increased by 20
+				- the $waterAmountAdd will be further increased by 10.    20 * (.50 + 1 )
+				- The total $waterAmount will be 30
+
+		- When a consumable is ate when it's still fresh, a buff will be applied, letting the player know a bonus is active.
+		- Example Implementation:
+			<append xpath="/items/item[@name='drinkJarBlackStrapCoffee']">
+				<property name="Spoilable" value="true" />
+				<property name="SpoiledItem" value="drinkJarBlackStrapCoffee" />
+				<property name="ShowQuality" value="false" />
+				<property name="SpoilageMax" value="1000" />
+				<property name="FreshnessOnly" value="true" />
+				<!-- if specified, it'll only re-trigger the following cvars -->
+				<property name="FreshnessCVar" value="cvar1,cvar2" />
+				<!-- If there's freshness still available, display the campfire icon -->
+				<property name="AltItemTypeIcon" value="campfire"/>
+				<!-- If there's no freshness left, display the cold  icon -->
+				<property name="ItemTypeIcon" value="cold"/>
+			</append>
+			
+	[ SphereII Larger Party ]
+		- Added a XUi/Config/windows.xml to increase the side of the window for more players.
+
+Version: 1.0.46.1010
+	[ EntitySwimingSDX / EntitySwimmingSDX ]
+		- Fixed an issue where fish were leaving the water.
+		- Each fish searches for water blocks in its area, and uses that to validate it's pathing.
+		- If a fish has less than 20 water blocks, it'll despawn.
+		- If a fish leaves the water, it'll despawn.
+		- Added new class reference to fix spelling error in Swimming.
+			EntitySwimmingSDX and EntitySwimingSDX are the same, code-wise.
+		- Kept spelling error to maintain references
+		
+
+	[ A Better Life 1.0.0.732 ]
+		- Adjusted the ModInfo.xml's Name value
+		- Added the ability to auto-generate the version number.
+		- Adjusted the entityclasses.xml for class reference for extends.
+		
+
+Version: 1.0.45.1058
+	[ Check Items For Valid Containers ]
+		- Fixed another null reference when blocking an item from the NPC's loot container.
+		- Added filter for ItemValue's MetaData to exclude them from being added to a chest
+		- If an ItemValue has a Meta Data of "NoStorage", with a value greater than 0, it will be blocked.
+	
+	[ NPCs ]
+		- Added a few new properties to NPCs to block them from being added to storage.
+		- These are processed regardless of tags on the storage container or item.
+		- When an NPC is being picked up, NoStorage is read from the entityclass.
+		- By default, without this property, storage is allowed.
+		- npcNoStorage localization is added to the 0-SCore's Localization
+
+		Example syntax:
+			<append xpath="/entity_classes/entity_class[@name='npcMeleeTemplate']">
+				<property name="NoStorage" value="true" />
+				<property name="DisallowedKey" value="npcNoStorage" />
+			</append>
+	
+Version: 1.0.45.853
+	[ Check Items For Valid Containers ]
+		- Fixed a null reference when opening up zombie loot bags, because they do not have block properties.
+		- Questioning life choices that I did not name this feature correctly, and will be forever doomed calling it "Check Items For valid Containers"
+		- Added additional check for block at the tile location's position
+
+	[ ModEvents ]
+		- Removed a usefuless warning about duplicate mods folder ( this is the standard now )
+		- This provides a quick hash of all installed mods, allowing overhauls to quickly see at a glance if it matches the expected value.
+		- The hash is made up of modlet name + version number. 
+		- If more mods are installed than expected, or it has different version numbers, the hash will change.
+		- Changed the mod hash from a GetHashCode() to a truncated Sha256 value
+			Modlet List Hash: 7E5FF
+
+Version: 1.0.44.1602
+	[ Check Items For Valid Containers]
+		- Introduced a new feature through a series of Harmony patches that allows you to filter items from storage containers.
+		- Allows you to filter items being added to any given Loot Container based on tags.
+		- A container with the AllowTags set to "all", will allow all items.
+		- A container with no AllowTags or DisallowTags will not be checked at all, and act normally.
+
+		- If a loot container has the following property, then it will only allow items that have those tags to be stored.
+			<!-- Only melee, axe, and repairTool items are allowed to be added -->
+			<!-- But it will not accept any lightarmor -->
+			<property name="AllowTags" value="melee,axe,repairTool" />
+			<property name="DisallowTags" value="lightarmor" />
+
+			<!-- Items.xml entry -->
+			<item name="meleeToolRepairT0StoneAxe">
+				<property name="Tags" value="axe,melee,light,tool,longShaft,repairTool,miningTool,attStrength,perkMiner69r,perkMotherLode,perkTheHuntsman,canHaveCosmetic,harvestingSkill,corpseRemoval"/>
+
+			<!-- Example -->
+			<block name="cntSphereTagTest">
+				<property name="Extends" value="cntWoodWritableCrate"/>
+				<property name="LootList" value="playerWoodWritableStorage"/>
+				<property name="AllowTags" value="melee,axe,repairTool" />
+			</block>
+
+		- If an item is blocked, a denied UI sound will be triggered.
+		- If an item is dragged and dropped in a blocked container, a tooltip will also display.
+		- Shift clicking on an item to move it will play the denied UI.
+	
+		- If a block has the following Property, this will be used to check for localization and display a custom blocked message.
+			<property name="DisallowedKey" value="NoPickUpForNPCs" />
+		- This property can also exist on the Item entry as well, and will over-ride the block's message, if it's set.
+		- If not otherwise set, the default localization entry will be displayed.
+			
+Version: 1.0.43.1207
+	[ Fire Manager ]
+		- Removed the DynamicMeshChunk update, which was likely needless, and likely caused a performance issue.
+
+		- Added new property on a block to replace the target block with an ExtinguishedUpgradeBlock.
+			<property name='ExtinguishedUpgradeBlock' value='burntBlock' />
+		- When a block is extinguished, it will turn into this block.
+		- Damage from the original block is transfered over to the new block
+		- If the damage from the original block is greater than the new block's max health, it'll turn into an air block.
+		
+
+	[ SphereII Larger Parties ]
+		- New modlet that allows Parties up to 100 members.
+		- Added a Minimum exp value for shared exp.
+		- Default Minimum Exp is 200.
+		- Not included into 0-SCore, because there is a transpiler patch.
+
+Version: 1.0.39.746
+
+	[ One Block Crouch ]
+		- Disabled one block crouch by default.
+	
+	[ Take And Replace ]
+		- Fixed an issue where the original default behaviour was broken.
+		- A new Configuration Block entry called "Legacy" is set to true, going to default behaviour.
+
+		<!-- To enable advance configuration settings. -->
+		<set xpath="/blocks/block[@name='ConfigFeatureBlock']/property[@class='AdvancedPickUpAndPlace']/property[@name='Legacy']/@value">false</>
+
+Version: 1.0.38.1615
+
+	[ Food Spoilage ]
+		- Adjusted references within the patches to use their full __instance values, rather than creating shorter forms for cleanliness
+		- Fixed an issue where a stack was spamming unlimited rotten meat
+
+	[ 0-SCore Blocks ]
+		- Added new class to blocks.xml to support PickUpAndReplace features. 
+			<property class="AdvancedPickUpAndPlace">
+				<property name="Logging" value="false"/>
+				<property name="TakeWithTool" value="meleeToolRepairT1ClawHammer" />
+			</property>
+
+	[ Take And Replace ]
+		- When a TakeWithTools property is set, the default item of clawHammer gets cleared.
+		- Fixed the ordering of material checks according to the xml defined order.
+			-> is Block a Valid Material to pick up?
+			-> Do we need to check the hand item for pick up?
+				-> Are we holding one of those tools?
+			-> Does our current hand item have the proper material tag?
+
+		- Trying a new design pattern.
+			-> Hold unto your hats.
+
+		- Created some helper shortcuts in order to reduce hard coding many references in the blocks.xml/shapes.xml
+		- If the TakeWithTool property exists on the block / shape, then a lookup against the AdvancedPickUpAndPlace class is triggered.
+			-> ValidMaterials operates the same style of lookup.
+		- This lookup uses the value of the TakeWithTool from the block/shape as a key to an entry in AdvancedPickUpAndPlace.
+			For Example:
+				<!-- blocks.xml -->
+				<property name="TakeWithTool" value="WoodenFenceTools" />
+				<property name="ValidMaterials" value="woodMaterial"/>
+			
+				<!-- Config Block -->
+				<property class="AdvancedPickUpAndPlace">
+      				<property name="Logging" value="false" />
+					<property name="TakeWithTool" value="meleeToolRepairT1ClawHammer" />
+      				<property name="WoodenFenceTools" value="meleeToolRepairT0StoneAxe,meleeToolRepairT0TazasStoneAxe,meleeToolRepairT1ClawHammer,meleeToolAxeT1IronFireaxe,meleeToolAxeT2SteelAxe,meleeToolAxeT3Chainsaw">
+					<property name="woodMaterial" value="Mwood_weak,Mwood_regular"/>
+			    </property>
+
+		- You may append to the class with your own unique keys
+			<append xpath="/blocks/block[@name='ConfigFeatureBlock']/property[@class='AdvancedPickUpAndPlace']">
+				<property name="WoodenFenceTools" value="meleeToolRepairT0StoneAxe,meleeToolRepairT0TazasStoneAxe,meleeToolRepairT1ClawHammer,meleeToolAxeT1IronFireaxe,meleeToolAxeT2SteelAxe,meleeToolAxeT3Chainsaw" />
+			</append>
+		
+Version: 1.0.37.1432
+	[ Localization ]
+		- Updated some missing localization entries.
+
+	[ Food Spoilage ]
+		- Fixed an issue where a stack was spamming unlimited rotten meat
+		- Issue was related to the Spoilage meter on an item not being reset properly after each spoiled item.
+
+	[ Jiggle Adjustments ]
+		- If you are under 18, stop reading.
+		- This is mostly for xyth, who is more assuredly considered old enough to view.
+		- Exposed two properties for EntityAlive's:
+			<!-- Always enable the jiggle script, regardless of distance -->
+			<property name="AlwaysJiggle" value="true" />
+
+			<!-- Never downscale the AI, regardless of distance -->
+			<property name="NeverScaleAI" value="true" />
+
+
 Version: 1.0.32.940
 
 	[ CompoPackTweaks ]

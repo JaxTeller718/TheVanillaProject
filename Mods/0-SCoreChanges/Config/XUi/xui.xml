@@ -1,0 +1,5 @@
+﻿<configs>
+	<remove xpath="//window[@name='ingameMenuSCore']"/>
+	<remove xpath="//window[@name='windowSCoreCompanions']"/>
+	<remove xpath="//window[@name='windowSCoreUtilities']"/>
+</configs>

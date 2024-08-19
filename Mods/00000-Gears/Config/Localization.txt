@@ -1,0 +1,12 @@
+﻿Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,latam,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese,spanish
+
+gearsUIEacErrorHeader,UI,Menu,x,,Easy Anti-Cheat Warning
+gearsUIEacErrorDescription,UI,Menu,x,,Easy Anti-Cheat is not turned off\n \nPlease restart the game and turn off Easy Anti-Cheat to be able to use Gears Mod Manager,,,,,
+gearsUIModsButton,UI,Menu,x,,Mods
+gearsUIModsWindowHeader,UI,Menu,x,,Mods
+gearsUIModsModPanelInfo,UI,Menu,x,,Info
+gearsUIModsModPanelSettings,UI,Menu,x,,Settings
+gearsUIModsModGameVersion,UI,Menu,x,,Recommended Game Version:
+gearsUIModsModVersion,UI,Menu,x,,Mod Version:
+gearsUIEnabled,UI,Menu,x,,Enabled
+gearsUIDisabled,UI,Menu,x,,Disabled

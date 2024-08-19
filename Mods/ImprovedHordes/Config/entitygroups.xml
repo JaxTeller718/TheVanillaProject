@@ -1,28 +1,6 @@
 <ihhordes>
 	<append xpath="/entitygroups">
-		<entitygroup name="IHZombiesAllFeral">
-			zombieBoeFeral
-			zombieJoeFeral
-			zombieSteveFeral
-			zombieTomClarkFeral
-			zombieMoeFeral
-			zombieYoFeral
-			zombieBusinessManFeral
-			zombieArleneFeral
-			zombieDarleneFeral
-			zombieMarleneFeral
-			zombieSkateboarderFeral
-			zombieBikerFeral, .3
-			zombiePartyGirlFeral, .3
-			zombieUtilityWorkerFeral, .3
-			zombieJanitorFeral, .2
-			zombieNurseFeral, .3
-			zombieLabFeral, .3
-			zombieSteveCrawlerFeral, .3
-			zombieFatHawaiianFeral, .3
-			zombieFemaleFatFeral, .3
-		</entitygroup>
-		
+		<entitygroup name="IHZombiesAllFeral">zombieBoeFeral	zombieJoeFeral	zombieSteveFeral	zombieTomClarkFeral	zombieMoeFeral	zombieYoFeral	zombieBusinessManFeral	zombieArleneFeral	zombieDarleneFeral	zombieMarleneFeral	zombieSkateboarderFeral	zombieBikerFeral, .3	zombiePartyGirlFeral, .3	zombieUtilityWorkerFeral, .3	zombieJanitorFeral, .2	zombieNurseFeral, .3	zombieLabFeral, .3	zombieSteveCrawlerFeral, .3	zombieFatHawaiianFeral, .3	zombieFemaleFatFeral, .3</entitygroup>
 		<entitygroup name="IHZombiesAllRadiated">
 			<entity name="zombieBoeRadiated"/>
 			<entity name="zombieJoeRadiated"/>
@@ -44,7 +22,6 @@
 			<entity name="zombieFatHawaiianRadiated" prob="0.3"/>
 			<entity name="zombieFemaleFatRadiated" prob="0.3"/>
 		</entitygroup>
-		
 		<entitygroup name="IHZombiesAllFeralNight">
 			<entity name="zombieSpiderFeral"/>
 			<entity name="zombieBoeFeral"/>
@@ -61,7 +38,6 @@
 			<entity name="zombieSteveCrawlerFeral"/>
 			<entity name="zombieFatHawaiianFeral"/>
 		</entitygroup>
-		
 		<entitygroup name="IHZombiesAllFeralWasteland">
 			<entity name="zombieMutatedFeral" prob="2"/>
 			<entity name="zombieSpiderFeral" prob="2"/>
@@ -84,7 +60,6 @@
 			<entity name="zombieFatHawaiianFeral" prob="2"/>
 			<entity name="zombieSoldierFeral" prob="2"/>
 		</entitygroup>
-		
 		<entitygroup name="IHZombiesAllRadiatedWasteland">
 			<entity name="zombieMutatedRadiated" prob="2"/>
 			<entity name="zombieSpiderRadiated" prob="2"/>
@@ -106,7 +81,6 @@
 			<entity name="zombieFatHawaiianRadiated" prob="2"/>
 			<entity name="zombieSoldierRadiated" prob="2"/>
 		</entitygroup>
-		
 		<entitygroup name="IHZombiesAllRadiatedWastelandNight">
 			<entity name="zombieMutatedRadiated" prob="2"/>
 			<entity name="zombieSpiderRadiated" prob="2"/>
@@ -129,7 +103,6 @@
 			<entity name="zombieFatHawaiianRadiated" prob="2"/>
 			<entity name="zombieSoldierRadiated" prob="2"/>
 		</entitygroup>
-		
 		<entitygroup name="IHZombiesAllRadiatedNight">
 			<entity name="zombieSpiderRadiated"/>
 			<entity name="zombieBoeRadiated"/>

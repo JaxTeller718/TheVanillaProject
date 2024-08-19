@@ -1,0 +1,5 @@
+﻿<configs>
+	<remove xpath="/windows/window[@name='ingameMenu']/grid[@name='buttons']/grid[@name='buttons']"/>
+	<remove xpath="/windows/window[@name='windowSCoreCompanions']"/>
+	<remove xpath="/windows/window[@name='windowSCoreUtilities']"/>
+</configs>

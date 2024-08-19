@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GearsUI name="XUi_Common/controls.xml">
+	<!-- Mod List Entry-->
+	<append xpath="/controls">
+		<Gears_ModList_Entry>
+			<rect depth="1" height="${height}" style="press, hover" disabled_font_color="[disabledLabelColor]" enabled_font_color="[labelColor]" sound="[recipe_click]" controller="${controller}">
+				<sprite depth="3" name="backgroundMain" sprite="menu_empty2px" height="${1+height}" pos="2,0" width="${width-4}" color="[black]" type="sliced" fillcenter="false"/>
+				<sprite depth="2" name="background" color="[darkGrey]" pos="2,0" width="${width-4}" type="sliced"/>
+				<texture depth="2" name="ModIcon" pos="8,-6" width="${height-10}" height="${height-10}" visible="{HasIcon}"/>
+				<rect pos="{# HasIcon ? ${height} + 4 : 10},0">
+					<label depth="4" name="ModName" pos="0,-6" width="${width-100}" height="32" text="{ModName}" font_size="26" justify="left" pivot="topleft"/>
+					<label depth="4" name="ModAuthor" pos="0,${-height+2}" color="255,255,255,128" width="${width-300}" height="32" text="{ModAuthor}" font_size="26" justify="left" pivot="bottomleft" sound="[recipe_click]"/>
+				</rect>
+				<sprite depth="4" name="HasSettings" pos="${width-10},-4" width="24" height="24" sprite="ui_game_symbol_star" color="[white]" type="sliced" pivot="topright" visible="{HasSettings}"/>
+				<label depth="4" name="ModVersion" pos="${width-10},${-height+2}" color="255,255,255,128" width="180" height="32" text="{ModVersion}" font_size="26" justify="right" pivot="bottomright"/>
+			</rect>
+		</Gears_ModList_Entry>
+	</append>
+	<!-- Mod Setting List Entry -->
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionCombined pos="0,0">
+			<rect depth="1" name="option" pos="${pos}" width="${width}" height="${height}" controller="${controller}">
+				<sprite name="background" depth="1" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="nameLabel" depth="2" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" tooltip_key="{tooltipKey}" text_key="{displayName}" font_size="28" color="[white]" justify="left" pivot="left" visible="{#!isCategory}"/>
+				<label name="categoryLabel" depth="2" pos="0,${-height+4}" height="36" style="hover" tooltip_key="{tooltipKey}" text_key="{displayName}" font_size="32" color="[white]" justify="center" pivot="bottomleft" visible="{isCategory}"/>
+				<combobox name="comboBoxFloat" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxFloat" value_increment="2" value_min="0" value_max="100" value_wrap="false" visible="{isSliderFloat}"/>
+				<combobox name="comboBoxInt" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxInt" value_increment="2" value_min="0" value_max="100" value_wrap="false" visible="{isSliderInt}"/>
+				<combobox name="comboBoxList" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxList`1[System.String]" values="{selectorValues}" value_wrap="{wrap}" visible="{isSelector}"/>
+				<gears_togglebutton name="toggleButton" depth="2" pos="${width},${Round((-height+32)/2,0)}" width="${width-250}" height="32" font_size="26" pivot="topright" left_caption_key="gearsUIDisabled" right_caption_key="gearsUIEnabled" right_selected_font_color="[gears_mod_enabled_color]" left_selected_font_color="[gears_mod_disabled_color]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" visible="{isSwitch}"/>
+				<gears_controlbinding name="controlBinding" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" visible="{isBinding}"/>
+			</rect>
+		</Gears_ModSettings_OptionCombined>
+	</append>
+	<append xpath="/controls">
+		<Gears_WorldSettings_OptionCombined pos="0,0">
+			<rect depth="1" name="option" pos="${pos}" width="${width}" height="${height}" controller="${controller}">
+				<sprite name="background" depth="1" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="nameLabel" depth="2" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" tooltip_key="{tooltipKey}" text_key="{displayName}" font_size="28" color="[white]" justify="left" pivot="left" visible="{#!isCategory}"/>
+				<label name="categoryLabel" depth="2" pos="0,${-height+4}" height="36" style="hover" tooltip_key="{tooltipKey}" text_key="{displayName}" font_size="32" color="[white]" justify="center" pivot="bottomleft" visible="{isCategory}"/>
+				<combobox name="comboBoxFloat" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxFloat" value_increment="2" value_min="0" value_max="100" value_wrap="false" visible="{isSliderFloat}"/>
+				<combobox name="comboBoxInt" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxInt" value_increment="2" value_min="0" value_max="100" value_wrap="false" visible="{isSliderInt}"/>
+				<combobox name="comboBoxList" depth="2" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxList`1[System.String]" values="{selectorValues}" value_wrap="{wrap}" visible="{isSelector}"/>
+				<gears_togglebutton name="toggleButton" depth="2" pos="${width},${Round((-height+32)/2,0)}" width="${width-250}" height="32" font_size="26" pivot="topright" left_caption_key="gearsUIDisabled" right_caption_key="gearsUIEnabled" right_selected_font_color="[gears_mod_enabled_color]" left_selected_font_color="[gears_mod_disabled_color]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" visible="{isSwitch}"/>
+			</rect>
+		</Gears_WorldSettings_OptionCombined>
+	</append>
+	<!-- Test Options -->
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionControl pos="0,0" visible="true">
+			<rect name="controlBinding" depth="10" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite depth="3" name="background" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="optionName" depth="4" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" text="Binding Setting" tooltip_key="" text_key="" font_size="28" color="[white]" justify="left" pivot="left"/>
+				<gears_controlbinding name="controlBinding" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32"/>
+			</rect>
+		</Gears_ModSettings_OptionControl>
+	</append>
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionToggle pos="0,0" visible="true">
+			<rect name="toggle" depth="10" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite depth="3" name="background" pos="0,${Round(-height/2,0)}" width="${width}" height="${height}" color="[transparent]" type="sliced" pivot="left"/>
+				<label name="optionName" depth="4" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" text="Binding Setting" tooltip_key="" text_key="" font_size="28" color="[white]" justify="left" pivot="left"/>
+				<gears_togglebutton depth="4" name="ModEnabled" pos="${width},${Round((-height+32)/2,0)}" width="${width-250}" height="32" font_size="26" pivot="topright" left_caption_key="gearsUIDisabled" right_caption_key="gearsUIEnabled" right_selected_font_color="[gears_mod_enabled_color]" left_selected_font_color="[gears_mod_disabled_color]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]"/>
+			</rect>
+		</Gears_ModSettings_OptionToggle>
+	</append>
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionCombo pos="0,0" visible="true">
+			<rect name="comboList" depth="10" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite depth="3" name="background" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="optionName" depth="4" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" text="Selector Setting" tooltip_key="" text_key="" font_size="28" color="[white]" justify="left" pivot="left"/>
+				<combobox name="comboBox" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="1,2,3,4,5,6" value_localization_prefix="" visible="${visible}"/>
+			</rect>
+		</Gears_ModSettings_OptionCombo>
+	</append>
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionComboFloat pos="0,0" visible="true">
+			<rect name="comboFloat" depth="10" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite depth="3" name="background" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="optionName" depth="4" pos="0,${Round(-height/2,0)}" width="220" height="30" style="hover" text="Slider Setting" tooltip_key="" text_key="" font_size="28" color="[white]" justify="left" pivot="left"/>
+				<combobox name="comboBox" depth="10" pos="${width-(width-250)},${Round((-height+32)/2,0)}" width="${width-250}" height="32" type="ComboBoxInt" value_increment="2" value_min="0" value_max="100" value_wrap="false" visible="${visible}"/>
+			</rect>
+		</Gears_ModSettings_OptionComboFloat>
+	</append>
+	<append xpath="/controls">
+		<Gears_ModSettings_OptionCat pos="0,0" visible="true">
+			<rect name="cat" depth="10" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite depth="3" name="background" pos="0,${Round(-height/2,0)}" width="2" height="${height}" color="[transparent]" type="sliced" pivot="left" globalopacity="false"/>
+				<label name="categoryLabel" depth="4" pos="0,${-height+4}" height="36" style="hover" text="Name Of Category" tooltip_key="Test" text_key="" font_size="32" color="[white]" justify="center" pivot="bottomleft"/>
+			</rect>
+		</Gears_ModSettings_OptionCat>
+	</append>
+	<!-- Control Binding Selector -->
+	<append xpath="/controls">
+		<gears_controlbinding pos="0,0" depth="1" width="710" height="32" visible="true">
+			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" visible="${visible}">
+				<sprite name="bindingBackground" depth="0" on_press="true" pos="0,${Round(-height/2,0)}" width="${width-36}" height="${height}" color="[black]" type="sliced" pivot="left" foregroundlayer="true"/>
+				<label name="bindingValue" depth="1" pos="0,${Round(-height/2,0)}" width="${width-36}" height="${height}" justify="center" font_size="32" pivot="left"/>
+				<button name="bindingUnbind" depth="1" pos="${width},${Round(-height/2,0)}" width="28" height="28" style="press, hover" sprite="ui_game_symbol_x" pivot="right" sound="[paging_click]"/>
+			</rect>
+		</gears_controlbinding>
+	</append>
+	<!-- Toggle Button -->
+	<append xpath="/controls">
+		<gears_togglebutton depth="3" pos="0,0" width="200" height="32" enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]" visible="true" enabled="true" bordersprite="menu_empty2px" bordercolor="[black]" pivot="left" defaultsprite="menu_empty" defaultcolor="[mediumGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" selectedsprite="ui_game_select_row" selectedcolor="[mediumGrey]" foregroundlayer="true" tooltip_key="" sound="[default_click]" justify="center" font_size="28" upper_case="false" parse_actions="false" left_caption="Off" left_caption_key="" right_caption="On" right_caption_key="" selected_font_color="" right_selected_font_color="[labelColor]" left_selected_font_color="[labelColor]" gap_width="0" font_size_hover="28">
+			<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="${enabled_font_color}" disabled_font_color="${disabled_font_color}" right_selected_font_color="${right_selected_font_color}" left_selected_font_color="${left_selected_font_color}" selected_font_color="${selected_font_color}" visible="${visible}" button_enabled="${enabled}" font_size="${font_size}" font_size_default="${font_size}" font_size_hover="${font_size_hover}" controller="Gears.UI.ToggleButton, Gears">
+				<sprite depth="4" name="border" sprite="${bordersprite}" pos="0,0" color="${bordercolor}" type="sliced" fillcenter="false" foregroundlayer="true" pivot="${pivot}"/>
+				<grid pos="0,0" depth="1" rows="1" cols="2" cell_width="${Round((width)/2,0)}" cell_height="${height}" repeat_content="false" arrangement="horizontal" pivot="${pivot}">
+					<rect width="${Round(width/2,0)-Round(gap_width/2,0)}">
+						<button name="btnLeft" pos="0,0" sprite="${defaultsprite}" defaultcolor="${defaultcolor}" disabledcolor="[darkGrey]" hoversprite="${hoversprite}" hovercolor="${hovercolor}" selectedsprite="${selectedsprite}" selectedcolor="${selectedcolor}" foregroundlayer="${foregroundlayer}" type="sliced" hoverscale="1.0" pivot="topleft" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}"/>
+						<label name="btnLabelLeft" depth="1" height="${height-2}" pos="0,${Round(-height/2,0)-1}" justify="${justify}" text="${left_caption}" text_key="${left_caption_key}" effect="outline" pivot="left" font_size="${font_size}" upper_case="${upper_case}" parse_actions="${parse_actions}"/>
+					</rect>
+					<rect width="${Round(width/2,0)-Round(gap_width/2,0)}">
+						<button name="btnRight" pos="${Round(width/2,0)},0" sprite="${defaultsprite}" defaultcolor="${defaultcolor}" disabledcolor="[darkGrey]" hoversprite="${hoversprite}" hovercolor="${hovercolor}" selectedsprite="${selectedsprite}" selectedcolor="${selectedcolor}" foregroundlayer="${foregroundlayer}" type="sliced" hoverscale="1.0" pivot="topright" tooltip_key="${tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}"/>
+						<label name="btnLabelRight" depth="1" height="${height-2}" pos="${Round(width/2,0)},${Round(-height/2,0)-1}" justify="${justify}" text="${right_caption}" text_key="${right_caption_key}" effect="outline" pivot="right" font_size="${font_size}" upper_case="${upper_case}" parse_actions="${parse_actions}"/>
+					</rect>
+				</grid>
+			</rect>
+		</gears_togglebutton>
+	</append>
+</GearsUI>

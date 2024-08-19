@@ -32,8 +32,5 @@
 	<set xpath="/blocks/block[@name='TestSpawnCube3']/property[@name='NumberToSpawn']/@value">2</set>
 	<set xpath="/blocks/block[@name='TestSpawnCube3']/property[@name='MaxSpawned']/@value">10</set>
 	<set xpath="/blocks/block[@name='TestSpawnCube3']/property[@name='TickRate']/@value">10</set>
-	
 	<append xpath="/blocks/block/property[@name='FilterTags' and contains(@value, 'SC_crops')]/@value">,fcropsDestroy</append>
-
-
 </configs>

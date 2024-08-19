@@ -3,34 +3,34 @@
 	<Global>
 		<Tab name="General">
 			<Category name="General" displayKey="torchSettingGeneral" tooltipKey="torchSettingGeneralTooltip">
-				<Switch name="Enabled" displayKey="torchSettingEnabled" tooltipKey="torchSettingEnabledTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled" />
-				<Switch name="CullingEnabled" displayKey="torchSettingCulling" tooltipKey="torchSettingCullingTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled" />
-				<Switch name="ShadowMapCachingEnabled" displayKey="torchSettingShadowMapCaching" tooltipKey="torchSettingShadowMapCachingTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled" />
+				<Switch name="Enabled" displayKey="torchSettingEnabled" tooltipKey="torchSettingEnabledTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled"/>
+				<Switch name="CullingEnabled" displayKey="torchSettingCulling" tooltipKey="torchSettingCullingTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled"/>
+				<Switch name="ShadowMapCachingEnabled" displayKey="torchSettingShadowMapCaching" tooltipKey="torchSettingShadowMapCachingTooltip" value="Enabled" defaultValue="Enabled" leftValue="Disabled" rightValue="Enabled"/>
 			</Category>
 			<Category name="Lights" displayKey="torchSettingLights" tooltipKey="torchSettingLightsTooltip">
 				<Selector name="PixelLightCount" displayKey="torchSettingPixelLightCount" tooltipKey="torchSettingPixelLightCountTooltip" value="Low" defaultValue="Low">
-					<Property type="arrayValues" allowedValues="Very Low,Low,Medium,High,Ultra" />
+					<Property type="arrayValues" allowedValues="Very Low,Low,Medium,High,Ultra"/>
 				</Selector>
 			</Category>
 			<Category name="Shadows" displayKey="torchSettingShadows" tooltipKey="torchSettingShadowsTooltip">
 				<Selector name="ShadowMapResolution" displayKey="torchSettingShadowMapResolution" tooltipKey="torchSettingShadowMapResolutionTooltip" value="Medium" defaultValue="Medium">
-					<Property type="arrayValues" allowedValues="Low,Medium,High" />
+					<Property type="arrayValues" allowedValues="Low,Medium,High"/>
 				</Selector>
 				<Selector name="MaxPixelLightShadowMaps" displayKey="torchSettingMaxPixelLightShadowMaps" tooltipKey="torchSettingMaxPixelLightShadowMapsTooltip" value="64" defaultValue="64">
 					<Property type="incrementalValuesInt" increment="16" minValue="16" maxValue="128"/>
 				</Selector>
 				<Selector name="MaxCascades" displayKey="torchSettingMaxCascades" tooltipKey="torchSettingMaxCascadesTooltip" value="4" defaultValue="4">
-					<Property type="arrayValues" allowedValues="2,4" />
+					<Property type="arrayValues" allowedValues="2,4"/>
 				</Selector>
 			</Category>
 		</Tab>
 		<Tab name="Global Illumination">
 			<Category name="General" displayKey="torchSettingGIGeneral" tooltipKey="torchSettingGIGeneralTooltip">
 				<Selector name="GIType" displayKey="torchSettingGIType" tooltipKey="torchSettingGITypeTooltip" value="Off" defaultValue="Off">
-					<Property type="arrayValues" allowedValues="Off,Screen Space" />
+					<Property type="arrayValues" allowedValues="Off,Screen Space"/>
 				</Selector>
 				<Selector name="GIQuality" displayKey="torchSettingGIQuality" tooltipKey="torchSettingGIQualityTooltip" value="Low" defaultValue="Low">
-					<Property type="arrayValues" allowedValues="Low,Medium,High" />
+					<Property type="arrayValues" allowedValues="Low,Medium,High"/>
 				</Selector>
 			</Category>
 		</Tab>

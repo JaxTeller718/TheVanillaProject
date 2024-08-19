@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ChallengesRemoved>
-
-    <!-- Remove all challenges  -->
-    <remove xpath="/challenges/*"></remove>
-
-    <!-- Empty Challenge to avoid errors-->
-    <append xpath="/challenges">
-
-        <challenge_category name="Removed" title="Removed" icon="ui_game_symbol_challenge_category1"/>
-
-        <challenge_group category="Removed" name="Removed" title_key="challengeGroupRemoved" />
-    
-        <challenge name="challengesRemoved" title_key="challengesRemovedTitle" icon="ui_game_symbol_challenge_basics_tutorial_challenge" group="Removed" prerequisite_hint="challengesRemovedHint1" hint="challengesRemovedHint2" short_description_key="challengesRemovedShort" description_key="challengesRemovedDesc" redeem_always="true">
-            <objective type="ChallengeComplete" challenge="challengesRemoved" count="1" is_redeemed="true"/>
-	    </challenge>
-    </append>
+	<!-- Remove all challenges  -->
+	<remove xpath="/challenges/*"/>
+	<!-- Empty Challenge to avoid errors-->
+	<append xpath="/challenges">
+		<challenge_category name="Removed" title="Removed" icon="ui_game_symbol_challenge_category1"/>
+		<challenge_group category="Removed" name="Removed" title_key="challengeGroupRemoved"/>
+		<challenge name="challengesRemoved" title_key="challengesRemovedTitle" icon="ui_game_symbol_challenge_basics_tutorial_challenge" group="Removed" prerequisite_hint="challengesRemovedHint1" hint="challengesRemovedHint2" short_description_key="challengesRemovedShort" description_key="challengesRemovedDesc" redeem_always="true">
+			<objective type="ChallengeComplete" challenge="challengesRemoved" count="1" is_redeemed="true"/>
+		</challenge>
+	</append>
 </ChallengesRemoved>

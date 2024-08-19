@@ -1,5 +1,4 @@
 <JaxTeller718>
-	
 	<set xpath="//material[@id='Mwood_shapes']/property[@name='MaxDamage']/@value">400</set>
 	<set xpath="//material[@id='Msteel_shapes']/property[@name='MaxDamage']/@value">20000</set>
 	<set xpath="//material[@id='Mcobblestone_shapes']/property[@name='MaxDamage']/@value">1600</set>
@@ -80,54 +79,48 @@
 			<property name="MaxDamage" value="20000"/>
 			<property name="Experience" value="6"/>
 		</material>
-		
-<material id="material_stainlessSteelShapes">
-	<property name="damage_category" value="metal"/>
-	<property name="surface_category" value="metal"/>
-	<property name="forge_category" value="iron"/>
-	<property name="Hardness" type="float" value="1"/>
-	<property name="stepsound" value="metal"/>
-	<property name="stability_glue" value="300"/>
-	<property name="Mass" type="int" value="20"/>
-	<property name="explosionresistance" value="5"/>
-	<property name="MaxDamage" value="50000"/>
-	<property name="Experience" value="12"/>
-</material>
-
-<material id="material_AluminumShapes">
-	<property name="damage_category" value="metal"/>
-	<property name="surface_category" value="metal"/>
-	<property name="forge_category" value="iron"/>
-	<property name="Hardness" type="float" value="1"/>
-	<property name="stepsound" value="metal"/>
-	<property name="stability_glue" value="300"/>
-	<property name="Mass" type="int" value="20"/>
-	<property name="explosionresistance" value="3"/>
-	<property name="MaxDamage" value="30000"/>
-	<property name="Experience" value="8"/>
-</material>
-		
+		<material id="material_stainlessSteelShapes">
+			<property name="damage_category" value="metal"/>
+			<property name="surface_category" value="metal"/>
+			<property name="forge_category" value="iron"/>
+			<property name="Hardness" type="float" value="1"/>
+			<property name="stepsound" value="metal"/>
+			<property name="stability_glue" value="300"/>
+			<property name="Mass" type="int" value="20"/>
+			<property name="explosionresistance" value="5"/>
+			<property name="MaxDamage" value="50000"/>
+			<property name="Experience" value="12"/>
+		</material>
+		<material id="material_AluminumShapes">
+			<property name="damage_category" value="metal"/>
+			<property name="surface_category" value="metal"/>
+			<property name="forge_category" value="iron"/>
+			<property name="Hardness" type="float" value="1"/>
+			<property name="stepsound" value="metal"/>
+			<property name="stability_glue" value="300"/>
+			<property name="Mass" type="int" value="20"/>
+			<property name="explosionresistance" value="3"/>
+			<property name="MaxDamage" value="30000"/>
+			<property name="Experience" value="8"/>
+		</material>
 		<material id="MresourceHubcap">
 			<property name="damage_category" value="metal"/>
 			<property name="surface_category" value="metal"/>
 			<property name="forge_category" value="iron"/>
 			<property name="Experience" value="8"/>
 		</material>
-		
 		<material id="MresourceStick">
 			<property name="damage_category" value="wood"/>
 			<property name="surface_category" value="wood"/>
 			<property name="forge_category" value="stick"/>
 			<property name="Experience" value="1.5"/>
 		</material>
-		
 		<material id="MresourceLeatherStrips">
 			<property name="damage_category" value="cloth"/>
 			<property name="surface_category" value="cloth"/>
 			<property name="forge_category" value="leatherstrip"/>
 			<property name="Experience" value="4"/>
 		</material>
-		
 		<material id="MtrapSpikesSteel">
 			<property name="damage_category" value="metal"/>
 			<property name="surface_category" value="metal"/>
@@ -145,12 +138,10 @@
 			<property name="damage_category" value="organic"/>
 			<property name="surface_category" value="organic"/>
 			<property name="Experience" value="200"/>
-		</material>		
+		</material>
 	</append>
-	
 	<set xpath="/materials/material[@id='MtreeWoodSmall']/property[@name='MaxDamage']/@value">150</set>
 	<set xpath="/materials/material[@id='MtreeWoodMedium']/property[@name='MaxDamage']/@value">250</set>
 	<set xpath="/materials/material[@id='MtreeWoodLarge']/property[@name='MaxDamage']/@value">300</set>
 	<set xpath="/materials/material[@id='MtreeWoodFull']/property[@name='MaxDamage']/@value">500</set>
-	
 </JaxTeller718>

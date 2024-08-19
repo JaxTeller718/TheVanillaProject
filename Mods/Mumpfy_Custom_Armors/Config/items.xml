@@ -1,55 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-
-
+<?xml version="1.0" encoding="UTF-8"?>
 <configs>
-
-	<append xpath="/items">	
-
-
-	<!-- LEDGER MALE-->
-
-<item name="armorEnforcerOutfit_M_ledger" name_key="armorEnforcerOutfit_M_ledger"> 
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
-	<property name="DisplayType" value="armorEnforcerOutfit"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
-	<property name="EquipSlot" value="Chest"/>
-	<property name="SoundPickup" value="outfit_cloth_grab"/>
-	<property name="SoundPlace" value="outfit_cloth_place"/>
-	<property name="CustomIcon" value="M_enforcer_male_outfit_ledger"/> 
-
-	<effect_group name="EnforcerOutfit">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
-	</effect_group>
-
-	<!-- Enforcer Vol 02 -->
-	<effect_group>
-		<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
-			<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
-		</passive_effect>
-	</effect_group>
-
-	<effect_group>
-		<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
-	</effect_group>
-
-
-	<effect_group>
+	<append xpath="/items">
+		<!-- LEDGER MALE-->
+		<item name="armorEnforcerOutfit_M_ledger" name_key="armorEnforcerOutfit_M_ledger">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
+			<property name="DisplayType" value="armorEnforcerOutfit"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
+			<property name="EquipSlot" value="Chest"/>
+			<property name="SoundPickup" value="outfit_cloth_grab"/>
+			<property name="SoundPlace" value="outfit_cloth_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_outfit_ledger"/>
+			<effect_group name="EnforcerOutfit">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
+				<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
+			</effect_group>
+			<!-- Enforcer Vol 02 -->
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
+			</effect_group>
+			<effect_group>
 				<triggered_effect trigger="onSelfEquipChanged" action="SetTransformActive" active="true" transform_path="bodyTP">
 					<requirement name="!IsFPV"/>
 				</triggered_effect>
@@ -57,171 +44,149 @@
 					<requirement name="IsFPV"/>
 				</triggered_effect>
 			</effect_group>
-			
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
-		<property name="TransformName" value="body"/>
-		<property name="Excludes" value="body"/>
-	</property>
-</item>
-
-<item name="armorEnforcerGloves_M_ledger">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon,name_key"/>
-	<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
-	<property name="DisplayType" value="armorEnforcerGloves"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Hands"/>
-	<property name="SoundPickup" value="gloves_leather_grab"/>
-	<property name="SoundPlace" value="gloves_leather_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_hands_ledger"/> 
-
-	<effect_group name="EnforcerGloves">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
-		<property name="TransformName" value="hands"/>
-		<property name="Excludes" value="hands"/>
-	</property>
-</item>
-
-<item name="armorEnforcerBoots_M_ledger">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon,NameKey"/>
-	<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
-	<property name="DisplayType" value="armorEnforcerBoots"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Feet"/>
-	<property name="SoundPickup" value="footwear_regular_grab"/>
-	<property name="SoundPlace" value="footwear_regular_place"/>
-		<property name="CustomIcon" value="M_enforcer_male_feet_ledger"/> 
-
-	<effect_group name="EnforcerBoots">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
-		<property name="TransformName" value="feet"/>
-		<property name="Excludes" value="feet"/>
-	</property>
-</item>
-
-<item name="armorEnforcerHelmet_M_ledger">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
-	<property name="DisplayType" value="armorEnforcerHelmet"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Head"/>
-	<property name="SoundPickup" value="headwear_sunglasses_grab"/>
-	<property name="SoundPlace" value="headwear_sunglasses_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_head_ledger"/> 
-
-	<effect_group name="EnforcerHelmet">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
-		<property name="TransformName" value="head"/>
-		<property name="CullDistFPV" value="0"/>
-		<property name="Excludes" value=""/>
-		<property name="HairMaskType" value="Full"/>
-	</property>
-</item>
-
-	<!-- PHOENIX MALE-->
-
-<item name="armorEnforcerOutfit_M_phoenix"> 
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
-	<property name="DisplayType" value="armorEnforcerOutfit"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
-	<property name="EquipSlot" value="Chest"/>
-	<property name="SoundPickup" value="outfit_cloth_grab"/>
-	<property name="SoundPlace" value="outfit_cloth_place"/>
-	<property name="CustomIcon" value="M_enforcer_male_outfit_phoenix"/> 
-
-	<effect_group name="EnforcerOutfit">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
-	</effect_group>
-
-	<!-- Enforcer Vol 02 -->
-	<effect_group>
-		<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
-			<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
-		</passive_effect>
-	</effect_group>
-
-	<effect_group>
-		<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
-	</effect_group>
-
-
-	<effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
+				<property name="TransformName" value="body"/>
+				<property name="Excludes" value="body"/>
+			</property>
+		</item>
+		<item name="armorEnforcerGloves_M_ledger">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon,name_key"/>
+			<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
+			<property name="DisplayType" value="armorEnforcerGloves"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Hands"/>
+			<property name="SoundPickup" value="gloves_leather_grab"/>
+			<property name="SoundPlace" value="gloves_leather_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_hands_ledger"/>
+			<effect_group name="EnforcerGloves">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
+				<property name="TransformName" value="hands"/>
+				<property name="Excludes" value="hands"/>
+			</property>
+		</item>
+		<item name="armorEnforcerBoots_M_ledger">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon,NameKey"/>
+			<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
+			<property name="DisplayType" value="armorEnforcerBoots"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Feet"/>
+			<property name="SoundPickup" value="footwear_regular_grab"/>
+			<property name="SoundPlace" value="footwear_regular_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_feet_ledger"/>
+			<effect_group name="EnforcerBoots">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
+				<property name="TransformName" value="feet"/>
+				<property name="Excludes" value="feet"/>
+			</property>
+		</item>
+		<item name="armorEnforcerHelmet_M_ledger">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
+			<property name="DisplayType" value="armorEnforcerHelmet"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Head"/>
+			<property name="SoundPickup" value="headwear_sunglasses_grab"/>
+			<property name="SoundPlace" value="headwear_sunglasses_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_head_ledger"/>
+			<effect_group name="EnforcerHelmet">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_ledger"/>
+				<property name="TransformName" value="head"/>
+				<property name="CullDistFPV" value="0"/>
+				<property name="Excludes" value=""/>
+				<property name="HairMaskType" value="Full"/>
+			</property>
+		</item>
+		<!-- PHOENIX MALE-->
+		<item name="armorEnforcerOutfit_M_phoenix">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
+			<property name="DisplayType" value="armorEnforcerOutfit"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
+			<property name="EquipSlot" value="Chest"/>
+			<property name="SoundPickup" value="outfit_cloth_grab"/>
+			<property name="SoundPlace" value="outfit_cloth_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_outfit_phoenix"/>
+			<effect_group name="EnforcerOutfit">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
+				<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
+			</effect_group>
+			<!-- Enforcer Vol 02 -->
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
+			</effect_group>
+			<effect_group>
 				<triggered_effect trigger="onSelfEquipChanged" action="SetTransformActive" active="true" transform_path="bodyTP">
 					<requirement name="!IsFPV"/>
 				</triggered_effect>
@@ -229,171 +194,149 @@
 					<requirement name="IsFPV"/>
 				</triggered_effect>
 			</effect_group>
-			
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
-		<property name="TransformName" value="body"/>
-		<property name="Excludes" value="body"/>
-	</property>
-</item>
-
-<item name="armorEnforcerGloves_M_phoenix">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
-	<property name="DisplayType" value="armorEnforcerGloves"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Hands"/>
-	<property name="SoundPickup" value="gloves_leather_grab"/>
-	<property name="SoundPlace" value="gloves_leather_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_hands_phoenix"/> 
-
-	<effect_group name="EnforcerGloves">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
-		<property name="TransformName" value="hands"/>
-		<property name="Excludes" value="hands"/>
-	</property>
-</item>
-
-<item name="armorEnforcerBoots_M_phoenix">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
-	<property name="DisplayType" value="armorEnforcerBoots"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Feet"/>
-	<property name="SoundPickup" value="footwear_regular_grab"/>
-	<property name="SoundPlace" value="footwear_regular_place"/>
-		<property name="CustomIcon" value="M_enforcer_male_feet_phoenix"/> 
-
-	<effect_group name="EnforcerBoots">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
-		<property name="TransformName" value="feet"/>
-		<property name="Excludes" value="feet"/>
-	</property>
-</item>
-
-<item name="armorEnforcerHelmet_M_phoenix">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
-	<property name="DisplayType" value="armorEnforcerHelmet"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Head"/>
-	<property name="SoundPickup" value="headwear_sunglasses_grab"/>
-	<property name="SoundPlace" value="headwear_sunglasses_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_head_phoenix"/> 
-
-	<effect_group name="EnforcerHelmet">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
-		<property name="TransformName" value="head"/>
-		<property name="CullDistFPV" value="0"/>
-		<property name="Excludes" value=""/>
-		<property name="HairMaskType" value="Full"/>
-	</property>
-</item>
-
-	<!-- WICK MALE-->
-
-<item name="armorEnforcerOutfit_M_wick"> 
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
-	<property name="DisplayType" value="armorEnforcerOutfit"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
-	<property name="EquipSlot" value="Chest"/>
-	<property name="SoundPickup" value="outfit_cloth_grab"/>
-	<property name="SoundPlace" value="outfit_cloth_place"/>
-	<property name="CustomIcon" value="M_enforcer_male_outfit_wick"/> 
-
-	<effect_group name="EnforcerOutfit">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
-	</effect_group>
-
-	<!-- Enforcer Vol 02 -->
-	<effect_group>
-		<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
-			<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
-		</passive_effect>
-	</effect_group>
-
-	<effect_group>
-		<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
-	</effect_group>
-
-
-	<effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
+				<property name="TransformName" value="body"/>
+				<property name="Excludes" value="body"/>
+			</property>
+		</item>
+		<item name="armorEnforcerGloves_M_phoenix">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
+			<property name="DisplayType" value="armorEnforcerGloves"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Hands"/>
+			<property name="SoundPickup" value="gloves_leather_grab"/>
+			<property name="SoundPlace" value="gloves_leather_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_hands_phoenix"/>
+			<effect_group name="EnforcerGloves">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
+				<property name="TransformName" value="hands"/>
+				<property name="Excludes" value="hands"/>
+			</property>
+		</item>
+		<item name="armorEnforcerBoots_M_phoenix">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
+			<property name="DisplayType" value="armorEnforcerBoots"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Feet"/>
+			<property name="SoundPickup" value="footwear_regular_grab"/>
+			<property name="SoundPlace" value="footwear_regular_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_feet_phoenix"/>
+			<effect_group name="EnforcerBoots">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
+				<property name="TransformName" value="feet"/>
+				<property name="Excludes" value="feet"/>
+			</property>
+		</item>
+		<item name="armorEnforcerHelmet_M_phoenix">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
+			<property name="DisplayType" value="armorEnforcerHelmet"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Head"/>
+			<property name="SoundPickup" value="headwear_sunglasses_grab"/>
+			<property name="SoundPlace" value="headwear_sunglasses_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_head_phoenix"/>
+			<effect_group name="EnforcerHelmet">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_phoenix"/>
+				<property name="TransformName" value="head"/>
+				<property name="CullDistFPV" value="0"/>
+				<property name="Excludes" value=""/>
+				<property name="HairMaskType" value="Full"/>
+			</property>
+		</item>
+		<!-- WICK MALE-->
+		<item name="armorEnforcerOutfit_M_wick">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
+			<property name="DisplayType" value="armorEnforcerOutfit"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
+			<property name="EquipSlot" value="Chest"/>
+			<property name="SoundPickup" value="outfit_cloth_grab"/>
+			<property name="SoundPlace" value="outfit_cloth_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_outfit_wick"/>
+			<effect_group name="EnforcerOutfit">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
+				<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
+			</effect_group>
+			<!-- Enforcer Vol 02 -->
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
+			</effect_group>
+			<effect_group>
 				<triggered_effect trigger="onSelfEquipChanged" action="SetTransformActive" active="true" transform_path="bodyTP">
 					<requirement name="!IsFPV"/>
 				</triggered_effect>
@@ -401,171 +344,149 @@
 					<requirement name="IsFPV"/>
 				</triggered_effect>
 			</effect_group>
-			
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
-		<property name="TransformName" value="body"/>
-		<property name="Excludes" value="body"/>
-	</property>
-</item>
-
-<item name="armorEnforcerGloves_M_wick">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
-	<property name="DisplayType" value="armorEnforcerGloves"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Hands"/>
-	<property name="SoundPickup" value="gloves_leather_grab"/>
-	<property name="SoundPlace" value="gloves_leather_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_hands_wick"/> 
-
-	<effect_group name="EnforcerGloves">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
-		<property name="TransformName" value="hands"/>
-		<property name="Excludes" value="hands"/>
-	</property>
-</item>
-
-<item name="armorEnforcerBoots_M_wick">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
-	<property name="DisplayType" value="armorEnforcerBoots"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Feet"/>
-	<property name="SoundPickup" value="footwear_regular_grab"/>
-	<property name="SoundPlace" value="footwear_regular_place"/>
-		<property name="CustomIcon" value="M_enforcer_male_feet_wick"/> 
-
-	<effect_group name="EnforcerBoots">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
-		<property name="TransformName" value="feet"/>
-		<property name="Excludes" value="feet"/>
-	</property>
-</item>
-
-<item name="armorEnforcerHelmet_M_wick">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
-	<property name="DisplayType" value="armorEnforcerHelmet"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Head"/>
-	<property name="SoundPickup" value="headwear_sunglasses_grab"/>
-	<property name="SoundPlace" value="headwear_sunglasses_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_head_wick"/> 
-
-	<effect_group name="EnforcerHelmet">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
-		<property name="TransformName" value="head"/>
-		<property name="CullDistFPV" value="0"/>
-		<property name="Excludes" value=""/>
-		<property name="HairMaskType" value="Full"/>
-	</property>
-</item>
-
-	<!-- LOBITO MALE-->
-
-<item name="armorEnforcerOutfit_M_lobito"> 
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
-	<property name="DisplayType" value="armorEnforcerOutfit"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
-	<property name="EquipSlot" value="Chest"/>
-	<property name="SoundPickup" value="outfit_cloth_grab"/>
-	<property name="SoundPlace" value="outfit_cloth_place"/>
-	<property name="CustomIcon" value="M_enforcer_male_outfit_lobito"/> 
-
-	<effect_group name="EnforcerOutfit">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
-	</effect_group>
-
-	<!-- Enforcer Vol 02 -->
-	<effect_group>
-		<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
-			<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
-		</passive_effect>
-	</effect_group>
-
-	<effect_group>
-		<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
-	</effect_group>
-
-
-	<effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
+				<property name="TransformName" value="body"/>
+				<property name="Excludes" value="body"/>
+			</property>
+		</item>
+		<item name="armorEnforcerGloves_M_wick">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
+			<property name="DisplayType" value="armorEnforcerGloves"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Hands"/>
+			<property name="SoundPickup" value="gloves_leather_grab"/>
+			<property name="SoundPlace" value="gloves_leather_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_hands_wick"/>
+			<effect_group name="EnforcerGloves">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
+				<property name="TransformName" value="hands"/>
+				<property name="Excludes" value="hands"/>
+			</property>
+		</item>
+		<item name="armorEnforcerBoots_M_wick">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
+			<property name="DisplayType" value="armorEnforcerBoots"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Feet"/>
+			<property name="SoundPickup" value="footwear_regular_grab"/>
+			<property name="SoundPlace" value="footwear_regular_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_feet_wick"/>
+			<effect_group name="EnforcerBoots">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
+				<property name="TransformName" value="feet"/>
+				<property name="Excludes" value="feet"/>
+			</property>
+		</item>
+		<item name="armorEnforcerHelmet_M_wick">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
+			<property name="DisplayType" value="armorEnforcerHelmet"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Head"/>
+			<property name="SoundPickup" value="headwear_sunglasses_grab"/>
+			<property name="SoundPlace" value="headwear_sunglasses_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_head_wick"/>
+			<effect_group name="EnforcerHelmet">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_wick"/>
+				<property name="TransformName" value="head"/>
+				<property name="CullDistFPV" value="0"/>
+				<property name="Excludes" value=""/>
+				<property name="HairMaskType" value="Full"/>
+			</property>
+		</item>
+		<!-- LOBITO MALE-->
+		<item name="armorEnforcerOutfit_M_lobito">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerOutfitDesc"/>
+			<property name="DisplayType" value="armorEnforcerOutfit"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,chest,armor,armorChest,canHaveCosmetic,lightArmor,lightArmorDeg,armorEnforcerCritResist"/>
+			<property name="EquipSlot" value="Chest"/>
+			<property name="SoundPickup" value="outfit_cloth_grab"/>
+			<property name="SoundPlace" value="outfit_cloth_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_outfit_lobito"/>
+			<effect_group name="EnforcerOutfit">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
+				<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
+			</effect_group>
+			<!-- Enforcer Vol 02 -->
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerApparel" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$enforcerBuffResistance"/>
+			</effect_group>
+			<effect_group>
 				<triggered_effect trigger="onSelfEquipChanged" action="SetTransformActive" active="true" transform_path="bodyTP">
 					<requirement name="!IsFPV"/>
 				</triggered_effect>
@@ -573,140 +494,125 @@
 					<requirement name="IsFPV"/>
 				</triggered_effect>
 			</effect_group>
-			
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
-		<property name="TransformName" value="body"/>
-		<property name="Excludes" value="body"/>
-	</property>
-</item>
-
-<item name="armorEnforcerGloves_M_lobito">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
-	<property name="DisplayType" value="armorEnforcerGloves"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Hands"/>
-	<property name="SoundPickup" value="gloves_leather_grab"/>
-	<property name="SoundPlace" value="gloves_leather_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_hands_lobito"/> 
-
-	<effect_group name="EnforcerGloves">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-		
-		<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
-		<property name="TransformName" value="hands"/>
-		<property name="Excludes" value="hands"/>
-	</property>
-</item>
-
-<item name="armorEnforcerBoots_M_lobito">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
-	<property name="DisplayType" value="armorEnforcerBoots"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Feet"/>
-	<property name="SoundPickup" value="footwear_regular_grab"/>
-	<property name="SoundPlace" value="footwear_regular_place"/>
-		<property name="CustomIcon" value="M_enforcer_male_feet_lobito"/> 
-
-	<effect_group name="EnforcerBoots">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
-		<property name="TransformName" value="feet"/>
-		<property name="Excludes" value="feet"/>
-	</property>
-</item>
-
-<item name="armorEnforcerHelmet_M_lobito">
-	<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
-	<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
-	<property name="DisplayType" value="armorEnforcerHelmet"/>
-	<property name="ArmorGroup" value="groupEnforcer"/>
-	<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
-	<property name="EquipSlot" value="Head"/>
-	<property name="SoundPickup" value="headwear_sunglasses_grab"/>
-	<property name="SoundPlace" value="headwear_sunglasses_place"/>
-			<property name="CustomIcon" value="M_enforcer_male_head_lobito"/> 
-
-	<effect_group name="EnforcerHelmet">
-		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
-		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
-		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
-		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
-	</effect_group>
-
-	<effect_group>
-		<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-	</effect_group>
-
-	<property class="SDCS">
-		<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
-		<property name="TransformName" value="head"/>
-		<property name="CullDistFPV" value="0"/>
-		<property name="Excludes" value=""/>
-		<property name="HairMaskType" value="Full"/>
-	</property>
-</item>
-	
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
+				<property name="TransformName" value="body"/>
+				<property name="Excludes" value="body"/>
+			</property>
+		</item>
+		<item name="armorEnforcerGloves_M_lobito">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerGlovesDesc"/>
+			<property name="DisplayType" value="armorEnforcerGloves"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="upperbody,hands,armor,armorHands,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Hands"/>
+			<property name="SoundPickup" value="gloves_leather_grab"/>
+			<property name="SoundPlace" value="gloves_leather_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_hands_lobito"/>
+			<effect_group name="EnforcerGloves">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+				<display_value name="dFuelUsage" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="VehicleFuelUsePer" operation="perc_add" value="-.02,-.04,-.06,-.08,-.1,-.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
+				<property name="TransformName" value="hands"/>
+				<property name="Excludes" value="hands"/>
+			</property>
+		</item>
+		<item name="armorEnforcerBoots_M_lobito">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerBootsDesc"/>
+			<property name="DisplayType" value="armorEnforcerBoots"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="lowerbody,feet,armor,armorFeet,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Feet"/>
+			<property name="SoundPickup" value="footwear_regular_grab"/>
+			<property name="SoundPlace" value="footwear_regular_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_feet_lobito"/>
+			<effect_group name="EnforcerBoots">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<display_value name="dRunSpeed" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
+				<property name="TransformName" value="feet"/>
+				<property name="Excludes" value="feet"/>
+			</property>
+		</item>
+		<item name="armorEnforcerHelmet_M_lobito">
+			<property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+			<property name="DescriptionKey" value="armorEnforcerHelmetDesc"/>
+			<property name="DisplayType" value="armorEnforcerHelmet"/>
+			<property name="ArmorGroup" value="groupEnforcer"/>
+			<property name="Tags" value="head,armor,armorHead,canHaveCosmetic,lightArmor,lightArmorDeg"/>
+			<property name="EquipSlot" value="Head"/>
+			<property name="SoundPickup" value="headwear_sunglasses_grab"/>
+			<property name="SoundPlace" value="headwear_sunglasses_place"/>
+			<property name="CustomIcon" value="M_enforcer_male_head_lobito"/>
+			<effect_group name="EnforcerHelmet">
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="8,12.3" tier="1,6"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="8,12.3" tier="1,6" tags="heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			</effect_group>
+			<property class="SDCS">
+				<property name="Prefab" value="#@modfolder:Resources/M_enforcer_male_variants.unity3d?M_enforcer_lobito"/>
+				<property name="TransformName" value="head"/>
+				<property name="CullDistFPV" value="0"/>
+				<property name="Excludes" value=""/>
+				<property name="HairMaskType" value="Full"/>
+			</property>
+		</item>
 	</append>
-
 	<insertAfter xpath="/items/item[@name='resourceCloth']">
-
-		<item name="resourceCloth_ledger"> <!-- scrap material -->
+		<item name="resourceCloth_ledger">
+			<!-- scrap material -->
 			<property name="CustomIcon" value="resourceCloth"/>
 			<property name="CustomIconTint" value="113,97,129"/>
 			<property name="HoldType" value="45"/>
 			<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 			<property name="Material" value="Mcloth"/>
-			<property name="Stacknumber" value="250"/> <!-- STK resource -->
+			<property name="Stacknumber" value="250"/>
+			<!-- STK resource -->
 			<property name="RepairAmount" value="50"/>
 			<property name="FuelValue" value="1"/>
 			<property name="Weight" value="1"/>
@@ -715,15 +621,16 @@
 			<property name="Group" value="Resources"/>
 			<property name="CraftingIngredientTime" value=".2"/>
 		</item>
-
-		<item name="resourceCloth_pheonix"> <!-- scrap material -->
+		<item name="resourceCloth_pheonix">
+			<!-- scrap material -->
 			<property name="CustomIcon" value="resourceCloth"/>
 			<property name="CustomIconTint" value="149,52,54"/>
 			<property name="HoldType" value="45"/>
 			<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 			<property name="Material" value="Mcloth"/>
-			<property name="Stacknumber" value="250"/> <!-- STK resource -->
+			<property name="Stacknumber" value="250"/>
+			<!-- STK resource -->
 			<property name="RepairAmount" value="50"/>
 			<property name="FuelValue" value="1"/>
 			<property name="Weight" value="1"/>
@@ -732,15 +639,16 @@
 			<property name="Group" value="Resources"/>
 			<property name="CraftingIngredientTime" value=".2"/>
 		</item>
-
-		<item name="resourceCloth_wick"> <!-- scrap material -->
+		<item name="resourceCloth_wick">
+			<!-- scrap material -->
 			<property name="CustomIcon" value="resourceCloth"/>
 			<property name="CustomIconTint" value="47,47,47"/>
 			<property name="HoldType" value="45"/>
 			<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 			<property name="Material" value="Mcloth"/>
-			<property name="Stacknumber" value="250"/> <!-- STK resource -->
+			<property name="Stacknumber" value="250"/>
+			<!-- STK resource -->
 			<property name="RepairAmount" value="50"/>
 			<property name="FuelValue" value="1"/>
 			<property name="Weight" value="1"/>
@@ -749,15 +657,16 @@
 			<property name="Group" value="Resources"/>
 			<property name="CraftingIngredientTime" value=".2"/>
 		</item>
-
-		<item name="resourceCloth_lobito"> <!-- scrap material -->
+		<item name="resourceCloth_lobito">
+			<!-- scrap material -->
 			<property name="CustomIcon" value="resourceCloth"/>
 			<property name="CustomIconTint" value="218,200,135"/>
 			<property name="HoldType" value="45"/>
 			<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 			<property name="Material" value="Mcloth"/>
-			<property name="Stacknumber" value="250"/> <!-- STK resource -->
+			<property name="Stacknumber" value="250"/>
+			<!-- STK resource -->
 			<property name="RepairAmount" value="50"/>
 			<property name="FuelValue" value="1"/>
 			<property name="Weight" value="1"/>
@@ -766,7 +675,5 @@
 			<property name="Group" value="Resources"/>
 			<property name="CraftingIngredientTime" value=".2"/>
 		</item>
-
 	</insertAfter>
 </configs>
-

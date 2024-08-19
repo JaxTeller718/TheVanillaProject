@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GearsMenu name="XUi_Menu/xui.xml">
+	<append xpath="/xui/ruleset[@name='default']">
+		<window_group name="modsWindow">
+			<window name="modsWindow"/>
+		</window_group>
+	</append>
+</GearsMenu>

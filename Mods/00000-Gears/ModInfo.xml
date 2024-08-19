@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Name value="Gears"/>
+	<DisplayName value="Gears"/>
+	<Version value="2.0.5"/>
+	<Description value="A Mod Settings framework that adds settings support for mods. It allows users to change the settings in game"/>
+	<Author value="Laydor"/>
+	<Website value="https://github.com/s7092910/Gears"/>
+	<Icon value="Textures/GEARS_ICON.png"/>
+	<Banner value="Textures/GEARS_BANNER.png"/>
+</xml>

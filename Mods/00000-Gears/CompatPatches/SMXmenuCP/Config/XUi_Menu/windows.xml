@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GearsMenu name="XUi_Menu/windows.xml">
+	<!-- MainMenu replacement Window-->
+	<remove xpath="/windows/window[@name='mainMenu']"/>
+	<append xpath="/windows">
+		<window name="mainMenu" pos="360,540" size="408,1080" controller="Gears.UI.MainMenu, Gears" cursor_area="true">
+			<sprite name="smxmenu_mainmenu_background" depth="2" pos="60,0" width="408" anchor_top="#cam,0.5,1000" anchor_bottom="#cam,0.5,-1000" sprite="smxmenu_mainmenu_background" pivot="center" color="[smxmenu_element_background]" globalopacitymod="1.2"/>
+			<grid name="smxmenu_mainmenu_grid" depth="3" pos="50,-360" pivot="bottomleft" rows="8" cell_width="230" cell_height="70" repeat_content="false" arrangement="vertical">
+				<smxmenu_mainmenubutton name="btnNewGame" width="230" height="65" pivot="center" caption_key="xuiNewGame" overflow="ShrinkContent"/>
+				<smxmenu_mainmenubutton name="btnContinueGame" width="230" height="65" pivot="center" caption_key="xuiContinueGame" overflow="ShrinkContent"/>
+				<smxmenu_mainmenubutton name="btnConnectToServer" width="230" height="65" pivot="center" caption_key="xuiConnectToServer" overflow="ShrinkContent"/>
+				<smxmenu_mainmenubutton name="btnEditingTools" width="230" height="65" pivot="center" caption_key="xuiEditingTools" overflow="ShrinkContent"/>
+				<smxmenu_mainmenubutton name="btnMods" width="230" height="65" pivot="center" caption_key="gearsUIModsButton" overflow="ShrinkContent"/>
+				<smxmenu_mainmenubutton name="btnOptions" width="230" height="65" pivot="center" caption_key="xuiOptions" overflow="ShrinkContent"/>
+				<rect>
+					<sprite name="smxmenu_mainmenu_separation" depth="1" pos="-140,-28" width="301" height="5" sprite="smxlib_separation_line_2" color="[smxmenu_element_separation_2]"/>
+				</rect>
+				<smxmenu_mainmenubutton name="btnQuit" width="230" height="65" pivot="center" caption_key="xuiQuit" overflow="ShrinkContent"/>
+			</grid>
+			<widget anchor_left="#cam,1,-170" anchor_bottom="#cam,0,80" anchor_right="#cam,1,-160" anchor_top="#cam,0,90" pivot="bottomright">
+				<smxmenu_tfpcreditsbutton name="btnCredits" pos="0,0" width="160" height="56" pivot="center" caption_key="xuiCredits" tooltip_key="xuiCredits"/>
+			</widget>
+			<rect name="smxmenu_version_control">
+				<label name="smxmenu_edition_info" depth="9" pos="60,-500" size="250,33" style="smxcore_label_normal" text_key="smxCurrentVersionBranch" font_size="18" pivot="center" justify="center" upper_case="true" color="[smxmenu_element_labelcolor_1]"/>
+				<label name="smxmenu_version_info" depth="9" pos="60,-520" size="250,33" style="smxcore_label_normal" text_key="smxCurrentVersionNumber" font_size="18" pivot="center" justify="center" upper_case="false" overflow="ShrinkContent" color="[smxmenu_element_labelcolor_2]"/>
+			</rect>
+		</window>
+	</append>
+</GearsMenu>

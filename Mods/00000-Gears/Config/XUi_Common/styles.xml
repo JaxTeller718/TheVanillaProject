@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GearsUI name="XUi_Common/styles.xml">
+	<append xpath="/styles/global">
+		<!-- GearsUI GLOBAL colors. -->
+		<style_entry name="gears_scrollbar_background" value="0,0,0"/>
+		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background -->
+		<style_entry name="gears_scrollbar_background_hover" value="7,7,7"/>
+		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background hover (mouseover) -->
+		<style_entry name="gears_scrollbar_handler" value="128,128,128"/>
+		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler -->
+		<style_entry name="gears_scrollbar_handler_hover" value="255,255,255"/>
+		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler hover (mouseover) -->
+		<style_entry name="gears_mod_enabled_color" value="60,255,60,128"/>
+		<style_entry name="gears_mod_disabled_color" value="255,0,0, 128"/>
+	</append>
+</GearsUI>

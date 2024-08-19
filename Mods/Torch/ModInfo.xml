@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<Name value="Torch" />
-	<DisplayName value="Torch" />
-	<Version value="0.10.1" />
-	<Description value="Torch is a 7 Days to Die mod which works to optimize one of the game's most inefficient areas -- the lighting engine. It is designed to improve frame rates and in situtations where there are many lights in an area in game, it does so without compromising on how the game looks." />
-	<Author value="Laydor" />
-	<Website value="https://www.nexusmods.com/7daystodie/mods/3287/" />
-	<Banner value ="Torch banner.jpg" />
+	<Name value="Torch"/>
+	<DisplayName value="Torch"/>
+	<Version value="0.10.2"/>
+	<Description value="Torch is a 7 Days to Die mod which works to optimize one of the game's most inefficient areas -- the lighting engine. It is designed to improve frame rates and in situtations where there are many lights in an area in game, it does so without compromising on how the game looks."/>
+	<Author value="Laydor"/>
+	<Website value="https://www.nexusmods.com/7daystodie/mods/3287/"/>
+	<Banner value="Torch banner.jpg"/>
 </xml>

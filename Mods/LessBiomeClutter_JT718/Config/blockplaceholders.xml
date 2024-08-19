@@ -1,5 +1,4 @@
 <JaxTeller718>
-
 	<set xpath="/blockplaceholders/placeholder[@name='cntForestRandomLootHelper']/block[@name='cntTrashPile01']/@prob">0.09</set>
 	<set xpath="/blockplaceholders/placeholder[@name='cntForestRandomLootHelper']/block[@name='cntTrashPile02']/@prob">0.09</set>
 	<set xpath="/blockplaceholders/placeholder[@name='cntForestRandomLootHelper']/block[@name='cntTrashPile03']/@prob">0.09</set>
@@ -72,5 +71,4 @@
 	<set xpath="/blockplaceholders/placeholder[@name='cntStreetRandomLootHelper']/block[@name='cntBackpack03']/@prob">0.05</set>
 	<set xpath="/blockplaceholders/placeholder[@name='cntStreetRandomLootHelper']/block[@name='cntDuffle01']/@prob">0.05</set>
 	<set xpath="/blockplaceholders/placeholder[@name='cntStreetRandomLootHelper']/block[@name='cntPurse01']/@prob">0.05</set>
-
 </JaxTeller718>
