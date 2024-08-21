@@ -1011,17 +1011,9 @@
 	<set xpath="/recipes/recipe[@name='drugSteroids']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
 	<set xpath="/recipes/recipe[@name='foodPumpkinCheesecake']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
 	<set xpath="/recipes/recipe[@name='medicalFirstAidKit']/ingredient[@name='drinkJarBeer']/@name">drinkJarGrainAlcohol</set>
-	<set xpath="/recipes/recipe[@name='meleeToolPickT1IronPickaxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolPickT2SteelPickaxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolShovelT1IronShovel']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolShovelT2SteelShovel']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeWpnSledgeT1IronSledgehammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeWpnSledgeT3SteelSledgehammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='medicalSplint']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnClubT1BaseballBat']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeToolRepairT1ClawHammer']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolAxeT1IronFireaxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
-	<set xpath="/recipes/recipe[@name='meleeToolAxeT2SteelAxe']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT1IronSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='meleeWpnSpearT3SteelSpear']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
 	<set xpath="/recipes/recipe[@name='trapSpikesWoodDmg0']/ingredient[@name='resourceWood']/@name">resourceStickJT</set>
