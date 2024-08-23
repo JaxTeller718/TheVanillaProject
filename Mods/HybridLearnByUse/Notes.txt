@@ -1,0 +1,105 @@
+Hybrid Learn By Use - Action Skills 7DTD XML mod.
+JoeSloeMoe
+
+Hybrid Learn By Use Action Skills. Increase half of all Perk Damage, Stamina, Harvesting etc. 
+values by using tools and weapons. Upgrade the other half of stat increases using the 
+Perk Tree as normal. 
+
+Recommend starting a new game.
+
+Currently applies to the tools and weapons for the following Perks:
+Perception: DeadEye, Demolition Expert, SpearMaster, Salvage
+Strength: Boomstick, PummelPete, SkullCrusher, Miner69r/Motherload.
+Fortitude: Brawler, MachineGunner
+Agility: Archery, Gunslinger, DeepCuts, Hidden Strike
+Intellect: Electrocutioner, Robotics
+
+Mod Functionality (configurable in buffs.xml):
+- Receive a bonus skill point when you max out each Perk Skill (level 50) 
+- Each Point invested in the default Perk give 20% more lbu_perk progression xp on kills. 
+  e.g The Default for lbu_archery is each archery kill gives 24 progression xp. With 2 
+  points in the Archery Perk (perkArchery) the progression xp is 28.8 (40% increase) per kill. 
+- The more Experience using a tool or weapon you have the more you know how to maintain it.
+  Each level of a LBU perk decreases associated tool/weapon degradation rate by 1% (total 50%).
+  Doesnt apply to the Hidden Strike or Demolition perks.
+
+WHY ARE THERE ONLY 50 LEVELS?
+The mod is using 100 levels, it only calculates and displays every second level, so you see 50 in the UI.
+For an detailed explanation, see the line "<!--NOTES on the level cap of 50--> in buffs.xml.
+
+Config variables:
+There are several Global Config variables to control the Learn-By-Use functionality. 
+See buffs.xml, look for the line: "<!--PLAYER CONFIG VARIABLES..." for the variables and further information.
+
+License:
+The code is free to use license. It is based on the Action Skill levelling algorithm from 
+Khaine in the Darkness Falls mod (//community.7daystodie.com/topic/4941-darkness-falls-they-mostly-come-out-at-night/). 
+Please acknowledge Khaine's coal-face work if you reuse the code.
+
+This modlet comes from the Survival No Trader mod. 
+
+1.0.2 19th Feb 2024
+- Fixed Learn By Use damage progression bug for Gunslinger.
+
+1.0.3 22nd Feb 2024
+- - Fixed: gameevents.xml file was missing from the release package. 
+
+1.0.4 10th March 2024
+- Fixed syntax error in Localisation file.
+
+- Added Global Config variables so player can easily control the Learn-By-Use leveling curve for all Perks. 
+  See progression.xml, look for the line: "<!--PLAYER CONFIG VARIABLES...." for information 
+
+- Added Demolitions Expert to the Learn By Use tree. Molotovs & Timed Charges are slow at increasing level.
+  The best way to increase the Demolitions LBU perk is using grenades/rockets on large groups of zombies.
+
+- Fixed Learn By Use progress error after using Grandpa's Fergit'n Elixir. 
+  After using the Elixir, use any tool or weapon and a buff will restore all Learn By Use Perks' progress over a short period.
+  Progress Level will also be restored when there are any other Perk Level changes e.g. infection side effects. 
+  If you install this version over an existing install/game, you will see a message indicating the progress level is being verified, 
+  this is just your local variables being updated to the latest version.
+
+
+1.0.5 17th March 2024
+   - Optimised the Learn By Use Perks initialisation code. Initialisation now only depends on a single variable 
+	  rather than the synchronisation of 3 different variables.
+   - Added Hidden Strike to the Learn By Use Perk Tree.	
+   - Fixed issue where the Miner69r/Motherload Perk allowed the harvesting rate to be applied to plants/farming 
+     (e.g. shovels could get extra food when used on farm plot plants)
+   - Slightly reduced Learn By Use Boomstick xp gain per target hit (shotty can hit multiple targets with a single shell).
+
+
+1.0.6 7th April 2024
+   - Added config setting to turn off giving a free skill point when each Perk's Progress is maxed. (On by default)
+   - Changes to perk level progression speeds:
+			Increased Hidden Strike progression speed. 
+			Increased Dead Eye progression speed. 
+			Slightly increased Archery progression speed. 
+			Slightly decreased Miner69r progression speed. 
+			Decreased for Boomstick as each pellet adds experience.  
+			
+1.0.7 13th April 2024
+   - Potential fix for Multiplayer progression 
+1.0.8 18th April 2024
+   - Linux pathing compatability fix
+
+1.0.9 4th May 2024
+   - Full review of DemolitionExpert levelling code. Fixed levelling discrepancies between Molotovs, Grenades, Timed Charges, Explosive Arrows and Bolts
+   - Slightly reduced Boomstick levelling progression.
+   
+1.1.0 7th July 2024
+   - Points invested in the default Perk give 20% more lbu_perk progression xp for each point.
+	 e.g Default for lbu_archery is each archery kill gives 24 progression xp. With 2 points in the Archery Perk (perkArchery) the progression xp is 28.8 (40% increase).
+   - Config additions:
+        >lbu_Kill_Bonus: when true points in a default Perk will give extra progression xp per level.
+		>lbu_Kill_Bonus_Percent: the amount of additional xp given per level invested in the Perk.
+		>lbu_XP_Multiplier: A multiplier for ALL progression xp gained. Increase or dercease if overall progression for Learn By Use skills is too slow/fast
+
+1.1.1 3rd Aug 2024
+   - The more Experience using a tool or weapon you have the more you know how to maintain it.
+     Each level of a LBU perk decreases associated tool/weapon degradation rate by 1% (total 50%).
+	 Doesnt apply to the Hidden Strike or Demolition perks.	(Configurable)
+   - Changed the layout of the Perk List Window. Moved the Search Field above the Perk Tabs. The row for the Perk tabs can now hold up to 6 additional tabs for compatibility with other mods that add tabs.
+   - Fixed bug that affected Perk Tree bonuses for Harvest/Damage amounts. 
+	
+   

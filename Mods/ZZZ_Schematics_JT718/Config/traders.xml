@@ -1,0 +1,22 @@
+<config>
+
+	
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='clubsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='machineGunsSkillMagazine']"/>
+	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='repairToolsSkillMagazine']"/>
+	<!-- <remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='explosivesSkillMagazine']"/> -->
+
+
+	
+</config>

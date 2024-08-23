@@ -1,0 +1,14 @@
+<configs>
+	<!--Learn by use code-->
+	<!--add a tag (lbu_demo) to the molotoc so that it can be properly identified in progression.xml:lbu_Demolition perk to allocate the correct xp per hit.
+	The tag is added to treat it differently than grenades. The grenade explosion gets xp for all effected zombies, while the moly fire only get xp for 
+	the zombie that was hit by the molotov, all other zombie on fire are ignored-->
+	<set xpath ="/items/item[@name='thrownAmmoMolotovCocktail']/property[@name='Tags']/@value">lbu_DemoMolotov,ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill</set> 
+	
+	<!--Reset the tags for ammoCrossbowBoltExploding. The tags added are exactly the same as it already has in its definition. 
+		perkDemolitionsExpert doesnt return true for requirements statements if the tags are not re-added. (not sure why)
+		e.g. <requirement name="ItemHasTags" tags="perkDemolitionsExpert"/> : returns false for ammoCrossbowBoltExploding even though it has the tag perkDemolitionsExpert in the default code definition-->
+	<set xpath ="/items/item[@name='ammoCrossbowBoltExploding']/property[@name='Tags']/@value">ammo,ranged,attAgility,perkArchery,perkPenetrator,perkDemolitionsExpert</set> 
+	<!--end learn by use code-->
+	
+</configs>

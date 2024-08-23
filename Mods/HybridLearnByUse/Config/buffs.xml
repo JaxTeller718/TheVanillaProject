@@ -1,0 +1,986 @@
+<configs>
+	
+	<!-- initialise all Learn By Use config variables-->
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+		<effect_group>   
+			<!--PLAYER CONFIG VARIABLES - modify variables below to adjust the mods behaviour-->
+			
+			<!-- XP Multiplier: percent increase/decrease all leveling XP. Default is 1, a value of 1.2 will increase all leveling xp for both damage and kills by 20%, 
+				 this effects the calculation of the Kill bonus (lbu_Kill_Bonus_Percent) defined below as well (applies to destroy and harvest for salvage and miner69r Perks as well). -->
+			
+			<!--Change this var if you are not leveling the lbu perks fast or slow enough for your play style. -->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_XP_Multiplier" operation="set" value="1.0"/> <!--default: 1.0. Higher number==Quicker Progress-->
+
+			<!-- The learn by use levelling curve (the amount of xp needed per level) is a basic compound interest curve
+				There are 3 variables for compound interest: 1) the initial deposit (lbu_DefaultInitialIncrement), 2) the interest per year (per lbu level),
+						3) the number of years (50 levels - kindof hard set, requires editing in the individual perk code below to change). 
+				There are websites that can show compound interest curves to show values per level (year) and help visualise
+				changes you might make -->
+				
+			<!--change the values below to change the levelling curve for the learn-By-Use algorithm.
+				There is an option for a cap on the total amount of xp required per level -->
+			
+			<!-- lbu_DefaultInitialIncrement: the initial increment value, xp required for 1st levelup (deposit amount)-->
+			<!-- Changes to lbu_DefaultInitialIncrement only effect new games as its an initial value -->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DefaultInitialIncrement" operation="set" value="500"/> <!--default: 500-->
+			
+			<!-- lbu_DefaultIncrementIncrease: the percent increase added to lbu_DefaultInitialIncrement each level (interest per year)-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DefaultIncrementIncrease" operation="set" value="1.045"/> <!--default: 1.045 (4.5%)-->
+			
+			<!-- lbu_DefaultLevelCap: the level cap to stop increasing the xp needed per level (stop accummulating interest after X years)--> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DefaultLevelCap" operation="set" value="46"/> <!--default: 46 -->
+			
+			<!-- lbu_DefaultGiveSkillPoint: whenever a lbu perk reaches max progress (50 points):
+											1 = give free Skill Point 
+											0 = dont give Skill Point 
+											This is used in buff.xml:buffLBU_GiveProgressSkillPoint --> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DefaultGiveSkillPoint" operation="set" value="1"/> <!--default: 1 -->
+						
+			
+			<!--player can get bonus XP for kills based on investment in the corresponding perk. -->		
+			<!--lbu_Kill_Bonus is a bonus the player can get on each kill. Each point the player puts into the corresponding perk increases the bonus.
+				Set to 0 to turn the bonus off-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Kill_Bonus" operation="set" value="1"/> <!--default: 1 -->
+			<!--lbu_Kill_Bonus_Percent is the percent increase (of the default lbu xp gain for a kill). It is applied per level of the corresponding perk.
+				E.g. lbu_Gunslinger gives 16xp default per kill with a pistol/smg.  With lbu_Kill_Bonus_Percent==0.2, lbu_Gunslinger would give 19.2xp per kill.
+					If a player has 3 points into perkGunslinger, the total xp per kill for lbu_gunslinger would be 
+							(3*(0.2*16xp))+16xp = 25.6xp per kill. (60% extra, 5 levels in perkGunslinger would give 100% extra xp on kill, 32xp)
+				(applies to Destroy for Salvage and Miner69r Perks as well).
+				-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Kill_Bonus_Percent" operation="set" value="0.2"/> <!--default: 0.2 -->
+			
+			<!--The more Experience using a tool or weapon you have the more you know how to maintain it.
+				Each level of a LBU perk decreases associated tool/weapon degradation rate by 1% (total 50%).
+				This doesnt apply to the Hidden Strike or Demolition perks.
+				1 == apply Degradation rate reduction per level.
+				0 == dont apply. Note, if this is turned off, the description 'Degradation x%' will still appear in the perk 
+								 properties-per-level info window even though its not being applied, its just how the ui display text works. 
+				-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Degradation" operation="set" value="1"/> <!--default: 1 -->
+
+			<!--END PLAYER CONFIG VARIABLES -->
+				
+				
+			<!--NOTES on the level cap of 50-->
+			<!--
+			Learn By Use increases up to 1/2 the Perk effects - the other half get increased by putting points into the corresponding 
+			Perk as normal. Because of this there is a fixed limit on how much any effect can be increased - see ** below.
+			
+			The max perk level of 50 is due to some Perks using range increments that dont scale well up to 100. It can be 
+			more thought of as, instead of 50 levels, its actually 100 levels but the code only counts every 2nd level. 
+			
+			For Example: 
+			In the code below, EntityDamage for spears is being % increased from 0.01 to 0.25 over levels 1 to 50.
+			(**The max increase value of 0.25 is fixed)
+				<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,50" />
+			The damage is being increased by 0.005 every level.
+			
+			As the % increase of 0.25 is the max we can use, at 100 levels: 
+				<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,100" />
+			the damage increase would be 0.0025 every level. 				
+			
+			The 7DTD code (the engine that reads the xml) only appears to use 3 decimal places, so a value of 0.0025 
+			would most likely introduce rounding or truncating errors at 4 decimal places. 
+			
+			======
+			
+			The actual max-level value of the '50' number is hard-coded in the code because its used in expressions that cant use 
+			a variable. (e.g. as part of a string)
+			For example:
+			In the code below, the number 50 at the end for the level (level="1,50") has to be a value, it cant be a variable:
+				<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,50" />
+			The following doesn't work:
+				<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,@SOMEVARIABLE" /> 
+				
+			So the max-level is written out wherever it is used. To change max-level you will need to edit every reference to '50' 
+			in progression.xml. 
+			-->
+				
+			<!--DONT EDIT BELOW THIS LINE UNLESS YOU REALLY NEED TO-->
+			
+			<!--initialise the variables for xp on kills for each lbu_perk - these kill-xp variables are used to calculate any	
+				xp bonus for kills if the player has points in the corresponding Perk. See lbu_Kill_Bonus_Percent descritpion above-->
+				
+			<!--this is the default lbu xp given Per *KILL* -->
+			<!--initialise the variables for xp on *KILLS* for each lbu_perk - these kill-xp variables are used to calculate any	
+				xp bonus for kills if the player has points in the corresponding Perk. See lbu_Kill_Bonus_Percent descritpion above-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeadEye_Kill_XP_Base" operation="set" value="24"/> <!--default: 24-->
+			<!--there are 2 demolition xp types/values, one for grenades and a different one for molotovs because of how the game treats them-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_Kill_GXP_Base" operation="set" value="4"/> <!--grenades and other default: 4-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_Kill_MXP_Base" operation="set" value="30"/> <!--molotovs default: 30-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Miner69er_Kill_XP_Base" operation="set" value="10"/> <!--default: 10-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Salvage_Kill_XP_Base" operation="set" value="20"/> <!--default: 20-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SpearMaster_Kill_XP_Base" operation="set" value="18"/> <!--default: 18-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Boomstick_Kill_XP_Base" operation="set" value="12"/> <!--default: 12-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PummelPete_Kill_XP_Base" operation="set" value="18"/> <!--default: 18-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SkullCrusher_Kill_XP_Base" operation="set" value="20"/> <!--default: 20-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_Kill_XP_Base" operation="set" value="18"/> <!--default: 18-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_MachineGunner_Kill_XP_Base" operation="set" value="16"/> <!--default: 16-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Archery_Kill_XP_Base" operation="set" value="24"/> <!--default: 24-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Gunslinger_Kill_XP_Base" operation="set" value="16"/> <!--default: 16-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeepCuts_Kill_XP_Base" operation="set" value="18"/> <!--default: 18-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Electrocutioner_Kill_XP_Base" operation="set" value="18"/> <!--default: 18-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Robotics_Kill_XP_Base" operation="set" value="16"/> <!--default: 24-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_HiddenStrike_Kill_XP_Base" operation="set" value="26"/> <!--default: 26-->
+			
+			<!--multiply all of the above vars by the XP weight/percent increase (lbu_XP_Multiplier) from the config settings-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeadEye_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/>
+			<!--there are 2 demolition xp types/values, one for grenades and a different one for molotovs because of how the game treats them-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_Kill_GXP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_Kill_MXP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Miner69er_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Salvage_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SpearMaster_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Boomstick_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PummelPete_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SkullCrusher_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_MachineGunner_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Archery_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Gunslinger_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeepCuts_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Electrocutioner_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Robotics_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_HiddenStrike_Kill_XP_Base" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			
+			
+			<!--this is the default lbu xp given On *DAMAGE*. These vars dont have a bonus applied to them (unlike the KILL vars abovce)-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeadEye_DMG_XP" operation="set" value="12"/> <!--default: 12-->
+			<!--there are 2 demolition xp types/values, one for grenades and a different one for molotovs because of how the game treats them-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_DMG_GXP" operation="set" value="4"/> <!--grenades and other default: 4-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_DMG_MXP" operation="set" value="26"/> <!--molotovs default: 26-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Miner69er_DMG_XP" operation="set" value="3"/> <!--default: 3-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Salvage_DMG_XP" operation="set" value="12"/> <!--default: 12-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SpearMaster_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Boomstick_DMG_XP" operation="set" value="1"/> <!--default: 1-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PummelPete_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SkullCrusher_DMG_XP" operation="set" value="8"/> <!--default: 8-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_MachineGunner_DMG_XP" operation="set" value="5"/> <!--default: 5-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Archery_DMG_XP" operation="set" value="14"/> <!--default: 14-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Gunslinger_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeepCuts_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Electrocutioner_DMG_XP" operation="set" value="6"/> <!--default: 6-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Robotics_DMG_XP" operation="set" value="8"/> <!--default: 8-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_HiddenStrike_DMG_XP" operation="set" value="15"/> <!--default: 15-->
+			
+			<!--multiply all of the above vars by the XP weight/percent increase (lbu_XP_Multiplier) from the config settings-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeadEye_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/>
+			<!--there are 2 demolition xp types/values, one for grenades and a different one for molotovs because of how the game treats them-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_DMG_GXP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_DMG_MXP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Miner69er_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Salvage_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SpearMaster_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Boomstick_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PummelPete_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SkullCrusher_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_MachineGunner_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Archery_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Gunslinger_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeepCuts_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Electrocutioner_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Robotics_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_HiddenStrike_DMG_XP" operation="multiply" value="@lbu_XP_Multiplier"/> 
+			
+			
+			<!--END initialise the variables for xp on kills for each lbu_perk-->
+
+			
+			<!--setup leveling increments-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DeadEye_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_DeadEye_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Demolition_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Demolition_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SpearMaster_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_SpearMaster_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Salvage_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">				
+				<requirement name="CVarCompare" cvar="lbu_Salvage_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Boomstick_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Boomstick_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PummelPete_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_PummelPete_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<!--pummel pete also has a stamina bonus increase to intialise-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_PP_StamIncrement" operation="set" value="0.3">
+				<requirement name="CVarCompare" cvar="lbu_PP_StamIncrement" operation="LT" value="0.3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SkullCrusher_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_SkullCrusher_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<!--skull scrusher also has a stamina bonus increase to intialise-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_SC_StamIncrement" operation="set" value="0.3">
+				<requirement name="CVarCompare" cvar="lbu_SC_StamIncrement" operation="LT" value="0.3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Miner69er_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Miner69er_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Brawler_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<!--brawler also has a stamina bonus increase to intialise-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Brawler_StamIncrement" operation="set" value="0.3">
+				<requirement name="CVarCompare" cvar="lbu_Brawler_StamIncrement" operation="LT" value="0.3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_MachineGunner_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_MachineGunner_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Archery_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Archery_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Gunslinger_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Gunslinger_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeepCuts_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_DeepCuts_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<!--deep cuts also has a stamina bonus increase to intialise-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_DCuts_StamIncrement" operation="set" value="0.3">
+				<requirement name="CVarCompare" cvar="lbu_DCuts_StamIncrement" operation="LT" value="0.3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_HiddenStrike_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_HiddenStrike_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Electrocutioner_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Electrocutioner_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			<!--electrocutioner also has a stamina bonus increase to intialise-->
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Elec_StamIncrement" operation="set" value="0.3">
+				<requirement name="CVarCompare" cvar="lbu_Elec_StamIncrement" operation="LT" value="0.3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="lbu_Robotics_XPIncrement" operation="set" value="@lbu_DefaultInitialIncrement">
+				<requirement name="CVarCompare" cvar="lbu_Robotics_XPIncrement" operation="LT" value="@lbu_DefaultInitialIncrement"/>
+			</triggered_effect>
+			
+		
+			<!--END perk increment vars intialisation-->
+		</effect_group>
+		<effect_group>
+			<!-- buffPerkLevelChanged keeps track of the players points in the various Perks that have a corresponding lbu_Perk.
+				 Used to give bonus lbu_Perl leveling xp on kills or 'destroys' in the case of miner69.
+				 The buff is repeatedly called in a loop every 30 ticks-->
+			<!--buff only works onStack so fire it 2x -->
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffPerkLevelChanged"/>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffPerkLevelChanged"/>
+			<!-- Check if Perk Level has changed. If it has, update the xp kill bonus for that Perk. 
+				 Only need to do this every few updates not every on so use a local variable to skip some cycles-->
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkLevelChanged">
+				<requirement name="CVarCompare" cvar="$lbu_PerkLevelCounter" operation="GTE" value="30"/></triggered_effect>
+			<!--increment local counter-->
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$lbu_PerkLevelCounter" operation="add" value="1"/>	
+			<!--reset counter if needed-->
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$lbu_PerkLevelCounter" operation="set" value="0">
+				<requirement name="CVarCompare" cvar="$lbu_PerkLevelCounter" operation="GTE" value="31"/></triggered_effect>	
+			
+		</effect_group>
+	</append>
+	
+		
+
+	<!--code for Learn By Use functionality-->
+	<append xpath="/buffs">
+	
+		<!--this buff gives out an extra Skill Point if  LearnByUse:lbu_DefaultGiveSkillPoint > 0.
+			If LearnByUse:lbu_DefaultGiveSkillPoint == 0) just play a sound and display 'level max' msg.
+			lbu_DefaultGiveSkillPoint is set in progression.xml and 
+			this buff is called from each Perk when the Perk Level reaches max-->
+		<buff name="buffLBU_GiveProgressSkillPoint" hidden="true" >
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<!--if (lbu_DefaultGiveSkillPoint >=0) give free Skill Point-->
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="lbu_action_give_points">
+					<requirement name="CVarCompare" cvar="lbu_DefaultGiveSkillPoint" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<!--if (lbu_DefaultGiveSkillPoint ==0) display msg and play sound without skill point-->
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="lbu_action_max_level">
+					<requirement name="CVarCompare" cvar="lbu_DefaultGiveSkillPoint" operation="EQ" value="0"/>
+				</triggered_effect>
+			</effect_group>
+		
+			<effect_group>
+				<!--remove the buff-->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLBU_GiveProgressSkillPoint"/>
+			</effect_group>
+		</buff>
+		
+					
+		<!--this buff verifies that the players ProgressionLevel is the same as the backup progress level (for each Learn By Use Perk)
+			If a player drinks the forgetin Elixer it resets all Perks. A backup is kept to use this buff to restore after 
+			elixer consumption. To be safe the code verifies they are exactly the same-->
+		<!--Cant read a variable's value into SetProgressionLevel-<lbu_perk_name> (its a 'level' not a 'value') and also
+			Cant write ProgressionLevel-<lbu_perk_name> to a variable.
+			Because of this a buff is used so that if any ProgressionLevels are different than the backup copy;
+			The buff will iterate over the value until they are equal-->			
+		<buff name="buffVerifyLBU_ProgressLevels" hidden="true" >
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message="LEARN BY USE: Verifying progress levels."/>
+			</effect_group>
+			
+			<!-- INTELLECT -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Robotics" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="LT" value="@lbu_Robotics_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Robotics_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="GT" value="@lbu_Robotics_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Electrocutioner" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="LT" value="@lbu_Electrocutioner_Lvl"/> 	</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Electrocutioner_Lvl" operation="add" value="1">		
+					<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="GT" value="@lbu_Electrocutioner_Lvl"/> </triggered_effect>			
+			</effect_group>
+			
+			<!--AGILITY-->
+			<effect_group>			
+			
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_HiddenStrike" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="LT" value="@lbu_HiddenStrike_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_HiddenStrike_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="GT" value="@lbu_HiddenStrike_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_DeepCuts" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="LT" value="@lbu_DeepCuts_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_DeepCuts_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="GT" value="@lbu_DeepCuts_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Gunslinger" level="1">			
+					<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="LT" value="@lbu_Gunslinger_Lvl"/> </triggered_effect>		
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Gunslinger_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="GT" value="@lbu_Gunslinger_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Archery" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="LT" value="@lbu_Archery_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Archery_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="GT" value="@lbu_Archery_Lvl"/> </triggered_effect>
+			</effect_group>
+			
+			<!--FORTITUDE-->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_MachineGunner" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="LT" value="@lbu_MachineGunner_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_MachineGunner_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="GT" value="@lbu_MachineGunner_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Brawler" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="LT" value="@lbu_Brawler_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Brawler_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="GT" value="@lbu_Brawler_Lvl"/> </triggered_effect>	
+			</effect_group>
+			
+			<!--STRENGTH -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Miner69er" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="LT" value="@lbu_Miner69er_Lvl"/> </triggered_effect>			
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Miner69er_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="GT" value="@lbu_Miner69er_Lvl"/> </triggered_effect>			
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_SkullCrusher" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="LT" value="@lbu_SkullCrusher_Lvl"/> </triggered_effect>			
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_SkullCrusher_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="GT" value="@lbu_SkullCrusher_Lvl"/> </triggered_effect>			
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_PummelPete" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="LT" value="@lbu_PummelPete_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_PummelPete_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="GT" value="@lbu_PummelPete_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Boomstick" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="LT" value="@lbu_Boomstick_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Boomstick_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="GT" value="@lbu_Boomstick_Lvl"/> </triggered_effect>		
+			</effect_group>
+			
+			<!--PERCEPTION-->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Salvage" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LT" value="@lbu_Salvage_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Salvage_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="GT" value="@lbu_Salvage_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_SpearMaster" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="LT" value="@lbu_SpearMaster_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_SpearMaster_Lvl" operation="add" value="1">					
+					<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="GT" value="@lbu_SpearMaster_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_Demolition" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LT" value="@lbu_Demolition_Lvl"/> </triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_Demolition_Lvl" operation="add" value="1">			
+					<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="GT" value="@lbu_Demolition_Lvl"/> </triggered_effect>						
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="lbu_DeadEye" level="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="LT" value="@lbu_DeadEye_Lvl"/> </triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="lbu_DeadEye_Lvl" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="GT" value="@lbu_DeadEye_Lvl"/> </triggered_effect>
+			</effect_group>
+			
+			<!--if all is equal - remove buff-->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="EQ" value="@lbu_DeadEye_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="EQ" value="@lbu_Demolition_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="EQ" value="@lbu_SpearMaster_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="EQ" value="@lbu_Salvage_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="EQ" value="@lbu_Boomstick_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="EQ" value="@lbu_PummelPete_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="EQ" value="@lbu_SkullCrusher_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="EQ" value="@lbu_Miner69er_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="EQ" value="@lbu_Brawler_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="EQ" value="@lbu_MachineGunner_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="EQ" value="@lbu_Archery_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="EQ" value="@lbu_Gunslinger_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="EQ" value="@lbu_DeepCuts_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="EQ" value="@lbu_HiddenStrike_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="EQ" value="@lbu_Electrocutioner_Lvl"/> 
+				<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="EQ" value="@lbu_Robotics_Lvl"/> 
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffVerifyLBU_ProgressLevels"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ShowToolbeltMessage" message="LEARN BY USE: Progress levels verified!"/>
+			</effect_group>
+		</buff>
+
+		<!--START Kill bonus code - maps players points in a Perk with bonus xp per kill.-->
+
+		<!-- Code is run every few seconds - see intialisation code above
+			for each lbu Perk, get the corresponding Perk points/levels, calculate a bonus leveling xp per kill for the matching lbu_Perk -->
+		<!--this buff follows the game's buffs.xml:buffPerkAbilityUpdate design pattern-->	
+		<buff name="buffPerkLevelChanged" hidden="true" remove_on_death="false">
+			<stack_type value="replace"/>
+
+			<effect_group>
+				<!--get the level of the player for the corresponding perk, apply a kill xp bonus ( if lbu_Kill_Bonus==1 in the buffs:config settings)-->
+
+				<!--START DeadEye Perk to lbu_DeadEye level set-->
+				<!--cant read from the ProgressionLevel variable directly so have to brute force reading it-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+					
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="Equals" value="5"/></triggered_effect>	
+				
+				<!--calculate xp bonus-->
+				<!--E.g. lbu_Gunslinger gives 16xp default per kill with a pistol/smg.  
+				With lbu_Kill_Bonus_Percent==0.2, lbu_Gunslinger would give 19.2xp per kill. (16xp*0.2)+16xp.
+				If a player has 3 points into perkGunslinger, the total xp per kill for lbu_gunslinger would be 
+				(16xp*0.2%)*3)+16xp** = 25.6xp per kill (60%).-->
+				
+				<!--pre-calculate the lbu_DeadEye kill bonus xp amount.-->
+				<!--set the default xp per kill for the lbu_DeadEye perk. lbu_DeadEye_Kill_XP is used in progression.xml:lbuDeadEye-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_DeadEye_Kill_XP" operation="set" value="@lbu_DeadEye_Kill_XP_Base"/> 
+					
+				<!--intialise var to 0, probably dont need to do this-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<!--e.g. 16xp-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_DeadEye_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<!--e.g. 16xp * 0.2--> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<!--e.g. (16xp * 0.2)*3-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+					
+				<!--e.g. ((16xp * 0.2)*3)+16xp-->
+				<!--add it to the default xp per kill for the lbu_DeadEye perk. lbu_DeadEye_Kill_XP is used in progression.xml:lbuDeadEye-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_DeadEye_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+
+				<!--END DeadEye Perk to lbu_DeadEye level set-->
+				
+				<!--START Demolitions Perk to lbu_Demolitions level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkDemolitionsExpert" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkDemolitionsExpert" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkDemolitionsExpert" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkDemolitionsExpert" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkDemolitionsExpert" operation="Equals" value="5"/></triggered_effect>	
+				
+				<!--Demolitions has 2 XP totals, one for grenades type weapons and one for molotovs because the game treats them differently-->
+				<!--grenades etc-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Demolition_Kill_GXP" operation="set" value="@lbu_Demolition_Kill_GXP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Demolition_Kill_GXP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Demolition_Kill_GXP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				
+				<!--molotovs-->			
+					<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Demolition_Kill_MXP" operation="set" value="@lbu_Demolition_Kill_MXP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Demolition_Kill_MXP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Demolition_Kill_MXP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END Demolitions Perk to lbu_Demolitions level set-->
+				
+				<!--START Spearmaster Perk to lbu_Spearmaster level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_SpearMaster_Kill_XP" operation="set" value="@lbu_SpearMaster_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_SpearMaster_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_SpearMaster_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END javelinmaster Perk to lbu_Spearmaster level set-->
+				
+				<!--START Boomstick Perk to lbu_Boomstick level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Boomstick_Kill_XP" operation="set" value="@lbu_Boomstick_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Boomstick_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Boomstick_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END Boomstick Perk to lbu_Boomstick level set-->
+				
+				<!--START perkPummelPete Perk to lbu_PummelPete level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="5"/></triggered_effect>	
+				<!--
+				<triggered_effect trigger="onSelfBuffStack" action="CVarLogValue" cvar="$lbu_PerkLevel"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ShowToolbeltMessage" message="Perl level calc!"/>
+				-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_PummelPete_Kill_XP" operation="set" value="@lbu_PummelPete_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_PummelPete_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_PummelPete_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+			
+				<!--<triggered_effect trigger="onSelfBuffStack" action="CVarLogValue" cvar="$lbu_Kill_Bonus_Total"/>-->
+				<!--END perkPummelPete Perk to lbu_PummelPete level set-->
+				
+				<!--START perkSkullCrusher Perk to lbu_Skullcrusher level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_SkullCrusher_Kill_XP" operation="set" value="@lbu_SkullCrusher_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_SkullCrusher_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_SkullCrusher_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkSkullCrusher Perk to lbu_Skullcrusher level set-->
+				
+				<!--START perkBrawler Perk to lbu_Brawler level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Brawler_Kill_XP" operation="set" value="@lbu_Brawler_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Brawler_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Brawler_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkBrawler Perk to lbu_Brawler level set-->
+				
+				<!--START perkMachineGunner Perk to lbu_MachineGunner level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_MachineGunner_Kill_XP" operation="set" value="@lbu_MachineGunner_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_MachineGunner_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_MachineGunner_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkMachineGunner Perk to lbu_MachineGunner level set-->
+				
+				<!--START perkArchery Perk to lbu_Archery level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkArchery" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkArchery" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkArchery" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkArchery" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkArchery" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Archery_Kill_XP" operation="set" value="@lbu_Archery_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Archery_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Archery_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkArchery Perk to lbu_Archery level set-->
+				
+				<!--START perkGunslinger Perk to lbu_Gunslinger level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Gunslinger_Kill_XP" operation="set" value="@lbu_Gunslinger_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Gunslinger_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Gunslinger_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkGunslinger Perk to lbu_Gunslinger level set-->
+				
+				<!--START perkDeepCuts Perk to lbu_DeepCuts level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_DeepCuts_Kill_XP" operation="set" value="@lbu_DeepCuts_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_DeepCuts_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_DeepCuts_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkDeepCuts Perk to lbu_DeepCuts level set-->
+				
+				<!--START perkElectrocutioner Perk to lbu_Electrocutioner level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Electrocutioner_Kill_XP" operation="set" value="@lbu_Electrocutioner_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Electrocutioner_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Electrocutioner_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkElectrocutioner Perk to lbu_Electrocutioner level set-->
+				
+				<!--START perkRoboticsPerk to lbu_Robotics level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkTurrets" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkTurrets" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkTurrets" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkTurrets" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkTurrets" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Robotics_Kill_XP" operation="set" value="@lbu_Robotics_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Robotics_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Robotics_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkRoboticsPerk to lbu_Robotics level set-->
+				
+				<!--START perkHiddenStrike to lbu_HiddenStrike level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkHiddenStrike" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkHiddenStrike" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkHiddenStrike" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkHiddenStrike" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkHiddenStrike" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_HiddenStrike_Kill_XP" operation="set" value="@lbu_HiddenStrike_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_HiddenStrike_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_HiddenStrike_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkHiddenStrike to lbu_HiddenStrike level set-->
+				
+				<!--START perkMiner69r to lbu_Miner69er level set-->
+				<!--See DeadEye above for code comments-->
+				<!--miner69 and motherload are combined - code used whichever has more points allocated-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkMiner69r" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkMiner69r" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkMiner69r" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkMiner69r" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkMiner69r" operation="Equals" value="5"/></triggered_effect>
+
+				<!--Check motherload-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkMotherLode" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkMotherLode" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkMotherLode" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkMotherLode" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel2" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkMotherLode" operation="Equals" value="5"/></triggered_effect>
+					
+				<!--select whichever is the larger-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="@$lbu_PerkLevel2">
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LT" value="@$lbu_PerkLevel2"/></triggered_effect>
+					
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Miner69er_Kill_XP" operation="set" value="@lbu_Miner69er_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Miner69er_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Miner69er_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkMiner69r to lbu_Miner69er level set-->
+				
+				<!--START perkSalvage to lbu_Salvage level set-->
+				<!--See DeadEye above for code comments-->
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkSalvageOperations" operation="Equals" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkSalvageOperations" operation="Equals" value="2"/></triggered_effect>	
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="3">
+					<requirement name="ProgressionLevel" progression_name="perkSalvageOperations" operation="Equals" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="4">
+					<requirement name="ProgressionLevel" progression_name="perkSalvageOperations" operation="Equals" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_PerkLevel" operation="set" value="5">
+					<requirement name="ProgressionLevel" progression_name="perkSalvageOperations" operation="Equals" value="5"/></triggered_effect>	
+				
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Salvage_Kill_XP" operation="set" value="@lbu_Salvage_Kill_XP_Base"/> 
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="0"> <!--0 if player has no points-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="LTE" value="0"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="set" value="@lbu_Salvage_Kill_XP_Base"> <!--see buffs for lbu_DeadEye_Kill_XP decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@lbu_Kill_Bonus_Percent"> <!--see buffs for lbu_Kill_Bonus_Percent decription and intialisation-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$lbu_Kill_Bonus_Total" operation="multiply" value="@$lbu_PerkLevel"> <!--levels multiplier, number player points in Perk-->
+					<requirement name="CVarCompare" cvar="$lbu_PerkLevel" operation="GTE" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="lbu_Salvage_Kill_XP" operation="add" value="@$lbu_Kill_Bonus_Total"> 
+					<requirement name="CVarCompare" cvar="lbu_Kill_Bonus" operation="GTE" value="1"/></triggered_effect> <!--only add bonus if turned on in the config-->
+				<!--END perkSalvage to lbu_Salvage level set-->
+			</effect_group>	
+
+		</buff>
+		<!--END Kill bonus code - maps players points in a Perk with bonus xp per kill.-->
+		
+		<!--this buff performs the effects for the Hidden Strike LBU Perk - see progressions.xml
+			The code is different from other Perks because Hidden Strike applies to more than one weapon/perk (e.g. sneak damage with any range weapon)
+		    -->
+		<buff name="buffHiddenStrikeAction" hidden="true" >
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			
+			<effect_group>
+				<!--apply any level xp gain for damage or kill triggers-->
+				<!--<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>-->
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="lbu_HiddenStrike_XP" operation="add" value="@lbu_HiddenStrike_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_HiddenStrike_XP" operation="add" value="@lbu_HiddenStrike_Kill_XP"/>
+					
+			</effect_group>
+			
+			<effect_group>
+				<!--Increase ProgressLevel if xp greater than value for next level-->
+				<requirement name="CVarCompare" cvar="lbu_HiddenStrike_XP" operation="GTE" value="@lbu_HiddenStrike_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="lbu_HiddenStrike_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>   
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="lbu_HiddenStrike_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddProgressionLevel" progression_name="lbu_HiddenStrike" level="1"/>
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="lbu_HiddenStrike_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message="Hidden Strike Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="lbu_action_give_points">
+						<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffHiddenStrikeAction"/>
+			</effect_group>
+		</buff>
+		
+		<!--END code for Learn By Use functionality-->
+		
+	</append>
+</configs>

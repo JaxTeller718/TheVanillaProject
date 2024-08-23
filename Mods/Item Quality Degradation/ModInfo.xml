@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <Name value="Item_Quality_Degradation" />
+	<DisplayName value="Item Quality Degradation" />	
+    <Description value="Items have a chance to degrade in quality when repaired" />
+    <Author value="Zilox" />
+    <Version value="1.1.8" />
+</xml>

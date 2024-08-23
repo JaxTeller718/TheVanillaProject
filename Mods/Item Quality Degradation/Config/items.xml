@@ -1,0 +1,11 @@
+<Zilox>
+
+<!-- onSelfItemRepaired has been hooked up and can be used to trigger game events and triggered effects -->
+
+<append xpath="//item[starts-with(@name,'gun') or (starts-with(@name,'meleeWpn')) or (starts-with(@name,'meleeTool')) or (starts-with(@name,'armor')) and not (contains(@name,'Parts'))]">
+    <property name="RepairDegradeAmount" value="1"/> <!-- How many quality levels the item degreades by on repair -->
+    <property name="RepairDegradeChance" value="0.5"/> <!-- The probability that the item will lose a quality level/levels on repair -->
+    <property name="RepairQualityOneBreaksAfter" value="false"/> <!-- Will the item break after its repaired at quality 1. -->
+</append>
+
+</Zilox>

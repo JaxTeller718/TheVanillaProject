@@ -1,0 +1,103 @@
+<configs>
+	
+	<!--Learn-by-use code -->
+	<!--modify the window that displays the per level increment information - this changes the size for Perk Info a little as well-->
+	<set xpath="/windows/window[@name='windowSkillPerkInfo']/@hidden_entries_with_paging">0</set> <!--otherwise the 5th row wont show when the paging is showing-->
+	<set xpath="/windows/window[@name='windowSkillPerkInfo']/rect/rect[@name='pagerBox']/@pos">3,-686</set> <!--was 639-->
+	<set xpath="/windows/window[@name='windowSkillPerkInfo']/rect/rect[@name='tableBox']">
+		<!--no changes unless marked-->
+		<sprite depth="1" name="background" color="[darkGrey]" type="sliced"/>
+		<sprite depth="5" pos="0,1" width="647" height="451" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
+
+		<rect name="tableHeader" pos="0,0" width="644" height="43">
+			<sprite depth="1" name="background" color="[lightGrey]" type="sliced"/>
+			<rect depth="1" pos="0,0" width="75" height="40">
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" height="46" color="[black]" type="sliced" fillcenter="false" />
+				<label depth="1" pos="5,-23" text_key="xuiSkillLevel" pivot="left" justify="center" width="65" />
+			</rect>
+			<rect depth="1" pos="72,0" width="503" height="40">
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" height="46" color="[black]" type="sliced" fillcenter="false" />
+				<label depth="1" pos="5,-23" text_key="xuiSkillUnlocks" pivot="left" justify="center" width="493" />
+			</rect>
+			<rect depth="1" pos="572,0" width="75" height="40">
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" height="46" color="[black]" type="sliced" fillcenter="false" />
+				<label depth="1" pos="5,-23" text_key="xuiSkillBuy" pivot="left" justify="center" width="65" />
+			</rect>
+		</rect>
+		<grid rows="5" cols="1" pos="0,-46" width="644" cell_width="644" cell_height="73" repeat_content="true"> <!--was cell_height="80"-->
+			<skill_perk_level width="646" height="73" /> <!--was 80-->
+		</grid>
+	</set>	
+	<!--END modify the window that displays the per level increment information -->
+	
+	
+	<!--In the main LBU Perk window, move the Search field above the list of perk trees. 
+		This frees up UI space to allow the Learn By Use mod to be installed alongside 
+		other mods that add tabs to the Perk Tree tab listing.-->
+	<!--remove the existing content panel from the windowSkillList window-->
+	<remove xpath="/windows/window[@name='windowSkillList']/panel[@name='content']"/>
+	<!--stick it back with changes as commented-->
+	<insertAfter xpath="/windows/window[@name='windowSkillList']/panel[@name='header']">
+		<panel name="content" pos="-3,-43" height="669" depth="1" disableautobackground="true"> <!-- backgroundcolor="[lightGrey]" bordercolor="[black]" borderthickness="3" -->
+			
+			<!--increase the header rect by one line to accomodate Search field. increase height by 40 to 83-->
+			<rect name="categoryHeader" pos="6,-3" width="644" height="83">
+				<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" pos="-3,0" width="647" height="46" color="[black]" type="sliced" fillcenter="false" />
+				<sprite depth="1" name="background"  color="[mediumGrey]" type="sliced"/>
+				<!--move the search panel above the categories listing. This is done by pushing every panel 
+					below this one down a line so this Search panel is centered on the top line. Also increase width to 300 for spacing-->
+				<panel depth="1" pos="165,-3" width="450" disableautobackground="true" console_enabled="false">
+					<sprite depth="1" name="searchIcon" style="icon30px" pos="0,-22" sprite="ui_game_symbol_search" pivot="center"/>
+					<!--increase textfield width to 300 for spacing-->
+					<textfield depth="2" pos="22,-7" width="300" height="30" name="searchInput" search_field="true" close_group_on_tab="true" clear_button="true" />
+				</panel>
+				<!-- increase number of columns of categories/cols to 14 also move this panel down by 1 row (pos="3,-43")-->
+				<panel depth="1" pos="3,-43" width="610" height="37" disableautobackground="true">
+					<grid name="categories" pos="18,-20" rows="1" cols="14" width="663" height="34" cell_width="43" cell_height="43" repeat_content="true" controller="CategoryList">
+						<category_icon />
+					</grid>
+				<!-- also move down the pagenation panel by 1 row (pos="540,-43")-->	
+				</panel>
+				<panel depth="2" pos="540,-43" width="104" height="43" disableautobackground="true" visible="{paging_visible}">
+					<pager name="pager" pos="4,-6" contents_parent="windowSkillList"/>
+				</panel>
+			</rect>
+
+			<rect>
+				<!--push column title header down a row to -86 (pos="5,-86")-->
+				<rect name="tableHeader" pos="5,-86" width="645" height="43">
+					<sprite depth="1" name="background" color="[lightGrey]" type="sliced"/>
+
+					<rect depth="1" width="439" height="40">
+						<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" pos="-2,3" width="441" height="46" color="[black]" type="sliced" fillcenter="false" visible="{isnormal}" />
+						<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" pos="-2,3" width="543" height="46" color="[black]" type="sliced" fillcenter="false" visible="{isbook}" />
+						<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" pos="-2,3" width="543" height="46" color="[black]" type="sliced" fillcenter="false" visible="{iscrafting}" />
+
+						<label depth="1" pos="8,-20" text="Skill/Perk Name" text_key="xuiSkillPerkName" justify="left" pivot="left" width="420" visible="{isnormal}" />
+						<label depth="1" pos="8,-20" text="Book Titles" text_key="xuiBookTitles" justify="left" pivot="left" width="420" visible="{isbook}" />
+						<label depth="1" pos="8,-20" text="Crafting Skill Name" text_key="xuiCraftingSkillsName" justify="left" pivot="left" width="420" visible="{iscrafting}" />
+					</rect>
+
+					<rect depth="1" pos="439,0" width="100" height="40">
+						<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" pos="-3,3" width="106" height="46" color="[black]" type="sliced" fillcenter="false" visible="{isnormal}" />
+						<label depth="1" pos="8,-20" text="Level" text_key="xuiLevel" justify="center" pivot="left" width="84" visible="{isnormal}"/>
+					</rect>
+
+					<rect depth="1" pos="542,0" width="100" height="40">
+						<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" pos="-3,3" width="106" height="46" color="[black]" type="sliced" fillcenter="false" />
+						<label depth="1" pos="8,-20" text="Cost" text_key="xuiCost" justify="center" pivot="left" width="84" visible="{isnormal}" />
+						<label depth="1" pos="8,-20" text="Read" text_key="xuiRead" justify="center" pivot="left" width="84" visible="{isbook}" />
+						<label depth="1" pos="8,-20" text="Skill Level" text_key="xuiCraftingSkillsLevel" justify="center" pivot="left" width="84" visible="{iscrafting}" />
+					</rect>
+				</rect>
+				<!--move the list of all skill/perks down one row (pos="6,-130")-->
+				<grid name="skills" rows="14" cols="1" pos="6,-130" cell_width="645" cell_height="46" controller="SkillList" repeat_content="true" arrangement="vertical" >
+					<skill_entry name="0"/>
+				</grid>
+			</rect>
+		</panel>
+	</insertAfter>	
+	<!--END move the Search field above the list of perk trees-->
+
+	<!--end Learn-by-use code -->
+</configs>

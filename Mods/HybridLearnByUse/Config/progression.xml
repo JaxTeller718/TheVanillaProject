@@ -1,0 +1,2298 @@
+
+<configs>
+
+	<!-- Everything below this line is Learn-By-Use code -see also Xui/windows.xml, gamevents.xml, buffs.xml and localization text-->
+	<!--begin Learn-By-Use (lbu) SKILL code -->
+	<!--NOTE: All learn-by-use entries are Perks. If a player drinks a Grandpa's fergitn elixir, it  wipes all Perks.
+			  The effect cant be removed in xml code.  To cater for this, each of the lbu Perks below has code that duplicates 
+			  the Perk's ProgressionLevel as a backup. If the ProgressionLevel is less than the backup then its been reset
+			  and the code will restore the ProgressionLevel to the proper value. 
+			  This also means that the player wont see the Perks restored value until they use the Perks weapon or tool etc. 
+			  Code that deals with the backup and restore is marked with BCK in the comments of the code-->
+
+	<insertBefore xpath="/progression/attributes/attribute[@name='attPerception']">
+		<attribute name="LearnByUse" name_key="LearnByUseName" desc_key="LearnByUseDesc" min_level="0" max_level="0" base_skill_point_cost="0"  icon="ui_game_symbol_perk">
+			<effect_group>   
+			</effect_group>   	
+		</attribute>
+	</insertBefore>
+
+	<append xpath="/progression/skills">
+		<skill name="lbu_PerceptionSkills" parent="LearnByUse" name_key="attPerceptionName" desc_key="attPerceptionName" icon="ui_game_symbol_stealth">
+			<effect_group/>
+		</skill>
+		<skill name="lbu_StrengthSkills" parent="LearnByUse" name_key="attStrengthName" desc_key="attStrengthName" icon="ui_game_symbol_muscle">
+			<effect_group/>
+		</skill>
+		<skill name="lbu_FortitudeSkills" parent="LearnByUse" name_key="attFortitudeName" desc_key="attFortitudeName" icon="ui_game_symbol_add">
+			<effect_group/>
+		</skill>
+		<skill name="lbu_AgilitySkills" parent="LearnByUse" name_key="attAgilityName" desc_key="attAgilityName" icon="ui_game_symbol_agility">
+			<effect_group/>
+		</skill>
+		<skill name="lbu_IntellectSkills" parent="LearnByUse" name_key="attIntellectName" desc_key="attIntellectName" icon="ui_game_symbol_intellect">
+			<effect_group/>
+		</skill>
+	</append>
+
+	<append xpath="/progression/perks">
+
+		<!-- begin DeadEye Learn By Use (lbu)-->
+		<perk name="lbu_DeadEye" max_level="50" parent="lbu_PerceptionSkills" base_skill_point_cost="0" name_key="lbu_DeadEyeName" desc_key="lbu_DeadEyeDesc" long_desc_key="lbu_DeadEyeDesc" icon="ui_game_symbol_map_cursor">
+
+			<!-- BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel -->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="NotEquals" value="@lbu_DeadEye_Lvl"/> 	
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeadEye"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkDeadEye"/>
+					<passive_effect name="WeaponHandling" operation="perc_add" value=".01,0.3" level="1,50" tags="perkDeadEye"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.01,0.15" level="1,50" tags="perkDeadEye"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkDeadEye">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+			
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeadEye"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeadEye_XP" operation="add" value="@lbu_DeadEye_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_DeadEye_XP" operation="add" value="@lbu_DeadEye_Kill_XP"/>
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeadEye"/>
+				<requirement name="CVarCompare" cvar="lbu_DeadEye_XP" operation="GTE" value="@lbu_DeadEye_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeadEye_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeadEye_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_DeadEye" level="1"/>
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeadEye_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Dead Eye Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_DeadEye" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end begin DeadEye Learn By Use (lbu)-->
+		
+		<!-- begin Demolitions Learn By Use (lbu)-->
+		<!--Note that demolition has to have code for both timed charges and grenades/rockets.
+			They use different triggers so some of the code is repeated twice, once for each trigger ( onSelfExplosionMissEntity, onSelfExplosionDamagedOther).
+			Had to use onSelfExplosionMissEntity as the trigger for timed charges as no other trigger worked. So any use of explosives gives some exp whether it hits a zombie or not
+			*Molotovs WONT continue to trigger the effect (perk level xp gain due to damaging zombies) when a zombie is burning. 
+			It only triggers once either on hit or miss, and it doesnt matter how many zonbies are set on fire by one moly. 
+			**A grenade or rocket WILL get xp (trigger the effect) for every zombie hit/effected. Using nades on large numbers of zombies is the way to level up Demolitions
+			-->
+		<perk name="lbu_Demolition" max_level="50" parent="lbu_PerceptionSkills" base_skill_point_cost="0" name_key="lbu_DemolitionName" desc_key="lbu_DemolitionDesc" long_desc_key="lbu_DemolitionDesc" icon="ui_game_symbol_explosion">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="NotEquals" value="@lbu_Demolition_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDemolitionsExpert"/>
+					<passive_effect name="DismemberChance" operation="base_add" value="0.01,0.23" level="1,50" tags="perkDemolitionsExpert"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value="0.01,0.25" level="1,50" tags="perkDemolitionsExpert"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,50" tags="perkDemolitionsExpert"/>
+					<passive_effect name="WeaponHandling" operation="perc_add" value="0.01,0.25" level="1,50" tags="perkDemolitionsExpert"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.01,0.18" level="1,50" tags="perkDemolitionsExpert"/>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers (this DOES NOT apply to molotovs)-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDemolitionsExpert"/>
+				<requirement name="!ItemHasTags" tags="lbu_DemoMolotov"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LT" value="50"/>
+					<!--cater for timed charge use (or any explosion use that doesnt hit a zombie really)-->
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="18"/>
+					
+					<!--onSelfExplosionDamagedOther is less xp than onSelfExplosionMissEntity per hit because grenades/rockets can hit multiple targets at once-->
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="@lbu_Demolition_DMG_GXP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>		
+					<!--point for killing-->
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="@lbu_Demolition_Kill_GXP"/> 
+			
+			</effect_group>
+			<!--apply any level xp gain for damage or kill triggers (this ONLY applies to molotovs)-->
+			<effect_group>
+				<!--<requirement name="ItemHasTags" tags="perkDemolitionsExpert"/>-->
+				<requirement name="ItemHasTags" tags="lbu_DemoMolotov"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LT" value="50"/>
+					<!--Molotovs only give one trigger regardless of number of zombies hit-->
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="@lbu_Demolition_DMG_MXP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>	
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="26"/>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="add" value="@lbu_Demolition_Kill_MXP"/>
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<!-- this effect group code is repeated twice, once for the onSelfExplosionDamagedOther trigger
+				 and once again for the onSelfExplosionMissEntity trigger. Only one effect_group code can ever run at a time.-->
+			<!--onSelfExplosionDamagedOther trigger code-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDemolitionsExpert"/>
+				<requirement name="CVarCompare" cvar="lbu_Demolition_XP" operation="GTE" value="@lbu_Demolition_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="lbu_Demolition_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>     
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="AddProgressionLevel" progression_name="lbu_Demolition" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="lbu_Demolition_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="ShowToolbeltMessage" message="Demolitions Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfExplosionDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+			<!-- onSelfExplosionMissEntity trigger code - wont run if the above code has run-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDemolitionsExpert"/>
+				<requirement name="CVarCompare" cvar="lbu_Demolition_XP" operation="GTE" value="@lbu_Demolition_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ModifyCVar" cvar="lbu_Demolition_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>     
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ModifyCVar" cvar="lbu_Demolition_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="AddProgressionLevel" progression_name="lbu_Demolition" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ModifyCVar" cvar="lbu_Demolition_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="ShowToolbeltMessage" message="Demolitions Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfExplosionMissEntity" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Demolition" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Demolitions Learn By Use (lbu)-->
+		
+		<!-- begin Spear Master Learn By Use (lbu)-->
+		<perk name="lbu_SpearMaster" max_level="50" parent="lbu_PerceptionSkills" base_skill_point_cost="0" name_key="lbu_SpearMasterName" desc_key="lbu_SpearMasterDesc" long_desc_key="lbu_SpearMasterDesc" icon="ui_game_symbol_spear">
+
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="NotEquals" value="@lbu_SpearMaster_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkJavelinMaster"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkJavelinMaster"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,.25" level="1,50" tags="perkJavelinMaster"/>
+										
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkJavelinMaster">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkJavelinMaster"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SpearMaster_XP" operation="add" value="@lbu_SpearMaster_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_SpearMaster_XP" operation="add" value="@lbu_SpearMaster_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkJavelinMaster"/>
+				<requirement name="CVarCompare" cvar="lbu_SpearMaster_XP" operation="GTE" value="@lbu_SpearMaster_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SpearMaster_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	
+					
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SpearMaster_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_SpearMaster" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SpearMaster_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Spearmaster Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_SpearMaster" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Spear Master Learn By Use (lbu)-->
+		
+		<!-- begin Salvage Operations Learn By Use (lbu)-->
+		<perk name="lbu_Salvage" max_level="50" parent="lbu_PerceptionSkills" base_skill_point_cost="0" name_key="lbu_SalvageName" desc_key="lbu_SalvageDesc" long_desc_key="lbu_SalvageDesc" icon="ui_game_symbol_scrap">
+		
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="NotEquals" value="@lbu_Salvage_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedBlock" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+					<passive_effect name="CraftingTime" operation="perc_add" value="-0.05,-.25" level="1,50" tags="salvageScrap"/><!-- does not work on scrapping -->
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkSalvageOperations"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkSalvageOperations"/>
+					<passive_effect name="HarvestCount" operation="perc_add" value=".01,0.5" level="1,50" tags="salvageHarvest"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkSalvageOperations">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="lbu_Salvage_XP" operation="add" value="@lbu_Salvage_DMG_XP"/>
+					<!-- add additional damage for destruction-->
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ModifyCVar" cvar="lbu_Salvage_XP" operation="add" value="@lbu_Salvage_Kill_XP"/> 
+			</effect_group>
+
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+				<requirement name="CVarCompare" cvar="lbu_Salvage_XP" operation="GTE" value="@lbu_Salvage_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="lbu_Salvage_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	
+					
+					<triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="lbu_Salvage_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedBlock" action="AddProgressionLevel" progression_name="lbu_Salvage" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="lbu_Salvage_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedBlock" action="ShowToolbeltMessage" message="Salvage Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedBlock" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+			<!--repeat the above for block destruction as well-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+				<requirement name="CVarCompare" cvar="lbu_Salvage_XP" operation="GTE" value="@lbu_Salvage_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ModifyCVar" cvar="lbu_Salvage_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	
+					
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ModifyCVar" cvar="lbu_Salvage_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDestroyedBlock" action="AddProgressionLevel" progression_name="lbu_Salvage" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ModifyCVar" cvar="lbu_Salvage_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ShowToolbeltMessage" message="Salvage Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDestroyedBlock" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Salvage" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Salvage Operations Learn By Use (lbu)-->
+
+		
+		<!-- begin Boomstick Learn By Use (lbu)-->
+		<perk name="lbu_Boomstick" max_level="50" parent="lbu_StrengthSkills" base_skill_point_cost="0" name_key="lbu_BoomstickName" desc_key="lbu_BoomstickDesc" long_desc_key="lbu_BoomstickDesc" icon="ui_game_symbol_shotgun">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="NotEquals" value="@lbu_Boomstick_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBoomstick"/>				
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkBoomstick"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkBoomstick"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".01,.15" level="1,50" tags="perkBoomstick"/>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value=".01,0.25" level="1,50" tags="perkBoomstick"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkBoomstick">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBoomstick"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="LT" value="50"/>
+					<!--this gets applied per pellet for shotties-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Boomstick_XP" operation="add" value="@lbu_Boomstick_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Boomstick_XP" operation="add" value="@lbu_Boomstick_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBoomstick"/>
+				<requirement name="CVarCompare" cvar="lbu_Boomstick_XP" operation="GTE" value="@lbu_Boomstick_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Boomstick_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Boomstick_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Boomstick" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Boomstick_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Boomstick Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Boomstick" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Boomstick Learn By Use (lbu)-->
+		
+		<!-- begin Pummel Pete Learn By Use (lbu)-->
+		<perk name="lbu_PummelPete" max_level="50" parent="lbu_StrengthSkills" base_skill_point_cost="0" name_key="lbu_PummelPeteName" desc_key="lbu_PummelPeteDesc" long_desc_key="lbu_PummelPeteDesc" icon="ui_game_symbol_stunned">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="NotEquals" value="@lbu_PummelPete_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkPummelPete"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50"  tags="perkPummelPete"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkPummelPete"/>
+					<passive_effect name="EntityDamage" operation="perc_add"  value="0.01,1" level="1,50" tags="perkPummelPete">
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</passive_effect>
+					
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkPummelPete">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+					<!--For each level, Kills return +0.3% to Stamina up to a total of 15 at level 50 (half of Skull Pummel Pete lvl 5)--> 
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="@lbu_PP_StamIncrement" delay="1.0"/>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkPummelPete"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_PummelPete_XP" operation="add" value="@lbu_PummelPete_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_PummelPete_XP" operation="add" value="@lbu_PummelPete_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkPummelPete"/>
+				<requirement name="CVarCompare" cvar="lbu_PummelPete_XP" operation="GTE" value="@lbu_PummelPete_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_PummelPete_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_PummelPete_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_PummelPete" level="1"/>
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_PummelPete_Lvl" operation="add" value="1"/> 
+					<!--each level adds 0.3 to Stamina for kills for a total of 15 at level 50 (half of Pummel Pete lvl 5)--> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_PP_StamIncrement" operation="add" value="0.3">
+							<requirement name="CVarCompare" cvar="@lbu_PP_StamIncrement" operation="LTE" value="15" />
+					</triggered_effect>		
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Pummel Pete Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_PummelPete" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Pummel Pete Learn By Use (lbu)-->
+		
+		<!-- begin Skull Crusher Learn By Use (lbu)-->
+		<perk name="lbu_SkullCrusher" max_level="50" parent="lbu_StrengthSkills" base_skill_point_cost="0" name_key="lbu_SkullCrusherName" desc_key="lbu_SkullCrusherDesc" long_desc_key="lbu_SkullCrusherDesc" icon="ui_game_symbol_sledge">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="NotEquals" value="@lbu_SkullCrusher_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSkullCrusher"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50"  tags="perkSkullCrusher"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50"  tags="perkSkullCrusher"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkSkullCrusher">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Skull Crusher Perk lvl 5)--> 
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="@lbu_SC_StamIncrement" delay="1.0"/>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSkullCrusher"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SkullCrusher_XP" operation="add" value="@lbu_SkullCrusher_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_SkullCrusher_XP" operation="add" value="@lbu_SkullCrusher_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSkullCrusher"/>
+				<requirement name="CVarCompare" cvar="lbu_SkullCrusher_XP" operation="GTE" value="@lbu_SkullCrusher_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SkullCrusher_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>	  
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SkullCrusher_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_SkullCrusher" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SkullCrusher_Lvl" operation="add" value="1"/> 
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Skull Crusher lvl 5)--> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_SC_StamIncrement" operation="add" value="0.3">
+							<requirement name="CVarCompare" cvar="@lbu_SC_StamIncrement" operation="LTE" value="15" />
+					</triggered_effect>		
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Skull Crusher Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_SkullCrusher" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Skull Crusher Learn By Use (lbu)-->
+				
+		<!-- begin Miner69er & Motherlode Learn By Use (lbu)-->
+		<perk name="lbu_Miner69er" max_level="50" parent="lbu_StrengthSkills" base_skill_point_cost="0" name_key="lbu_Miner69erName" desc_key="lbu_Miner69erDesc" long_desc_key="lbu_Miner69erDesc" icon="ui_game_symbol_mining">
+		
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="NotEquals" value="@lbu_Miner69er_Lvl"/> 
+					<triggered_effect trigger="onSelfHarvestBlock" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>	
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMiner69r,perkMotherLode"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value="0.01,0.75" level="1,50" tags="perkMiner69r"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="0.01,0.25" level="1,50" tags="perkMiner69r"/>
+					<passive_effect name="HarvestCount" operation="perc_add" value="0.01,0.5" level="1,50" tags="oreWoodHarvest" />
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkMiner69r">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+			
+			<!--apply any level xp gain for harvest trigger-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMiner69r,perkMotherLode"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="lbu_Miner69er_XP" operation="add" value="@lbu_Miner69er_DMG_XP"/> 
+					<!-- add additional damage for destruction-->
+					<triggered_effect trigger="onSelfDestroyedBlock" action="ModifyCVar" cvar="lbu_Miner69er_XP" operation="add" value="@lbu_Miner69er_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMiner69r,perkMotherLode"/>
+				<requirement name="CVarCompare" cvar="lbu_Miner69er_XP" operation="GTE" value="@lbu_Miner69er_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="lbu_Miner69er_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect> 
+					<triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="lbu_Miner69er_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfHarvestBlock" action="AddProgressionLevel" progression_name="lbu_Miner69er" level="1"/>
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="lbu_Miner69er_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfHarvestBlock" action="ShowToolbeltMessage" message="Miner69r Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfHarvestBlock" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Miner69er" operation="EQ" value="50"/>
+					</triggered_effect>
+					
+			</effect_group>
+		</perk>
+		<!-- end Miner69er & Motherlode Learn By Use (lbu)-->
+		
+		
+		<!-- begin Brawler Learn By Use (lbu)-->
+		<perk name="lbu_Brawler" max_level="50" parent="lbu_FortitudeSkills" base_skill_point_cost="0" name_key="lbu_BrawlerName" desc_key="lbu_BrawlerDesc" long_desc_key="lbu_BrawlerDesc" icon="ui_game_symbol_boxer">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="NotEquals" value="@lbu_Brawler_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>		
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+				<requirement name="!ItemHasTags" tags="perkTurrets"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkBrawler"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkBrawler"/>
+
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/> <!--double on power attack-->
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkBrawler">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Brawler Perk lvl 5)--> 
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="@lbu_Brawler_StamIncrement" delay="1.0"/>
+					
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+				<requirement name="!ItemHasTags" tags="perkTurrets"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Brawler_XP" operation="add" value="@lbu_Brawler_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Brawler_XP" operation="add" value="@lbu_Brawler_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+				<requirement name="!ItemHasTags" tags="perkTurrets"/>
+				<requirement name="CVarCompare" cvar="lbu_Brawler_XP" operation="GTE" value="@lbu_Brawler_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Brawler_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>  
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Brawler_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Brawler" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Brawler_Lvl" operation="add" value="1"/> 
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Brawler Perk lvl 5)--> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Brawler_StamIncrement" operation="add" value="0.3">
+							<requirement name="CVarCompare" cvar="@lbu_Brawler_StamIncrement" operation="LTE" value="15" />
+					</triggered_effect>		
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Brawler Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Brawler" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Brawler Learn By Use (lbu)-->
+
+		<!-- begin Machine Gunner Learn By Use (lbu)-->
+		<perk name="lbu_MachineGunner" max_level="50" parent="lbu_FortitudeSkills" base_skill_point_cost="0" name_key="lbu_MachineGunnerName" desc_key="lbu_MachineGunnerDesc" long_desc_key="lbu_MachineGunnerDesc" icon="ui_game_symbol_rifle">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="NotEquals" value="@lbu_MachineGunner_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>
+
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMachineGunner"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkMachineGunner"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.25" level="1,50" tags="perkMachineGunner"/>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value="0.01,0.12" level="1,50" tags="perkMachineGunner"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.01,0.15" level="1,50" tags="perkMachineGunner"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkMachineGunner">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMachineGunner"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_MachineGunner_XP" operation="add" value="@lbu_MachineGunner_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_MachineGunner_XP" operation="add" value="@lbu_MachineGunner_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMachineGunner"/>
+				<requirement name="CVarCompare" cvar="lbu_MachineGunner_XP" operation="GTE" value="@lbu_MachineGunner_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_MachineGunner_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>   
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_MachineGunner_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_MachineGunner" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_MachineGunner_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Machinegunner Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_MachineGunner" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Machine Gunner Learn By Use (lbu)-->
+		
+		<!-- begin Archery Learn By Use (lbu)-->
+		<perk name="lbu_Archery" max_level="50" parent="lbu_AgilitySkills" base_skill_point_cost="0" name_key="lbu_ArcheryName" desc_key="lbu_ArcheryDesc" long_desc_key="lbu_ArcheryDesc" icon="ui_game_symbol_archery">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>								
+				<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="NotEquals" value="@lbu_Archery_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>
+			</effect_group>
+
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkArchery"/>	
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkArchery"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,.25" level="1,50" tags="perkArchery"/>
+					<passive_effect name="WeaponHandling" operation="perc_add" value=".01,.25" level="1,50" tags="perkArchery"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".01,.15" level="1,50" tags="perkArchery"/>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value=".01,.25" level="1,50" tags="bowDrawPenalty"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkArchery">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkArchery"/>
+				<requirement name="!ItemHasTags" tags="perkDemolitionsExpert"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Archery_XP" operation="add" value="@lbu_Archery_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Archery_XP" operation="add" value="@lbu_Archery_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkArchery"/>
+				<requirement name="CVarCompare" cvar="lbu_Archery_XP" operation="GTE" value="@lbu_Archery_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Archery_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>    
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Archery_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Archery" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Archery_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Archery Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Archery" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end begin Archery Learn By Use (lbu)-->
+		
+			<!-- begin Gunslinger Learn By Use (lbu)-->
+		<perk name="lbu_Gunslinger" max_level="50" parent="lbu_AgilitySkills" base_skill_point_cost="0" name_key="lbu_GunslingerName" desc_key="lbu_GunslingerDesc" long_desc_key="lbu_GunslingerDesc" icon="ui_game_symbol_gunslinger">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="NotEquals" value="@lbu_Gunslinger_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>
+					
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkGunslinger"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value="0.01,0.5" level="1,50" tags="perkGunslinger"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="0.01,.25" level="1,50" tags="perkGunslinger"/>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value="0.01,0.12" level="1,50" tags="perkGunslinger"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.01,0.15" level="1,50" tags="perkGunslinger"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkGunslinger">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkGunslinger"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Gunslinger_XP" operation="add" value="@lbu_Gunslinger_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Gunslinger_XP" operation="add" value="@lbu_Gunslinger_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkGunslinger"/>
+				<requirement name="CVarCompare" cvar="lbu_Gunslinger_XP" operation="GTE" value="@lbu_Gunslinger_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Gunslinger_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>    
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Gunslinger_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Gunslinger" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Gunslinger_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Gunslinger Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Gunslinger" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end gunslinger Learn By Use (lbu)-->
+		
+		<!-- begin Deap Cuts Learn By Use (lbu)-->
+		<perk name="lbu_DeepCuts" max_level="50" parent="lbu_AgilitySkills" base_skill_point_cost="0" name_key="lbu_DeepCutsName" desc_key="lbu_DeepCutsDesc" long_desc_key="lbu_DeepCutsDesc" icon="ui_game_symbol_deep_cuts">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="NotEquals" value="@lbu_DeepCuts_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>				
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkDeepCuts"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,.25" level="1,50" tags="perkDeepCuts"/>
+					
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkDeepCuts">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Deap Cuts lvl 5)--> 
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="@lbu_DCuts_StamIncrement" delay="1.0"/>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeepCuts_XP" operation="add" value="@lbu_DeepCuts_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_DeepCuts_XP" operation="add" value="@lbu_DeepCuts_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="CVarCompare" cvar="lbu_DeepCuts_XP" operation="GTE" value="@lbu_DeepCuts_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeepCuts_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>   
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeepCuts_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_DeepCuts" level="1"/>
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DeepCuts_Lvl" operation="add" value="1"/> 
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Deap Cuts lvl 5)--> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_DCuts_StamIncrement" operation="add" value="0.3">
+							<requirement name="CVarCompare" cvar="@lbu_DCuts_StamIncrement" operation="LTE" value="15" />
+					</triggered_effect>		
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Deap Cuts Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_DeepCuts" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Deap Cuts Learn By Use (lbu)-->
+		
+		
+		<!-- begin HiddenStrike Learn By Use (lbu)-->
+		<perk name="lbu_HiddenStrike" max_level="50" parent="lbu_AgilitySkills" base_skill_point_cost="0" name_key="lbu_HiddenStrikeName" desc_key="lbu_HiddenStrikeDesc" long_desc_key="lbu_HiddenStrikeDesc" icon="ui_game_symbol_sneak_attack">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_HiddenStrike" operation="NotEquals" value="@lbu_HiddenStrike_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>				
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>					
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+				<requirement name="!ItemHasTags" tags="perkSkullCrusher"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="0.01,2" level="0,50" /> 
+					<passive_effect name="EntityDamage" operation="perc_add" value="0.01,1.5" level="0,50" />
+					
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffHiddenStrikeAction"/>
+					<triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffHiddenStrikeAction"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message_key="buffHiddenStrikeAction"/>	
+			</effect_group>
+		</perk>
+		<!-- end HiddenStrike Learn By Use (lbu)-->
+		
+	
+		<!-- begin Electrocutioner Learn By Use (lbu)-->
+		<perk name="lbu_Electrocutioner" max_level="50" parent="lbu_IntellectSkills" base_skill_point_cost="0" name_key="lbu_ElectrocutionerName" desc_key="lbu_ElectrocutionerDesc" long_desc_key="lbu_ElectrocutionerDesc" icon="ui_game_symbol_electric_power">
+			
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="NotEquals" value="@lbu_Electrocutioner_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>				
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkElectrocutioner"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.5" level="1,50" tags="perkElectrocutioner"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,.25" level="1,50" tags="perkElectrocutioner"/>
+					
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.125" level="1,50"  tags="primary"/>
+					<passive_effect name="StaminaLoss" operation="perc_add" value="-.01,-.25" level="1,50" tags="secondary"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkElectrocutioner">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Electrocutioner lvl 5)--> 
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="@lbu_Elec_StamIncrement" delay="1.0"/>
+			
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkElectrocutioner"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Electrocutioner_XP" operation="add" value="@lbu_Electrocutioner_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Electrocutioner_XP" operation="add" value="@lbu_Electrocutioner_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkElectrocutioner"/>
+				<requirement name="CVarCompare" cvar="lbu_Electrocutioner_XP" operation="GTE" value="@lbu_Electrocutioner_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Electrocutioner_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>    
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Electrocutioner_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Electrocutioner" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Electrocutioner_Lvl" operation="add" value="1"/> 
+					<!--Kills return Stamina: +0.3% stamina for each level up to max of 15 at level 50 (half of Electrocutioner lvl 5)--> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Elec_StamIncrement" operation="add" value="0.3">
+							<requirement name="CVarCompare" cvar="@lbu_Elec_StamIncrement" operation="LTE" value="15" />
+					</triggered_effect>
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Electrocutioner Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Electrocutioner" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Electrocutioner Learn By Use (lbu)-->
+		
+				<!-- begin Robotics Learn By Use (lbu)-->
+		<perk name="lbu_Robotics" max_level="50" parent="lbu_IntellectSkills" base_skill_point_cost="0" name_key="lbu_RoboticsName" desc_key="lbu_RoboticsDesc" long_desc_key="lbu_RoboticsDesc" icon="ui_game_symbol_electric_turret">
+		
+			<!--BCK verify ProgressionLevel, backup var should always be equal to ProgessionLevel-->
+			<effect_group>
+				<requirement name="!HasBuff" buff="buffVerifyLBU_ProgressLevels"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="NotEquals" value="@lbu_Robotics_Lvl"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffVerifyLBU_ProgressLevels"/>				
+			</effect_group>
+			
+			<!--apply current effect as per level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkTurrets"/>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value=".01,.25" level="1,50" tags="turretMelee"/>
+					<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.01,0.1" level="1,50" tags="perkTurrets"/>
+					<passive_effect name="MagazineSize" operation="base_add" value="0,25" level="1,50" tags="perkTurrets">
+						<requirement name="!ItemHasTags" tags="turretMelee"/>
+					</passive_effect>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value=".01,0.75" level="1,50" tags="turretRanged"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".01,0.2" level="1,50" tags="perkTurrets"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value=".01,0.2" level="1,50" tags="turretMelee"/>
+					<passive_effect name="DegradationPerUse" operation="perc_add" value="-0.01,-0.50" level="1,50" tags="perkTurrets">
+						<requirement name="CVarCompare" cvar="lbu_Degradation" operation="GTE" value="1"/>
+					</passive_effect>
+			</effect_group>
+	
+			<!--apply any level xp gain for damage or kill triggers-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkTurrets"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Robotics_XP" operation="add" value="@lbu_Robotics_DMG_XP">
+						<requirement name="StatCompareCurrent" target="other" stat="health" operation="GT" value="0"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="lbu_Robotics_XP" operation="add" value="@lbu_Robotics_Kill_XP"/> 
+			</effect_group>
+			
+			<!--Increase ProgressLevel if xp greater than value for next level-->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkTurrets"/>
+				<requirement name="CVarCompare" cvar="lbu_Robotics_XP" operation="GTE" value="@lbu_Robotics_XPIncrement"/>
+				<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="LT" value="50"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Robotics_XPIncrement" operation="multiply" value="@lbu_DefaultIncrementIncrease"> 
+						<!--taper off level xp increase at level 47 (xxx_XPIncrement about 4000). xxx_XPIncrement will grow to 4700  without the cap-->
+						<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="LTE" value="@lbu_DefaultLevelCap"/>
+					</triggered_effect>     
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Robotics_XP" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddProgressionLevel" progression_name="lbu_Robotics" level="1"/> 
+					<!--Upadate BCK var in line with ProgressionLevel progress-->
+					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="lbu_Robotics_Lvl" operation="add" value="1"/> 
+					<triggered_effect trigger="onSelfDamagedOther" action="ShowToolbeltMessage" message="Robotics Skill Increased!"/>
+					<!--if max level then give free Skill Point-->
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffLBU_GiveProgressSkillPoint">
+						<requirement name="ProgressionLevel" progression_name="lbu_Robotics" operation="EQ" value="50"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+		<!-- end Robotics Learn By Use (lbu)-->
+	</append>
+
+	
+	<!--begin Learn-By-Use PERK code - 
+		For each Learn By User CraftingSkill above:
+		- change the stat increases per level in the corresponding Perks 
+		- reduce them by half as the other half is increased by the learn By Use Crafting Skills now-->
+		
+	<!--remove all perks that have a respective Learn-by-use skill - add them back with level increase changes-->
+	<!--xml code order is important - all perks put back where they are removed from-->
+	<!-- remove perkMiner69r -->
+	<remove xpath="/progression/perks/perk[@name='perkMiner69r']"/>
+	<!-- remove perkMotherLode -->
+	<remove xpath="/progression/perks/perk[@name='perkMotherLode']"/>
+	<!-- remove perkDeadEye -->
+	<remove xpath="/progression/perks/perk[@name='perkDeadEye']"/>
+	<!-- remove perkJavelinMaster -->
+	<remove xpath="/progression/perks/perk[@name='perkJavelinMaster']"/>
+	<!-- remove perkBoomstick -->
+	<remove xpath="/progression/perks/perk[@name='perkBoomstick']"/>
+	<!-- remove perkPummelPete -->
+	<remove xpath="/progression/perks/perk[@name='perkPummelPete']"/>
+	<!-- remove perkSkullCrusher -->
+	<remove xpath="/progression/perks/perk[@name='perkSkullCrusher']"/>
+	<!-- remove perkSkullCrusher -->
+	<remove xpath="/progression/perks/perk[@name='perkBrawler']"/>
+	<!-- remove perkMachineGunner -->
+	<remove xpath="/progression/perks/perk[@name='perkMachineGunner']"/>
+	<!-- remove perkArchery -->
+	<remove xpath="/progression/perks/perk[@name='perkArchery']"/>
+	<!-- remove perkGunslinger -->
+	<remove xpath="/progression/perks/perk[@name='perkGunslinger']"/>
+	<!-- remove perkDeepCuts -->
+	<remove xpath="/progression/perks/perk[@name='perkDeepCuts']"/>
+	<!-- remove perkTurrets -->
+	<remove xpath="/progression/perks/perk[@name='perkTurrets']"/>
+	<!-- remove perkElectrocutioner -->
+	<remove xpath="/progression/perks/perk[@name='perkElectrocutioner']"/>
+	<!-- remove perkSalvageOperations -->
+	<remove xpath="/progression/perks/perk[@name='perkSalvageOperations']"/>
+	<!-- remove perkDemolitionsExpert -->
+	<remove xpath="/progression/perks/perk[@name='perkDemolitionsExpert']"/>
+	<!-- remove perkHiddenStrike -->
+	<remove xpath="/progression/perks/perk[@name='perkHiddenStrike']"/>
+	<!--now put them all back - with modified stats -->
+	
+	<!--Modify existing miner69er and motherlode perks to halve stats increase per level-->
+	<insertAfter xpath="/progression/perks/perk[@name='perkMasterChef']">
+		<perk name="perkMiner69r" parent="skillStrengthConstruction" name_key="perkMiner69rName" desc_key="perkMiner69rDesc" icon="ui_game_symbol_mining">-->
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="2" desc_key="reqStrengthLevel02"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+
+			<effect_group>
+				<!--adjust block and entity damage for Learn-By-use-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".15,0.75" tags="perkMiner69r"/><!--".3,1.5"-->
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkMiner69r"/><!--".1,.5"-->
+				
+				<!-- the rest of this effect_group is unchanged-->
+				<!-- Increase the chance to find harvesting tools with each perk rank --> 
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="harvestingSkill"/>
+
+				<!-- Increase the chance to find harvesting tools crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="harvestingToolsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingHarvestingTools" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once harvesting tools crafting skill reaches 100, set the probability bonus of finding harvesting tool crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="harvestingToolsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingHarvestingTools" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Art of Mining books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="artOfMiningProb">
+					<requirement name="ProgressionLevel" progression_name="perkArtOfMiningComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Art of Mining books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="artOfMiningProb">
+					<requirement name="ProgressionLevel" progression_name="perkArtOfMiningComplete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkMiner69rRank1Desc" long_desc_key="perkMiner69rRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkMiner69rRank2Desc" long_desc_key="perkMiner69rRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkMiner69rRank3Desc" long_desc_key="perkMiner69rRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkMiner69rRank4Desc" long_desc_key="perkMiner69rRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkMiner69rRank5Desc" long_desc_key="perkMiner69rRank5LongDesc"/>
+			</effect_group>
+
+			<!-- MINER69R:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMiner69r"/>
+				<!--adjust stamina for Learn-By-use-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+			</effect_group>
+		</perk>
+		
+		<!-- *** MOTHER_LODE -->
+		<perk name="perkMotherLode" parent="skillStrengthConstruction" name_key="perkMotherLodeName" desc_key="perkMotherLodeDesc" icon="ui_game_symbol_mother_load">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="2" desc_key="reqStrengthLevel02"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+
+			<effect_group>
+				<!--adjust HarvestCount for Learn-By-use-->
+				<passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".1,0.5" tags="oreWoodHarvest"/> <!--".2,1"-->
+				<!--end adjust HarvestCount for Learn-By-use-->
+				
+				<passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.1,-.4" tags="Harvesting">
+					<requirement name="HoldingItemHasTags" tags="perkMiner69r"/>
+				</passive_effect>
+				
+				<effect_description level="1" desc_key="perkMotherLodeRank1Desc" long_desc_key="perkMotherLodeRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkMotherLodeRank2Desc" long_desc_key="perkMotherLodeRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkMotherLodeRank3Desc" long_desc_key="perkMotherLodeRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkMotherLodeRank4Desc" long_desc_key="perkMotherLodeRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkMotherLodeRank5Desc" long_desc_key="perkMotherLodeRank5LongDesc"/>
+			</effect_group>
+		</perk>
+	</insertAfter>
+	
+	<!--Modify existing DeadEye perk to halve stat increases per level-->
+	<insertBefore xpath="/progression/perks/perk[@name='perkFlurryOfPerception']">
+		<perk name="perkDeadEye" parent="skillPerceptionCombat" name_key="perkDeadEyeName" desc_key="perkDeadEyeDesc" icon="ui_game_symbol_map_cursor">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="1" desc_key="reqPerceptionLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="3" desc_key="reqPerceptionLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="5" desc_key="reqPerceptionLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="7" desc_key="reqPerceptionLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="10" desc_key="reqPerceptionLevel10"/></level_requirements>
+
+			<effect_group>
+				<!--adjust stats for Learn-By-use-->
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkDeadEye"/>
+				<passive_effect name="WeaponHandling" operation="perc_add" level="1,2,3,4,5" value=".05,.1,.16,.23,.30" tags="perkDeadEye"/> <!--".1,.2,.32,.45,.60"-->
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5" value="0.5,0.15" tags="perkDeadEye"/>  <!--"0.1,0.3"-->
+				<!--end adjust stats for Learn-By-use-->
+				
+				<!-- Increase the chance to find rifles and ammo with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="rifleSkill"/>
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="ammo762mm"/>
+
+				<!-- Increase the chance to find rifle crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="riflesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once rifle crafting skill reaches 100, set the probability bonus of finding rifle crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="riflesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRifles" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Sniper books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="sniperProb">
+					<requirement name="ProgressionLevel" progression_name="perkSniperComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Sniper books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="sniperProb">
+					<requirement name="ProgressionLevel" progression_name="perkSniperComplete" operation="Equals" value="1"/>
+				</passive_effect>
+				
+			</effect_group>
+			
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeadEye"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeadEye" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffDeadEye"/>
+					<!-- aiming stamina buff in buffHoldBreathAiming01 -->
+
+				<effect_description level="1" desc_key="perkDeadEyeRank1Desc" long_desc_key="perkDeadEyeRank1LongDesc" desc_base="Non localized modder descriptions go here"/>
+				<effect_description level="2" desc_key="perkDeadEyeRank2Desc" long_desc_key="perkDeadEyeRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkDeadEyeRank3Desc" long_desc_key="perkDeadEyeRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkDeadEyeRank4Desc" long_desc_key="perkDeadEyeRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkDeadEyeRank5Desc" long_desc_key="perkDeadEyeRank5LongDesc"/>
+			</effect_group>
+
+		</perk>
+		
+		<!--Modify existing DemolitionsExpert perk to halve stat increases per level-->
+				<!-- *** DEMOLITIONS_EXPERT -->
+		<perk name="perkDemolitionsExpert" parent="skillPerceptionCombat" name_key="perkDemolitionsExpertName" desc_key="perkDemolitionsExpertDesc" icon="ui_game_symbol_explosion">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="1" desc_key="reqPerceptionLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="3" desc_key="reqPerceptionLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="5" desc_key="reqPerceptionLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="7" desc_key="reqPerceptionLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="10" desc_key="reqPerceptionLevel10"/></level_requirements>
+
+			<effect_group>
+				<!-- Increase the chance to find explosives with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="explosivesSkill"/>
+
+				<!-- Increase the chance to find explosive crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="explosivesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once explosive crafting skill reaches 100, set the probability bonus of finding explosive crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="explosivesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="Equals" value="100"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group>
+				<passive_effect name="DismemberChance" operation="base_add" level="1,2,3,4,5" value=".03,.05,.1,.15,.23" tags="perkDemolitionsExpert"/>
+				<passive_effect name="BlockDamage" operation="perc_add" level="0,5" value="0,.25" tags="perkDemolitionsExpert"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="0,5" value="0,.25" tags="perkDemolitionsExpert"/>
+				<passive_effect name="WeaponHandling" operation="perc_add" level="1,5" value="0.05,0.25" tags="perkDemolitionsExpert"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5" value="0.08,0.18" tags="perkDemolitionsExpert"/>
+				
+				<effect_description level="1" desc_key="perkDemolitionsExpertRank1Desc" long_desc_key="perkDemolitionsExpertRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkDemolitionsExpertRank2Desc" long_desc_key="perkDemolitionsExpertRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkDemolitionsExpertRank3Desc" long_desc_key="perkDemolitionsExpertRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkDemolitionsExpertRank4Desc" long_desc_key="perkDemolitionsExpertRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkDemolitionsExpertRank5Desc" long_desc_key="perkDemolitionsExpertRank5LongDesc"/>
+			</effect_group>
+		</perk>
+
+		<!--Modify existing JavenlinMaster (Spearmaster) perk to halve stat increases per level-->
+		<!-- *** JAVELIN_MASTER -->
+		<perk name="perkJavelinMaster" parent="skillPerceptionCombat" name_key="perkJavelinMasterName" desc_key="perkJavelinMasterDesc" icon="ui_game_symbol_spear">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="1" desc_key="reqPerceptionLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="3" desc_key="reqPerceptionLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="5" desc_key="reqPerceptionLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="7" desc_key="reqPerceptionLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="10" desc_key="reqPerceptionLevel10"/></level_requirements>
+
+			<effect_group>
+				<!--adjust stats for Learn-By-use-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkJavelinMaster"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkJavelinMaster"/>
+				<!--end adjust stats for Learn-By-use-->
+				
+				<!-- Increase the chance to find spears with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="spearSkill"/>
+
+				<!-- Increase the chance to find spear crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="spearsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once spear crafting skill reaches 75, set the probability bonus of finding spear crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="spearsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSpears" operation="Equals" value="75"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Spear Hunter books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="spearHunterProb">
+					<requirement name="ProgressionLevel" progression_name="perkSpearHunter8Complete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Spear Hunter books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="spearHunterProb">
+					<requirement name="ProgressionLevel" progression_name="perkSpearHunter8Complete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkJavelinMasterRank1Desc" long_desc_key="perkJavelinMasterRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkJavelinMasterRank2Desc" long_desc_key="perkJavelinMasterRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkJavelinMasterRank3Desc" long_desc_key="perkJavelinMasterRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkJavelinMasterRank4Desc" long_desc_key="perkJavelinMasterRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkJavelinMasterRank5Desc" long_desc_key="perkJavelinMasterRank5LongDesc"/>
+			</effect_group>
+
+			<!-- JAVELIN_MASTER:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<!--adjust stats for Learn-By-use-->
+				<requirement name="ItemHasTags" tags="perkJavelinMaster"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+				<!--end adjust stats for Learn-By-use-->
+				
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="20" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="30" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkJavelinMaster"/>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="1"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="2"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="3"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="4"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="80"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkJavelinMaster" operation="Equals" value="5"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="100"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+	</insertBefore>
+
+	<!--Modify existing Boomdstick perk to halve stat increases per level-->	
+	<insertAfter xpath="/progression/perks/perk[@name='perkTreasureHunter']">
+		<!-- *** SALVAGE_OPERATIONS -->
+		<perk name="perkSalvageOperations" parent="skillPerceptionScavenging" name_key="perkSalvageOperationsName" desc_key="perkSalvageOperationsDesc" icon="ui_game_symbol_scrap">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="1" desc_key="reqPerceptionLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="2" desc_key="reqPerceptionLevel02"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="3" desc_key="reqPerceptionLevel03"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="5" desc_key="reqPerceptionLevel05"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="7" desc_key="reqPerceptionLevel07"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="CraftingTime" operation="perc_add" level="1,5" value="-0.05,-.25" tags="salvageScrap"/><!-- does not work on scrapping -->
+				<!--adjust stats for Learn-By-use-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkSalvageOperations"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkSalvageOperations"/>
+				<passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".1,0.5" tags="salvageHarvest"/>
+
+				<!--end adjust stats for Learn-By-use-->
+				
+				<passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.1,-.4" tags="Harvesting">
+					<requirement name="HoldingItemHasTags" tags="perkSalvageOperations"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find salvage tools with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvagingSkill"/>
+
+				<!-- Increase the chance to find salvage tools crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvageToolsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once salvage tools crafting skill reaches 75, set the probability bonus of finding salvage tools crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="salvageToolsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="Equals" value="75"/>
+				</passive_effect>
+				
+				<!-- Increase the chance to find Wasteland Treasures books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="wastelandProb">
+					<requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Wasteland Treasures books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="wastelandProb">
+					<requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+
+			<!-- SALVAGE_OPERATIONS:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<!--adjust stats for Learn-By-use-->
+				<requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+				<!--end adjust stats for Learn-By-use-->
+			</effect_group>
+
+			<effect_group>
+				<!-- wrench (or other relevant tools) do a base_add=1 to hop on the salvage train -->
+				<effect_description level="1" desc_key="perkSalvageOperationsRank1Desc" long_desc_key="perkSalvageOperationsRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkSalvageOperationsRank2Desc" long_desc_key="perkSalvageOperationsRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkSalvageOperationsRank3Desc" long_desc_key="perkSalvageOperationsRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkSalvageOperationsRank4Desc" long_desc_key="perkSalvageOperationsRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkSalvageOperationsRank5Desc" long_desc_key="perkSalvageOperationsRank5LongDesc"/>
+			</effect_group>
+		</perk>
+				<!-- *** BOOMSTICK -->
+		<perk name="perkBoomstick" parent="skillStrengthCombat" name_key="perkBoomstickName" desc_key="perkBoomstickDesc" icon="ui_game_symbol_shotgun">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="10" desc_key="reqStrengthLevel10"/></level_requirements>
+
+			<effect_group>
+				<!--adjust stats for Learn-By-use-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkBoomstick"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkBoomstick"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5" value=".05,.15" tags="perkBoomstick"/>
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="1,5" value=".05,.25" tags="perkBoomstick"/>
+				<!--end adjust stats for Learn-By-use-->
+				
+				<!-- Increase the chance to find shotguns and ammo with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="shotgunSkill"/>
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="ammoShells"/>
+
+				<!-- Increase the chance to find shotgun crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="shotgunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once shotgun crafting skill reaches 100, set the probability bonus of finding shotgun crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="shotgunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Shotgun Messiah books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="shotgunMessiahProb">
+					<requirement name="ProgressionLevel" progression_name="perkShotgunMessiahComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Shotgun Messiah books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="shotgunMessiahProb">
+					<requirement name="ProgressionLevel" progression_name="perkShotgunMessiahComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBoomstick"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryStunned01Shotgun">
+						<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="0"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryStunned02Shotgun">
+						<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="GTE" value="1"/>
+						<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="LTE" value="2"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryStunned03Shotgun">
+						<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="GTE" value="3"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" target_tags="walker" buff="buffInjuryCrippled01">
+						<requirement name="ProgressionLevel" progression_name="perkBoomstick" operation="Equals" value="5"/>
+						<requirement name="HitLocation" body_parts="LeftUpperLeg,RightUpperLeg,LeftLowerLeg,RightLowerLeg"/>
+					</triggered_effect>
+
+				<effect_description level="1" desc_key="perkBoomstickRank1Desc" long_desc_key="perkBoomstickRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkBoomstickRank2Desc" long_desc_key="perkBoomstickRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkBoomstickRank3Desc" long_desc_key="perkBoomstickRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkBoomstickRank4Desc" long_desc_key="perkBoomstickRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkBoomstickRank5Desc" long_desc_key="perkBoomstickRank5LongDesc"/>
+			</effect_group>
+		</perk>
+	
+		<!--Modify existing PummelPete perk to halve stat increases per level-->
+		<perk name="perkPummelPete" parent="skillStrengthCombat" name_key="perkPummelPeteName" desc_key="perkPummelPeteDesc" icon="ui_game_symbol_stunned">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="10" desc_key="reqStrengthLevel10"/></level_requirements>
+
+			<effect_group>
+				<!--halve the effects per level-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkPummelPete"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,0.25" tags="perkPummelPete"/>
+
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value="0.2,1" tags="perkPummelPete">
+					<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+				</passive_effect>
+				<!--end halve the effects per level-->
+				
+				<!-- Increase the chance to find clubs with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="clubSkill"/>
+
+				<!-- Increase the chance to find club crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="clubsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once club crafting skill reaches 75, set the probability bonus of finding club crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="clubsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingClubs" operation="Equals" value="75"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Batter Up books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="batterUpProb">
+					<requirement name="ProgressionLevel" progression_name="perkBatterUpComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Batter Up books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="batterUpProb">
+					<requirement name="ProgressionLevel" progression_name="perkBatterUpComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+
+			<!-- PUMMEL_PETE:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<!--halve the effects per level-->
+				<requirement name="ItemHasTags" tags="perkPummelPete"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+				<!--end halve the effects per level-->
+				
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="5" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="15" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkPummelPete"/>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" cvar=".PummelPeteCombo" operation="add" value="1">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="GTE" value="3"/>
+						<requirement name="NotHasBuff" buff="buffPerkPummelPeteBonus"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffPerkPummelPete">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="GTE" value="3"/>
+						<requirement name="NotHasBuff" buff="buffPerkPummelPeteBonus"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffStayDownKO">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="1"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffStayDownKO">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="2"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="70"/>
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffStayDownKO">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="3"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="80"/>
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffStayDownKO">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="4"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="90"/>
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffStayDownKO">
+						<requirement name="ProgressionLevel" progression_name="perkPummelPete" operation="Equals" value="5"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="100"/>
+						<requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
+					</triggered_effect>
+
+				<effect_description level="1" desc_key="perkPummelPeteRank1Desc" long_desc_key="perkPummelPeteRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkPummelPeteRank2Desc" long_desc_key="perkPummelPeteRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkPummelPeteRank3Desc" long_desc_key="perkPummelPeteRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkPummelPeteRank4Desc" long_desc_key="perkPummelPeteRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkPummelPeteRank5Desc" long_desc_key="perkPummelPeteRank5LongDesc"/>
+			</effect_group>
+		</perk>
+	</insertAfter>
+	
+	<!--Modify existing SkullCrusher perk to halve stat increases per level-->
+	<insertBefore xpath="/progression/perks/perk[@name='perkFlurryOfStrength']">
+			<!-- *** SKULL_CRUSHER -->
+		<perk name="perkSkullCrusher" parent="skillStrengthCombat" name_key="perkSkullCrusherName" desc_key="perkSkullCrusherDesc" icon="ui_game_symbol_sledge">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="10" desc_key="reqStrengthLevel10"/></level_requirements>
+
+			<effect_group>
+				<!--adjust stamina for Learn-By-use-->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".2,1" tags="perkSkullCrusher"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkSkullCrusher"/>
+				<!--end adjust stamina for Learn-By-use-->
+				
+				<!-- Increase the chance to find sledgehammers with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="sledgeSkill"/>
+
+				<!-- Increase the chance to find sledgehammer crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="sledgehammersCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once sledgehammer crafting skill reaches 75, set the probability bonus of finding sledgehammer crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="sledgehammersCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="Equals" value="75"/>
+				</passive_effect>
+			</effect_group>
+
+			<!-- SKULL_CRUSHER:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSkullCrusher"/>
+				<!--adjust stamina for Learn-By-use-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+
+
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="5" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="15" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkSkullCrusher"/>
+
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown01">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="1"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown01">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="2"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown02">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="3"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="45"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown02">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="4"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown02">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="5"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="otherAOE" range="1.3" target_tags="zombie,animal" buff="buffInjuryKnockdown01">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="3"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="otherAOE" range="1.3" target_tags="zombie,animal" buff="buffInjuryKnockdown01">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="4"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="otherAOE" range="1.4" target_tags="zombie,animal" buff="buffInjuryKnockdown01">
+					<requirement name="ProgressionLevel" progression_name="perkSkullCrusher" operation="Equals" value="5"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
+				</triggered_effect>
+
+				<effect_description level="1" desc_key="perkSkullCrusherRank1Desc" long_desc_key="perkSkullCrusherRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkSkullCrusherRank2Desc" long_desc_key="perkSkullCrusherRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkSkullCrusherRank3Desc" long_desc_key="perkSkullCrusherRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkSkullCrusherRank4Desc" long_desc_key="perkSkullCrusherRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkSkullCrusherRank5Desc" long_desc_key="perkSkullCrusherRank5LongDesc"/>
+			</effect_group>
+		</perk>
+	</insertBefore>
+
+	<!--Modify existing SkullCrusher perk to halve stat increases per level-->
+	<insertBefore xpath="/progression/perks/perk[@name='perkFlurryOfFortitude']">
+			<!-- *** BRAWLER -->
+		<perk name="perkBrawler" parent="skillFortitudeCombat" name_key="perkBrawlerName" desc_key="perkBrawlerDesc" icon="ui_game_symbol_boxer">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="1" desc_key="reqFortitudeLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="3" desc_key="reqFortitudeLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkBrawler"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkBrawler"/>
+				
+				<!-- Increase the chance to find knuckles with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="knuckleSkill"/>
+
+				<!-- Increase the chance to find knuckle crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="knucklesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once knuckle crafting skill reaches 75, set the probability bonus of finding knuckle crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="knucklesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="Equals" value="75"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Bar Brawling books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="barBrawlingProb">
+					<requirement name="ProgressionLevel" progression_name="perkBarBrawling8Complete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Bar Brawling books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="barBrawlingProb">
+					<requirement name="ProgressionLevel" progression_name="perkBarBrawling8Complete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkBrawlerRank1Desc" long_desc_key="perkBrawlerRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkBrawlerRank2Desc" long_desc_key="perkBrawlerRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkBrawlerRank3Desc" long_desc_key="perkBrawlerRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkBrawlerRank4Desc" long_desc_key="perkBrawlerRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkBrawlerRank5Desc" long_desc_key="perkBrawlerRank5LongDesc"/>
+			</effect_group>
+
+			<!-- BRAWLER:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+				<!--adjust stamina for Learn-By-use-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="5" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="15" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+
+					<passive_effect name="DismemberChance" operation="base_add" level="5" value=".2" tags="head"/>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffInjuryStunned01">
+						<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="GTE" value="2"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+					</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkBrawler"/>
+				<requirement name="HitLocation" body_parts="Head"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" target_tags="zombie,animal" buff="buffBrawlerNoTeeth">
+						<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="GTE" value="1"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown01">
+						<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="Equals" value="3"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryKnockdown01">
+						<requirement name="ProgressionLevel" progression_name="perkBrawler" operation="GTE" value="4"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+					</triggered_effect>
+			</effect_group>
+		</perk>
+
+			<!-- *** MACHINE_GUNNER -->
+		<perk name="perkMachineGunner" parent="skillFortitudeCombat" name_key="perkMachineGunnerName" desc_key="perkMachineGunnerDesc" icon="ui_game_symbol_rifle">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="1" desc_key="reqFortitudeLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="3" desc_key="reqFortitudeLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkMachineGunner"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkMachineGunner"/>
+
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="1,5" value="0.03,0.13" tags="perkMachineGunner"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5" value="0.05,0.15" tags="perkMachineGunner"/>
+
+				<passive_effect name="KickDegreesVerticalMin" operation="perc_add" level="0,5" value="0,-.03" tags="perkMachineGunner"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="perc_add" level="0,5" value="0,-.15" tags="perkMachineGunner"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="perc_add" level="0,5" value="0,-.03" tags="perkMachineGunner"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="perc_add" level="0,5" value="0,-.15" tags="perkMachineGunner"/>
+
+				<passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" level="1,5" value="-.03,-.15" tags="perkMachineGunner"/>
+				
+				<!-- Increase the chance to find machine guns and ammo with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="machinegunSkill"/>
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="ammo762mm"/>
+
+				<!-- Increase the chance to find machine gun crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="machineGunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once machine gun crafting skill reaches 100, set the probability bonus of finding machine gun crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="machineGunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Automatic Weapons Handbook books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="autoWeaponsProb">
+					<requirement name="ProgressionLevel" progression_name="perkAutoWeaponsComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Automatic Weapons Handbook books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="autoWeaponsProb">
+					<requirement name="ProgressionLevel" progression_name="perkAutoWeaponsComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkMachineGunner"/>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Stamina" operation="add" value="2">
+						<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="3"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Stamina" operation="add" value="4">
+						<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="4"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Stamina" operation="add" value="6">
+						<requirement name="ProgressionLevel" progression_name="perkMachineGunner" operation="Equals" value="5"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+
+				<effect_description level="1" desc_key="perkMachineGunnerRank1Desc" long_desc_key="perkMachineGunnerRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkMachineGunnerRank2Desc" long_desc_key="perkMachineGunnerRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkMachineGunnerRank3Desc" long_desc_key="perkMachineGunnerRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkMachineGunnerRank4Desc" long_desc_key="perkMachineGunnerRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkMachineGunnerRank5Desc" long_desc_key="perkMachineGunnerRank5LongDesc" />
+			</effect_group>
+		</perk>
+	</insertBefore>
+	
+	<!--Modify existing Agility perks - halving stat increases per level-->
+	<insertBefore xpath="/progression/perks/perk[@name='perkFlurryOfAgility']">
+				<!-- *** ARCHERY -->
+		<perk name="perkArchery" parent="skillAgilityCombat" name_key="perkArcheryName" desc_key="perkArcheryDesc" icon="ui_game_symbol_archery">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".1,0.5" tags="perkArchery"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25" tags="perkArchery"/>
+
+				<passive_effect name="WeaponHandling" operation="perc_add" level="1,5" value=".05,.25" tags="perkArchery"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5" value=".05,.25" tags="perkArchery"/>
+
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".05,.08,.13,.18,.25" tags="bowDrawPenalty"/>
+				
+				<!-- Increase the chance to find bows with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="bowSkill"/>
+
+				<!-- Increase the chance to find bow crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="bowsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once bow crafting skill reaches 100, set the probability bonus of finding bow crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="bowsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingBows" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Ranger's Guide to Archery books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="rangersProb">
+					<requirement name="ProgressionLevel" progression_name="perkRangersComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Ranger's Guide to Archery books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="rangersProb">
+					<requirement name="ProgressionLevel" progression_name="perkRangersComplete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkArcheryRank1Desc" long_desc_key="perkArcheryRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkArcheryRank2Desc" long_desc_key="perkArcheryRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkArcheryRank3Desc" long_desc_key="perkArcheryRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkArcheryRank4Desc" long_desc_key="perkArcheryRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkArcheryRank5Desc" long_desc_key="perkArcheryRank5LongDesc"/>
+			</effect_group>
+		</perk>
+
+			<!-- *** GUNSLINGER -->
+		<perk name="perkGunslinger" parent="skillAgilityCombat" max_level="5" name_key="perkGunslingerName" desc_key="perkGunslingerDesc" icon="ui_game_symbol_gunslinger">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="0,5" value="0,0.5" tags="perkGunslinger"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="0,5" value="0,.25" tags="perkGunslinger"/>
+
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="0,5" value="0,0.13" tags="perkGunslinger"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="0,5" value="0,0.15" tags="perkGunslinger"/>
+
+				<passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" level="0,5" value="0,-.25" tags="perkGunslinger"/>
+
+				<!-- Increase the chance to find handguns and ammo with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="handgunSkill"/>
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="ammo9mm"/>
+
+				<!-- Increase the chance to find handgun crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="handgunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once handgun crafting skill reaches 100, set the probability bonus of finding handgun crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="handgunsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="Equals" value="100"/>
+				</passive_effect>
+				
+				<!-- Increase the chance to find Pistol Pete books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="pistolPeteProb">
+					<requirement name="ProgressionLevel" progression_name="perkPistolPeteComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Pistol Pete books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="pistolPeteProb">
+					<requirement name="ProgressionLevel" progression_name="perkPistolPeteComplete" operation="Equals" value="1"/>
+				</passive_effect>
+				
+				<!-- Increase the chance to find Magnum Enforcer books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="enforcerProb">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Magnum Enforcer books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="enforcerProb">
+					<requirement name="ProgressionLevel" progression_name="perkEnforcerComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkGunslinger"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" cvar=".GunslingerCombo" operation="add" value="1">
+						<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="GTE" value="3"/>
+						<requirement name="NotHasBuff" buff="buffPerkGunslingerBonus"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffPerkGunslinger">
+						<requirement name="ProgressionLevel" progression_name="perkGunslinger" operation="GTE" value="3"/>
+						<requirement name="NotHasBuff" buff="buffPerkGunslingerBonus"/>
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+
+				<effect_description level="1" desc_key="perkGunslingerRank1Desc" long_desc_key="perkGunslingerRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkGunslingerRank2Desc" long_desc_key="perkGunslingerRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkGunslingerRank3Desc" long_desc_key="perkGunslingerRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkGunslingerRank4Desc" long_desc_key="perkGunslingerRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkGunslingerRank5Desc" long_desc_key="perkGunslingerRank5LongDesc"/>
+			</effect_group>
+		</perk>
+
+			<!-- *** DEEP_CUTS -->
+		<perk name="perkDeepCuts" parent="skillAgilityCombat" name_key="perkDeepCutsName" desc_key="perkDeepCutsDesc" icon="ui_game_symbol_deep_cuts">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".2,1" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkDeepCuts"/>
+
+				<!-- Increase the chance to find blades with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="bladeSkill"/>
+
+				<!-- Increase the chance to find blade crafting skill magazines with each perk rank up to crafting skill 75 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="bladesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="75"/>
+				</passive_effect>
+
+				<!-- Once blade crafting skill reaches 75, set the probability bonus of finding salvage tools crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="bladesCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingBlades" operation="Equals" value="75"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkDeepCutsRank1Desc" long_desc_key="perkDeepCutsRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkDeepCutsRank2Desc" long_desc_key="perkDeepCutsRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkDeepCutsRank3Desc" long_desc_key="perkDeepCutsRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkDeepCutsRank4Desc" long_desc_key="perkDeepCutsRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkDeepCutsRank5Desc" long_desc_key="perkDeepCutsRank5LongDesc"/>
+			</effect_group>
+
+			<!-- DEEP_CUTS:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<!--adjust stamina for Learn-By-use-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.07,-.1,-.13,-.13"/>  <!--"-.08,-.15,-.2,-.25,-.25"-->
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.04,-.08,-.1,-.12,-.12" tags="secondary"/><!--"-.07,-.15,-.2,-.25,-.25"-->
+
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="5" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="15" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group name="primary, always">
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="@$maxBleedCounter" target="other"/>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+			</effect_group>
+
+			<effect_group>
+				<!-- all attacks refresh / extend bleeding even if no stacks can be added -->
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="GT" value="0" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group name="Secondary">
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="2">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="0"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="3">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="1"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="Equals" value="2" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="2">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="1"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="4">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="2"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="GTE" value="1" target="other"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="4" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="3">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="2"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="5">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="3"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="GTE" value="1" target="other"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="5" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="4">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="3"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="6">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="4"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="GTE" value="2" target="other"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="6" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="4">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="4"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="set" value="7">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="GTE" value="2" target="other"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="7" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="5">
+						<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/>
+						<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="2" target="other"/>
+					</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="GTE" value="1"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="LT" value="3"/>
+				<requirement name="CVarCompare" cvar="$bleedSlowdown" operation="GT" value="-.1" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.1"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.1"/>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="GTE" value="3"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="LT" value="5"/>
+				<requirement name="CVarCompare" cvar="$bleedSlowdown" operation="GT" value="-.15" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.15"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.15"/>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/>
+				<requirement name="CVarCompare" cvar="$bleedSlowdown" operation="GT" value="-.2" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.2"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.2"/>
+			</effect_group>
+
+			<effect_group name="grazing hits T3">
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="3"/>
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="5" target="other"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group name="grazing hits T4">
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="4"/>
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="6" target="other"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="70"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group name="grazing hits T5">
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+				<requirement name="ProgressionLevel" progression_name="perkDeepCuts" operation="Equals" value="5"/>
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="7" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkDeepCuts"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+		</perk>
+	</insertBefore>	
+	
+	<insertBefore xpath="/progression/perks/perk[@name='perkFromTheShadows']">	
+		<!-- *** HIDDEN_STRIKE -->
+		<perk name="perkHiddenStrike" parent="skillAgilityStealth" name_key="perkHiddenStrikeName" desc_key="perkHiddenStrikeDesc" icon="ui_game_symbol_sneak_attack">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
+
+			<effect_group name="regular weapons, sledgehammer"> <!-- blades, bows have item bonuses -->
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+				<requirement name="!ItemHasTags" tags="perkSkullCrusher"/>
+					<passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3,4,5" value="0.75,1,1.25,1.5,1.75,2"/> <!--For UI-->
+					<passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3,4,5" value="0.25,0.5,0.75,1,1.25,1.5"/>
+					<!--<passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3,4,5" value="1.5,2,2.5,3,3.5,4"/> --><!--For UI-->
+					<!--<passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3,4,5" value=".5,1,1.5,2,2.5,3"/>-->
+
+				<effect_description level="1" desc_key="perkHiddenStrikeRank1Desc" long_desc_key="perkHiddenStrikeRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkHiddenStrikeRank2Desc" long_desc_key="perkHiddenStrikeRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkHiddenStrikeRank3Desc" long_desc_key="perkHiddenStrikeRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkHiddenStrikeRank4Desc" long_desc_key="perkHiddenStrikeRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkHiddenStrikeRank5Desc" long_desc_key="perkHiddenStrikeRank5LongDesc"/>
+			</effect_group>
+
+			<effect_group>
+				
+				<!-- Increase the chance to find Urban Combat books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="urbanProb">
+					<requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Urban Combat books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="urbanProb">
+					<requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="Equals" value="1"/>
+				</passive_effect>
+			</effect_group>
+		</perk>
+	</insertBefore>
+	<!--END Modify existing Agility perks - halving stat increases per level-->
+
+
+	<!--Modify existing Agility perks - halving stat increases per level-->
+	<insertBefore xpath="/progression/perks/perk[@name='perkFlurryOfIntellect']">
+		<!-- *** ELECTROCUTIONER -->
+		<perk name="perkElectrocutioner" parent="skillIntellectCombat" name_key="perkElectrocutionerName" desc_key="perkElectrocutionerDesc" icon="ui_game_symbol_electric_power">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="1" desc_key="reqIntellectLevel01"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="3" desc_key="reqIntellectLevel03"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="5" desc_key="reqIntellectLevel05"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="7" desc_key="reqIntellectLevel07"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="10" desc_key="reqIntellectLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".2,1" tags="perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkElectrocutioner"/>
+				
+				<!-- Increase the chance to find batons and turrets with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="roboticsSkill"/>
+
+				<!-- Increase the chance to find robotic crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="roboticsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once robotic crafting skill reaches 100, set the probability bonus of finding robotic crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="roboticsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Tech Junkie books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="techJunkieProb">
+					<requirement name="ProgressionLevel" progression_name="perkTechJunkie8Complete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Tech Junkie books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="techJunkieProb">
+					<requirement name="ProgressionLevel" progression_name="perkTechJunkie8Complete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkElectrocutionerRank1Desc" long_desc_key="perkElectrocutionerRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkElectrocutionerRank2Desc" long_desc_key="perkElectrocutionerRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkElectrocutionerRank3Desc" long_desc_key="perkElectrocutionerRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkElectrocutionerRank4Desc" long_desc_key="perkElectrocutionerRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkElectrocutionerRank5Desc" long_desc_key="perkElectrocutionerRank5LongDesc"/>
+			</effect_group>
+
+			<!-- ELECTROCUTIONER:SEXREX_REPLACEMENT -->
+			<effect_group>
+				<requirement name="ItemHasTags" tags="perkElectrocutioner"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.08,-.15,-.2,-.25,-.25"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.07,-.15,-.2,-.25,-.25" tags="secondary"/>
+
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="20" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="30" delay="1.0">
+					<requirement name="ProgressionLevel" progression_name="perkElectrocutioner" operation="Equals" value="5"/>
+				</triggered_effect>
+			</effect_group>
+		</perk>
+
+			<!-- *** TURRETS -->
+		<perk name="perkTurrets" parent="skillIntellectCombat" name_key="perkTurretsName" desc_key="perkTurretsDesc" icon="ui_game_symbol_electric_turret">
+			<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="3" desc_key="reqIntellectLevel03"/></level_requirements>
+			<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="5" desc_key="reqIntellectLevel05"/></level_requirements>
+			<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="6" desc_key="reqIntellectLevel06"/></level_requirements>
+			<level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="8" desc_key="reqIntellectLevel08"/></level_requirements>
+			<level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="10" desc_key="reqIntellectLevel10"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".07,.12,.19,.25,.25" tags="turretMelee"/>
+				<!-- <passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".125,.25,.375,.5,.5" tags="turretMelee,deployed"/> -->
+
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="4,5" value="0.05,0.1" tags="perkTurrets"/>
+				<passive_effect name="MagazineSize" operation="base_add" level="1,5" value="5,25" tags="perkTurrets">
+					<requirement name="!ItemHasTags" tags="turretMelee"/>
+				</passive_effect>
+
+				<passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".15,.53,0.6,0.75,0.75" tags="turretRanged"/>
+				<!-- <passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".3,.6,.9,1.2,1.2" tags="turretRanged"/> -->
+				<!-- <passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value=".3,.7,1.1,1.5,1.5" tags="turretRanged,deployed"/> -->
+
+				<passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.2" tags="perkTurrets"/>
+				<!-- <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.4" tags="perkTurrets,deployed"/> -->
+				<passive_effect name="BlockDamage" operation="perc_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.2" tags="turretMelee"/>
+				
+				<passive_effect name="JunkTurretActiveCount" operation="base_set" value="0"/>
+				<passive_effect name="JunkTurretActiveCount" operation="base_add" level="5" value="1"/>
+					<!-- JunkTurretActiveCount,  default=1,  A value of 0 means that 1 turret can be active. Value of 2 means 3 turrets will be active. -->
+				<passive_effect name="JunkTurretActiveRange" operation="base_set" level="0,1,2,3,4,5" value="10,14,15,16,17,18"/>
+
+				<!-- Increase the chance to find batons and turrets with each perk rank -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="roboticsSkill"/>
+
+				<!-- Increase the chance to find robotic crafting skill magazines with each perk rank up to crafting skill 100 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="roboticsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="100"/>
+				</passive_effect>
+
+				<!-- Once robotic crafting skill reaches 100, set the probability bonus of finding robotic crafting skill magazines to 0 -->
+				<passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="roboticsCSM">
+					<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="Equals" value="100"/>
+				</passive_effect>
+
+				<!-- Increase the chance to find Tech Junkie books until each book is read -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="techJunkieProb">
+					<requirement name="ProgressionLevel" progression_name="perkTechJunkie8Complete" operation="LT" value="1"/>
+				</passive_effect>
+
+				<!-- When all Tech Junkie books have been read, set the probability bonus of finding them to 0 -->
+				<passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="techJunkieProb">
+					<requirement name="ProgressionLevel" progression_name="perkTechJunkie8Complete" operation="Equals" value="1"/>
+				</passive_effect>
+
+				<effect_description level="1" desc_key="perkTurretsRank1Desc" long_desc_key="perkTurretsRank1LongDesc"/>
+				<effect_description level="2" desc_key="perkTurretsRank2Desc" long_desc_key="perkTurretsRank2LongDesc"/>
+				<effect_description level="3" desc_key="perkTurretsRank3Desc" long_desc_key="perkTurretsRank3LongDesc"/>
+				<effect_description level="4" desc_key="perkTurretsRank4Desc" long_desc_key="perkTurretsRank4LongDesc"/>
+				<effect_description level="5" desc_key="perkTurretsRank5Desc" long_desc_key="perkTurretsRank5LongDesc"/>
+			</effect_group>
+		</perk>
+	</insertBefore>
+	<!--end Learn-By-Use PERK code -->
+		
+
+	<!--end Learn-By-Use ALL code -->
+		
+</configs>

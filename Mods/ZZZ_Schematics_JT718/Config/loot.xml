@@ -1,0 +1,321 @@
+<config>
+
+<!-- 	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='clubsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponBooks']/item[@name='machineGunsSkillMagazine']"/> -->
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='clubsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='machineGunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='repairToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='skillMagazines']/item[@name='explosivesSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='clubsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='machineGunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='repairToolsSkillMagazine']"/>
+	<!-- <remove xpath="/lootcontainers/lootgroup[@name='groupQuestRewardSkillMagazinesAll01']/item[@name='explosivesSkillMagazine']"/> -->
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffsBooks']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffsBooks']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffsBooks']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffsBooks']/item[@name='repairToolsSkillMagazine']"/>
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffs01']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffs01']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffs01']/item[@name='sledgehammersSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffs01']/item[@name='repairToolsSkillMagazine']"/>
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas01']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas01']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas01']/item[@name='repairToolsSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas03']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas03']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPassNGas03']/item[@name='repairToolsSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupLootChestBonusItems']/item[@name='harvestingToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupLootChestBonusItems']/item[@name='salvageToolsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupLootChestBonusItems']/item[@name='repairToolsSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='clubsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='machineGunsSkillMagazine']"/>
+	<!-- <remove xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']/item[@name='explosivesSkillMagazine']"/> -->
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryBooks']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryBooks']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryBooks']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryBooks']/item[@name='clubsSkillMagazine']"/>
+	
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate01']/item[@name='bowsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate01']/item[@name='spearsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate01']/item[@name='bladesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate01']/item[@name='clubsSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']/item[@name='machineGunsSkillMagazine']"/>
+	<!-- <remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']/item[@name='explosivesSkillMagazine']"/> -->
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']/item[@name='handgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']/item[@name='shotgunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']/item[@name='riflesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']/item[@name='machineGunsSkillMagazine']"/>
+	<!-- <remove xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']/item[@name='explosivesSkillMagazine']"/> -->
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPopNPillsBooks']/item[@name='knucklesSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupPopNPillsCrate02']/item[@name='knucklesSkillMagazine']"/>
+
+	<remove xpath="/lootcontainers/lootgroup[@name='groupStunBaton']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupBotSchematics']/item[@name='roboticsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup[@name='groupMoPower02']/item[@name='roboticsSkillMagazine']"/>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffsBooks']">
+			<item name="meleeToolRepairT1ClawHammerSchematic" count="1"/>
+			<item name="meleeToolRepairT3NailgunSchematic" count="1"/>
+			<item name="meleeToolAxeT1IronFireaxeSchematic" count="1"/>
+			<item name="meleeToolAxeT2SteelAxeSchematic" count="1"/>
+			<item name="meleeToolPickT1IronPickaxeSchematic" count="1"/>
+			<item name="meleeToolPickT2SteelPickaxeSchematic" count="1"/>
+			<item name="meleeToolShovelT1IronShovelSchematic" count="1"/>
+			<item name="meleeToolShovelT2SteelShovelSchematic" count="1"/>
+			<item name="meleeToolAxeT3ChainsawSchematic" count="1"/>
+			<item name="meleeToolPickT3AugerSchematic" count="1"/>
+			<item name="meleeToolSalvageT1WrenchSchematic" count="1"/>
+			<item name="meleeToolSalvageT2RatchetSchematic" count="1"/>
+			<item name="meleeToolSalvageT3ImpactDriverSchematic" count="1"/>
+			<item name="meleeWpnSledgeT1IronSledgehammerSchematic" count="1"/>
+			<item name="meleeWpnSledgeT3SteelSledgehammerSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupWorkingStiffs01']">
+			<item name="meleeToolRepairT1ClawHammerSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolRepairT3NailgunSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT1IronFireaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT2SteelAxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT1IronPickaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT2SteelPickaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolShovelT1IronShovelSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolShovelT2SteelShovelSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT3ChainsawSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT3AugerSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT1WrenchSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT2RatchetSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT3ImpactDriverSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeWpnSledgeT1IronSledgehammerSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeWpnSledgeT3SteelSledgehammerSchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupPassNGas01']">
+			<item name="meleeToolRepairT1ClawHammerSchematic" count="1"/>
+			<item name="meleeToolRepairT3NailgunSchematic" count="1"/>
+			<item name="meleeToolAxeT1IronFireaxeSchematic" count="1"/>
+			<item name="meleeToolAxeT2SteelAxeSchematic" count="1"/>
+			<item name="meleeToolPickT1IronPickaxeSchematic" count="1"/>
+			<item name="meleeToolPickT2SteelPickaxeSchematic" count="1"/>
+			<item name="meleeToolShovelT1IronShovelSchematic" count="1"/>
+			<item name="meleeToolShovelT2SteelShovelSchematic" count="1"/>
+			<item name="meleeToolAxeT3ChainsawSchematic" count="1"/>
+			<item name="meleeToolPickT3AugerSchematic" count="1"/>
+			<item name="meleeToolSalvageT1WrenchSchematic" count="1"/>
+			<item name="meleeToolSalvageT2RatchetSchematic" count="1"/>
+			<item name="meleeToolSalvageT3ImpactDriverSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupPassNGas03']">
+			<item name="meleeToolRepairT1ClawHammerSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolRepairT3NailgunSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT1IronFireaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT2SteelAxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT1IronPickaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT2SteelPickaxeSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolShovelT1IronShovelSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolShovelT2SteelShovelSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolAxeT3ChainsawSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolPickT3AugerSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT1WrenchSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT2RatchetSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeToolSalvageT3ImpactDriverSchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupLootChestBonusItems']">
+			<item name="meleeToolRepairT1ClawHammerSchematic" count="1"/>
+			<item name="meleeToolRepairT3NailgunSchematic" count="1"/>
+			<item name="meleeToolAxeT1IronFireaxeSchematic" count="1"/>
+			<item name="meleeToolAxeT2SteelAxeSchematic" count="1"/>
+			<item name="meleeToolPickT1IronPickaxeSchematic" count="1"/>
+			<item name="meleeToolPickT2SteelPickaxeSchematic" count="1"/>
+			<item name="meleeToolShovelT1IronShovelSchematic" count="1"/>
+			<item name="meleeToolShovelT2SteelShovelSchematic" count="1"/>
+			<item name="meleeToolAxeT3ChainsawSchematic" count="1"/>
+			<item name="meleeToolPickT3AugerSchematic" count="1"/>
+			<item name="meleeToolSalvageT1WrenchSchematic" count="1"/>
+			<item name="meleeToolSalvageT2RatchetSchematic" count="1"/>
+			<item name="meleeToolSalvageT3ImpactDriverSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='weaponSkillMagazinesOnly']">
+			<item name="meleeWpnBladeT1HuntingKnifeSchematic" count="1"/>
+			<item name="meleeWpnBladeT3MacheteSchematic" count="1"/>
+			<item name="meleeWpnClubT1BaseballBatSchematic" count="1"/>
+			<item name="meleeWpnClubT3SteelClubSchematic" count="1"/>
+			<item name="meleeWpnBatonT2StunBatonSchematic" count="1"/>
+			<item name="meleeWpnSpearT1IronSpearSchematic" count="1"/>
+			<item name="meleeWpnSpearT3SteelSpearSchematic" count="1"/>
+			<item name="meleeWpnKnucklesT1IronKnucklesSchematic" count="1"/>
+			<item name="meleeWpnKnucklesT3SteelKnucklesSchematic" count="1"/>
+			<item name="gunHandgunT1PistolSchematic" count="1"/>
+			<item name="gunHandgunT3SMG5Schematic" count="1"/>
+			<item name="gunHandgunT2Magnum44Schematic" count="1"/>
+			<item name="gunHandgunT3DesertVultureSchematic" count="1"/>
+			<item name="gunShotgunT1DoubleBarrelSchematic" count="1"/>
+			<item name="gunShotgunT2PumpShotgunSchematic" count="1"/>
+			<item name="gunShotgunT3AutoShotgunSchematic" count="1"/>
+			<item name="gunRifleT1HuntingRifleSchematic" count="1"/>
+			<item name="gunRifleT2LeverActionRifleSchematic" count="1"/>
+			<item name="gunRifleT3SniperRifleSchematic" count="1"/>
+			<item name="gunMGT1AK47Schematic" count="1"/>
+			<item name="gunMGT2TacticalARSchematic" count="1"/>
+			<item name="gunMGT3M60Schematic" count="1"/>
+			<item name="gunBowT1WoodenBowSchematic" count="1"/>
+			<item name="gunBowT3CompoundBowSchematic" count="1"/>
+			<item name="gunBowT1IronCrossbowSchematic" count="1"/>
+			<item name="gunBowT3CompoundCrossbowSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupSavageCountryBooks']">
+			<item name="meleeWpnBladeT1HuntingKnifeSchematic" count="1"/>
+			<item name="meleeWpnBladeT3MacheteSchematic" count="1"/>
+			<item name="meleeWpnClubT1BaseballBatSchematic" count="1"/>
+			<item name="meleeWpnClubT3SteelClubSchematic" count="1"/>
+			<item name="meleeWpnSpearT1IronSpearSchematic" count="1"/>
+			<item name="meleeWpnSpearT3SteelSpearSchematic" count="1"/>
+			<item name="gunBowT1WoodenBowSchematic" count="1"/>
+			<item name="gunBowT3CompoundBowSchematic" count="1"/>
+			<item name="gunBowT1IronCrossbowSchematic" count="1"/>
+			<item name="gunBowT3CompoundCrossbowSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupSavageCountryCrate01']">
+			<item name="meleeWpnBladeT1HuntingKnifeSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="meleeWpnBladeT3MacheteSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeWpnClubT1BaseballBatSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="meleeWpnClubT3SteelClubSchematic" count="1" loot_prob_template="low"/>
+			<item name="meleeWpnSpearT1IronSpearSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="meleeWpnSpearT3SteelSpearSchematic" count="1" loot_prob_template="low"/>
+			<item name="gunBowT1WoodenBowSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunBowT3CompoundBowSchematic" count="1" loot_prob_template="low"/>
+			<item name="gunBowT1IronCrossbowSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunBowT3CompoundCrossbowSchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahBooks']">
+			<item name="gunHandgunT1PistolSchematic" count="1"/>
+			<item name="gunHandgunT3SMG5Schematic" count="1"/>
+			<item name="gunHandgunT2Magnum44Schematic" count="1"/>
+			<item name="gunHandgunT3DesertVultureSchematic" count="1"/>
+			<item name="gunShotgunT1DoubleBarrelSchematic" count="1"/>
+			<item name="gunShotgunT2PumpShotgunSchematic" count="1"/>
+			<item name="gunShotgunT3AutoShotgunSchematic" count="1"/>
+			<item name="gunRifleT1HuntingRifleSchematic" count="1"/>
+			<item name="gunRifleT2LeverActionRifleSchematic" count="1"/>
+			<item name="gunRifleT3SniperRifleSchematic" count="1"/>
+			<item name="gunMGT1AK47Schematic" count="1"/>
+			<item name="gunMGT2TacticalARSchematic" count="1"/>
+			<item name="gunMGT3M60Schematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupShotgunMessiahCrate02']">
+			<item name="gunHandgunT1PistolSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunHandgunT3SMG5Schematic" count="1" loot_prob_template="medLow"/>
+			<item name="gunHandgunT2Magnum44Schematic" count="1" loot_prob_template="low"/>
+			<item name="gunHandgunT3DesertVultureSchematic" count="1" loot_prob_template="low"/>
+			<item name="gunShotgunT1DoubleBarrelSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunShotgunT2PumpShotgunSchematic" count="1" loot_prob_template="medLow"/>
+			<item name="gunShotgunT3AutoShotgunSchematic" count="1" loot_prob_template="low"/>
+			<item name="gunRifleT1HuntingRifleSchematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunRifleT2LeverActionRifleSchematic" count="1" loot_prob_template="medLow"/>
+			<item name="gunRifleT3SniperRifleSchematic" count="1" loot_prob_template="low"/>
+			<item name="gunMGT1AK47Schematic" count="1" loot_prob_template="medHigh"/>
+			<item name="gunMGT2TacticalARSchematic" count="1" loot_prob_template="medLow"/>
+			<item name="gunMGT3M60Schematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupPopNPillsBooks']">
+			<item name="meleeWpnKnucklesT1IronKnucklesSchematic" count="1"/>
+			<item name="meleeWpnKnucklesT3SteelKnucklesSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupPopNPillsCrate02']">
+			<item name="meleeWpnKnucklesT1IronKnucklesSchematic" count="1" loot_prob_template="medLow"/>
+			<item name="meleeWpnKnucklesT3SteelKnucklesSchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupStunBaton']">
+			<item name="meleeWpnBatonT2StunBatonSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupBotSchematics']">
+			<item name="meleeWpnBatonT2StunBatonSchematic" count="1"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupMoPower02']">
+			<item name="meleeWpnBatonT2StunBatonSchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+	<append xpath="/lootcontainers/lootgroup[@name='schematicsVehiclesT1']">
+			<item name="carBatterySchematic" count="1"/>
+	</append>	
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupCars03']">
+			<item name="carBatterySchematic" count="1" loot_prob_template="low"/>
+	</append>	
+	
+	<append xpath="/lootcontainers/lootgroup[@name='groupGarage02']">
+			<item name="carBatterySchematic" count="1" loot_prob_template="low"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupPassNGas01']">
+			<item name="carBatterySchematic" count="1" loot_prob_template="low"/>
+	</append>
+	
+</config>

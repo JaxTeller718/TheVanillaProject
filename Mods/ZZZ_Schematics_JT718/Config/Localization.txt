@@ -1,0 +1,595 @@
+﻿Key,Source,Context,English
+perkASMiningToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
+perkASRepairToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
+perkASConstructionToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
+perkASSalvageToolsDesc,progression,Perk,"+1% Block Damage and Resource Gain\n+0.3% Stamina Reduction\nper level"
+perkASBluntDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASSledgehammersDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASBladedDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASElectricDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASJavelinDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASArcheryDesc,progression,Perk,"+0.3% Damage\n+0.5% Accuracy and Reload Speed\nper level"
+perkASPistolsDesc,progression,Perk,"+0.3% Damage\n+0.5% Accuracy, Reload Speed, and Recoil Reduction\nper level"
+perkASShotgunsDesc,progression,Perk,"+0.3% Damage\n+0.5% Accuracy, Reload Speed, and Recoil Reduction\nper level"
+perkASRiflesDesc,progression,Perk,"+0.3% Damage\n+0.5% Accuracy, Reload Speed, and Recoil Reduction\nper level"
+perkASAutomaticsDesc,progression,Perk,"+0.3% Damage\n+0.5% Accuracy, Reload Speed, and Recoil Reduction\nper level"
+perkASBrawlerDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+perkASTurretDesc,progression,Perk,"+0.3% Damage and Stamina Reduction\nper level"
+attactionskills,progression,Attribute,Action Skills
+attActionSkillsDesc,progression,Attribute,Action Skills Will Level As You Use Them.
+attActionSkillsName,progression,Attribute,Attribute: Action Skills
+ttMToolsLevelUp,UI,Tooltip,"Your Have Advanced a Level In Mining Tools Action Skill!",,,,,
+ttArcheryLevelUp,UI,Tooltip,"Your Have Advanced a Level In Archery Action Skill!",,,,,
+ttAutomaticsLevelUp,UI,Tooltip,"Your Have Advanced a Level In Automatics Action Skill!",,,,,
+ttBladedLevelUp,UI,Tooltip,"Your Have Advanced a Level In Blades Action Skill!",,,,,
+ttPistolLevelUp,UI,Tooltip,"Your Have Advanced a Level In Pistols Action Skill!",,,,,
+ttShotgunLevelUp,UI,Tooltip,"Your Have Advanced a Level In Shotguns Action Skill!",,,,,
+ttCToolsLevelUp,UI,Tooltip,"Your Have Advanced a Level In Woodcutting Tools Action Skill!",,,,,
+ttRToolsLevelUp,UI,Tooltip,"Your Have Advanced a Level In Repair Tools Action Skill!",,,,,
+buffSToolsSkillLvl,UI,Tooltip,"Your Have Advanced a Level In Salvage Tools Action Skill!",,,,,
+ttRiflesLevelUp,UI,Tooltip,"Your Have Advanced a Level In Rifles Action Skill!",,,,,
+ttElectricLevelUp,UI,Tooltip,"Your Have Advanced a Level In Batons Action Skill!",,,,,
+ttTurretLevelUp,UI,Tooltip,"Your Have Advanced a Level In Turrets Action Skill!",,,,,
+ttJavelinLevelUp,UI,Tooltip,"Your Have Advanced a Level In Javelin Action Skill!",,,,,
+ttBrawlerLevelUp,UI,Tooltip,"Your Have Advanced a Level In Brawler Action Skill!",,,,,
+ttBluntLevelUp,UI,Tooltip,"Your Have Advanced a Level In Blunt Action Skill!",,,,,
+ttSledgehammersLevelUp,UI,Tooltip,"Your Have Advanced a Level In Sledgehammer Action Skill!",,,,,
+ttAthleticsLevelUp,UI,Tooltip,"Your Have Advanced a Level In Athletics Action Skill!",,,,,
+
+perkASMiningToolsName,progression,Perk,"Mining Tools"
+perkASConstructionToolsName,progression,Perk,"Woodcutting Tools"
+perkASRepairToolsName,progression,Perk,"Repair Tools"
+perkASSalvageToolsName,progression,Perk,"Salvage Tools"
+perkASSledgehammersName,progression,Perk,"Sledgehammers"
+perkASBluntName,progression,Perk,"Blunt Weapons"
+perkASBladedName,progression,Perk,"Blades"
+perkASElectricName,progression,Perk,"Stun Batons"
+perkASJavelinName,progression,Perk,"Spears"
+perkASBrawlerName,progression,Perk,"Fist Weapons"
+perkASArcheryName,progression,Perk,"Bows"
+perkASPistolsName,progression,Perk,"Pistols"
+perkASShotgunsName,progression,Perk,"Shotguns"
+perkASRiflesName,progression,Perk,"Rifles"
+perkASAutomaticsName,progression,Perk,"Automatics"
+perkASTurretsName,progression,Perk,"Turrets"
+
+
+perkMiningToolCraftingName,progression,Perk,"Mining Tools Crafting"
+perkMiningToolCraftingDesc,progression,Perk,"Learn how to craft mining tools."
+reqASMiningToolsLevel10,progression,Perk,"Requires Mining Tools Level 10"
+reqASMiningToolsLevel20,progression,Perk,"Requires Mining Tools Level 20"
+reqASMiningToolsLevel30,progression,Perk,"Requires Mining Tools Level 30"
+reqASMiningToolsLevel40,progression,Perk,"Requires Mining Tools Level 40"
+reqASMiningToolsLevel50,progression,Perk,"Requires Mining Tools Level 50"
+reqASMiningToolsLevel60,progression,Perk,"Requires Mining Tools Level 60"
+reqASMiningToolsLevel70,progression,Perk,"Requires Mining Tools Level 70"
+reqASMiningToolsLevel80,progression,Perk,"Requires Mining Tools Level 80"
+reqASMiningToolsLevel90,progression,Perk,"Requires Mining Tools Level 90"
+reqASMiningToolsLevel100,progression,Perk,"Requires Mining Tools Level 100"
+perkMiningToolCraftingRank1Desc,progression,Perk,"Scrap Tools"
+perkMiningToolCraftingRank1LongDesc,progression,Perk,"Unlocks the Scrap Pickaxe and Scrap Shovel"
+perkMiningToolCraftingRank2Desc,progression,Perk,"Iron Tools"
+perkMiningToolCraftingRank2LongDesc,progression,Perk,"Unlocks the Iron Pickaxe and Iron Shovel"
+perkMiningToolCraftingRank3Desc,progression,Perk,"Steel Tools"
+perkMiningToolCraftingRank3LongDesc,progression,Perk,"Unlocks the Steel Pickaxe and Steel Shovel"
+perkMiningToolCraftingRank4Desc,progression,Perk,"Power Tools"
+perkMiningToolCraftingRank4LongDesc,progression,Perk,"Unlocks the Auger"
+perkMiningToolCraftingRank5Desc,progression,Perk,"Advanced Tools"
+perkMiningToolCraftingRank5LongDesc,progression,Perk,"Unlocks the Aluminum Pickaxe and Aluminum Shovel"
+
+reqASRepairMiningToolsLevel10,progression,Perk,"Requires Repair Tools Level 10"
+reqASRepairMiningToolsLevel20,progression,Perk,"Requires Repair Tools Level 20"
+reqASRepairMiningToolsLevel30,progression,Perk,"Requires Repair Tools Level 30"
+reqASRepairMiningToolsLevel40,progression,Perk,"Requires Repair Tools Level 40"
+reqASRepairMiningToolsLevel50,progression,Perk,"Requires Repair Tools Level 50"
+reqASRepairMiningToolsLevel60,progression,Perk,"Requires Repair Tools Level 60"
+reqASRepairMiningToolsLevel70,progression,Perk,"Requires Repair Tools Level 70"
+reqASRepairMiningToolsLevel80,progression,Perk,"Requires Repair Tools Level 80"
+reqASRepairMiningToolsLevel90,progression,Perk,"Requires Repair Tools Level 90"
+reqASRepairMiningToolsLevel100,progression,Perk,"Requires Repair Tools Level 100"
+
+reqASConstructionMiningToolsLevel10,progression,Perk,"Requires Construction and Mining Tools Level 10"
+reqASConstructionMiningToolsLevel20,progression,Perk,"Requires Construction and Mining Tools Level 20"
+reqASConstructionMiningToolsLevel30,progression,Perk,"Requires Construction and Mining Tools Level 30"
+reqASConstructionMiningToolsLevel40,progression,Perk,"Requires Construction and Mining Tools Level 40"
+reqASConstructionMiningToolsLevel50,progression,Perk,"Requires Construction and Mining Tools Level 50"
+reqASConstructionMiningToolsLevel60,progression,Perk,"Requires Construction and Mining Tools Level 60"
+reqASConstructionMiningToolsLevel70,progression,Perk,"Requires Construction and Mining Tools Level 70"
+reqASConstructionMiningToolsLevel80,progression,Perk,"Requires Construction and Mining Tools Level 80"
+reqASConstructionMiningToolsLevel90,progression,Perk,"Requires Construction and Mining Tools Level 90"
+reqASConstructionMiningToolsLevel100,progression,Perk,"Requires Construction and Mining Tools Level 100"
+
+perkRepairToolCraftingName,progression,Perk,"Repair Tool Crafting"
+perkRepairToolCraftingDesc,progression,Perk,"Learn how to craft repair tools."
+reqASRepairToolsLevel10,progression,Perk,"Requires Repair Tools Level 10"
+reqASRepairToolsLevel20,progression,Perk,"Requires Repair Tools Level 20"
+reqASRepairToolsLevel30,progression,Perk,"Requires Repair Tools Level 30"
+reqASRepairToolsLevel40,progression,Perk,"Requires Repair Tools Level 40"
+reqASRepairToolsLevel50,progression,Perk,"Requires Repair Tools Level 50"
+reqASRepairToolsLevel60,progression,Perk,"Requires Repair Tools Level 60"
+reqASRepairToolsLevel70,progression,Perk,"Requires Repair Tools Level 70"
+reqASRepairToolsLevel80,progression,Perk,"Requires Repair Tools Level 80"
+reqASRepairToolsLevel90,progression,Perk,"Requires Repair Tools Level 90"
+reqASRepairToolsLevel100,progression,Perk,"Requires Repair Tools Level 100"
+perkRepairToolCraftingRank1Desc,progression,Perk,"Construction Tools"
+perkRepairToolCraftingRank1LongDesc,progression,Perk,"Unlocks the Claw Hammer"
+perkRepairToolCraftingRank2Desc,progression,Perk,"Powered Tools"
+perkRepairToolCraftingRank2LongDesc,progression,Perk,"Unlocks the Nailgun"
+perkRepairToolCraftingRank3Desc,progression,Perk,"Steel Tools"
+perkRepairToolCraftingRank3LongDesc,progression,Perk,"Unlocks the Steel Axe"
+perkRepairToolCraftingRank4Desc,progression,Perk,"Power Tools"
+perkRepairToolCraftingRank4LongDesc,progression,Perk,"Unlocks the Chainsaw"
+perkRepairToolCraftingRank5Desc,progression,Perk,"Advanced Tools"
+perkRepairToolCraftingRank5LongDesc,progression,Perk,"Unlocks the Aluminum Axe"
+
+perkConstructionToolCraftingName,progression,Perk,"Woodcutting Tool Crafting"
+perkConstructionToolCraftingDesc,progression,Perk,"Learn how to craft woodcutting tools."
+reqASConstructionToolsLevel10,progression,Perk,"Requires Woodcutting Tools Level 10"
+reqASConstructionToolsLevel20,progression,Perk,"Requires Woodcutting Tools Level 20"
+reqASConstructionToolsLevel30,progression,Perk,"Requires Woodcutting Tools Level 30"
+reqASConstructionToolsLevel40,progression,Perk,"Requires Woodcutting Tools Level 40"
+reqASConstructionToolsLevel50,progression,Perk,"Requires Woodcutting Tools Level 50"
+reqASConstructionToolsLevel60,progression,Perk,"Requires Woodcutting Tools Level 60"
+reqASConstructionToolsLevel70,progression,Perk,"Requires Woodcutting Tools Level 70"
+reqASConstructionToolsLevel80,progression,Perk,"Requires Woodcutting Tools Level 80"
+reqASConstructionToolsLevel90,progression,Perk,"Requires Woodcutting Tools Level 90"
+reqASConstructionToolsLevel100,progression,Perk,"Requires Woodcutting Tools Level 100"
+perkConstructionToolCraftingRank1Desc,progression,Perk,"Scrap Tools"
+perkConstructionToolCraftingRank1LongDesc,progression,Perk,"Unlocks the Scrap Axe"
+perkConstructionToolCraftingRank2Desc,progression,Perk,"Iron Tools"
+perkConstructionToolCraftingRank2LongDesc,progression,Perk,"Unlocks the Iron Fireaxe"
+perkConstructionToolCraftingRank3Desc,progression,Perk,"Steel Tools"
+perkConstructionToolCraftingRank3LongDesc,progression,Perk,"Unlocks the Steel Axe"
+perkConstructionToolCraftingRank4Desc,progression,Perk,"Power Tools"
+perkConstructionToolCraftingRank4LongDesc,progression,Perk,"Unlocks the Chainsaw"
+perkConstructionToolCraftingRank5Desc,progression,Perk,"Advanced Tools"
+perkConstructionToolCraftingRank5LongDesc,progression,Perk,"Unlocks the Aluminum Axe"
+
+perkSalvageToolCraftingName,progression,Perk,"Salvage Tools Crafting"
+perkSalvageToolCraftingDesc,progression,Perk,"Learn how to craft Salvage tools."
+reqASSalvageToolsLevel10,progression,Perk,"Requires Salvage Tools Level 10"
+reqASSalvageToolsLevel20,progression,Perk,"Requires Salvage Tools Level 20"
+reqASSalvageToolsLevel30,progression,Perk,"Requires Salvage Tools Level 30"
+reqASSalvageToolsLevel40,progression,Perk,"Requires Salvage Tools Level 40"
+reqASSalvageToolsLevel50,progression,Perk,"Requires Salvage Tools Level 50"
+reqASSalvageToolsLevel60,progression,Perk,"Requires Salvage Tools Level 60"
+reqASSalvageToolsLevel70,progression,Perk,"Requires Salvage Tools Level 70"
+reqASSalvageToolsLevel80,progression,Perk,"Requires Salvage Tools Level 80"
+reqASSalvageToolsLevel90,progression,Perk,"Requires Salvage Tools Level 90"
+reqASSalvageToolsLevel100,progression,Perk,"Requires Salvage Tools Level 100"
+perkSalvageToolCraftingRank1Desc,progression,Perk,"Wrenching Tools"
+perkSalvageToolCraftingRank1LongDesc,progression,Perk,"Unlocks the Wrench"
+perkSalvageToolCraftingRank2Desc,progression,Perk,"Advanced Tools"
+perkSalvageToolCraftingRank2LongDesc,progression,Perk,"Unlocks the Ratchet"
+perkSalvageToolCraftingRank3Desc,progression,Perk,"Impact Tools"
+perkSalvageToolCraftingRank3LongDesc,progression,Perk,"Unlocks the Impact Driver"
+
+
+perkBluntCraftingName,progression,Perk,"Blunt Weapons Crafting"
+perkBluntCraftingDesc,progression,Perk,"Learn how to craft blunt weapons."
+reqASBluntLevel10,progression,Perk,"Requires Blunt Weapons Level 10"
+reqASBluntLevel20,progression,Perk,"Requires Blunt Weapons Level 20"
+reqASBluntLevel30,progression,Perk,"Requires Blunt Weapons Level 30"
+reqASBluntLevel40,progression,Perk,"Requires Blunt Weapons Level 40"
+reqASBluntLevel50,progression,Perk,"Requires Blunt Weapons Level 50"
+reqASBluntLevel60,progression,Perk,"Requires Blunt Weapons Level 60"
+reqASBluntLevel70,progression,Perk,"Requires Blunt Weapons Level 70"
+reqASBluntLevel80,progression,Perk,"Requires Blunt Weapons Level 80"
+reqASBluntLevel90,progression,Perk,"Requires Blunt Weapons Level 90"
+reqASBluntLevel100,progression,Perk,"Requires Blunt Weapons Level 100"
+perkBluntCraftingRank1Desc,progression,Perk,"Initiate"
+perkBluntCraftingRank1LongDesc,progression,Perk,"Unlocks the Baseball Bat"
+perkBluntCraftingRank2Desc,progression,Perk,"Journeyman"
+perkBluntCraftingRank2LongDesc,progression,Perk,"Unlocks the Telescopic Baton"
+perkBluntCraftingRank3Desc,progression,Perk,"Apprentice"
+perkBluntCraftingRank3LongDesc,progression,Perk,"Unlocks the Steel Club"
+perkBluntCraftingRank4Desc,progression,Perk,"Master"
+perkBluntCraftingRank4LongDesc,progression,Perk,"Unlocks the Steel Bat"
+perkBluntCraftingRank5Desc,progression,Perk,"Legend"
+perkBluntCraftingRank5LongDesc,progression,Perk,"Unlocks the Chrome Club"
+
+
+
+perkSledgehammersCraftingName,progression,Perk,"Sledgehammers Crafting"
+perkSledgehammersCraftingDesc,progression,Perk,"Learn how to craft sledgehammers."
+reqASSledgehammersLevel10,progression,Perk,"Requires Sledgehammers Level 10"
+reqASSledgehammersLevel20,progression,Perk,"Requires Sledgehammers Level 20"
+reqASSledgehammersLevel30,progression,Perk,"Requires Sledgehammers Level 30"
+reqASSledgehammersLevel40,progression,Perk,"Requires Sledgehammers Level 40"
+reqASSledgehammersLevel50,progression,Perk,"Requires Sledgehammers Level 50"
+reqASSledgehammersLevel60,progression,Perk,"Requires Sledgehammers Level 60"
+reqASSledgehammersLevel70,progression,Perk,"Requires Sledgehammers Level 70"
+reqASSledgehammersLevel80,progression,Perk,"Requires Sledgehammers Level 80"
+reqASSledgehammersLevel90,progression,Perk,"Requires Sledgehammers Level 90"
+reqASSledgehammersLevel100,progression,Perk,"Requires Sledgehammers Level 100"
+perkSledgehammersCraftingRank1Desc,progression,Perk,"Initiate"
+perkSledgehammersCraftingRank1LongDesc,progression,Perk,"Unlocks Iron Sledgehammer"
+perkSledgehammersCraftingRank2Desc,progression,Perk,"Journeyman"
+perkSledgehammersCraftingRank2LongDesc,progression,Perk,"Unlocks Steel Sledgehammer"
+perkSledgehammersCraftingRank3Desc,progression,Perk,"Apprentice"
+perkSledgehammersCraftingRank3LongDesc,progression,Perk,"Unlocks Gate Crasher"
+
+perkBladedCraftingName,progression,Perk,"Blades Crafting"
+perkBladedCraftingDesc,progression,Perk,"Learn how to craft Blades."
+reqASBladedLevel10,progression,Perk,"Requires Blades Level 10"
+reqASBladedLevel20,progression,Perk,"Requires Blades Level 20"
+reqASBladedLevel30,progression,Perk,"Requires Blades Level 30"
+reqASBladedLevel40,progression,Perk,"Requires Blades Level 40"
+reqASBladedLevel50,progression,Perk,"Requires Blades Level 50"
+reqASBladedLevel60,progression,Perk,"Requires Blades Level 60"
+reqASBladedLevel70,progression,Perk,"Requires Blades Level 70"
+reqASBladedLevel80,progression,Perk,"Requires Blades Level 80"
+reqASBladedLevel90,progression,Perk,"Requires Blades Level 90"
+reqASBladedLevel100,progression,Perk,"Requires Blades Level 100"
+perkBladedCraftingRank1Desc,progression,Perk,"Initiate"
+perkBladedCraftingRank1LongDesc,progression,Perk,"Unlocks the Scrap Knife"
+perkBladedCraftingRank2Desc,progression,Perk,"Journeyman"
+perkBladedCraftingRank2LongDesc,progression,Perk,"Unlocks the Hunting Knife"
+perkBladedCraftingRank3Desc,progression,Perk,"Apprentice"
+perkBladedCraftingRank3LongDesc,progression,Perk,"Unlocks the Machete"
+perkBladedCraftingRank4Desc,progression,Perk,"Master"
+perkBladedCraftingRank4LongDesc,progression,Perk,"Unlocks the Kukri"
+perkBladedCraftingRank5Desc,progression,Perk,"Legend"
+perkBladedCraftingRank5LongDesc,progression,Perk,"Unlocks the Chrome Machete"
+
+perkElectricCraftingName,progression,Perk,"Stun Batons Crafting"
+perkElectricCraftingDesc,progression,Perk,"Learn how to craft Stun Batons."
+reqASElectricLevel10,progression,Perk,"Requires Stun Batons Level 10"
+reqASElectricLevel20,progression,Perk,"Requires Stun Batons Level 20"
+reqASElectricLevel30,progression,Perk,"Requires Stun Batons Level 30"
+reqASElectricLevel40,progression,Perk,"Requires Stun Batons Level 40"
+reqASElectricLevel50,progression,Perk,"Requires Stun Batons Level 50"
+reqASElectricLevel60,progression,Perk,"Requires Stun Batons Level 60"
+reqASElectricLevel70,progression,Perk,"Requires Stun Batons Level 70"
+reqASElectricLevel80,progression,Perk,"Requires Stun Batons Level 80"
+reqASElectricLevel90,progression,Perk,"Requires Stun Batons Level 90"
+reqASElectricLevel100,progression,Perk,"Requires Stun Batons Level 100"
+perkElectricCraftingRank1Desc,progression,Perk,"Initiate"
+perkElectricCraftingRank1LongDesc,progression,Perk,"Unlocks the Robotic Sledge"
+perkElectricCraftingRank2Desc,progression,Perk,"Journeyman"
+perkElectricCraftingRank2LongDesc,progression,Perk,"Unlocks the Stun Baton"
+perkElectricCraftingRank3Desc,progression,Perk,"Master"
+perkElectricCraftingRank3LongDesc,progression,Perk,"Unlocks the Junk Turret"
+
+
+perkArcheryCraftingName,progression,Perk,"Bow Crafting"
+perkArcheryCraftingDesc,progression,Perk,"Learn how to craft Bows."
+reqASArcheryLevel10,progression,Perk,"Requires Bows Level 10"
+reqASArcheryLevel20,progression,Perk,"Requires Bows Level 20"
+reqASArcheryLevel30,progression,Perk,"Requires Bows Level 30"
+reqASArcheryLevel40,progression,Perk,"Requires Bows Level 40"
+reqASArcheryLevel50,progression,Perk,"Requires Bows Level 50"
+reqASArcheryLevel60,progression,Perk,"Requires Bows Level 60"
+reqASArcheryLevel70,progression,Perk,"Requires Bows Level 70"
+reqASArcheryLevel80,progression,Perk,"Requires Bows Level 80"
+reqASArcheryLevel90,progression,Perk,"Requires Bows Level 90"
+reqASArcheryLevel100,progression,Perk,"Requires Bows Level 100"
+perkArcheryCraftingRank1Desc,progression,Perk,"Initiate"
+perkArcheryCraftingRank1LongDesc,progression,Perk,"Unlocks the Wooden Bow"
+perkArcheryCraftingRank2Desc,progression,Perk,"Journeyman"
+perkArcheryCraftingRank2LongDesc,progression,Perk,"Unlocks the Iron Crossbow"
+perkArcheryCraftingRank3Desc,progression,Perk,"Apprentice"
+perkArcheryCraftingRank3LongDesc,progression,Perk,"Unlocks the Compound Bow"
+perkArcheryCraftingRank4Desc,progression,Perk,"Master"
+perkArcheryCraftingRank4LongDesc,progression,Perk,"Unlocks the Compound Crossbow and Chrome Arrows and Bolts"
+perkArcheryCraftingRank5Desc,progression,Perk,"Legend"
+perkArcheryCraftingRank5LongDesc,progression,Perk,"Unlocks Crossbow Repeater and Tungsten Arrows and Bolts"
+perkArcheryCraftingRank6Desc,progression,Perk,"Transcendent"
+perkArcheryCraftingRank6LongDesc,progression,Perk,"Unlocks Magbow"
+
+
+perkPistolsCraftingName,progression,Perk,"Pistols Crafting"
+perkPistolsCraftingDesc,progression,Perk,"Learn how to craft Pistols."
+reqASPistolsLevel10,progression,Perk,"Requires Pistols Level 10"
+reqASPistolsLevel20,progression,Perk,"Requires Pistols Level 20"
+reqASPistolsLevel30,progression,Perk,"Requires Pistols Level 30"
+reqASPistolsLevel40,progression,Perk,"Requires Pistols Level 40"
+reqASPistolsLevel50,progression,Perk,"Requires Pistols Level 50"
+reqASPistolsLevel60,progression,Perk,"Requires Pistols Level 60"
+reqASPistolsLevel70,progression,Perk,"Requires Pistols Level 70"
+reqASPistolsLevel80,progression,Perk,"Requires Pistols Level 80"
+reqASPistolsLevel90,progression,Perk,"Requires Pistols Level 90"
+reqASPistolsLevel100,progression,Perk,"Requires Pistols Level 100"
+perkPistolsCraftingRank1Desc,progression,Perk,"Initiate"
+perkPistolsCraftingRank1LongDesc,progression,Perk,"Unlocks the Pistol"
+perkPistolsCraftingRank2Desc,progression,Perk,"Journeyman"
+perkPistolsCraftingRank2LongDesc,progression,Perk,"Unlocks the 44 Magnum"
+perkPistolsCraftingRank3Desc,progression,Perk,"Apprentice"
+perkPistolsCraftingRank3LongDesc,progression,Perk,"Unlocks the SMG"
+perkPistolsCraftingRank4Desc,progression,Perk,"Master"
+perkPistolsCraftingRank4LongDesc,progression,Perk,"Unlocks the Desert Eagle"
+perkPistolsCraftingRank5Desc,progression,Perk,"Legend"
+perkPistolsCraftingRank5LongDesc,progression,Perk,"Unlocks the Beretta 93R"
+
+
+perkShotgunsCraftingName,progression,Perk,"Shotguns Crafting"
+perkShotgunsCraftingDesc,progression,Perk,"Learn how to craft Shotguns."
+reqASShotgunsLevel10,progression,Perk,"Requires Shotguns Level 10"
+reqASShotgunsLevel20,progression,Perk,"Requires Shotguns Level 20"
+reqASShotgunsLevel30,progression,Perk,"Requires Shotguns Level 30"
+reqASShotgunsLevel40,progression,Perk,"Requires Shotguns Level 40"
+reqASShotgunsLevel50,progression,Perk,"Requires Shotguns Level 50"
+reqASShotgunsLevel60,progression,Perk,"Requires Shotguns Level 60"
+reqASShotgunsLevel70,progression,Perk,"Requires Shotguns Level 70"
+reqASShotgunsLevel80,progression,Perk,"Requires Shotguns Level 80"
+reqASShotgunsLevel90,progression,Perk,"Requires Shotguns Level 90"
+reqASShotgunsLevel100,progression,Perk,"Requires Shotguns Level 100"
+perkShotgunsCraftingRank1Desc,progression,Perk,"Initiate"
+perkShotgunsCraftingRank1LongDesc,progression,Perk,"Unlocks the Double Barrel"
+perkShotgunsCraftingRank2Desc,progression,Perk,"Journeyman"
+perkShotgunsCraftingRank2LongDesc,progression,Perk,"Unlocks the Pump Shotgun"
+perkShotgunsCraftingRank3Desc,progression,Perk,"Apprentice"
+perkShotgunsCraftingRank3LongDesc,progression,Perk,"Unlocks the Auto Shotgun"
+perkShotgunsCraftingRank4Desc,progression,Perk,"Master"
+perkShotgunsCraftingRank4LongDesc,progression,Perk,"Unlocks the M4 Super 90 Shotgun"
+perkShotgunsCraftingRank5Desc,progression,Perk,"Legend"
+perkShotgunsCraftingRank5LongDesc,progression,Perk,"Unlocks the SPAS-12 Shotgun"
+
+
+perkAutomaticsCraftingName,progression,Perk,"Automatics Crafting"
+perkAutomaticsCraftingDesc,progression,Perk,"Learn how to craft Automatics."
+reqASAutomaticsLevel10,progression,Perk,"Requires Automatics Level 10"
+reqASAutomaticsLevel20,progression,Perk,"Requires Automatics Level 20"
+reqASAutomaticsLevel30,progression,Perk,"Requires Automatics Level 30"
+reqASAutomaticsLevel40,progression,Perk,"Requires Automatics Level 40"
+reqASAutomaticsLevel50,progression,Perk,"Requires Automatics Level 50"
+reqASAutomaticsLevel60,progression,Perk,"Requires Automatics Level 60"
+reqASAutomaticsLevel70,progression,Perk,"Requires Automatics Level 70"
+reqASAutomaticsLevel80,progression,Perk,"Requires Automatics Level 80"
+reqASAutomaticsLevel90,progression,Perk,"Requires Automatics Level 90"
+reqASAutomaticsLevel100,progression,Perk,"Requires Automatics Level 100"
+perkAutomaticsCraftingRank1Desc,progression,Perk,"Initiate"
+perkAutomaticsCraftingRank1LongDesc,progression,Perk,"Unlocks the AK-47"
+perkAutomaticsCraftingRank2Desc,progression,Perk,"Journeyman"
+perkAutomaticsCraftingRank2LongDesc,progression,Perk,"Unlocks the Tactical Assault Rifle"
+perkAutomaticsCraftingRank3Desc,progression,Perk,"Apprentice"
+perkAutomaticsCraftingRank3LongDesc,progression,Perk,"Unlocks the M60"
+perkAutomaticsCraftingRank4Desc,progression,Perk,"Master"
+perkAutomaticsCraftingRank4LongDesc,progression,Perk,"Unlocks the HK416 Assault Rifle"
+perkAutomaticsCraftingRank5Desc,progression,Perk,"Legend"
+perkAutomaticsCraftingRank5LongDesc,progression,Perk,"Unlocks the M4A1 Assault Rifle"
+
+
+perkRifleCraftingName,progression,Perk,"Rifles Crafting"
+perkRifleCraftingDesc,progression,Perk,"Learn how to craft Rifles."
+reqASRifleLevel10,progression,Perk,"Requires Rifles Level 10"
+reqASRifleLevel20,progression,Perk,"Requires Rifles Level 20"
+reqASRifleLevel30,progression,Perk,"Requires Rifles Level 30"
+reqASRifleLevel40,progression,Perk,"Requires Rifles Level 40"
+reqASRifleLevel50,progression,Perk,"Requires Rifles Level 50"
+reqASRifleLevel60,progression,Perk,"Requires Rifles Level 60"
+reqASRifleLevel70,progression,Perk,"Requires Rifles Level 70"
+reqASRifleLevel80,progression,Perk,"Requires Rifles Level 80"
+reqASRifleLevel90,progression,Perk,"Requires Rifles Level 90"
+reqASRifleLevel100,progression,Perk,"Requires Rifles Level 100"
+perkRifleCraftingRank1Desc,progression,Perk,"Initiate"
+perkRifleCraftingRank1LongDesc,progression,Perk,"Unlocks the Hunting Rifle"
+perkRifleCraftingRank2Desc,progression,Perk,"Journeyman"
+perkRifleCraftingRank2LongDesc,progression,Perk,"Unlocks the Lever Action Rifle"
+perkRifleCraftingRank3Desc,progression,Perk,"Apprentice"
+perkRifleCraftingRank3LongDesc,progression,Perk,"Unlocks the Sniper Rifle"
+
+perkBrawlerCraftingName,progression,Perk,"Fist Weapons Crafting"
+perkBrawlerCraftingDesc,progression,Perk,"Learn how to craft Fist Weapons."
+reqASBrawlerLevel10,progression,Perk,"Requires Fist Weapons Level 10"
+reqASBrawlerLevel20,progression,Perk,"Requires Fist Weapons Level 20"
+reqASBrawlerLevel30,progression,Perk,"Requires Fist Weapons Level 30"
+reqASBrawlerLevel40,progression,Perk,"Requires Fist Weapons Level 40"
+reqASBrawlerLevel50,progression,Perk,"Requires Fist Weapons Level 50"
+reqASBrawlerLevel60,progression,Perk,"Requires Fist Weapons Level 60"
+reqASBrawlerLevel70,progression,Perk,"Requires Fist Weapons Level 70"
+reqASBrawlerLevel80,progression,Perk,"Requires Fist Weapons Level 80"
+reqASBrawlerLevel90,progression,Perk,"Requires Fist Weapons Level 90"
+reqASBrawlerLevel100,progression,Perk,"Requires Fist Weapons Level 100"
+perkBrawlerCraftingRank1Desc,progression,Perk,"Initiate"
+perkBrawlerCraftingRank1LongDesc,progression,Perk,"Unlocks the Leather Knuckles"
+perkBrawlerCraftingRank2Desc,progression,Perk,"Journeyman"
+perkBrawlerCraftingRank2LongDesc,progression,Perk,"Unlocks the Iron Knuckles"
+perkBrawlerCraftingRank3Desc,progression,Perk,"Master"
+perkBrawlerCraftingRank3LongDesc,progression,Perk,"Unlocks the Steel Knuckles"
+
+perkJavelinCraftingName,progression,Perk,"Spears Crafting"
+perkJavelinCraftingDesc,progression,Perk,"Learn how to craft Spears."
+reqASJavelinLevel20,progression,Perk,"Requires Spears Level 20"
+reqASJavelinLevel40,progression,Perk,"Requires Spears Level 40"
+reqASJavelinLevel60,progression,Perk,"Requires Spears Level 60"
+reqASJavelinLevel80,progression,Perk,"Requires Spears Level 80"
+reqASJavelinLevel100,progression,Perk,"Requires Spears Level 100"
+perkJavelinCraftingRank1Desc,progression,Perk,"Initiate"
+perkJavelinCraftingRank1LongDesc,progression,Perk,"Unlocks the Iron Spear"
+perkJavelinCraftingRank2Desc,progression,Perk,"Journeyman"
+perkJavelinCraftingRank2LongDesc,progression,Perk,"Unlocks the Steel Spear"
+perkJavelinCraftingRank3Desc,progression,Perk,"Apprentice"
+perkJavelinCraftingRank3LongDesc,progression,Perk,"Unlocks the throwable Javelin"
+perkJavelinCraftingRank4Desc,progression,Perk,"Master"
+perkJavelinCraftingRank4LongDesc,progression,Perk,"Unlocks the Pitchfork"
+
+reqASAthleticsLevel20,progression,Perk,"Requires Athletics Level 20"
+reqASAthleticsLevel40,progression,Perk,"Requires Athletics Level 40"
+reqASAthleticsLevel60,progression,Perk,"Requires Athletics Level 60"
+reqASAthleticsLevel80,progression,Perk,"Requires Athletics Level 80"
+reqASAthleticsLevel100,progression,Perk,"Requires Athletics Level 100"
+perkASAthletics1Desc,progression,Perk,"+5% stamina recovery while running. Increases at skill level 21. Caps at +25% at level 100. Decrease stamina use from jumping by 4% Increases at skill level 21."
+perkASAthletics2Desc,progression,Perk,"+10% stamina recovery while running. Increases at skill level 41. Caps at +25% at level 100. Decrease stamina use from jumping by 8% Increases at skill level 41."
+perkASAthletics3Desc,progression,Perk,"+15% stamina recovery while running. Increases at skill level 61. Caps at +25% at level 100. Decrease stamina use from jumping by 12% Increases at skill level 61."
+perkASAthletics4Desc,progression,Perk,"+20% stamina recovery while running. Increases at skill level 81. Caps at +25% at level 100. Decrease stamina use from jumping by 16% Increases at skill level 81."
+perkASAthletics5Desc,progression,Perk,"+25% stamina recovery while running. Decrease stamina use from jumping by 20%"
+perkASAthleticsName,progression,Attribute,Athletics
+perkASAthleticsDesc,progression,Attribute,Better stamina usage for jumping and better stamina regen while running.
+
+
+
+magazinePerkASRepairTools,items,Book,"Magazine: Repair Tools [e7a729](2 Points)[-]",,,,,
+magazinePerkASConstructionTools,items,Book,"Magazine: Woodcutting Tools [e7a729](2 Points)[-]",,,,,
+magazinePerkASSalvageTools,items,Book,"Magazine: Salvage Tools [e7a729](2 Points)[-]",,,,,
+magazinePerkASMiningTools,items,Book,"Magazine: Mining Tools [e7a729](2 Points)[-]",,,,,
+magazinePerkASBlunt,items,Book,"Magazine: Blunt Weapons [e7a729](2 Points)[-]",,,,,
+magazinePerkASBladed,items,Book,"Magazine: Blades [e7a729](2 Points)[-]",,,,,
+magazinePerkASArchery,items,Book,"Magazine: Bows [e7a729](2 Points)[-]",,,,,
+magazinePerkASPistols,items,Book,"Magazine: Pistols [e7a729](2 Points)[-]",,,,,
+magazinePerkASShotguns,items,Book,"Magazine: Shotguns [e7a729](2 Points)[-]",,,,,
+magazinePerkASRifles,items,Book,"Magazine: Rifles [e7a729](2 Points)[-]",,,,,
+magazinePerkASAutomatics,items,Book,"Magazine: Automatics [e7a729](2 Points)[-]",,,,,
+magazinePerkASElectric,items,Book,"Magazine: Stun Batons [e7a729](2 Points)[-]",,,,,
+magazinePerkASTurret,items,Book,"Magazine: Turrets [e7a729](2 Points)[-]",,,,,
+magazinePerkASJavelin,items,Book,"Magazine: Spears [e7a729](2 Points)[-]",,,,,
+magazinePerkASBrawler,items,Book,"Magazine: Fist Weapons [e7a729](2 Points)[-]",,,,,
+magazinePerkASSledgehammers,items,Book,"Magazine: Sledgehammers [e7a729](2 Points)[-]",,,,,
+
+
+magazinePerkASRepairTools3Points,items,Book,"Magazine: Repair Tools [e7a729](3 Points)[-]",,,,,
+magazinePerkASConstructionTools3Points,items,Book,"Magazine: Woodcutting Tools [e7a729](3 Points)[-]",,,,,
+magazinePerkASSalvageTools3Points,items,Book,"Magazine: Salvage Tools [e7a729](3 Points)[-]",,,,,
+magazinePerkASMiningTools3Points,items,Book,"Magazine: Mining Tools [e7a729](3 Points)[-]",,,,,
+magazinePerkASBlunt3Points,items,Book,"Magazine: Blunt Weapons [e7a729](3 Points)[-]",,,,,
+magazinePerkASBladed3Points,items,Book,"Magazine: Blades [e7a729](3 Points)[-]",,,,,
+magazinePerkASArchery3Points,items,Book,"Magazine: Bows [e7a729](3 Points)[-]",,,,,
+magazinePerkASPistols3Points,items,Book,"Magazine: Pistols [e7a729](3 Points)[-]",,,,,
+magazinePerkASShotguns3Points,items,Book,"Magazine: Shotguns [e7a729](3 Points)[-]",,,,,
+magazinePerkASRifles3Points,items,Book,"Magazine: Rifles [e7a729](3 Points)[-]",,,,,
+magazinePerkASAutomatics3Points,items,Book,"Magazine: Automatics [e7a729](3 Points)[-]",,,,,
+magazinePerkASElectric3Points,items,Book,"Magazine: Stun Batons [e7a729](3 Points)[-]",,,,,
+magazinePerkASTurret3Points,items,Book,"Magazine: Turrets [e7a729](3 Points)[-]",,,,,
+magazinePerkASJavelin3Points,items,Book,"Magazine: Spears [e7a729](3 Points)[-]",,,,,
+magazinePerkASBrawler3Points,items,Book,"Magazine: Fist Weapons [e7a729](3 Points)[-]",,,,,
+magazinePerkASSledgehammers3Points,items,Book,"Magazine: Sledgehammers [e7a729](3 Points)[-]",,,,,
+
+
+magazinePerkASRepairTools5Points,items,Book,"Magazine: Repair Tools [e7a729](5 Points)[-]",,,,,
+magazinePerkASConstructionTools5Points,items,Book,"Magazine: Woodcutting Tools [e7a729](5 Points)[-]",,,,,
+magazinePerkASSalvageTools5Points,items,Book,"Magazine: Salvage Tools [e7a729](5 Points)[-]",,,,,
+magazinePerkASMiningTools5Points,items,Book,"Magazine: Mining Tools [e7a729](5 Points)[-]",,,,,
+magazinePerkASBlunt5Points,items,Book,"Magazine: Blunt Weapons [e7a729](5 Points)[-]",,,,,
+magazinePerkASBladed5Points,items,Book,"Magazine: Blades [e7a729](5 Points)[-]",,,,,
+magazinePerkASArchery5Points,items,Book,"Magazine: Bows [e7a729](5 Points)[-]",,,,,
+magazinePerkASPistols5Points,items,Book,"Magazine: Pistols [e7a729](5 Points)[-]",,,,,
+magazinePerkASShotguns5Points,items,Book,"Magazine: Shotguns [e7a729](5 Points)[-]",,,,,
+magazinePerkASRifles5Points,items,Book,"Magazine: Rifles [e7a729](5 Points)[-]",,,,,
+magazinePerkASAutomatics5Points,items,Book,"Magazine: Automatics [e7a729](5 Points)[-]",,,,,
+magazinePerkASElectric5Points,items,Book,"Magazine: Stun Batons [e7a729](5 Points)[-]",,,,,
+magazinePerkASTurret5Points,items,Book,"Magazine: Turrets [e7a729](5 Points)[-]",,,,,
+magazinePerkASJavelin5Points,items,Book,"Magazine: Spears [e7a729](5 Points)[-]",,,,,
+magazinePerkASBrawler5Points,items,Book,"Magazine: Fist Weapons [e7a729](5 Points)[-]",,,,,
+magazinePerkASSledgehammers5Points,items,Book,"Magazine: Sledgehammers [e7a729](5 Points)[-]",,,,,
+
+
+magazinePerkASRepairTools3PointsDesc,items,Book,Grants you three levels of the Action Skill Repair Tools.,,,,,
+magazinePerkASMiningTools3PointsDesc,items,Book,Grants you three levels of the Action Skill Mining Tools.,,,,,
+magazinePerkASConstructionTools3PointsDesc,items,Book,Grants you three levels of the Action Skill Woodcutting Tools.,,,,,
+magazinePerkASSalvageTools3PointsDesc,items,Book,Grants you three levels of the Action Skill Salvage Tools.,,,,,
+magazinePerkASBlunt3PointsDesc,items,Book,Grants you three levels of the Action Skill Blunt Weapons.,,,,,
+magazinePerkASBladed3PointsDesc,items,Book,Grants you three levels of the Action Skill Blades.,,,,,
+magazinePerkASArchery3PointsDesc,items,Book,Grants you three levels of the Action Skill Bows.,,,,,
+magazinePerkASPistols3PointsDesc,items,Book,Grants you three levels of the Action Skill Pistols.,,,,,
+magazinePerkASShotguns3PointsDesc,items,Book,Grants you three levels of the Action Skill Shotguns.,,,,,
+magazinePerkASRifles3PointsDesc,items,Book,Grants you three levels of the Action Skill Rifles.,,,,,
+magazinePerkASAutomatics3PointsDesc,items,Book,Grants you three levels of the Action Skill Automatics.,,,,,
+magazinePerkASElectric3PointsDesc,items,Book,Grants you three levels of the Action Skill Stun Batons.,,,,,
+magazinePerkASTurret3PointsDesc,items,Book,Grants you three levels of the Action Skill Turrets.,,,,,
+magazinePerkASJavelin3PointsDesc,items,Book,Grants you three levels of the Action Skill Spears.,,,,,
+magazinePerkASBrawler3PointsDesc,items,Book,Grants you three levels of the Action Skill Fist Weapons.,,,,,
+magazinePerkASSledgehammers3PointsDesc,items,Book,Grants you three levels of the Action Skill Sledgehammers.,,,,,
+
+
+magazinePerkASRepairTools5PointsDesc,items,Book,Grants you five levels of the Action Skill Repair Tools.,,,,,
+magazinePerkASMiningTools5PointsDesc,items,Book,Grants you five levels of the Action Skill Mining Tools.,,,,,
+magazinePerkASConstructionTools5PointsDesc,items,Book,Grants you five levels of the Action Skill Woodcutting Tools.,,,,,
+magazinePerkASSalvageTools5PointsDesc,items,Book,Grants you five levels of the Action Skill Salvage Tools.,,,,,
+magazinePerkASBlunt5PointsDesc,items,Book,Grants you five levels of the Action Skill Blunt Weapons.,,,,,
+magazinePerkASBladed5PointsDesc,items,Book,Grants you five levels of the Action Skill Blades.,,,,,
+magazinePerkASArchery5PointsDesc,items,Book,Grants you five levels of the Action Skill Bows.,,,,,
+magazinePerkASPistols5PointsDesc,items,Book,Grants you five levels of the Action Skill Pistols.,,,,,
+magazinePerkASShotguns5PointsDesc,items,Book,Grants you five levels of the Action Skill Shotguns.,,,,,
+magazinePerkASRifles5PointsDesc,items,Book,Grants you five levels of the Action Skill Rifles.,,,,,
+magazinePerkASAutomatics5PointsDesc,items,Book,Grants you five levels of the Action Skill Automatics.,,,,,
+magazinePerkASElectric5PointsDesc,items,Book,Grants you five levels of the Action Skill Stun Batons.,,,,,
+magazinePerkASTurret5PointsDesc,items,Book,Grants you five levels of the Action Skill Turrets.,,,,,
+magazinePerkASJavelin5PointsDesc,items,Book,Grants you five levels of the Action Skill Spears.,,,,,
+magazinePerkASBrawler5PointsDesc,items,Book,Grants you five levels of the Action Skill Fist Weapons.,,,,,
+magazinePerkASSledgehammers5PointsDesc,items,Book,Grants you five levels of the Action Skill Sledgehammers.,,,,,
+
+
+magazinePerkASRepairToolsDesc,items,Book,Grants you two levels of the Action Skill Repair Tools.,,,,,
+magazinePerkASMiningToolsDesc,items,Book,Grants you two levels of the Action Skill Mining Tools.,,,,,
+magazinePerkASConstructionToolsDesc,items,Book,Grants you two levels of the Action Skill Woodcutting Tools.,,,,,
+magazinePerkASSalvageToolsDesc,items,Book,Grants you two levels of the Action Skill Salvage Tools.,,,,,
+magazinePerkASBluntDesc,items,Book,Grants you two levels of the Action Skill Blunt Weapons.,,,,,
+magazinePerkASBladedDesc,items,Book,Grants you two levels of the Action Skill Blades.,,,,,
+magazinePerkASArcheryDesc,items,Book,Grants you two levels of the Action Skill Bows.,,,,,
+magazinePerkASPistolsDesc,items,Book,Grants you two levels of the Action Skill Pistols.,,,,,
+magazinePerkASShotgunsDesc,items,Book,Grants you two levels of the Action Skill Shotguns.,,,,,
+magazinePerkASRiflesDesc,items,Book,Grants you two levels of the Action Skill Rifles.,,,,,
+magazinePerkASAutomaticsDesc,items,Book,Grants you two levels of the Action Skill Automatics.,,,,,
+magazinePerkASElectricDesc,items,Book,Grants you two levels of the Action Skill Stun Batons.,,,,,
+magazinePerkASTurretDesc,items,Book,Grants you two levels of the Action Skill Turrets.,,,,,
+magazinePerkASJavelinDesc,items,Book,Grants you two levels of the Action Skill Spears.,,,,,
+magazinePerkASBrawlerDesc,items,Book,Grants you two levels of the Action Skill Fist Weapons.,,,,,
+magazinePerkASSledgehammersDesc,items,Book,Grants you two levels of the Action Skill Sledgehammers.,,,,,
+
+
+Dev_MagazinePerkASRepairTools100Points,items,Book,"Dev Magazine: Repair Tools [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASConstructionTools100Points,items,Book,"Dev Magazine: Woodcutting Tools [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASSalvageTools100Points,items,Book,"Dev Magazine: Salvage Tools [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASMiningTools100Points,items,Book,"Dev Magazine: Mining Tools [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASBlunt100Points,items,Book,"Dev Magazine: Blunt Weapons [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASBladed100Points,items,Book,"Dev Magazine: Blades [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASArchery100Points,items,Book,"Dev Magazine: Bows [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASPistols100Points,items,Book,"Dev Magazine: Pistols [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASShotguns100Points,items,Book,"Dev Magazine: Shotguns [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASRifles100Points,items,Book,"Dev Magazine: Rifles [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASAutomatics100Points,items,Book,"Dev Magazine: Automatics [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASElectric100Points,items,Book,"Dev Magazine: Stun Batons [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASTurret100Points,items,Book,"Dev Magazine: Turrets [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASJavelin100Points,items,Book,"Dev Magazine: Spears [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASBrawler100Points,items,Book,"Dev Magazine: Fist Weapons [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASSledgehammers100Points,items,Book,"Dev Magazine: Sledgehammers [e7a729](100 Points)[-]",,,,,
+Dev_MagazinePerkASMiningTools100PointsDesc,items,Book,Grants you full max level in the Action Skill Mining Tools.,,,,,
+Dev_MagazinePerkASConstructionTools100PointsDesc,items,Book,Grants you full max level in the Action Skill Woodcutting Tools.,,,,,
+Dev_MagazinePerkASSalvageTools100PointsDesc,items,Book,Grants you full max level in the Action Skill Salvage Tools.,,,,,
+Dev_MagazinePerkASBlunt100PointsDesc,items,Book,Grants you full max level in the Action Skill Blunt Weapons.,,,,,
+Dev_MagazinePerkASBladed100PointsDesc,items,Book,Grants you full max level in the Action Skill Blades.,,,,,
+Dev_MagazinePerkASArchery100PointsDesc,items,Book,Grants you full max level in the Action Skill Bows.,,,,,
+Dev_MagazinePerkASPistols100PointsDesc,items,Book,Grants you full max level in the Action Skill Pistols.,,,,,
+Dev_MagazinePerkASShotguns100PointsDesc,items,Book,Grants you full max level in the Action Skill Shotguns.,,,,,
+Dev_MagazinePerkASRifles100PointsDesc,items,Book,Grants you full max level in the Action Skill Rifles.,,,,,
+Dev_MagazinePerkASAutomatics100PointsDesc,items,Book,Grants you full max level in the Action Skill Automatics.,,,,,
+Dev_MagazinePerkASElectric100PointsDesc,items,Book,Grants you full max level in the Action Skill Stun Batons.,,,,,
+Dev_MagazinePerkASTurret100PointsDesc,items,Book,Grants you full max level in the Action Skill Turrets.,,,,,
+Dev_MagazinePerkASJavelin100PointsDesc,items,Book,Grants you full max level in the Action Skill Spears.,,,,,
+Dev_MagazinePerkASBrawler100PointsDesc,items,Book,Grants you full max level in the Action Skill Fist Weapons.,,,,,
+Dev_MagazinePerkASSledgehammers100PointsDesc,items,Book,Grants you full max level in the Action Skill Sledgehammers.,,,,,
+
+meleeWpnClubT3AluminumBatSchematic,items,Melee,Steel Bat Schematic,,,,,
+meleeWpnClubT3TelescopicBatonSchematic,items,Melee,Telescopic Baton Schematic,,,,,
+meleeWpnBladeT3KatanaSchematic,items,Melee,Katana Schematic,,,,,
+meleeWpnBladeT3KukriSchematic,items,Melee,Kukri Schematic,,,,,
+
+meleeToolRepairT1ClawHammerSchematic,items,Melee,Claw Hammer Schematic,,,,,
+meleeToolRepairT3NailgunSchematic,items,Melee,Nailgun Schematic,,,,,
+meleeToolAxeT1IronFireaxeSchematic,items,Melee,Iron Fireaxe Schematic,,,,,
+meleeToolAxeT2SteelAxeSchematic,items,Melee,Steel Axe Schematic,,,,,
+
+meleeToolPickT1IronPickaxeSchematic,items,Melee,Iron Pickaxe Schematic,,,,,
+meleeToolPickT2SteelPickaxeSchematic,items,Melee,Steel Pickaxe Schematic,,,,,
+meleeToolShovelT1IronShovelSchematic,items,Melee,Iron Shovel Schematic,,,,,
+meleeToolShovelT2SteelShovelSchematic,items,Melee,Kukri Schematic,,,,,
+
+meleeToolAxeT3ChainsawSchematic,items,Melee,Chainsaw Schematic,,,,,
+meleeToolPickT3AugerSchematic,items,Melee,Auger Schematic,,,,,
+meleeToolSalvageT1WrenchSchematic,items,Melee,Steel Shovel Schematic,,,,,
+meleeToolSalvageT2RatchetSchematic,items,Melee,Ratchet Schematic,,,,,
+
+meleeToolSalvageT3ImpactDriverSchematic,items,Melee,Steel Schematic,,,,,
+meleeWpnBladeT1HuntingKnifeSchematic,items,Melee,Hunting Knife Schematic,,,,,
+meleeWpnBladeT3MacheteSchematic,items,Melee,Machete Schematic,,,,,
+meleeWpnClubT1BaseballBatSchematic,items,Melee,Baseball Bat Schematic,,,,,
+
+meleeWpnClubT3SteelClubSchematic,items,Melee,Steel Club Schematic,,,,,
+meleeWpnBatonT2StunBatonSchematic,items,Melee,Stun Baton Schematic,,,,,
+meleeWpnSpearT1IronSpearSchematic,items,Melee,Iron Spear Schematic,,,,,
+meleeWpnSpearT3SteelSpearSchematic,items,Melee,Steel Spear Schematic,,,,,
+
+meleeWpnSledgeT1IronSledgehammerSchematic,items,Melee,Iron Sledgehammer Schematic,,,,,
+meleeWpnSledgeT3SteelSledgehammerSchematic,items,Melee,Steel Sledgehammer Schematic,,,,,
+meleeWpnKnucklesT1IronKnucklesSchematic,items,Melee,Iron Knuckles Schematic,,,,,
+meleeWpnKnucklesT3SteelKnucklesSchematic,items,Melee,Steel Knuckles Schematic,,,,,
