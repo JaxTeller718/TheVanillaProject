@@ -1,6 +1,4 @@
 <config>
-
-	
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='harvestingToolsSkillMagazine']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='salvageToolsSkillMagazine']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='sledgehammersSkillMagazine']"/>
@@ -16,7 +14,4 @@
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='machineGunsSkillMagazine']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='repairToolsSkillMagazine']"/>
 	<!-- <remove xpath="/traders/trader_item_groups/trader_item_group[@name='skillMagazines']/item[@name='explosivesSkillMagazine']"/> -->
-
-
-	
 </config>

@@ -1,0 +1,69 @@
+<JaxTeller718>
+	<set xpath="/blocks/block[@name='plantedPotato1']/property[@name='UnlockedBy']/@value">plantedPotato1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedCorn1']/property[@name='UnlockedBy']/@value">plantedCorn1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedMushroom1']/property[@name='UnlockedBy']/@value">plantedMushroom1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedPumpkin1']/property[@name='UnlockedBy']/@value">plantedPumpkin1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedBlueberry1']/property[@name='UnlockedBy']/@value">plantedBlueberry1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedHop1']/property[@name='UnlockedBy']/@value">plantedHop1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedAloe1']/property[@name='UnlockedBy']/@value">plantedAloe1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedYucca1']/property[@name='UnlockedBy']/@value">plantedYucca1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedCoffee1']/property[@name='UnlockedBy']/@value">plantedCoffee1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedGoldenrod1']/property[@name='UnlockedBy']/@value">plantedGoldenrod1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedChrysanthemum1']/property[@name='UnlockedBy']/@value">plantedChrysanthemum1Schematic</set>
+	<set xpath="/blocks/block[@name='plantedCotton1']/property[@name='UnlockedBy']/@value">plantedCotton1Schematic</set>
+	<set xpath="/blocks/block[@name='generatorbank']/property[@name='UnlockedBy']/@value">generatorbankSchematic</set>
+	<set xpath="/blocks/block[@name='electricwirerelay']/property[@name='UnlockedBy']/@value">electricwirerelaySchematic</set>
+	<set xpath="/blocks/block[@name='switch']/property[@name='UnlockedBy']/@value">switchSchematic</set>
+	<set xpath="/blocks/block[@name='tripwirepost']/property[@name='UnlockedBy']/@value">tripwirepostSchematic</set>
+	<set xpath="/blocks/block[@name='ceilingLight01_player']/property[@name='UnlockedBy']/@value">ceilingLight01_playerSchematic</set>
+
+	<set xpath="/blocks/block[@name='motionsensor']/property[@name='UnlockedBy']/@value">motionsensorSchematic</set>
+	<set xpath="/blocks/block[@name='electrictimerrelay']/property[@name='UnlockedBy']/@value">electrictimerrelaySchematic</set>
+	<set xpath="/blocks/block[@name='pressureplate']/property[@name='UnlockedBy']/@value">pressureplateSchematic</set>
+	<set xpath="/blocks/block[@name='pressureplateLong']/property[@name='UnlockedBy']/@value">pressureplateSchematic</set>
+	<set xpath="/blocks/block[@name='spotlightPlayer']/property[@name='UnlockedBy']/@value">spotlightPlayerSchematic</set>
+	<set xpath="/blocks/block[@name='speaker']/property[@name='UnlockedBy']/@value">speakerSchematic</set>
+	<set xpath="/blocks/block[@name='batterybank']/property[@name='UnlockedBy']/@value">batterybankSchematic</set>
+	<set xpath="/blocks/block[@name='vaultDoor01_Powered']/property[@name='UnlockedBy']/@value">vaultDoor01_PoweredSchematic</set>
+	<set xpath="/blocks/block[@name='vaultDoor01Double_Powered']/property[@name='UnlockedBy']/@value">vaultDoor01_PoweredSchematic</set>
+	<set xpath="/blocks/block[@name='vaultHatch01_Powered']/property[@name='UnlockedBy']/@value">vaultHatch01_PoweredSchematic</set>
+	<set xpath="/blocks/block[@name='metalReinforcedWoodDrawBridgePowered']/property[@name='UnlockedBy']/@value">metalReinforcedWoodDrawBridgePoweredSchematic</set>
+	<set xpath="/blocks/block[@name='electricfencepost']/property[@name='UnlockedBy']/@value">electricfencepostSchematic</set>
+	<set xpath="/blocks/block[@name='dartTrap']/property[@name='UnlockedBy']/@value">dartTrapSchematic</set>
+	<set xpath="/blocks/block[@name='bladeTrap']/property[@name='UnlockedBy']/@value">bladeTrapSchematic</set>
+	<set xpath="/blocks/block[@name='autoTurret']/property[@name='UnlockedBy']/@value">autoTurretSchematic</set>
+
+	<append xpath="/blocks/block[@name='industrialLight01_player']">
+		<property name="UnlockedBy" value="industrialLight01_playerSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='industrialLight02_player']">
+		<property name="UnlockedBy" value="industrialLight02_playerSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='ceilingLight07_player']">
+		<property name="UnlockedBy" value="ceilingLight07_playerSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='ironGarageDoor_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="ironGarageDoor_PoweredBlockVariantHelperSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='woodenGarageDoor3x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="woodenGarageDoor3x3_PoweredBlockVariantHelperSchematic"/>
+	</append>	
+	<append xpath="/blocks/block[@name='woodenGarageDoor4x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="woodenGarageDoor4x3_PoweredBlockVariantHelperSchematic"/>
+	</append>	
+	<append xpath="/blocks/block[@name='woodenGarageDoor5x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="woodenGarageDoor5x3_PoweredBlockVariantHelperSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='steelGarageDoor3x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="steelGarageDoor3x3_PoweredBlockVariantHelperSchematic"/>
+	</append>	
+	<append xpath="/blocks/block[@name='steelGarageDoor4x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="steelGarageDoor4x3_PoweredBlockVariantHelperSchematic"/>
+	</append>	
+	<append xpath="/blocks/block[@name='steelGarageDoor5x3_PoweredBlockVariantHelper']">
+		<property name="UnlockedBy" value="steelGarageDoor5x3_PoweredBlockVariantHelperSchematic"/>
+	</append>
+	<append xpath="/blocks/block[@name='shotgunTurret']">
+		<property name="UnlockedBy" value="shotgunTurretSchematic"/>
+	</append>	
+</JaxTeller718>
