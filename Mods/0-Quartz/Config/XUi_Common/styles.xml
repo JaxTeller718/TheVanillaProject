@@ -1,21 +1,36 @@
 <Quartz name="XUi_Common/styles.xml">
-	<!--/*Copyright 2022 Christopher Beda Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.*/-->
+	
+	<!--/*Copyright 2022 Christopher Beda
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.*/-->
+
 	<append xpath="/styles">
-		<Fonts type="Fonts" name="NGUIFonts"/>
-		<Fonts type="Fonts" name="UnityFonts"/>
-		<Fonts type="Fonts" name="OSFonts"/>
+		<Fonts type="Fonts" name="NGUIFonts">
+		</Fonts>
+		<Fonts type="Fonts" name="UnityFonts">
+		</Fonts>
+		<Fonts type="Fonts" name="OSFonts">
+		</Fonts>
 	</append>
+
 	<append xpath="/styles/global">
 		<!-- QuartzUI GLOBAL colors. -->
-		<style_entry name="quartz_scrollbar_background" value="0,0,0"/>
-		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background -->
-		<style_entry name="quartz_scrollbar_background_hover" value="7,7,7"/>
-		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background hover (mouseover) -->
-		<style_entry name="quartz_scrollbar_handler" value="128,128,128"/>
-		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler -->
-		<style_entry name="quartz_scrollbar_handler_hover" value="255,255,255"/>
-		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler hover (mouseover) -->
+		<style_entry name="quartz_scrollbar_background"					value="0,0,0" />		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background -->
+		<style_entry name="quartz_scrollbar_background_hover"			value="7,7,7" />		<!-- This entry sets the color for: GLOBAL Scrollview scrollbar background hover (mouseover) -->
+		<style_entry name="quartz_scrollbar_handler"					value="128,128,128" />	<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler -->
+		<style_entry name="quartz_scrollbar_handler_hover"				value="255,255,255" />	<!-- This entry sets the color for: GLOBAL Scrollview scrollbar handler hover (mouseover) -->
 	</append>
+
 	<!-- Views default styles-->
 	<append xpath="/styles">
 		<style type="curvedlabel">
@@ -26,20 +41,24 @@
 			<style_entry name="effect" value="none"/>
 			<style_entry name="pivot" value="topleft"/>
 			<style_entry name="text" value=""/>
-			<style_entry name="upper_case" value="false"/>
-			<style_entry name="crispness" value="OnDesktop"/>
+			<style_entry name="upper_case" value="false" />
+			<style_entry name="crispness" value="OnDesktop" />
 		</style>
+
 		<style type="animatedsprite">
 			<style_entry name="atlas" value="UIAtlas"/>
 			<style_entry name="sprite" value="[default_sprite]"/>
 			<style_entry name="color" value="[white]"/>
 		</style>
 	</append>
+	
 	<!-- Crispness Fix -->
 	<append xpath="/styles/style[@type='label' and count(@*)=1]">
-		<style_entry name="crispness" value="OnDesktop"/>
+		<style_entry name="crispness" value="OnDesktop" />
 	</append>
+	
 	<append xpath="/styles/style[@type='textlist' and count(@*)=1]">
-		<style_entry name="crispness" value="OnDesktop"/>
+		<style_entry name="crispness" value="OnDesktop" />
 	</append>
+	
 </Quartz>
